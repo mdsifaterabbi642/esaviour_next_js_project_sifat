@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dmsans100 {
+  font-family: var(--font-dmsans);
+  font-weight: 100;
+}
+.dmsans200 {
+  font-family: var(--font-dmsans);
+  font-weight: 200;
+}
+.dmsans300 {
+  font-family: var(--font-dmsans);
+  font-weight: 300;
+}
+.dmsans400 {
+  font-family: var(--font-dmsans);
+  font-weight: 400;
+}
+.dmsans500 {
+  font-family: var(--font-dmsans);
+  font-weight: 500;
+}
+.dmsans600 {
+  font-family: var(--font-dmsans);
+  font-weight: 600;
+}
+.dmsans700 {
+  font-family: var(--font-dmsans);
+  font-weight: 700;
+}
+.dmsans800 {
+  font-family: var(--font-dmsans);
+  font-weight: 800;
+}
+.dmsans900 {
+  font-family: var(--font-dmsans);
+  font-weight: 900;
+}
