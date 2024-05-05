@@ -38,3 +38,15 @@
   font-family: var(--font-dmsans);
   font-weight: 900;
 }
+.letterSpacing1 {
+  letter-spacing: 1px;
+}
+.letterSpacing2 {
+  letter-spacing: 2px;
+}
+.letterSpacing3 {
+  letter-spacing: 3px;
+}
+.letterSpacing4 {
+  letter-spacing: 4px;
+}
