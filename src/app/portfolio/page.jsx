@@ -1,19 +1,22 @@
 import styles from "@/app/portfolio/Portfolio.module.css";
-import Footer1 from "@/components/Footer/Footer1";
-import Footer2 from "@/components/Footer/Footer2";
+
+import FooterPortfolio from "@/components/FooterPortfolio/FooterPortfolio";
 import Navbar from "@/components/Navbar/Navbar";
+import PortfolioHero from "@/components/PortfolioHero/PortfolioHero";
+import PortfolioTabContents from "@/components/PortfolioTabContents/PortfolioTabContents";
 
 const PortfolioPage = () => {
   return (
     <>
       <div className={`${styles.container}`}>
         <Navbar />
-        <h1>Portfolio Page</h1>
+        <PortfolioHero />
         <div className="w-[98vw] mx-auto overflow-hidden">
-          <Footer1 />
+          <PortfolioTabContents />
         </div>
+
         <div className="w-[98vw] mx-auto overflow-hidden">
-          <Footer2 />
+          <FooterPortfolio />
         </div>
       </div>
     </>
