@@ -2,6 +2,7 @@ const BlogData = [
   {
     blogId: 1,
     bannerTitle: "Digital Marketing",
+    category: "Digital Marketing",
     imageSource: "/BlogPageIcons/best-digital-marketer-in-bangladesh.jpg",
     alt: "best-digital-marketer-in-bangladesh",
     width: "1200",
@@ -14,11 +15,12 @@ const BlogData = [
   {
     blogId: 2,
     bannerTitle: "Amazon FBA",
+    category: "Amazon FBA",
     imageSource: "/BlogPageIcons/amazon-FBA-3.jpg",
     alt: "amazon-FBA-3",
     width: "2048",
     height: "1366",
-    bodyTitle: "Unleashing the Power of Amazon FBA: A",
+    bodyTitle: "Unleashing the Power of Amazon FBA",
     bodyDescription:
       "In the dynamic landscape of e-commerce, Amazon stands tall as the undisputed giant. With millions",
     blogDate: "February 1, 2024",

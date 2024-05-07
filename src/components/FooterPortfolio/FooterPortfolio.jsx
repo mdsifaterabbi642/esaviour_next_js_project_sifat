@@ -6,7 +6,7 @@ const FooterPortfolio = () => {
     <>
       {/* Footer2 for extra small and small devices */}
       <div className="flex flex-col flex-wrap md:hidden bg-[#ffffff]">
-        <div className="basis-1/1 pt-[100px] bg-[#ddf1ff] w-[98vw] mx-auto mt-[-70px]">
+        <div className="basis-1/1 pt-[50px] bg-[#ddf1ff] w-[98vw] mx-auto mt-[-70px]">
           <div className="flex flex-col">
             <div className="basis-1/1 bg-[#ddf1ff]">
               <Image
