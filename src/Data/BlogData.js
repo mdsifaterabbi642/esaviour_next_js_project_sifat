@@ -25,6 +25,32 @@ const BlogData = [
       "In the dynamic landscape of e-commerce, Amazon stands tall as the undisputed giant. With millions",
     blogDate: "February 1, 2024",
   },
+  {
+    blogId: 3,
+    bannerTitle: "Graphics Design",
+    category: "Graphics Design",
+    imageSource: "/BlogPageIcons/best-digital-marketer-in-bangladesh.jpg",
+    alt: "amazon-FBA-3",
+    width: "2048",
+    height: "1366",
+    bodyTitle: "Unleashing the Power of Graphics Design",
+    bodyDescription:
+      "In the dynamic landscape of e-commerce, Amazon stands tall as the undisputed giant. With millions",
+    blogDate: "February 1, 2024",
+  },
+  {
+    blogId: 4,
+    bannerTitle: "Web Development",
+    category: "Web Development",
+    imageSource: "/BlogPageIcons/amazon-FBA-3.jpg",
+    alt: "amazon-FBA-3",
+    width: "2048",
+    height: "1366",
+    bodyTitle: "Modern technologies of Web Development",
+    bodyDescription:
+      "In the dynamic landscape of e-commerce, Amazon stands tall as the undisputed giant. With millions",
+    blogDate: "February 1, 2024",
+  },
 ];
 
 export default BlogData;

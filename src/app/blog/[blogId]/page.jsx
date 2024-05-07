@@ -22,10 +22,10 @@ const SingleBlogPage = ({ params }) => {
           <div className="w-[90vw] md:w-[70vw] mx-auto">
             <div className="w-[100%] xl:w-[70%] mx-auto">
               <Image
-                src={blog.imageSource}
-                alt={blog.alt}
-                width={blog.width}
-                height={blog.height}
+                src={blog?.imageSource}
+                alt={blog?.alt}
+                width={blog?.width}
+                height={blog?.height}
                 layout="responsive"
               />
             </div>

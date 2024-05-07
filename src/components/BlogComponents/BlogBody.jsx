@@ -72,7 +72,7 @@ const BlogBody = () => {
                               </p>
                               <div className="card-actions justify-start border-b-[1px] border-b-[#40b0fd]">
                                 <Link href={`/blog/${item.blogId}`}>
-                                  <button className="btn btn-sm bg-sky-500 text-white">
+                                  <button className="btn btn-sm bg-slate-700 text-white">
                                     Read More
                                   </button>
                                 </Link>
@@ -110,11 +110,14 @@ const BlogBody = () => {
                                 />
                               </figure>
                               <div className="card-body">
+                                <div className="badge badge-info gap-2">
+                                  {item.bannerTitle}
+                                </div>
                                 <h2 className="card-title">{item.bodyTitle}</h2>
                                 <p>{item.bodyDescription}</p>
                                 <div className="card-actions justify-end">
                                   <Link href={`/blog/${item.blogId}`}>
-                                    <button className="btn btn-sm bg-sky-500 text-white">
+                                    <button className="btn btn-sm bg-slate-700 text-white">
                                       Read More
                                     </button>
                                   </Link>
@@ -156,7 +159,7 @@ const BlogBody = () => {
                         fontFamily: "Futura PT, sans-serif",
                       }}
                     >
-                      Amazon FBA
+                      <Link href="/blog/category/Amazon FBA">Amazon FBA</Link>
                     </p>
                   </div>
                   <div className="font-semibold text-center border-b-[1px] border-[rgba(64,176,253,0.5)] w-[90%] mx-auto cursor-pointer hover:bg-[#000000] hover:text-[#ffffff] duration-300 ease-in-out">
@@ -166,7 +169,9 @@ const BlogBody = () => {
                         fontFamily: "Futura PT, sans-serif",
                       }}
                     >
-                      Digital Marketing
+                      <Link href="/blog/category/Digital Marketing">
+                        Digital Marketing
+                      </Link>
                     </p>
                   </div>
                   <div className="font-semibold text-center border-b-[1px] border-[rgba(64,176,253,0.5)] w-[90%] mx-auto cursor-pointer hover:bg-[#000000] hover:text-[#ffffff] duration-300 ease-in-out">
@@ -176,7 +181,9 @@ const BlogBody = () => {
                         fontFamily: "Futura PT, sans-serif",
                       }}
                     >
-                      Graphics Design
+                      <Link href="/blog/category/Graphics Design">
+                        Graphics Design
+                      </Link>
                     </p>
                   </div>
                   <div className="font-semibold text-center border-b-[1px] border-[rgba(64,176,253,0.5)] w-[90%] mx-auto cursor-pointer hover:bg-[#000000] hover:text-[#ffffff] duration-300 ease-in-out">
@@ -186,7 +193,9 @@ const BlogBody = () => {
                         fontFamily: "Futura PT, sans-serif",
                       }}
                     >
-                      Web Development
+                      <Link href="/blog/category/Web Development">
+                        Web Development
+                      </Link>
                     </p>
                   </div>
                 </div>
