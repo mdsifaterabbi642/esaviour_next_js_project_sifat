@@ -79,11 +79,11 @@ const ClientsCommentsMD = () => {
                   </div>
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title px-[0px]">{c.name}</h2>
+                  <h2 className="card-title px-[0px] text-sky-500 font-bold">{c.name}</h2>
                   <span className="pl-[0px] text-[12px] text-slate-900 font-bold">
                     {c.company}
                   </span>
-                  <p className="pl-[0px] text-[17px]">{c.paragraph}</p>
+                  <p className="spacegrotesk400 pl-[0px] text-[17px] leading-[26px]">{c.paragraph}</p>
                 </div>
               </div>
             </div>

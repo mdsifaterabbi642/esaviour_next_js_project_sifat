@@ -50,3 +50,24 @@
 .letterSpacing4 {
   letter-spacing: 4px;
 }
+
+.spacegrotesk300 {
+  font-family: var(--font-spacegrotesk);
+  font-weight: 300;
+}
+.spacegrotesk400 {
+  font-family: var(--font-spacegrotesk);
+  font-weight: 400;
+}
+.spacegrotesk500 {
+  font-family: var(--font-spacegrotesk);
+  font-weight: 500;
+}
+.spacegrotesk600 {
+  font-family: var(--font-spacegrotesk);
+  font-weight: 600;
+}
+.spacegrotesk700 {
+  font-family: var(--font-spacegrotesk);
+  font-weight: 700;
+}

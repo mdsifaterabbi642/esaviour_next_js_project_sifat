@@ -64,7 +64,7 @@ const TabContextXSM = () => {
     <>
       <div className="pb-[25px] pt-[25px] mt-[12px] text-center w-[90vw] mx-auto">
         <span className="TabContextFontSpan text-[30px]">
-          Our Best Selling B2B Digital Marketing xsm{" "}
+          Our Best Selling B2B Digital Marketing {" "}
           <span className="text-[#40b0fd] font-extrabold text-[30px] tracking-tighter">
             Services
           </span>
@@ -131,7 +131,7 @@ const TabContextXSM = () => {
                       Amazon FBA Consultance
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Maximize Your E-commerce Potential Unlock the full
                       potential of your Amazon FBA business with Esaviour
                       Limited. Our consultancy services are designed to optimize
@@ -172,7 +172,7 @@ const TabContextXSM = () => {
                       PPC Campaigns
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Pay-per-click (PPC) advertising (Sponsored Ads) is a
                       common tool for e-commerce merchants. However, if you lack
                       the necessary skills and experience, you can jeopardize
@@ -213,7 +213,7 @@ const TabContextXSM = () => {
                       Product Sourcing
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Leave some of your major concerns to us, like choosing the
                       right supplier for your products. As FBA specialists, we
                       will source from the most reliable and affordable
@@ -258,7 +258,7 @@ const TabContextXSM = () => {
                       Facebook Ads Campaigns
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       We will research highly profitable products for your
                       brands that will have low competition and high demand in
                       the market. We will find out the unique selling
@@ -297,7 +297,7 @@ const TabContextXSM = () => {
                       Google Ads Campaigns
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       We will research highly profitable products for your
                       brands that will have low competition and high demand in
                       the market. We will find out the unique selling
@@ -337,7 +337,7 @@ const TabContextXSM = () => {
                       Amazon Product Listing Design
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Professional guidance to optimize your product listings to
                       enhance the visibility on Amazon. The best e-commerce
                       optimization techniques we are providing.
@@ -382,7 +382,7 @@ const TabContextXSM = () => {
                       Amazon Product Listing Design
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Maximize Your E-commerce Potential Unlock the full
                       potential of your Amazon FBA business with Esaviour
                       Limited. Our consultancy services are designed to optimize
@@ -423,7 +423,7 @@ const TabContextXSM = () => {
                       Product Package Design
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Your product package tells a lot about your brand and your
                       representation. Our designers are well-equipped to create
                       smart, responsive, and lucrative packages for your Amazon
@@ -464,7 +464,7 @@ const TabContextXSM = () => {
                       Social Media Post Design
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Social media is all about visuals and drawing the
                       attention of a huge customer base. Our social media
                       package includes graphics design for posts, creating page
@@ -512,7 +512,7 @@ const TabContextXSM = () => {
                       Wordpress Website
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       You must take approval for your brand name and trademark
                       from amazon and it’s essential if you want to create your
                       private label products and build a brand on Amazon.
@@ -550,7 +550,7 @@ const TabContextXSM = () => {
                       MERN Stack Development
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       If the technical aspects like UPC/FNSKU are not handled
                       properly, you can face serious troubles to the extent of
                       registry suspension. We make sure your UPC and FNSKU
@@ -588,7 +588,7 @@ const TabContextXSM = () => {
                       Shopify Store
                     </h2>
 
-                    <p className="text-[15px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       We will research highly profitable products for your
                       brands that will have low competition and high demand in
                       the market. We will find out the unique selling

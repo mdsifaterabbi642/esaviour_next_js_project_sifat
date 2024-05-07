@@ -97,13 +97,13 @@ const Footer1 = () => {
         <div className="flex flex-col sm:hidden mb-[30px]">
           <div className="basis-1/1 bg-[##EEF7FF] border">
             {/* #EEF7FF */}
-            <p className="text-center text-[15px] px-[5px] py-[10px] section_3_span">
+            <p className="text-center spacegrotesk500 text-[15px] leading-[16px] px-[5px] py-[10px]">
               Our Professional Team has helped Hundreds of Sellers on Amazon to
               Avoid Failure and Maximize Potential Growth. Schedule a Free
               Meeting Now!
             </p>
             <div className="pt-[10px] pb-[20px] text-center">
-              <a href="#" className="py-[5px] px-[10px] bg-black text-white">
+              <a href="#" className="py-[5px] px-[10px] bg-black text-white rounded-sm">
                 Schedule a Meeting
               </a>
             </div>
@@ -166,7 +166,7 @@ const Footer1 = () => {
       <div className="hidden sm:block xl:hidden w-[95vw] mx-auto overflow-x-hidden">
         <div className="flex flex-col mb-[30px]">
           <div className="basis-1/1 bg-[#EEF7FF]">
-            <p className="text-center text-[12px] px-[5px] py-[10px] section_3_span">
+            <p className="spacegrotesk500 text-center text-[15px] px-[5px] py-[10px]">
               Our Professional Team has helped Hundreds of Sellers on Amazon to
               Avoid Failure and Maximize Potential Growth. Schedule a Free
               Meeting Now!

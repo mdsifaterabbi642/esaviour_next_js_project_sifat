@@ -33,6 +33,7 @@
   cursor: pointer;
 }
 .myCardBody:hover h2 {
+  position: relative;
   color: white;
   transition: all linear 0.3s ease-in-out;
 }
@@ -41,6 +42,7 @@
   transition: all linear 0.3s ease-in-out;
 }
 .myCardBody:hover p {
+  position: relative;
   color: #ffffff;
   transition: all linear 0.3s ease-in-out;
 }

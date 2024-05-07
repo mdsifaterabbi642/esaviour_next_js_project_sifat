@@ -98,11 +98,11 @@ const ClientsComments = () => {
                     </div>
                   </figure>
                   <div className="card-body py-[10px] relative">
-                    <h2 className="text-[20px] px-[5px]">{c.name}</h2>
+                    <h2 className="text-[20px] px-[5px] text-sky-500 font-bold">{c.name}</h2>
                     <span className="px-[5px] text-[18px] text-slate-900 font-bold">
                       {c.company}
                     </span>
-                    <p className="px-[5px] text-[17px] text-justify leading-[20px]">
+                    <p className="spacegrotesk700 px-[5px] text-[15px] text-justify leading-[20px]">
                       {c.paragraph}
                     </p>
                   </div>

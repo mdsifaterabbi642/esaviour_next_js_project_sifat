@@ -46,7 +46,7 @@ const Footer2 = () => {
               ></Image>
             </div>
             <div className="basis-1/1 bg-[#ddf1ff] w-[98vw] mx-auto">
-              <p className="dmsans500 text-[15px] text-justify px-[5px] py-[5px] section_3_span">
+              <p className="spacegrotesk500 text-[15px] text-justify px-[10px] py-[5px]">
                 eSaviour Limited is one of the leading multinational B2B Digital
                 Marketing Agencies. We provide digital business development and
                 branding services all around the world. Our services include
@@ -275,7 +275,7 @@ const Footer2 = () => {
                 ></Image>
               </div>
               <div className="basis-1/1 bg-[#ddf1ff]">
-                <p className="text-[11px] text-left px-[20px] py-[30px] section_3_span">
+                <p className="spacegrotesk600 text-[15px] text-left px-[20px] py-[30px]">
                   eSaviour Limited is one of the leading multinational B2B
                   Digital Marketing Agencies. We provide digital business
                   development and branding services all around the world. Our
@@ -288,44 +288,44 @@ const Footer2 = () => {
             </div>
           </div>
           <div className="basis-1/5 pt-[70px] pb-[30px] pl-[30px] bg-[#ddf1ff]">
-            <span className="font-book text-xl">Quick Link</span>
+            <span className="spacegrotesk700 text-[20px]">Quick Link</span>
             <ul>
-              <li className="font-thin text-[13px] my-[3px]">
+              <li className="spacegrotesk500 text-[14px] my-[3px]">
                 <Link href="/">Home</Link>
               </li>
-              <li className="font-thin text-[13px] my-[3px]">
+              <li className="spacegrotesk500 text-[14px] my-[3px]">
                 <Link href="/service">Service</Link>
               </li>
-              <li className="font-thin text-[13px] my-[3px]">
+              <li className="spacegrotesk500 text-[14px] my-[3px]">
                 <Link href="/portfolio">Portfolio</Link>
               </li>
-              <li className="font-thin text-[13px] my-[3px]">
+              <li className="spacegrotesk500 text-[14px] my-[3px]">
                 <Link href="/about">About Us</Link>
               </li>
-              <li className="font-thin text-[13px] my-[3px]">
+              <li className="spacegrotesk500 text-[14px] my-[3px]">
                 <Link href="/blog">Blog</Link>
               </li>
             </ul>
           </div>
           <div className="basis-1/5 pt-[70px] pb-[30px] pl-[0px] bg-[#ddf1ff]">
-            <span className="font-book text-xl">Legal</span>
+            <span className="spacegrotesk700 text-[20px] text-left">Legal</span>
             <ul>
-              <li className="font-thin text-[13px] my-[3px]">
+              <li className="spacegrotesk500 text-[14px] my-[3px]">
                 <Link href="#">privacy Policy</Link>
               </li>
-              <li className="font-thin text-[13px] my-[3px]">
+              <li className="spacegrotesk500 text-[14px] my-[3px]">
                 <Link href="#">Terms & Conditions</Link>
               </li>
-              <li className="font-thin text-[13px] my-[3px]">
+              <li className="spacegrotesk500 text-[14px] my-[3px]">
                 <Link href="#">Order Calcellation Policy</Link>
               </li>
-              <li className="font-thin text-[13px] my-[3px]">
+              <li className="spacegrotesk500 text-[14px] my-[3px]">
                 <Link href="#">Refund Policy</Link>
               </li>
             </ul>
           </div>
           <div className="basis-1/5 pt-[70px] pb-[10px] bg-[#ddf1ff]">
-            <h5 className="text-left font-book text-md">Let's Get Social</h5>
+            <h5 className="spacegrotesk700 text-[18px] text-left">Let's Get Social</h5>
             <div className="flex justify-center">
               <Link
                 className="inline mr-[3px]"
@@ -377,7 +377,7 @@ const Footer2 = () => {
                 ></Image>
               </Link>
             </div>
-            <h5 className="text-left pt-[20px] pb-[10px] font-book text-md">
+            <h5 className="spacegrotesk700 text-[18px] text-left">
               Payment method
             </h5>
             <div className="flex justify-start">
@@ -509,11 +509,8 @@ const Footer2 = () => {
                 </div>
                 <div className="basis-1/1 bg-[#ddf1ff]">
                   <p
-                    className="text-[11px] text-left px-[0px] xl:pr-[50px] pt-[20px] xl:text-[16px] xl:font-bold xl:pb-[20px]"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                      fontStyle: "normal",
-                    }}
+                    className="spacegrotesk500 text-[16px] text-left px-[0px] pr-[50px] pt-[20px] pb-[20px]"
+                    
                   >
                     eSaviour Limited is one of the leading multinational B2B
                     Digital Marketing Agencies. We provide digital business
@@ -532,50 +529,38 @@ const Footer2 = () => {
               </span>
               <ul>
                 <li
-                  className="font-bold text-[18px] my-[3px] xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px] xl:text-[16px]"
+                  
                 >
                   <Link href="/">Home</Link>
                 </li>
                 <li
-                  className="font-bold text-[18px] my-[3px] xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px] xl:text-[16px]"
+                  
                 >
                   <Link href="/service">Service</Link>
                 </li>
                 <li
-                  className="font-bold text-[18px] my-[3px]  xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px]  xl:text-[16px]"
+                  
                 >
                   <Link href="/portfolio">Portfolio</Link>
                 </li>
                 <li
-                  className="font-bold text-[18px] my-[3px] xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px] xl:text-[16px]"
+                  
                 >
                   <Link href="/about">About Us</Link>
                 </li>
                 <li
-                  className="font-bold text-[18px] my-[3px] xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px] xl:text-[16px]"
+                 
                 >
                   <Link href="/blog">Blog</Link>
                 </li>
                 <li
-                  className="font-bold text-[18px] my-[3px]  xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px]  xl:text-[16px]"
+                 
                 >
                   <Link href="/contact">Contact</Link>
                 </li>
@@ -587,34 +572,26 @@ const Footer2 = () => {
               </span>
               <ul>
                 <li
-                  className="font-bold text-[18px] my-[3px] xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px] xl:text-[16px]"
+                 
                 >
                   <Link href="#">privacy Policy</Link>
                 </li>
                 <li
-                  className="font-bold text-[18px] my-[3px] xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px] xl:text-[16px]"
+                  
                 >
                   <Link href="#">Terms & Conditions</Link>
                 </li>
                 <li
-                  className="font-bold text-[18px] my-[3px] xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px] xl:text-[16px]"
+                  
                 >
                   <Link href="#">Order Calcellation Policy</Link>
                 </li>
                 <li
-                  className="font-bold text-[18px] my-[3px] xl:text-[18px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="font-semibold text-[18px] my-[3px] xl:text-[16px]"
+                  
                 >
                   <Link href="#">Refund Policy</Link>
                 </li>

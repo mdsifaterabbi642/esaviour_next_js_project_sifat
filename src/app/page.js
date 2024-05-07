@@ -91,9 +91,9 @@ export default function Home() {
 
       {/* ============ Section 5 starts from here ============= */}
       <div className="my-[25px] text-center w-[98vw] mx-auto">
-        <span className="TabContextFontSpan text-[24px] xl:text-[40px]">
+        <span className="dmsans200 text-[24px] xl:text-[40px]">
           Why Choose Esaviour Limited to
-          <span className=" text-sky-500 TabContextFontSpan2">
+          <span className=" text-sky-500 TabContextFontSpan2 font-bold">
             <br></br> Builds Your Brand?
           </span>
         </span>
@@ -110,9 +110,9 @@ export default function Home() {
       {/* ================== section 6 (The Brands we have worked with) starts from here =====================*/}
       <div className="flex flex-wrap flex-col justify-center items-center mb-0 py-[20px] overflow-x-hidden">
         <div className="basis-1/1">
-          <h1 className="text-center py-[20px] TabContextFontSpan text-[24px] xl:text-[40px]">
+          <h1 className="text-center py-[20px] text-[24px] xl:text-[40px]">
             The Brands we have <br></br>
-            <span className="text-sky-500 TabContextFontSpan2">
+            <span className="text-sky-500 TabContextFontSpan2 font-bold">
               worked with
             </span>
           </h1>

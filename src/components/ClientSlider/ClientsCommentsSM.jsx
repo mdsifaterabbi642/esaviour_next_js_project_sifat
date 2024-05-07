@@ -83,7 +83,7 @@ const ClientsCommentsSM = () => {
                   <span className="pl-[0px] text-[12px] text-slate-900 font-bold">
                     {c.company}
                   </span>
-                  <p className="pl-[0px] text-[12px] text-slate-600 opacity-50">
+                  <p className="spacegrotesk400 pl-[0px] text-[15px] text-black leading-[16px]">
                     {c.paragraph}
                   </p>
                 </div>

@@ -31,7 +31,7 @@ const ServiceCard = ({ props }) => {
             </div>
           </div>
           <h2
-            className="text-sky-500  text-[18px] xl:text-[24px] pt-[5px] sm:pt-[5px] sm:pb-[5px] md:pt-[5px] md:pb-[10px]"
+            className="text-sky-500 text-[18px] xl:text-[24px] pt-[5px] sm:pt-[5px] sm:pb-[5px] md:pt-[5px] md:pb-[10px]"
             style={{
               fontFamily: "Futura PT, sans-serif",
             }}
@@ -39,7 +39,7 @@ const ServiceCard = ({ props }) => {
             {heading}
           </h2>
           <p
-            className="text-[15px] pt-[5px] pb-1 mt-[-10px] sm:text-[12px] md:text-[14px] xl:text-[16px]"
+            className="spacegrotesk600 text-[13px] pt-[5px] pb-1 mt-[-10px] sm:text-[12px] md:text-[14px] xl:text-[16px]"
             style={{
               fontFamily: "Futura PT, sans-serif",
             }}

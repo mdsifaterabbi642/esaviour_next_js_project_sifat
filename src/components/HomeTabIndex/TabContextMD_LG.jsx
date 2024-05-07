@@ -21,10 +21,10 @@ const TabContextMD_LG = () => {
 
   return (
     <>
-      <div className="pb-[25px] mt-[12px] text-center bg-[#faf7f5] w-[100vw] mx-auto">
+      <div className="pt-[20px] mt-[12px] text-center bg-[#faf7f5] w-[100vw] mx-auto">
         <span className="font-thin text-2xl">
-          Our Best Selling B2B Digital Marketing MD/Lg{" "}
-          <span className="text-[#40b0fd] font-extrabold text-[22px]">
+          Our Best Selling B2B Digital Marketing {" "}
+          <span className="text-[#40b0fd] font-extrabold text-[26px]">
             Services
           </span>
         </span>
@@ -73,9 +73,9 @@ const TabContextMD_LG = () => {
           <div className="slider-container pb-[0px] bg-[#faf7f5] w-[90vw] mx-auto">
             <Slider {...settings}>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px]  bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px]  bg-[#ffffff] shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/amazon_fba_consultancy.png"
                         alt="amazon_fba_consultancy.png"
@@ -91,7 +91,7 @@ const TabContextMD_LG = () => {
                       Amazon FBA Consultancy
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       Maximize Your E-commerce Potential Unlock the full
                       potential of your Amazon FBA business with Esaviour
                       Limited. Our consultancy services are designed to optimize
@@ -114,9 +114,9 @@ const TabContextMD_LG = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-base-100 shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-base-100 shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/PPC.png"
                         alt="PPC.png"
@@ -132,7 +132,7 @@ const TabContextMD_LG = () => {
                       PPC Campaigns
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       Pay-per-click (PPC) advertising (Sponsored Ads) is a
                       common tool for e-commerce merchants. However, if you lack
                       the necessary skills and experience, you can jeopardize
@@ -155,9 +155,9 @@ const TabContextMD_LG = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-base-100 shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-base-100 shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Product_Sorcing.png"
                         alt="Product_Sorcing.png"
@@ -173,7 +173,7 @@ const TabContextMD_LG = () => {
                       Product Sourcing
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       Leave some of your major concerns to us, like choosing the
                       right supplier for your products. As FBA specialists, we
                       will source from the most reliable and affordable
@@ -200,9 +200,9 @@ const TabContextMD_LG = () => {
           <div className="slider-container p-0 bg-[#faf7f5] w-[90vw] mx-auto">
             <Slider {...settings}>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-base-100 shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-base-100 shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Facebook_Ads.png"
                         alt="Facebook_Ads.png"
@@ -218,7 +218,7 @@ const TabContextMD_LG = () => {
                       Facebook Ads Campaigns
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       We will research highly profitable products for your
                       brands that will have low competition and high demand in
                       the market. We will find out the unique selling
@@ -239,9 +239,9 @@ const TabContextMD_LG = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-base-100 shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-base-100 shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Google_Ads.png"
                         alt="Google_Ads.png"
@@ -257,7 +257,7 @@ const TabContextMD_LG = () => {
                       Google Ads Campaigns
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       We will research highly profitable products for your
                       brands that will have low competition and high demand in
                       the market. We will find out the unique selling
@@ -278,9 +278,9 @@ const TabContextMD_LG = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-base-100 shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-base-100 shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Local_SEO.png"
                         alt="Local_SEO.png"
@@ -296,7 +296,7 @@ const TabContextMD_LG = () => {
                       Amazon Product Listing Design
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       Professional guidance to optimize your product listings to
                       enhance the visibility on Amazon. The best e-commerce
                       optimization techniques we are providing.
@@ -322,9 +322,9 @@ const TabContextMD_LG = () => {
           <div className="slider-container p-0  bg-[#faf7f5] w-[90vw] mx-auto">
             <Slider {...settings}>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-[#ffffff]  shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-[#ffffff]  shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/amazon_product_listing_design.png"
                         alt="amazon_product_listing_design.png"
@@ -340,7 +340,7 @@ const TabContextMD_LG = () => {
                       Amazon Product Listing
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       Maximize Your E-commerce Potential Unlock the full
                       potential of your Amazon FBA business with Esaviour
                       Limited. Our consultancy services are designed to optimize
@@ -361,9 +361,9 @@ const TabContextMD_LG = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-[#ffffff]  shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-[#ffffff]  shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/social_media_post_design.png"
                         alt="social_media_post_design.png"
@@ -379,7 +379,7 @@ const TabContextMD_LG = () => {
                       Spcial Media post Again
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       Social media is all about visuals and drawing the
                       attention of a huge customer base. Our social media
                       package includes graphics design for posts, creating page
@@ -401,9 +401,9 @@ const TabContextMD_LG = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-[#ffffff]  shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-[#ffffff]  shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/product_package_design.png"
                         alt="product_package_design.png"
@@ -419,7 +419,7 @@ const TabContextMD_LG = () => {
                       Product Package Design
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       Your product package tells a lot about your brand and your
                       representation. Our designers are well-equipped to create
                       smart, responsive, and lucrative packages for your Amazon
@@ -447,9 +447,9 @@ const TabContextMD_LG = () => {
           <div className="slider-container p-0  bg-[#faf7f5] w-[90vw] mx-auto">
             <Slider {...settings}>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Wordpress_website2.png"
                         alt="Wordpress_website2.png"
@@ -465,7 +465,7 @@ const TabContextMD_LG = () => {
                       Wordpress Website
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       You must take approval for your brand name and trademark
                       from amazon and it’s essential if you want to create your
                       private label products and build a brand on Amazon.
@@ -485,9 +485,9 @@ const TabContextMD_LG = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/MERN-logo-1.png"
                         alt="MERN-logo-1.png"
@@ -503,7 +503,7 @@ const TabContextMD_LG = () => {
                       MERN Stack Development
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       If the technical aspects like UPC/FNSKU are not handled
                       properly, you can face serious troubles to the extent of
                       registry suspension. We make sure your UPC and FNSKU
@@ -524,9 +524,9 @@ const TabContextMD_LG = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[27vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[27vw] h-[500px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure className="bg-[#ffffff]">
-                    <div className="w-[200px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/shopify_store.png"
                         alt="shopify_store.png"
@@ -542,7 +542,7 @@ const TabContextMD_LG = () => {
                       Shopify Store
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[14px] text-white">
                       We will research highly profitable products for your
                       brands that will have low competition and high demand in
                       the market. We will find out the unique selling

@@ -28,7 +28,7 @@ const TabContextXL = () => {
     <>
       <div className="tab-container bg-[#f4faff] px-4 py-8 xl:w-[80vw] xl:mx-auto">
         <h2 className="font-normal xl:text-[32px] xl:font-thin text-center mb-4">
-          Our Best Selling B2B Digital Marketing xl{" "}
+          Our Best Selling B2B Digital Marketing {" "}
           <span className="text-[#40b0fd] font-extrabold xl:text-[32px]">
             Services
           </span>
@@ -94,7 +94,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold opacity-80"
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -102,12 +102,7 @@ const TabContextXL = () => {
                           Amazon FBA Consultancy
                         </h2>
 
-                        <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           Maximize Your E-commerce Potential Unlock the full
                           potential of your Amazon FBA business with Esaviour
                           Limited. Our consultancy services are designed to...
@@ -146,7 +141,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold opacity-80"
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -154,12 +149,7 @@ const TabContextXL = () => {
                           PPC Campaigns
                         </h2>
 
-                        <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           Pay-per-click (PPC) advertising (Sponsored Ads) is a
                           common tool for e-commerce merchants. However, if you
                           lack the necessary skills and experience, you can ...
@@ -197,7 +187,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold opacity-80"
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -206,10 +196,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
+                          
                         >
                           Leave some of your major concerns to us, like choosing
                           the right supplier for your products. As FBA
@@ -253,7 +241,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px]font-extrabold opacity-80"
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -262,10 +250,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
+                          
                         >
                           We will research highly profitable products for your
                           brands that will have low competition and high demand
@@ -303,7 +289,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold opacity-80"
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -312,10 +298,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
+                      
                         >
                           We will research highly profitable products for your
                           brands that will have low competition and high demand
@@ -353,7 +337,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold opacity-80"
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -362,10 +346,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16x] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16x] font-semibold text-justify text-black xl:text-[14px]"
+                          
                         >
                           Professional guidance to optimize your product
                           listings to enhance the visibility on Amazon that will
@@ -411,7 +393,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold opacity-80 "
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -420,10 +402,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
+                          
                         >
                           Maximize Your E-commerce Potential Unlock the full
                           potential of your Amazon FBA business with Esaviour
@@ -463,7 +443,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className=" text-black text-[25px] pb-[10px] font-extrabold opacity-80"
+                          className=" text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -472,10 +452,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
+                          
                         >
                           Your product package tells a lot about your brand and
                           your representation. Our designers are well-equipped
@@ -517,7 +495,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className=" text-black text-[25px] pb-[10px] font-extrabold opacity-800"
+                          className=" text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -526,10 +504,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
+                          
                         >
                           Social media is all about visuals and drawing the
                           attention of a huge customer base. Our social media
@@ -576,7 +552,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold opacity-80"
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -585,10 +561,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
+                          
                         >
                           As a brand, you must take approval for your brand name
                           from amazon and it’s essential if you want to create
@@ -631,7 +605,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold opacity-80"
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -640,10 +614,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
+                          
                         >
                           If the technical aspects like UPC/FNSKU are not
                           handled properly, you can face serious troubles to the
@@ -682,7 +654,7 @@ const TabContextXL = () => {
                       </figure>
                       <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
                         <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold opacity-80"
+                          className="text-black text-[25px] pb-[10px] font-extrabold"
                           style={{
                             fontFamily: "Futura PT, sans-serif",
                           }}
@@ -691,10 +663,8 @@ const TabContextXL = () => {
                         </h2>
 
                         <p
-                          className="text-[16px] font-semibold text-justify text-black opacity-80  xl:text-[14px]"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
+                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
+                          
                         >
                           We will research highly profitable products for your
                           brands that will have low competition and high demand

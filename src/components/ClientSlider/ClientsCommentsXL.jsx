@@ -104,10 +104,8 @@ const ClientsCommentsXL = () => {
                 </figure>
                 <div className="card-body xl:max-w-[500px] relative">
                   <p
-                    className="pt-[80px] xl:text-[17px] font-bold"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
+                    className="spacegrotesk600 pt-[80px] xl:text-[17px] leading-[26px]"
+                   
                   >
                     {c.paragraph}
                   </p>

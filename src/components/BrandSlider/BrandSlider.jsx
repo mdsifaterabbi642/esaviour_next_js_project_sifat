@@ -31,7 +31,8 @@ const BrandSlider = () => {
           autoplaySpeed={2000}
         >
           <div>
-            <div className="text-center w-[50px] sm:w-[80px] xl:w-[150px] xl:pt-[10px] h-auto">
+            {/* className="text-center w-[50px] sm:w-[80px] xl:w-[150px] xl:pt-[10px] h-auto" */}
+            <div className="text-center w-[80%] lg:w-[50%]">
               <Image
                 src="/home/t3r-logo.png"
                 alt="t3r-logo"
@@ -43,7 +44,7 @@ const BrandSlider = () => {
             </div>
           </div>
           <div>
-            <div className="text-center w-[50px] sm:w-[80px] xl:w-[150px] xl:pt-[10px] h-auto">
+            <div className="text-center w-[80%] lg:w-[50%]">
               <Image
                 src="/home/virtusale-logo.png"
                 alt="virtusale-logo.png"
@@ -55,7 +56,7 @@ const BrandSlider = () => {
             </div>
           </div>
           <div>
-            <div className="text-center w-[50px] sm:w-[80px] xl:w-[150px] xl:pt-[10px] h-auto">
+            <div className="text-center w-[80%] lg:w-[50%]">
               <Image
                 src="/home/bugwomp-logo.png"
                 alt="bugwomp-logo"
@@ -67,7 +68,7 @@ const BrandSlider = () => {
             </div>
           </div>
           <div>
-            <div className="text-center w-[50px] sm:w-[80px] xl:w-[150px] xl:pt-[10px] h-auto">
+            <div className="text-center w-[80%] lg:w-[50%]">
               <Image
                 src="/home/Victor.png"
                 alt="Victor.png"
@@ -79,7 +80,7 @@ const BrandSlider = () => {
             </div>
           </div>
           <div>
-            <div className="text-center w-[50px] sm:w-[80px] xl:w-[150px] xl:pt-[10px] h-auto">
+            <div className="text-center w-[80%] lg:w-[50%]">
               <Image
                 src="/home/Noor.png"
                 alt="Noor.png"
@@ -91,7 +92,7 @@ const BrandSlider = () => {
             </div>
           </div>
           <div>
-            <div className="text-center w-[50px] sm:w-[80px] xl:w-[150px] xl:pt-[10px] h-auto">
+            <div className="text-center w-[80%] lg:w-[50%]">
               <Image
                 src="/home/Austin.png"
                 alt="Austin.png"
@@ -103,7 +104,7 @@ const BrandSlider = () => {
             </div>
           </div>
           <div>
-            <div className="text-center w-[50px] sm:w-[80px] xl:w-[150px] xl:pt-[10px] h-auto">
+            <div className="text-center w-[80%] lg:w-[50%]">
               <Image
                 src="/home/Import.png"
                 alt="Import.png"
@@ -115,7 +116,7 @@ const BrandSlider = () => {
             </div>
           </div>
           <div>
-            <div className="text-center w-[50px] sm:w-[80px] xl:w-[150px] xl:pt-[10px] h-auto">
+            <div className="text-center w-[80%] lg:w-[50%]">
               <Image
                 src="/home/Agro.png"
                 alt="Agro.png"

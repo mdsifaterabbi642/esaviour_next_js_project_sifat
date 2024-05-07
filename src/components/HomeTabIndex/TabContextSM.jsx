@@ -62,7 +62,7 @@ const TabContextSM = () => {
     <>
       <div className="mt-[12px] text-center bg-[#faf7f5] w-[100vw] mx-auto pt-[20px] pb-[20px]">
         <span className="font-thin text-2xl">
-          Our Best Selling B2B Digital Marketing SM{" "}
+          Our Best Selling B2B Digital Marketing {" "}
           <span className="text-[#40b0fd] font-extrabold text-[22px]">
             Services
           </span>
@@ -112,9 +112,9 @@ const TabContextSM = () => {
           <div className="slider-container pb-[0px] bg-[#f4faff] w-[90vw] mx-auto">
             <Slider {...settings}>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/amazon_fba_consultancy.png"
                         alt="amazon_fba_consultancy.png"
@@ -130,7 +130,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       Consultancy
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Maximize Your E-commerce Potential Unlock the full
                       potential of your Amazon FBA business with Esaviour
                       Limited. Our consultancy services are designed to optimize
@@ -152,9 +152,9 @@ const TabContextSM = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/PPC.png"
                         alt="PPC.png"
@@ -172,13 +172,13 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       Photography
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Pay-per-click (PPC) advertising (Sponsored Ads) is a
                       common tool for e-commerce merchants. However, if you lack
                       the necessary skills and experience, you can jeopardize
                       your whole business instead. Our Sponsored Ad campaign
-                      guarantees you a decent click-through and conversion rate
-                      within a convenient price range.
+                      guarantees you a decent click-through and ... 
+                      {/* conversion rate within a convenient price range. */}
                     </p>
                     {/* ===================== Order Placement Modal starts from here =============================== */}
                     <button
@@ -195,9 +195,9 @@ const TabContextSM = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Product_Sorcing.png"
                         alt="Product_Sorcing.png"
@@ -213,7 +213,7 @@ const TabContextSM = () => {
                       Product Sourcing
                     </h2>
 
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Leave some of your major concerns to us, like choosing the
                       right supplier for your products. As FBA specialists, we
                       will source from the most reliable and affordable
@@ -240,9 +240,9 @@ const TabContextSM = () => {
           <div className="slider-container p-0 bg-[#f4faff] w-[90vw] mx-auto">
             <Slider {...settings}>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Facebook_Ads.png"
                         alt="Facebook_Ads.png"
@@ -260,7 +260,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       One
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       We will research highly profitable products for your
                       brands that will have low competition and high demand in
                       the market. We will find out the unique selling
@@ -281,9 +281,9 @@ const TabContextSM = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Google_Ads.png"
                         alt="Google_Ads.png"
@@ -301,7 +301,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       Two
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       We will research highly profitable products for your
                       brands that will have low competition and high demand in
                       the market. We will find out the unique selling
@@ -323,9 +323,9 @@ const TabContextSM = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Local_SEO.png"
                         alt="Local_SEO.png"
@@ -343,7 +343,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       Three
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Professional guidance to optimize your product listings to
                       enhance the visibility on Amazon. The best e-commerce
                       optimization techniques we are providing.
@@ -370,9 +370,9 @@ const TabContextSM = () => {
           <div className="slider-container p-0  bg-[#f4faff] w-[90vw] mx-auto">
             <Slider {...settings}>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/amazon_product_listing_design.png"
                         alt="amazon_product_listing_design.png"
@@ -390,7 +390,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       One
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Maximize Your E-commerce Potential Unlock the full
                       potential of your Amazon FBA business with Esaviour
                       Limited. Our consultancy services are designed to optimize
@@ -413,9 +413,9 @@ const TabContextSM = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/product_package_design.png"
                         alt="product_package_design.png"
@@ -433,7 +433,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       Two
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Your product package tells a lot about your brand and your
                       representation. Our designers are well-equipped to create
                       smart, responsive, and lucrative packages for your Amazon
@@ -456,9 +456,9 @@ const TabContextSM = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/social_media_post_design.png"
                         alt="social_media_post_design.png"
@@ -476,7 +476,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       Three
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       Social media is all about visuals and drawing the
                       attention of a huge customer base. Our social media
                       package includes graphics design for posts, creating page
@@ -506,9 +506,9 @@ const TabContextSM = () => {
           <div className="slider-container p-0  bg-[#f4faff] w-[90vw] mx-auto">
             <Slider {...settings}>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/Wordpress_website2.png"
                         alt="Wordpress_website2.png"
@@ -526,7 +526,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       One
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       You must take approval for your brand name and trademark
                       from amazon and it’s essential if you want to create your
                       private label products and build a brand on Amazon.
@@ -546,9 +546,9 @@ const TabContextSM = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/MERN-logo-1.png"
                         alt="MERN-logo-1.png"
@@ -566,7 +566,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       Two
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       If the technical aspects like UPC/FNSKU are not handled
                       properly, you can face serious troubles to the extent of
                       registry suspension. We make sure your UPC and FNSKU
@@ -586,9 +586,9 @@ const TabContextSM = () => {
                 </div>
               </div>
               <div>
-                <div className="card card-compact w-[40vw] h-[450px] bg-[#ffffff] shadow-xl mx-auto">
+                <div className="card card-compact w-[40vw] h-[550px] bg-[#ffffff] shadow-xl mx-auto">
                   <figure>
-                    <div className="w-[250px] h-[]">
+                    <div className="w-[70%] h-[]">
                       <Image
                         src="/updated/shopify_store.png"
                         alt="shopify_store.png"
@@ -606,7 +606,7 @@ const TabContextSM = () => {
                     {/* <span className="text-white font-normal text-xl opacity-80">
                       Three
                     </span> */}
-                    <p className="text-[12px] text-white opacity-70">
+                    <p className="spacegrotesk500 text-[15px] text-white">
                       We will research highly profitable products for your
                       brands that will have low competition and high demand in
                       the market. We will find out the unique selling

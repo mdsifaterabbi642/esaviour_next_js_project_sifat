@@ -30,7 +30,7 @@ const Hero = () => {
             <span className="text-sky-500"> Marketing Strategy?</span>
           </h1>
           <p
-            className="dmsans800 text-[13px] sm:text-[15px] font-bold md:text-[14px] mt-[20px] mb-[10px] xl:pl-[12%] xl:text-[16px] tracking-[1px] md:text-justify"
+            className="spacegrotesk700 text-[13px] sm:text-[15px] font-bold md:text-[14px] mt-[20px] mb-[10px] xl:pl-[12%] xl:text-[16px] tracking-[0.1px] md:text-justify"
             
           >
             eSaviour Limited is the best b2b digital marketing agency that is
@@ -111,7 +111,7 @@ const Hero = () => {
       >
         <div className="basis-1/1 md:basis-1/1 text-center text-black px-[5px] section_3_span">
           <span
-            className="dmsans400 text-[14px] sm:text-[16px] text-black xl:text-3xl"
+            className="spacegrotesk300 text-[14px] sm:text-[16px] text-black xl:text-[32px] tracking-tighter"
             
           >
             eSaviour Limited has achieved fame internationally recognized by the
