@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import { EmailJSContactProvider } from "@/ContextAPI/EmailJSContextAPIContact.jsx";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
-      <body className={DM_Sans_init.variable}>{children}</body>
+      <EmailJSContactProvider>
+        <body className={DM_Sans_init.variable}>{children}</body>
+      </EmailJSContactProvider>
     </html>
   );
 }
