@@ -11,7 +11,7 @@ const BlogPage = () => {
       <div className={`${styles.container}`}>
         <Navbar />
         <BlogHero />
-        <BlogBody />
+        {/* <BlogBody /> */}
 
         <div className="w-[98vw] mx-auto overflow-hidden">
           <FooterPortfolio />

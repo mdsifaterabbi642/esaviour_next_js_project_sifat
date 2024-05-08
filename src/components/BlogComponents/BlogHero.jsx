@@ -1,6 +1,6 @@
 import "./BlogShadow.css";
 import Image from "next/image";
-import blogModuleCSS from "./BlogBody.module.css";
+// import blogModuleCSS from "./BlogBody.module.css";
 
 const BlogHero = () => {
   return (
@@ -45,7 +45,7 @@ const BlogHero = () => {
           <input
             type="text"
             placeholder="Email"
-            className={`py-[5px] w-[250px] sm:w-[300px] md:w-[330px] lg:w-[350px] xl:w-[400px] pl-[5px] xl:pl-[10px] xl:mr-[65px] blogInputField ${blogModuleCSS.blogInputField}`}
+            className={`py-[5px] w-[250px] sm:w-[300px] md:w-[330px] lg:w-[350px] xl:w-[400px] pl-[5px] xl:pl-[10px] xl:mr-[65px]`}
           ></input>
           <button className="btn btn-sm btn-info rounded-md text-white text-opacity-80 uppercase absolute right-[10px] top-[50%] -translate-y-1/2">
             Submit

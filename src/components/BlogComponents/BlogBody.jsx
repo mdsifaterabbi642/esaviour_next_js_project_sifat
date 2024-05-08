@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
-import BlogData from "@/Data/BlogData";
+// import BlogData from "@/Data/BlogData";
 
 const BlogBody = () => {
   return (
@@ -27,7 +27,7 @@ const BlogBody = () => {
               <div className="basis-1/1 mt-[10px] xl:mt-[30px]">
                 <div className="flex flex-wrap">
                   {/* =========== Only for extra small and extra large device ============ */}
-                  <div className="my-[10px] md:mx-[5px] block sm:hidden md:hidden lg:hidden xl:block">
+                  {/* <div className="my-[10px] md:mx-[5px] block sm:hidden md:hidden lg:hidden xl:block">
                     <Link href="#">
                       <div className="flex flex-wrap gap-[5px]">
                         {BlogData.map((item, index) => (
@@ -52,7 +52,7 @@ const BlogBody = () => {
                             <div className="card-body pt-[15px] pl-[10px]">
                               <div className="border-b-[1px] border-b-[#40b0fd]">
                                 <h2 className="font-extrabold p-0 m-0 md:text-[12px] lg:[12px] xl:text-[18px]">
-                                  {/* {item.bodyTitle} */}
+                                 
                                   {item.bodyTitle.length > 20
                                     ? item.bodyTitle.slice(0, 20) + "..."
                                     : item.bodyTitle}
@@ -65,7 +65,7 @@ const BlogBody = () => {
                                   fontFamily: "Futura PT, sans-serif",
                                 }}
                               >
-                                {/* {item.bodyDescription} */}
+                               
                                 {item.bodyDescription.length > 50
                                   ? item.bodyDescription.slice(0, 50) + "..."
                                   : item.bodyDescription}
@@ -92,9 +92,9 @@ const BlogBody = () => {
                         ))}
                       </div>
                     </Link>
-                  </div>
+                  </div> */}
                   {/* =========== For small, medium and large device ===================== */}
-                  <div className="my-[10px] md:mx-[5px] hidden sm:block md:block lg:block xl:hidden">
+                  {/* <div className="my-[10px] md:mx-[5px] hidden sm:block md:block lg:block xl:hidden">
                     <Link href="#">
                       <div className="flex flex-wrap gap-[5px]">
                         {BlogData.map((item, index) => (
@@ -128,12 +128,12 @@ const BlogBody = () => {
                         ))}
                       </div>
                     </Link>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
           </div>
-          <div className="basis-1/1 md:basis-2/6 xl:basis-2/5">
+          {/* <div className="basis-1/1 md:basis-2/6 xl:basis-2/5">
             <div className="flex flex-col flex-wrap">
               <div className="basis-1/1 bg-[#e8f5ff] w-[100%] xl:w-[75%] mx-auto">
                 <div className="bg-[#fff] w-[95%] mx-auto mt-[20px] pb-[20px] rounded-md">
@@ -267,7 +267,7 @@ const BlogBody = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
