@@ -9,10 +9,8 @@ const AboutSection_5 = () => {
     <>
       <div>
         <h1
-          className="text-[24px] font-bold py-[20px] xl:text-[70px] text-center"
-          style={{
-            fontFamily: "Futura PT, sans-serif",
-          }}
+          className="text-[20px] font-semibold py-[20px] xl:text-[70px] text-center"
+          
         >
           When Numbers Speak for Us
         </h1>

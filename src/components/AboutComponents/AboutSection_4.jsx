@@ -7,15 +7,10 @@ const AboutSection_4 = () => {
       <div className="w-[90vw] mt-[-50px] sm:w-[95vw] lg:w-[95vw] lg:mt-[-50px] xl:mt-[50px] xl:w-[70vw] mx-auto lg:my-[25px]">
         <div className="flex flex-col lg:flex-row xl:flex-row gap-5">
           <div className="basis-1/2 lg:basis-1/2 xl:basis-1/2 relative top-0 left-0 myShadowDiv  mx-auto">
-            <h1 className="bg-[#40b0fd] text-[22px] w-[90%] ml-[10px] pl-[5px] mt-[10px] xl:w-[90%] xl:ml-[20px] text-white xl:text-[35px] xl:pl-[10px] xl:mt-[20px]">
+            <h1 className="bg-[#40b0fd] text-[22px] w-[90%] sm:w-[95%] ml-[10px] pl-[5px] sm:pl-[15px] mt-[10px] xl:w-[90%] xl:ml-[20px] text-white xl:text-[35px] xl:pl-[10px] xl:mt-[20px]">
               Our Mission
             </h1>
-            <p
-              className="text-[13px] ml-[10px] mr-[20px] py-[10px] xl:text-[18px] xl:w-[90%] xl:ml-[20px] xl:pt-[20px] xl:pb-[40px] text-justify"
-              style={{
-                fontFamily: "Futura PT, sans-serif",
-              }}
-            >
+            <p className="spacegrotesk500 text-justify text-[14px] leading-[20px] pr-[15px] pb-[15px] md:text-[14px] pl-[10px] pt-[10px] sm:px-[30px] xl:text-[15px] xl:leading-[20px] xl:pl-[20px] xl:pr-[45px] xl:py-[20px]">
               We envision a world where all the businesses irrespective of their
               size and budget can thrive with confidence on digital platforms.
               By creating novel examples of client management and transparency,
@@ -41,15 +36,10 @@ const AboutSection_4 = () => {
             </div>
           </div>
           <div className="basis-1/2 lg:basis-1/2 xl:basis-1/2 relative top-0 left-0 myShadowDiv  mx-auto">
-            <h1 className="bg-[#40b0fd] text-[22px] w-[90%] ml-[10px] pl-[5px] mt-[10px] xl:w-[90%] xl:ml-[20px] text-white xl:text-[35px] xl:pl-[10px] xl:mt-[20px]">
+            <h1 className="bg-[#40b0fd] text-[22px] w-[90%] sm:w-[95%] ml-[10px] pl-[5px] sm:pl-[15px] mt-[10px] xl:w-[90%] xl:ml-[20px] text-white xl:text-[35px] xl:pl-[10px] xl:mt-[20px]">
               Our Vision
             </h1>
-            <p
-              className="text-[13px] ml-[10px] mr-[20px] py-[10px] xl:text-[18px] xl:w-[90%] xl:ml-[20px] xl:pt-[20px] xl:pb-[40px] text-justify"
-              style={{
-                fontFamily: "Futura PT, sans-serif",
-              }}
-            >
+            <p className="spacegrotesk500 text-justify text-[14px] leading-[20px] md:text-[14px] pl-[10px] pr-[15px] pb-[15px] pt-[10px] sm:px-[30px] xl:text-[15px] xl:leading-[20px] xl:pl-[20px] xl:pr-[45px] xl:py-[20px]">
               We understand the worries when you have just started a business.
               The digital era is challenging and the online space is all about
               competition. At eSaviour Limited, we have made it our solitary

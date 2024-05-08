@@ -26,9 +26,6 @@ const AboutSection_6 = () => {
               </h1>
               <p
                 className="text-white lg:text-[18px] xl:text-[22px] xl:px-[20px]"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
               >
                 A strict set of principles keeps us focused and together that we
                 express with the “4 I’s”
@@ -41,19 +38,13 @@ const AboutSection_6 = () => {
             <div>
               <p
                 className="text-white xl:text-[22px] xl:font-bold text-center"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
               >
                 Integrity
               </p>
             </div>
-            <div className=" bg-white lg:h-[220px] xl:h-[300px] relative top-0 left-0">
+            <div className=" bg-white lg:h-[300px] xl:h-[300px] relative top-0 left-0">
               <p
-                className="lg:text-[13px] lg:px-[10px] xl:text-[16px] xl:px-[10px] xl:py-[30px] text-justify"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
+                className="spacegrotesk500 lg:text-[13px] lg:px-[10px] xl:text-[16px] xl:px-[40px] xl:py-[30px] xl:leading-[20px] text-justify"
               >
                 Our clients can expect a 100% transparency from our end and we
                 will never disappoint. We have put honesty at the core of our
@@ -75,19 +66,13 @@ const AboutSection_6 = () => {
             <div>
               <p
                 className="text-white xl:text-[22px] xl:font-bold text-center"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
               >
                 Innovation
               </p>
             </div>
-            <div className=" bg-white lg:h-[220px] xl:h-[300px] relative top-0 left-0">
+            <div className=" bg-white lg:h-[300px] xl:h-[300px] relative top-0 left-0">
               <p
-                className="lg:text-[13px] lg:px-[10px] xl:text-[16px] xl:px-[10px] xl:py-[30px] text-justify"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
+                className="spacegrotesk500 lg:text-[13px] lg:px-[10px] xl:text-[16px] xl:px-[40px] xl:py-[30px] xl:leading-[20px] text-justify"
               >
                 To survive in the modern interface, a space for creativity and
                 innovation is no longer optional. We pride ourselves in the
@@ -109,19 +94,13 @@ const AboutSection_6 = () => {
             <div>
               <p
                 className="text-white xl:text-[22px] xl:font-bold text-center"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
               >
                 Interaction
               </p>
             </div>
-            <div className=" bg-white lg:h-[220px] xl:h-[300px] relative top-0 left-0">
+            <div className=" bg-white lg:h-[300px] xl:h-[300px] relative top-0 left-0">
               <p
-                className="lg:text-[13px] lg:px-[10px] xl:text-[16px] xl:px-[10px] xl:py-[30px] text-justify"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
+                className="spacegrotesk500 lg:text-[13px] lg:px-[10px] xl:text-[16px] xl:px-[40px] xl:py-[30px] xl:leading-[20px] text-justify"
               >
                 Whether you are our client or a partner, be sure to be a part of
                 the same body we operate through when we are collaborating. We
@@ -141,12 +120,9 @@ const AboutSection_6 = () => {
           </div>
           <div className="lg:basis-1/6 xl:basis-1/6 py-[30px] mx-auto">
             <div className=" bg-white text-white">4</div>
-            <div>
+            <div className="">
               <p
                 className="text-white xl:text-[22px] xl:font-bold text-center"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
               >
                 Ingenuity
               </p>
@@ -160,12 +136,9 @@ const AboutSection_6 = () => {
                 ></Image>
               </div>
             </div>
-            <div className=" bg-white lg:h-[220px] xl:h-[300px] relative top-0 left-0">
+            <div className=" bg-white lg:h-[300px] xl:h-[300px] relative top-0 left-0">
               <p
-                className="lg:text-[12px] lg:px-[10px] xl:text-[16px] xl:px-[20px] xl:py-[30px] text-justify"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
+                className="spacegrotesk500 lg:text-[13px] lg:px-[10px] xl:text-[16px] xl:px-[40px] xl:py-[30px] xl:leading-[20px] text-justify"
               >
                 Why should you settle for less when you are paying for something
                 so important as your own business? We are our biggest
@@ -199,10 +172,7 @@ const AboutSection_6 = () => {
                   Our Values
                 </h1>
                 <p
-                  className="text-white text-[14px] sm:text-[16px] px-[20px] font-extralight opacity-70 text-center pb-[10px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
+                  className="dmsans700 text-white text-[14px] sm:text-[16px] px-[20px] font-extralight opacity-70 text-center pb-[10px]"
                 >
                   A strict set of principles keeps us focused and together that
                   we express with the “4 I’s”
@@ -217,19 +187,13 @@ const AboutSection_6 = () => {
                 <div>
                   <p
                     className="text-white text-[16px] font-bold text-center"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
                   >
                     Integrity
                   </p>
                 </div>
-                <div className=" bg-white h-[220px] relative top-0 left-0">
+                <div className=" bg-white h-[250px] relative top-0 left-0">
                   <p
-                    className="text-[11px] sm:text-[16px] px-[10px] py-[10px] text-justify"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
+                    className="dmsans700 text-[11px] sm:text-[16px] px-[10px] py-[10px] text-justify"
                   >
                     Our clients can expect a 100% transparency from our end and
                     we will never disappoint. We have put honesty at the core of
@@ -251,19 +215,13 @@ const AboutSection_6 = () => {
                 <div>
                   <p
                     className="text-white text-[16px] font-bold text-center"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
                   >
                     Innovation
                   </p>
                 </div>
-                <div className=" bg-white h-[220px] relative top-0 left-0">
+                <div className=" bg-white h-[250px] relative top-0 left-0">
                   <p
-                    className="text-[11px] sm:text-[16px] px-[10px] py-[10px] text-justify"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
+                    className="dmsans700 text-[11px] sm:text-[16px] px-[10px] py-[10px] text-justify"
                   >
                     To survive in the modern interface, a space for creativity
                     and innovation is no longer optional. We pride ourselves in
@@ -286,19 +244,13 @@ const AboutSection_6 = () => {
                 <div>
                   <p
                     className="text-white text-[16px] font-bold text-center"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
                   >
                     Interaction
                   </p>
                 </div>
-                <div className=" bg-white h-[220px] relative top-0 left-0">
+                <div className=" bg-white h-[250px] relative top-0 left-0">
                   <p
-                    className="text-[11px] sm:text-[16px] px-[10px] py-[10px] text-justify"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
+                    className="dmsans700 text-[11px] sm:text-[16px] px-[10px] py-[10px] text-justify"
                   >
                     Whether you are our client or a partner, be sure to be a
                     part of the same body we operate through when we are
@@ -321,19 +273,13 @@ const AboutSection_6 = () => {
                 <div>
                   <p
                     className="text-white text-[16px] font-bold text-center"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
                   >
                     Ingenuity
                   </p>
                 </div>
-                <div className=" bg-white h-[220px] relative top-0 left-0">
+                <div className=" bg-white h-[250px] relative top-0 left-0">
                   <p
-                    className="text-[11px] sm:text-[16px] px-[10px] py-[10px] text-justify"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
+                    className="dmsans700 text-[11px] sm:text-[16px] px-[10px] py-[10px] text-justify"
                   >
                     Why should you settle for less when you are paying for
                     something so important as your own business? We are our

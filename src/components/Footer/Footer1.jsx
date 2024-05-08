@@ -43,18 +43,13 @@ const Footer1 = () => {
   } = useForm();
 
   const submitOrder = (data) => {
-    console.log("Clicked submitOrder function xl");
-    console.log(data);
-    console.log(emailData);
+    // console.log("Clicked submitOrder function xl");
+    // console.log(data);
+    // console.log(emailData);
+    // console.log(data?.email);
 
     setLocalOrderData({
-      //name: data.name,
       email: data.email,
-      //phone: data.phone,
-      //message: data.message,
-      //productLink: data.productLink,
-      //serviceCategory: data.serviceCategory,
-      //selectedService: data.selectedService,
     });
 
     //implement email js here
@@ -83,9 +78,6 @@ const Footer1 = () => {
       reset();
     }
   };
-
-
-
   useEffect(() => {
     setEmailData(localOrderData);
   }, [localOrderData]);
@@ -300,32 +292,16 @@ const Footer1 = () => {
             </div>
           </div>
           <div className="basis-1/1 bg-[#ddf1ff] py-[10px]">
-            <form ref={form} onSubmit={handleSubmit(submitOrder)}>
+            <form>
               <label className="input input-bordered flex items-center border-none rounded-none w-[90%] mx-auto">
                 <input
-                  {...register("email", { required: true })}
                   placeholder="Add your Email address"
-                  className={`bg-[#cee9ff] my-[5px] py-[5px] xl:py-[10px] pl-[5px] mx-[2px] w-[95%] border mycontactPlaceholder ${
-                    errors.email ? "border-red-500" : ""
-                  }`}
+                  className={`bg-[#cee9ff] my-[5px] py-[5px] xl:py-[10px] pl-[5px] mx-[2px] w-[90%] border mycontactPlaceholder`}
                 />
                 <button className="btn bg-[#40b0fd] btn-sm rounded-sm text-white">
                   Submit
                 </button>
               </label>
-              {isSubmitting || orderEmailStatus ? ( // Show notification only when isSubmitting or emailStatus is set
-                orderEmailStatus ? (
-                  <p className="text-green-500 font-semibold">
-                    Hello {senderNameFormatted}, your email was sent
-                    successfully!
-                  </p>
-                ) : (
-                  <p className="text-red-500 font-semibold">
-                    Hello {senderNameFormatted}, there was an error sending your
-                    email. Please try again.
-                  </p>
-                )
-              ) : null}
             </form>
           </div>
         </div>

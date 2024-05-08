@@ -13,10 +13,26 @@ const AboutSectionSliderXL = () => {
     slidesToShow: 4,
     //speed: 500,
     autoplay: true,
-    speed: 3000,
+    speed: 2000,
     autoplaySpeed: 3000,
     cssEase: "linear",
     slidesToScroll: 1,
+    
+  };
+  const settings_2 = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 4,
+    //speed: 500,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
+    slidesToScroll: 1,
+    rtl: true,
+    
   };
 
   return (
@@ -99,7 +115,7 @@ const AboutSectionSliderXL = () => {
       </div>
       {/* =========== Slider 2 ============= */}
       <div className="slider-container w-[80vw] mx-auto">
-        <Slider {...settings}>
+        <Slider {...settings_2}>
           <div className="w-[390px] h-[350px] mySliderHover">
             <div className="w-[90%] h-[90%] border-[2px] border-black rounded-xl mx-auto my-[20px]">
               <div className="relative top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">

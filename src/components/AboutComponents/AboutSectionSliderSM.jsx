@@ -1,4 +1,7 @@
 import Slider from "react-slick";
+import Carousel from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./AboutCustom.css";
 
 const AboutSectionSliderSM = () => {
@@ -8,7 +11,12 @@ const AboutSectionSliderSM = () => {
     infinite: true,
     centerPadding: "60px",
     slidesToShow: 3,
-    speed: 500,
+
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
+    slidesToScroll: 1,
   };
   const settings_2 = {
     className: "center",
@@ -16,7 +24,13 @@ const AboutSectionSliderSM = () => {
     infinite: true,
     centerPadding: "60px",
     slidesToShow: 3,
-    speed: 500,
+
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
+    slidesToScroll: 1,
+    rtl: true,
   };
 
   return (
@@ -26,10 +40,10 @@ const AboutSectionSliderSM = () => {
           <div className="w-[25vw] h-[160px] md:h-[200px] mySliderHover">
             <div className="w-[90%] h-[90%] mx-auto border-[2px] border-black rounded-md">
               <div className="relative top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                <p className="text-[12px] text-center pl-[0px] text-[#40b0fd] font-thin italic">
+                <p className="text-[18px] text-center pl-[0px] text-[#40b0fd] font-bold italic">
                   500+
                 </p>
-                <p className="font-bold text-[12px] text-center">
+                <p className="font-bold text-[14px] text-center">
                   Happy Clients
                 </p>
               </div>
@@ -38,10 +52,10 @@ const AboutSectionSliderSM = () => {
           <div className="w-[25vw] h-[160px] md:h-[200px] mySliderHover">
             <div className="w-[90%] h-[90%] mx-auto border-[2px] border-black rounded-md">
               <div className="relative top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                <p className="text-[12px] text-center pl-[0px] text-[#40b0fd] font-thin italic">
+                <p className="text-[18px] text-center pl-[0px] text-[#40b0fd] font-bold italic">
                   27+
                 </p>
-                <p className="font-bold text-[12px] text-center">
+                <p className="font-bold text-[14px] text-center">
                   Brains to Support
                 </p>
               </div>
@@ -50,10 +64,10 @@ const AboutSectionSliderSM = () => {
           <div className="w-[25vw] h-[160px] md:h-[200px] mySliderHover">
             <div className="w-[90%] h-[90%] mx-auto border-[2px] border-black rounded-md">
               <div className="relative top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                <p className="text-[12px] text-center pl-[0px] text-[#40b0fd] font-thin italic">
+                <p className="text-[18px] text-center pl-[0px] text-[#40b0fd] font-bold italic">
                   100+
                 </p>
-                <p className="font-bold text-[12px] text-center">
+                <p className="font-bold text-[14px] text-center">
                   Website Developed
                 </p>
               </div>
@@ -62,10 +76,10 @@ const AboutSectionSliderSM = () => {
           <div className="w-[25vw] h-[160px] md:h-[200px] mySliderHover">
             <div className="w-[90%] h-[90%] mx-auto border-[2px] border-black rounded-md">
               <div className="relative top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                <p className="text-[12px] text-center pl-[0px] text-[#40b0fd] font-thin italic">
+                <p className="text-[18px] text-center pl-[0px] text-[#40b0fd] font-bold italic">
                   300+
                 </p>
-                <p className="font-bold text-[12px] text-center">
+                <p className="font-bold text-[14px] text-center">
                   Package Design
                 </p>
               </div>
@@ -79,10 +93,10 @@ const AboutSectionSliderSM = () => {
           <div className="w-[25vw] h-[160px] md:h-[200px] mySliderHover">
             <div className="w-[90%] h-[90%] mx-auto border-[2px] border-black rounded-md">
               <div className="relative top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                <p className="text-[12px] text-center pl-[0px] text-[#40b0fd] font-thin italic">
+                <p className="text-[18px] text-center pl-[0px] text-[#40b0fd] font-bold italic">
                   500+
                 </p>
-                <p className="font-bold text-[10px] text-center">
+                <p className="font-bold text-[14px] text-center">
                   Happy Clients
                 </p>
               </div>
@@ -91,10 +105,10 @@ const AboutSectionSliderSM = () => {
           <div className="w-[25vw] h-[160px] md:h-[200px] mySliderHover">
             <div className="w-[90%] h-[90%] mx-auto border-[2px] border-black rounded-md">
               <div className="relative top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                <p className="text-[12px] text-center pl-[0px] text-[#40b0fd] font-thin italic">
+                <p className="text-[18px] text-center pl-[0px] text-[#40b0fd] font-bold italic">
                   27+
                 </p>
-                <p className="font-bold text-[12px] text-center">
+                <p className="font-bold text-[14px] text-center">
                   Brains to Support
                 </p>
               </div>
@@ -103,10 +117,10 @@ const AboutSectionSliderSM = () => {
           <div className="w-[25vw] h-[160px] md:h-[200px] mySliderHover">
             <div className="w-[90%] h-[90%] mx-auto border-[2px] border-black rounded-md">
               <div className="relative top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                <p className="text-[12px] text-center pl-[0px] text-[#40b0fd] font-thin italic">
+                <p className="text-[18px] text-center pl-[0px] text-[#40b0fd] font-bold italic">
                   100+
                 </p>
-                <p className="font-bold text-[12px] text-center">
+                <p className="font-bold text-[14px] text-center">
                   Website Developed
                 </p>
               </div>
@@ -115,10 +129,10 @@ const AboutSectionSliderSM = () => {
           <div className="w-[25vw] h-[160px] md:h-[200px] mySliderHover">
             <div className="w-[90%] h-[90%] mx-auto border-[2px] border-black rounded-md">
               <div className="relative top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                <p className="text-[12px] text-center pl-[0px] text-[#40b0fd] font-thin italic">
+                <p className="text-[18px] text-center pl-[0px] text-[#40b0fd] font-bold italic">
                   300+
                 </p>
-                <p className="font-bold text-[12px] text-center">
+                <p className="font-bold text-[14px] text-center">
                   Package Design
                 </p>
               </div>

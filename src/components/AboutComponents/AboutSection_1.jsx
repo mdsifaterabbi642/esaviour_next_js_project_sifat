@@ -24,13 +24,7 @@ const AboutSection_1 = () => {
             <h1 className="font-bold text-[20px] px-[10px] xl:font-bold xl:text-[34px] text-[#40b0fd] xl:px-[50px]">
               Let’s Hear It From The Boss
             </h1>
-            <p
-              className="text-[14px] px-[10px] pt-[20px] xl:text-[18px] xl:px-[50px] xl:opacity-100 xl:pt-[20px]"
-              style={{
-                fontFamily: "Futura PT, sans-serif",
-                fontWeight: 500,
-              }}
-            >
+            <p className="spacegrotesk500 text-[13px] leading-[17px] px-[10px] pt-[20px] md:text-[15px] md:leading-[21px] xl:text-[17px] xl:leading-[22px] xl:px-[50px]  xl:pt-[20px] text-justify">
               As a lifelong Amazon FBA Consultant and Digital Marketing Analyst,
               I’ve been observing significant gaps in the digital business arena
               in Bangladesh and all around the world. Whenever someone seeks to
@@ -41,16 +35,11 @@ const AboutSection_1 = () => {
               sincere efforts to provide the best possible solutions to grow
               your business.
             </p>
-            <div className="text-center xl:text-left">
-              <h3 className="text-[16px] ] font-bold px-[5px] mt-[10px] xl:font-extrabold xl:text-[18px] bg-[#def1fe] inline-block xl:px-[5px] xl:ml-[50px] xl:mt-[30px]">
+            <div className="text-center xl:text-left pt-[20px]">
+              <h3 className="text-[16px] ] font-bold px-[5px] mt-[10px] xl:font-extrabold xl:text-[17px] bg-[#def1fe] inline-block xl:px-[5px] xl:ml-[50px] xl:mt-[30px]">
                 Mainul Islam
               </h3>
-              <h3
-                className="text-[14px]  px-[5px] xl:text-[20px] xl:font-semibold xl:ml-[50px]"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
-              >
+              <h3 className="text-[14px]  px-[5px] xl:text-[18px] xl:font-semibold xl:ml-[50px]">
                 Managing Director
               </h3>
             </div>

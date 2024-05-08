@@ -165,21 +165,11 @@ const AboutHero = () => {
       </dialog> */}
       <div className="flex flex-col md:flex-row bg-[#b3d9f8] pb-[50px] md:pb-[150px] md:pt-[50px] lg:pb-[50px]">
         <div className="basis-1/1 md:basis-1/2 lg:basis-1/2 xl:basis-1/2 lg:mt-[0px] order-1 md:order-0 px-[10px] xl:mt-[0px]">
-          <h1
-            className="text-left font-extrabold pt-[20px] sm:text-[24px] md:text-[26px] lg:text-[30px] lg:leading-[40px] md:pt-[50px] lg:pt-[20px] md:pl-[5%] sm:pl-[5%] xl:pt-[50px] xl:pl-[20%] xl:text-[34px] xl:leading-[44px]"
-            style={{
-              fontFamily: "Futura PT, sans-serif",
-            }}
-          >
+          <h1 className="text-left dmsans900 pt-[20px] text-[20px] leading-[24px] sm:text-[24px] md:text-[26px] lg:text-[30px] lg:leading-[40px] md:pt-[50px] lg:pt-[20px] md:pl-[5%] sm:pl-[5%] xl:pt-[50px] xl:pl-[20%] xl:text-[34px] xl:leading-[44px]">
             A Powerhouse in the Fast-Paced World of Digital Marketing. Offering
             Enhance Solutions for your B2B Digital Marketing Problems
           </h1>
-          <p
-            className="text-[12px] sm:text-[16px] sm:pl-[5%] sm:pr-[5%] md:text-[14px] md:pl-[5%] mt-[20px] mb-[10px] xl:pl-[20%] xl:pr-[200px] xl:text-[18px] xl:leading-[25px] font-bold xl:font-bold"
-            style={{
-              fontFamily: "Futura PT, sans-serif",
-            }}
-          >
+          <p className="spacegrotesk300 text-[13px] sm:text-[16px] sm:pl-[5%] sm:pr-[5%] md:text-[14px] md:pl-[5%] mt-[20px] mb-[10px] xl:pl-[20%] xl:pr-[200px] xl:text-[16px] xl:leading-[22px] spacegrotesk600">
             eSAviour Limited is dedicated to empowering you to lead the industry
             with our comprehensive range of dynamic digital marketing services
             and solutions.
@@ -191,15 +181,15 @@ const AboutHero = () => {
               <div className="basis-1/4 h-[100px] xl:text-end mt-[15px]">
                 <button
                   className="btn rounded-none xl:text-[12px] bg-black hover:bg-orange-500 cursor-pointer text-white relative xl:top-[30px] transition duration-300 ease-linear"
-                //   onClick={() =>
-                //     document.getElementById("getQuoteModalAbout").showModal()
-                //   }
+                  //   onClick={() =>
+                  //     document.getElementById("getQuoteModalAbout").showModal()
+                  //   }
                 >
                   Get Free Quote
                 </button>
               </div>
               <div className="basis-3/4 h-[100px] mt-[25px]">
-                <p className="relative xl:text-[16px] xl:top-[20px]">
+                <p className="relative xl:text-[15px] xl:top-[20px] dmsans500">
                   Over 3 Years of Experience in B2B Digital Marketing Services.
                   Helped 27+ Brands to Achieve Success.
                 </p>

@@ -4,18 +4,13 @@ const AboutSection_7 = () => {
   return (
     <>
       {/* ============== Only For Large and Extra large devices ================== */}
-      <div className="lg:w-[90vw] xl:w-[80vw] mx-auto hidden lg:block xl:block">
+      <div className="lg:w-[90vw] xl:w-[80vw] mx-auto hidden lg:block xl:block mb-[200px]">
         <div className="flex lg:flex-col xl:flex-col flex-wrap w-[80vw] mx-auto">
           <div className="lg:basis-1/1 xl:basis-1/1 mx-auto">
             <h1 className="text-center lg:text-[32px] xl:text-[36px] font-bold text-[#40b0fd]">
               LEADERSHIP TEAM
             </h1>
-            <p
-              className="text-center lg:text-[22px] xl:text-[24px] font-semibold lg:pb-[35px] xl:pb-[50px]"
-              style={{
-                fontFamily: "Futura PT, sans-serif",
-              }}
-            >
+            <p className="text-center lg:text-[22px] xl:text-[24px] font-semibold lg:pb-[35px] xl:pb-[50px]">
               Get a glimpse into the names carrying us into the future.
             </p>
           </div>
@@ -36,30 +31,15 @@ const AboutSection_7 = () => {
                 </div>
                 <div className="inline-block w-[58%] relative top-0 left-0">
                   <div className="absolute top-[0px] lg:top-[-170px] xl:top-[-250px]">
-                    <h1
-                      className="lg:text-[20px] lg:font-bold lg:pl-[10px] xl:text-[22px] xl:font-bold xl:pl-[10px]"
-                      style={{
-                        fontFamily: "Futura PT, sans-serif",
-                      }}
-                    >
+                    <h1 className="lg:text-[20px] lg:font-bold lg:pl-[10px] xl:text-[22px] xl:font-bold xl:pl-[10px]">
                       {" "}
                       Mainul Islam
                     </h1>
 
-                    <p
-                      className="lg:text-[20px] lg:pl-[10px] xl:text-[22px] font-thin bg-[#cee9ff] inline px-[10px] py-[5px]"
-                      style={{
-                        fontFamily: "Futura PT, sans-serif",
-                      }}
-                    >
+                    <p className="lg:text-[20px] lg:pl-[10px] xl:text-[22px] font-thin bg-[#cee9ff] inline px-[10px] py-[5px]">
                       Managing Director
                     </p>
-                    <p
-                      className="lg:text-[14px] lg:leading-[17px] lg:pl-[10px] lg:pr-[5px] lg:pt-[10px] xl:text-[18px] xl:pl-[10px] xl:pr-[35px] text-justify xl:pt-[20px]"
-                      style={{
-                        fontFamily: "Futura PT, sans-serif",
-                      }}
-                    >
+                    <p className="spacegrotesk500 lg:text-[14px] lg:leading-[20px] lg:pl-[10px] lg:pr-[5px] lg:pt-[10px] xl:text-[18px] xl:leading-[23px] xl:pl-[10px] xl:pr-[35px] text-justify xl:pt-[20px]">
                       With a comprehensive background in Law LL. B from the
                       University of London, LL. M in International Business Law
                       from BPP University, UK and over a decade of experience as
@@ -84,30 +64,15 @@ const AboutSection_7 = () => {
                 </div>
                 <div className="inline-block w-[58%] relative top-0 left-0">
                   <div className="absolute lg:top-[-170px] xl:top-[-250px]">
-                    <h1
-                      className="lg:text-[20px] lg:font-bold lg:pl-[10px] xl:text-[22px] xl:font-bold xl:pl-[10px"
-                      style={{
-                        fontFamily: "Futura PT, sans-serif",
-                      }}
-                    >
+                    <h1 className="lg:text-[20px] lg:font-bold lg:pl-[10px] xl:text-[22px] xl:font-bold xl:pl-[10px">
                       {" "}
                       Bhanni Shikha
                     </h1>
 
-                    <p
-                      className="lg:text-[20px] lg:pl-[10px] xl:text-[22px] font-thin bg-[#cee9ff] inline px-[10px] py-[5px]"
-                      style={{
-                        fontFamily: "Futura PT, sans-serif",
-                      }}
-                    >
+                    <p className="lg:text-[20px] lg:pl-[10px] xl:text-[22px] font-thin bg-[#cee9ff] inline px-[10px] py-[5px]">
                       Chairman
                     </p>
-                    <p
-                      className="lg:text-[14px] lg:leading-[17px] lg:pl-[10px] lg:pr-[5px] lg:pt-[10px] xl:text-[18px] xl:pl-[10px] xl:pr-[35px] text-justify xl:pt-[20px]"
-                      style={{
-                        fontFamily: "Futura PT, sans-serif",
-                      }}
-                    >
+                    <p className="spacegrotesk500 lg:text-[14px] lg:leading-[20px] lg:pl-[10px] lg:pr-[5px] lg:pt-[10px] xl:text-[18px] xl:leading-[23px] xl:pl-[10px] xl:pr-[35px] text-justify xl:pt-[20px]">
                       Our honorable Chairman had completed Bachelor of Business
                       Administration (BBA) & Master of Business Administration
                       (MBA) from Independent University, Bangladesh. She is
@@ -127,12 +92,7 @@ const AboutSection_7 = () => {
             <h1 className="text-center text-[24px] font-bold text-[#40b0fd]">
               LEADERSHIP TEAM
             </h1>
-            <p
-              className="text-center text-[17px] font-semibold"
-              style={{
-                fontFamily: "Futura PT, sans-serif",
-              }}
-            >
+            <p className="text-center text-[17px] font-semibold">
               Get a glimpse into the names carrying us into the future.
             </p>
           </div>
@@ -150,32 +110,17 @@ const AboutSection_7 = () => {
               </div>
             </div>
             <div>
-              <h1
-                className="text-[18px] mt-[10px] mb-[5px] text-center font-bold"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
-              >
+              <h1 className="text-[18px] mt-[10px] mb-[5px] text-center font-bold">
                 {" "}
                 Mainul Islam
               </h1>
 
               <div className="text-center mb-[15px]">
-                <p
-                  className="text-[18px] font-thin bg-[#cee9ff] inline px-[10px] py-[5px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
-                >
+                <p className="text-[18px] font-thin bg-[#cee9ff] inline px-[10px] py-[5px]">
                   Managing Director
                 </p>
               </div>
-              <p
-                className="text-[14px] xl:pl-[10px] xl:pr-[35px] text-justify xl:pt-[20px]"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
-              >
+              <p className="text-[16px] leading-[23px] spacegrotesk500 pl-[10px] pr-[10px] py-[15px] text-justify">
                 With a comprehensive background in Law LL. B from the University
                 of London, LL. M in International Business Law from BPP
                 University, UK and over a decade of experience as an Amazon FBA
@@ -199,32 +144,17 @@ const AboutSection_7 = () => {
               </div>
             </div>
             <div>
-              <h1
-                className="text-[18px] mt-[10px] mb-[5px] text-center font-bold"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
-              >
+              <h1 className="text-[18px] mt-[10px] mb-[5px] text-center font-bold">
                 {" "}
                 Bhanni Shikha
               </h1>
 
               <div className="text-center mb-[15px]">
-                <p
-                  className="text-[18px] font-thin bg-[#cee9ff] inline px-[10px] py-[5px]"
-                  style={{
-                    fontFamily: "Futura PT, sans-serif",
-                  }}
-                >
+                <p className="text-[18px] font-thin bg-[#cee9ff] inline px-[10px] py-[5px]">
                   Chairman
                 </p>
               </div>
-              <p
-                className="text-[14px] xl:pl-[10px] xl:pr-[35px] text-justify xl:pt-[20px]"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                }}
-              >
+              <p className="text-[16px] leading-[23px] spacegrotesk500 pl-[10px] pr-[10px] py-[15px] text-justify">
                 Our honorable Chairman had completed Bachelor of Business
                 Administration (BBA) & Master of Business Administration (MBA)
                 from Independent University, Bangladesh. She is highly motivated

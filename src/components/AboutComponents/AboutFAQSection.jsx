@@ -4,16 +4,11 @@ const AboutFAQSection = () => {
   return (
     <>
       <div className="mt-[40px] mb-[40px]">
-        <h1 className="text-center xl:text-[36px] font-bold">
+        <h1 className="text-center text-[24px] leading-[28px] sm:text-[26px] sm:leading-[30px] xl:text-[36px] xl:leading-[46px] spacegrotesk700 font-bold xl:pt-[20px]">
           Frequently Asked Questions{" "}
           <span className="text-[#40b0fd]">(FAQs)</span>
         </h1>
-        <p
-          className="text-center xl:text-[24px] font-semibold"
-          style={{
-            fontFamily: "Futura PT, sans-serif",
-          }}
-        >
+        <p className="text-center text-[14px] leading-[16px] sm:text-[16px] sm:leading-[20px] sm:px-[10%] xl:text-[24px] xl:leading-[30px] spacegrotesk700 xl:px-[30%] pt-[30px]">
           We believe in two-ways communication with our clients to ensure the
           most successful campaign between us.
         </p>
