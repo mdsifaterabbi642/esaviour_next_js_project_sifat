@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import Slider from "react-slick";
 
 function SampleNextArrow(props) {
@@ -127,9 +128,11 @@ const CreativeSliderMD = () => {
           </div>
         </Slider>
         <div className="w-[120px] mx-auto">
-          <button className="btn btn-sm rounded-none btn-active btn-neutral ml-[5px] mt-[50px]">
-            Explore More
-          </button>
+          <Link href="/portfolio">
+            <button className="btn btn-sm rounded-none btn-active btn-neutral ml-[5px] mt-[50px]">
+              Explore More
+            </button>
+          </Link>
         </div>
       </div>
     </>

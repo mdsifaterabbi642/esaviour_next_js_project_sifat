@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import { useState } from "react";
 import Image from "next/image";
 import OrderFormXSM from "../OrderForm/OrderFormXSM";
+import Link from "next/link";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -64,7 +65,7 @@ const TabContextXSM = () => {
     <>
       <div className="pb-[25px] pt-[25px] mt-[12px] text-center w-[90vw] mx-auto">
         <span className="TabContextFontSpan text-[30px]">
-          Our Best Selling B2B Digital Marketing {" "}
+          Our Best Selling B2B Digital Marketing{" "}
           <span className="text-[#40b0fd] font-extrabold text-[30px] tracking-tighter">
             Services
           </span>
@@ -613,9 +614,11 @@ const TabContextXSM = () => {
           </div>
         </TabPanel>
         <div className="text-center bg-[#ffffff] pb-[25px] w-[100vw] mx-auto">
-          <button className="btn btn-sm btn-neutral rounded-none my-[10px]">
-            View All Services
-          </button>
+          <Link href="/service">
+            <button className="btn btn-sm btn-neutral rounded-none my-[10px]">
+              View All Services
+            </button>
+          </Link>
         </div>
       </Tabs>
     </>

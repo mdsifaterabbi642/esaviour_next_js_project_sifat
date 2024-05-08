@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { useState } from "react";
 import Image from "next/image";
 import OrderFormMD_LG from "../OrderForm/OrderFormMD_LG";
+import Link from "next/link";
 
 const TabContextMD_LG = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -23,7 +24,7 @@ const TabContextMD_LG = () => {
     <>
       <div className="pt-[20px] mt-[12px] text-center bg-[#faf7f5] w-[100vw] mx-auto">
         <span className="font-thin text-2xl">
-          Our Best Selling B2B Digital Marketing {" "}
+          Our Best Selling B2B Digital Marketing{" "}
           <span className="text-[#40b0fd] font-extrabold text-[26px]">
             Services
           </span>
@@ -305,7 +306,7 @@ const TabContextMD_LG = () => {
                     <button
                       className="btn btn-neutral btn-sm z-50 w-[100px] rounded-none mx-auto"
                       onClick={() =>
-                        document.getElementById("my_modal_MD").showModal()
+                        document.getElementById("my_modal_MD_LG").showModal()
                       }
                     >
                       Order Now
@@ -568,9 +569,11 @@ const TabContextMD_LG = () => {
         </TabPanel>
       </Tabs>
       <div className="text-center bg-[#faf7f5] w-[90vw] mx-auto">
-        <button className="btn btn-sm btn-neutral rounded-none my-[50px]">
-          View All Services
-        </button>
+        <Link href="/service">
+          <button className="btn btn-sm btn-neutral rounded-none my-[50px]">
+            View All Services
+          </button>
+        </Link>
       </div>
     </>
   );

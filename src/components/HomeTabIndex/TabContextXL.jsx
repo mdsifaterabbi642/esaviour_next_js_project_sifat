@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import "./MyTabOverlay.css";
 import OrderFormXL from "../OrderForm/OrderFormXL";
+import Link from "next/link";
 // import OrderForm from "./OrderForm";
 
 const TabContextXL = () => {
@@ -28,7 +29,7 @@ const TabContextXL = () => {
     <>
       <div className="tab-container bg-[#f4faff] px-4 py-8 xl:w-[80vw] xl:mx-auto">
         <h2 className="font-normal xl:text-[32px] xl:font-thin text-center mb-4">
-          Our Best Selling B2B Digital Marketing {" "}
+          Our Best Selling B2B Digital Marketing{" "}
           <span className="text-[#40b0fd] font-extrabold xl:text-[32px]">
             Services
           </span>
@@ -195,10 +196,7 @@ const TabContextXL = () => {
                           Product Sourcing
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
-                          
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           Leave some of your major concerns to us, like choosing
                           the right supplier for your products. As FBA
                           specialists, we will source from the most reliable ...
@@ -249,10 +247,7 @@ const TabContextXL = () => {
                           Facebook Ads Campaigns
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
-                          
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           We will research highly profitable products for your
                           brands that will have low competition and high demand
                           in the market. We will find out the unique selling...
@@ -297,10 +292,7 @@ const TabContextXL = () => {
                           Google Ads Campaigns
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
-                      
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           We will research highly profitable products for your
                           brands that will have low competition and high demand
                           in the market. We will find out the unique selling...
@@ -345,10 +337,7 @@ const TabContextXL = () => {
                           Local & Technical SEO
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16x] font-semibold text-justify text-black xl:text-[14px]"
-                          
-                        >
+                        <p className="spacegrotesk500 text-[16x] font-semibold text-justify text-black xl:text-[14px]">
                           Professional guidance to optimize your product
                           listings to enhance the visibility on Amazon that will
                           attract new customers and drive more sales...
@@ -401,10 +390,7 @@ const TabContextXL = () => {
                           Amazon Product Listing Design
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
-                          
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           Maximize Your E-commerce Potential Unlock the full
                           potential of your Amazon FBA business with Esaviour
                           Limited....
@@ -451,10 +437,7 @@ const TabContextXL = () => {
                           Product package Design
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
-                          
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           Your product package tells a lot about your brand and
                           your representation. Our designers are well-equipped
                           to create smart, responsive, and ...
@@ -503,10 +486,7 @@ const TabContextXL = () => {
                           Social Media Post Design
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
-                          
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           Social media is all about visuals and drawing the
                           attention of a huge customer base. Our social media
                           package includes graphics design for posts ...
@@ -560,10 +540,7 @@ const TabContextXL = () => {
                           Wordpress Website
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
-                          
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           As a brand, you must take approval for your brand name
                           from amazon and it’s essential if you want to create
                           your private label products and
@@ -613,10 +590,7 @@ const TabContextXL = () => {
                           MERN Stack Development
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
-                          
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           If the technical aspects like UPC/FNSKU are not
                           handled properly, you can face serious troubles to the
                           extent of registry suspension...
@@ -662,10 +636,7 @@ const TabContextXL = () => {
                           Shopify Store
                         </h2>
 
-                        <p
-                          className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]"
-                          
-                        >
+                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
                           We will research highly profitable products for your
                           brands that will have low competition and high demand
                           in the market...
@@ -694,9 +665,11 @@ const TabContextXL = () => {
         </div>
       </div>
       <div className="text-center bg-[#f4faff] xl:w-[80vw] xl:mx-auto">
-        <button className="btn btn-sm btn-neutral rounded-none my-[50px]">
-          View All Services
-        </button>
+        <Link href="/service">
+          <button className="btn btn-sm btn-neutral rounded-none my-[50px]">
+            View All Services
+          </button>
+        </Link>
       </div>
     </>
   );

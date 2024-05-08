@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { EmailJSContactProvider } from "@/ContextAPI/EmailJSContextAPIContact.jsx";
+import { EmailJSProvider } from "@/ContextAPI/EmailJSContextAPI.jsx";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,13 +27,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
-      <EmailJSContactProvider>
-        <body
-          className={`${DM_Sans_init.variable} ${Space_Grotesk_init.variable}`}
-        >
-          {children}
-        </body>
-      </EmailJSContactProvider>
+      <EmailJSProvider>
+        <EmailJSContactProvider>
+          <body
+            className={`${DM_Sans_init.variable} ${Space_Grotesk_init.variable}`}
+          >
+            {children}
+          </body>
+        </EmailJSContactProvider>
+      </EmailJSProvider>
     </html>
   );
 }

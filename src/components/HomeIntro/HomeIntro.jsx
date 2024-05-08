@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const HomeIntro = () => {
   return (
@@ -41,10 +42,11 @@ const HomeIntro = () => {
             need now is your trust to complete the recipe and create magic
             together!
           </p>
-
-          <button className="btn btn-sm btn-danger rounded-none my-[20px] bg-[#000000] text-white font-medium ml-[10px]">
-            Learn More
-          </button>
+          <Link href="/about">
+            <button className="btn btn-sm btn-danger rounded-none my-[20px] bg-[#000000] text-white font-medium ml-[10px]">
+              Learn More
+            </button>
+          </Link>
         </div>
       </div>
     </>

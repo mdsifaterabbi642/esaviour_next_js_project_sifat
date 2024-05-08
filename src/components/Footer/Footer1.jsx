@@ -7,6 +7,15 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Image from "next/image";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { useEffect, useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
+import { useEmailJS } from "@/ContextAPI/EmailJSContextAPI";
+
+// email js service id: service_d2jkicu
+//email js public key: cdQJMV8uBJzxi8V29
+//email js private key: grt1gnZ0C2_7o__MtlImb
+//email js template id: template_jcd7rrq
 
 var settings = {
   dots: false,
@@ -17,6 +26,77 @@ var settings = {
 };
 
 const Footer1 = () => {
+  const form = useRef();
+  const { emailData, setEmailData } = useEmailJS();
+  const [isChecked, setIsChecked] = useState(false);
+  const [localOrderData, setLocalOrderData] = useState({
+    email: "",
+  });
+  const [orderEmailStatus, setOrderEmailStatus] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    formState: { isSubmitting }, // Access isSubmitting property
+  } = useForm();
+
+  const submitOrder = (data) => {
+    console.log("Clicked submitOrder function xl");
+    console.log(data);
+    console.log(emailData);
+
+    setLocalOrderData({
+      //name: data.name,
+      email: data.email,
+      //phone: data.phone,
+      //message: data.message,
+      //productLink: data.productLink,
+      //serviceCategory: data.serviceCategory,
+      //selectedService: data.selectedService,
+    });
+
+    //implement email js here
+    emailjs
+      .sendForm(
+        "service_d2jkicu",
+        "template_jcd7rrq",
+        form.current,
+        "cdQJMV8uBJzxi8V29"
+      )
+      .then(
+        (result) => {
+          console.log(result.text, "send successfully");
+          alert(result.text, "send successfully");
+          setOrderEmailStatus(true);
+        },
+        (error) => {
+          console.log(error.text, "didn't send");
+          alert(error.text, "didn't send");
+          setOrderEmailStatus(false);
+        }
+      );
+
+    //call the reset form based on the response from email js
+    if (setOrderEmailStatus) {
+      reset();
+    }
+  };
+
+
+
+  useEffect(() => {
+    setEmailData(localOrderData);
+  }, [localOrderData]);
+
+  useEffect(() => {
+    //console.log("After form submission: ");
+    //console.log(emailData);
+  }, [emailData]);
+
+  const senderNameFormatted = JSON.stringify(emailData.name);
+
   return (
     <>
       <Slider
@@ -103,7 +183,10 @@ const Footer1 = () => {
               Meeting Now!
             </p>
             <div className="pt-[10px] pb-[20px] text-center">
-              <a href="#" className="py-[5px] px-[10px] bg-black text-white rounded-sm">
+              <a
+                href="#"
+                className="py-[5px] px-[10px] bg-black text-white rounded-sm"
+              >
                 Schedule a Meeting
               </a>
             </div>
@@ -152,7 +235,7 @@ const Footer1 = () => {
               <input
                 type="text"
                 className="grow placeholder-slate-600 "
-                placeholder="Email"
+                placeholder="Your email address"
               />
               <button className="btn bg-[#40b0fd] btn-sm rounded-sm section_3_span text-white relative left-[-70px]">
                 Submit
@@ -217,16 +300,33 @@ const Footer1 = () => {
             </div>
           </div>
           <div className="basis-1/1 bg-[#ddf1ff] py-[10px]">
-            <label className="input input-bordered flex items-center border-none rounded-none w-[90%] mx-auto">
-              <input
-                type="text"
-                className="grow placeholder-slate-600 "
-                placeholder="Email"
-              />
-              <button className="btn bg-[#40b0fd] btn-sm rounded-sm section_3_span text-white relative left-[-30px]">
-                Submit
-              </button>
-            </label>
+            <form ref={form} onSubmit={handleSubmit(submitOrder)}>
+              <label className="input input-bordered flex items-center border-none rounded-none w-[90%] mx-auto">
+                <input
+                  {...register("email", { required: true })}
+                  placeholder="Add your Email address"
+                  className={`bg-[#cee9ff] my-[5px] py-[5px] xl:py-[10px] pl-[5px] mx-[2px] w-[95%] border mycontactPlaceholder ${
+                    errors.email ? "border-red-500" : ""
+                  }`}
+                />
+                <button className="btn bg-[#40b0fd] btn-sm rounded-sm text-white">
+                  Submit
+                </button>
+              </label>
+              {isSubmitting || orderEmailStatus ? ( // Show notification only when isSubmitting or emailStatus is set
+                orderEmailStatus ? (
+                  <p className="text-green-500 font-semibold">
+                    Hello {senderNameFormatted}, your email was sent
+                    successfully!
+                  </p>
+                ) : (
+                  <p className="text-red-500 font-semibold">
+                    Hello {senderNameFormatted}, there was an error sending your
+                    email. Please try again.
+                  </p>
+                )
+              ) : null}
+            </form>
           </div>
         </div>
       </div>
@@ -300,16 +400,33 @@ const Footer1 = () => {
               <div className="basis-1/1 mt-[0px] w-[80%] mx-auto xl:w-[90%]">
                 <div className="bg-[#eef7ff] relative top-[20px] left-[0px] h-[80px]">
                   <div className="bg-[#eef7ff] absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
-                    <label className="input flex items-center rounded-none">
-                      <input
-                        type="text"
-                        className="grow placeholder-slate-600 py-[50px] w-[350px]"
-                        placeholder="Email"
-                      />
-                      <button className="btn bg-[#40b0fd] btn-sm rounded-sm text-white">
-                        Submit
-                      </button>
-                    </label>
+                    <form ref={form} onSubmit={handleSubmit(submitOrder)}>
+                      <label className="input flex items-center rounded-none">
+                        <input
+                          {...register("email", { required: true })}
+                          placeholder="Add your Email address"
+                          className={`bg-[#cee9ff] my-[5px] py-[5px] xl:py-[10px] pl-[5px] mx-[2px] xl:w-[350px] border mycontactPlaceholder ${
+                            errors.email ? "border-red-500" : ""
+                          }`}
+                        />
+                        <button className="btn bg-[#40b0fd] btn-sm rounded-sm text-white">
+                          Submit
+                        </button>
+                      </label>
+                      {isSubmitting || orderEmailStatus ? ( // Show notification only when isSubmitting or emailStatus is set
+                        orderEmailStatus ? (
+                          <p className="text-green-500 font-semibold">
+                            Hello {senderNameFormatted}, your email was sent
+                            successfully!
+                          </p>
+                        ) : (
+                          <p className="text-red-500 font-semibold">
+                            Hello {senderNameFormatted}, there was an error
+                            sending your email. Please try again.
+                          </p>
+                        )
+                      ) : null}
+                    </form>
                   </div>
                 </div>
               </div>

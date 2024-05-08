@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { useState } from "react";
 import Image from "next/image";
 import OrderFormSM from "../OrderForm/OrderFormSM";
+import Link from "next/link";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -631,9 +632,11 @@ const TabContextSM = () => {
           </div>
         </TabPanel>
         <div className="text-center bg-[#f4faff] w-[90vw] mx-auto">
+        <Link href="/service">
           <button className="btn btn-sm btn-neutral rounded-none my-[10px]">
             View All Services
           </button>
+          </Link>
         </div>
       </Tabs>
     </>
