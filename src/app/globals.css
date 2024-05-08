@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.dmsans {
+  font-family: var(--font-dmsans);
+}
 .dmsans100 {
   font-family: var(--font-dmsans);
   font-weight: 100;
@@ -51,6 +54,9 @@
   letter-spacing: 4px;
 }
 
+.spacegrotesk {
+  font-family: var(--font-spacegrotesk);
+}
 .spacegrotesk300 {
   font-family: var(--font-spacegrotesk);
   font-weight: 300;
