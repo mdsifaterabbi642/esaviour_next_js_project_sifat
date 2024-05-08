@@ -70,7 +70,7 @@ const FooterPortfolio = () => {
             </div>
             <div className="basis-1/1 bg-[#ddf1ff] w-[98vw] mx-auto">
               <h5 className="text-center py-[10px] text-[20px]">
-                Let's Get Social
+                Lets Get Social
               </h5>
               <div className="flex justify-center">
                 <Link
@@ -259,7 +259,7 @@ const FooterPortfolio = () => {
             </ul>
           </div>
           <div className="basis-1/5 pt-[70px] pb-[10px] bg-[#ddf1ff]">
-            <h5 className="text-left font-book text-md">Let's Get Social</h5>
+            <h5 className="text-left font-book text-md">Lets Get Social</h5>
             <div className="flex justify-center">
               <Link
                 className="inline mr-[3px]"
@@ -523,7 +523,7 @@ const FooterPortfolio = () => {
             </div>
             <div className="basis-1/5 pt-[70px] pb-[10px] xl:pt-[85px] bg-[#ddf1ff]">
               <span className="font-book text-xl block pb-[15px] font-bold">
-                Let's Get Social
+                Lets Get Social
               </span>
               <div className="flex justify-start">
                 <Link

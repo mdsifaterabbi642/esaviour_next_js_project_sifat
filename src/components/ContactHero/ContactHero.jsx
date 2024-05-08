@@ -15,8 +15,8 @@ const ContactHero = () => {
               fontStyle: "normal",
             }}
           >
-            At eSaviour, we're committed to elevating your brand's digital
-            presence. Whether you're looking to redefine your marketing
+            At eSaviour, were committed to elevating your brands digital
+            presence. Whether youre looking to redefine your marketing
             strategy, enhance your online visibility, or require bespoke
             marketing solutions, our team is here to transform your vision into
             reality. Get in touch with us today and take the first step towards
@@ -28,7 +28,6 @@ const ContactHero = () => {
             <Image
               src="/ContactIcons/contact.png"
               alt="contact"
-              //   className="w-[200px] xl:w-[30%]"
               width="287"
               height="283"
               layout="responsive"

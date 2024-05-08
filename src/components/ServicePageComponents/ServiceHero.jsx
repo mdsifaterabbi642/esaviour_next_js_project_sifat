@@ -6,7 +6,7 @@ const ServiceHero = () => {
       <div className="flex flex-col md:flex-row bg-[#b3d9f8] pb-[150px] md:pb-[150px] md:pt-[50px]">
         <div className="basis-1/1 md:basis-1/2 lg:basis-1/2 lg:mt-[50px] order-1 md:order-0 px-[10px] xl:mt-[0px]">
           <h1 className="text-[#000000] dmsans900 leading-[30ox] xl:dmsans900 xl:leading-[41px] text-[25px] sm:text-[26px] md:text-xl lg:text-2xl xl:pl-[20%] xl:text-[34px]  md:pt-[50px] md:pl-[5%] sm:pl-[5%] lg:pt-[0px] xl:pt-[50px] text-left pt-[20px]">
-            The Best B2B Digital Marketing Solutions for Brand's with
+            The Best B2B Digital Marketing Solutions for Brands with
             Exceptional eSaviour Limited Services
           </h1>
           <p className="spacegrotesk500 text-[16px] leading-[20px] sm:text-[16px] md:text-[14px] xl:text-[18px] sm:pl-[5%] sm:pr-[5%]  md:pl-[5%] mt-[20px] mb-[10px] xl:pl-[20%] xl:pr-[200px] xl:leading-[25px]">
