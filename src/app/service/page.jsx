@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/app/service/Service.module.css";
 import Footer1 from "@/components/Footer/Footer1";
 import Footer2 from "@/components/Footer/Footer2";
