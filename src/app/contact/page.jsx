@@ -8,6 +8,10 @@ import { useMyContactObj } from "@/ContextAPI/EmailJSContextAPIContact";
 import { useEffect, useRef, useState } from "react";
 import ContactHero from "@/components/ContactHero/ContactHero";
 import emailjs from "@emailjs/browser";
+import ContactData from "@/Data/ContactData";
+import { ContactFormHeading } from "@/Data/ContactData";
+import { SocialConnectionData } from "@/Data/ContactData";
+import Link from "next/link";
 
 // // email js service id: service_d2jkicu
 // //email js public key: cdQJMV8uBJzxi8V29
@@ -79,25 +83,41 @@ const Contact = () => {
     console.log(contactEmail);
   }, [contactEmail]);
   const senderNameFormatted = JSON.stringify(contactEmail.name);
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <>
       <div className="overflow-x-hidden overflow-y-hidden">
         <Navbar />
         <ContactHero />
         <div className="flex flex-col lg:flex-col xl:flex-col flex-wrap w-[90%] lg:w-[80%] xl:w-[80%] mx-auto myShadowDiv bg-[#ffffff] mt-[-100px] mb-[50px]">
-          <div className="basis-1/1 lg:basis-1/1 xl:basis-1/1 py-[50px]">
+          <div className="basis-1/1 lg:basis-1/1 xl:basis-1/1 pt-[50px] pb-[20px]">
             <h1 className="text-[#40b0fd] font-bold text-[20px] lg:text-[30px] xl:text-[36px] text-center">
               Reach Out to Us
             </h1>
-            <p
-              className="text-center text-[#000000] tracking-wider lg:font-semibold xl:font-semibold px-[20px] text-[14px] lg:text-[18px] xl:text-[20px]"
-              style={{
-                fontFamily: "Futura PT, sans-serif",
-              }}
-            >
-              For inquiries, proposals, or just a hello, fill out the form below
-              and <br></br> our team will get back to you promptly.
-            </p>
+            <div className="spacegrotesk700 text-center text-[#000000] px-[20px] text-[14px] lg:text-[18px] xl:text-[20px]">
+              {isClient ? (
+                ContactFormHeading[0]?.contactFormHeading
+              ) : (
+                <div>
+                  <div className="text-center">
+                    <span className="loading loading-spinner text-primary"></span>
+                    <span className="loading loading-spinner text-secondary"></span>
+                    <span className="loading loading-spinner text-accent"></span>
+                    <span className="loading loading-spinner text-neutral"></span>
+                    <span className="loading loading-spinner text-info"></span>
+                    <span className="loading loading-spinner text-success"></span>
+                    <span className="loading loading-spinner text-warning"></span>
+                    <span className="loading loading-spinner text-error"></span>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
           <div className="basis-1/1 lg:basis-1/1 xl:basis-1/1">
             <div className="flex flex-col lg:flex-row xl:flex-row flex-wrap">
@@ -160,145 +180,97 @@ const Contact = () => {
                 </div>
               </div>
               <div className="basis-1/2 lg:basis-1/2 xl:basis-1/2 pt-[0px] xl:pt-[10px]">
-                <div className="w-[90%] mx-auto lg:w-[80%] xl:w-[80%] bg-[#f5fbff] my-[10px] xl:my-[10px] myShadowDiv">
-                  <h1 className="bg-[#40b0fd] text-white font-extrabold pl-[10px] text-[14px] xl:text-[18px]">
-                    Bangladesh
-                  </h1>
-                  <div
-                    className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
-                  >
-                    <div className="mt-[5px] w-[25px]">
-                      <Image
-                        src="/ContactIcons/myLocation2.jpg"
-                        alt="myLocation2"
-                        className="inline-block"
-                        width="500"
-                        height="500"
-                        layout="responsive"
-                      ></Image>
+                {isClient ? (
+                  ContactData.map((item, index) => (
+                    <div
+                      key={index}
+                      className="w-[90%] mx-auto lg:w-[80%] xl:w-[80%] bg-[#f5fbff] my-[10px] xl:my-[10px] myShadowDiv "
+                    >
+                      <h1 className="bg-[#40b0fd] text-white font-extrabold pl-[10px] text-[14px] xl:text-[18px]">
+                        {item?.countryName}
+                      </h1>
+                      <div className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex">
+                        <div className="mt-[5px] w-[25px]">
+                          <Image
+                            src="/ContactIcons/myLocation2.jpg"
+                            alt="myLocation2"
+                            className="inline-block"
+                            width="500"
+                            height="500"
+                            layout="responsive"
+                          ></Image>
+                        </div>
+                        <div className="mt-[5px] pl-[5px]">
+                          <p>{item?.contactDetails[0]?.address}</p>
+                        </div>
+                      </div>
+                      <div className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex">
+                        {item?.contactDetails[0]?.phone.length > 3 ? (
+                          <>
+                            <div className="mt-[5px] w-[25px]">
+                              <Image
+                                src="/ContactIcons/phone2.jpg"
+                                alt="phone2"
+                                className="inline-block"
+                                width="500"
+                                height="500"
+                                layout="responsive"
+                              ></Image>
+                            </div>
+                            <div className="mt-[5px] pl-[5px]">
+                              <p>
+                                {item?.contactDetails[0]?.phone.length > 3
+                                  ? item?.contactDetails[0]?.phone
+                                  : ""}
+                              </p>
+                            </div>
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex">
+                        {item?.contactDetails[0]?.email.length > 3 ? (
+                          <>
+                            <div className="mt-[5px] w-[25px]">
+                              <Image
+                                src="/ContactIcons/email2.jpg"
+                                alt="email2"
+                                className="inline-block"
+                                width="500"
+                                height="500"
+                                layout="responsive"
+                              ></Image>
+                            </div>
+                            <div className="mt-[5px] pl-[5px]">
+                              <p>
+                                {item?.contactDetails[0]?.email.length > 3
+                                  ? item?.contactDetails[0]?.email
+                                  : ""}
+                              </p>
+                            </div>
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
-                    <div className="mt-[5px] pl-[5px]">
-                      <p>
-                        House 770, Road 10, Avenue 2, Mirpur DOHS, Dhaka 1216.
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
-                  >
-                    <div className="mt-[5px] w-[25px]">
-                      <Image
-                        src="/ContactIcons/phone2.jpg"
-                        alt="phone2"
-                        className="inline-block"
-                        width="500"
-                        height="500"
-                        layout="responsive"
-                      ></Image>
-                    </div>
-                    <div className="mt-[5px] pl-[5px]">
-                      <p>+8801931965606</p>
-                    </div>
-                  </div>
-                  <div
-                    className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
-                  >
-                    <div className="mt-[5px] w-[25px]">
-                      <Image
-                        src="/ContactIcons/email2.jpg"
-                        alt="email2"
-                        className="inline-block"
-                        width="500"
-                        height="500"
-                        layout="responsive"
-                      ></Image>
-                    </div>
-                    <div className="mt-[5px] pl-[5px]">
-                      <p className="text-[#000000]" style={{ fontWeight: 550 }}>
-                        help@esaviour.com
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="border w-[90%] mx-auto lg:w-[80%] xl:w-[80%] bg-[#f5fbff] my-[10px] xl:my-[10px] myShadowDiv">
-                  <h1 className="bg-[#40b0fd] text-white font-extrabold pl-[10px] text-[14px] xl:text-[18px]">
-                    United Kingdom
-                  </h1>
-                  <div
-                    className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
-                  >
-                    <div className="mt-[5px] w-[25px]">
-                      <Image
-                        src="/ContactIcons/myLocation2.jpg"
-                        alt="myLocation2"
-                        className="inline-block"
-                        width="500"
-                        height="500"
-                        layout="responsive"
-                      ></Image>
-                    </div>
-                    <div className="mt-[5px] pl-[5px]">
-                      <p>H24 Richmond Street, London E13 9AA</p>
+                  ))
+                ) : (
+                  <div>
+                    <div className="text-center">
+                      <span className="loading loading-spinner text-primary"></span>
+                      <span className="loading loading-spinner text-secondary"></span>
+                      <span className="loading loading-spinner text-accent"></span>
+                      <span className="loading loading-spinner text-neutral"></span>
+                      <span className="loading loading-spinner text-info"></span>
+                      <span className="loading loading-spinner text-success"></span>
+                      <span className="loading loading-spinner text-warning"></span>
+                      <span className="loading loading-spinner text-error"></span>
                     </div>
                   </div>
-                  <div
-                    className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
-                  >
-                    <div className="mt-[5px] w-[25px]">
-                      <Image
-                        src="/ContactIcons/phone2.jpg"
-                        alt="phone2"
-                        className="inline-block"
-                        width="500"
-                        height="500"
-                        layout="responsive"
-                      ></Image>
-                    </div>
-                    <div className="mt-[5px] pl-[5px]">
-                      <p>+44 7448 810568 </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="border w-[90%] mx-auto lg:w-[80%] xl:w-[80%] bg-[#f5fbff] my-[10px] lg:my-[10px] xl:my-[10px] myShadowDiv">
-                  <h1 className="bg-[#40b0fd] text-white font-extrabold pl-[10px] text-[14px] lg:text-[14px] xl:text-[18px]">
-                    United States
-                  </h1>
-                  <div
-                    className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex"
-                    style={{
-                      fontFamily: "Futura PT, sans-serif",
-                    }}
-                  >
-                    <div className="mt-[5px] w-[25px]">
-                      <Image
-                        src="/ContactIcons/myLocation2.jpg"
-                        alt="myLocation2"
-                        className="inline-block"
-                        width="500"
-                        height="500"
-                        layout="responsive"
-                      ></Image>
-                    </div>
-                    <div className="mt-[5px] pl-[5px]">
-                      <p>30 N Gould St, Sheridan, WY, United States.</p>
-                    </div>
-                  </div>
-                </div>
+                )}
+
                 <div className="w-[90%] xl:w-[80%] mx-auto">
                   <p
                     className="text-[14px] lg:text-[16px] xl:text-[18px] text-[#40b0fd] text-center"
@@ -306,51 +278,90 @@ const Contact = () => {
                       fontWeight: 500,
                     }}
                   >
-                    Connecct with us
+                    Connect with us
                   </p>
                 </div>
                 {/* className="w-[90%] lg:w-[90%] xl:w-[80%] text-center mx-auto" */}
                 <div className="flex justify-center">
-                  <div className="w-[25px]">
-                    <Image
-                      src="/ContactIcons/facebook.png"
-                      alt="facebook"
-                      className="inline-block mx-[5px] cursor-pointer"
-                      width="35"
-                      height="36"
-                      layout="responsive"
-                    ></Image>
+                  {isClient ? (
+                    SocialConnectionData.map((item) => (
+                      <div key={item.socialId}>
+                        <div className="w-[25px]">
+                          <Link href={`${item.socialLink}`} target="_blank">
+                            <Image
+                              src={item.imageSource}
+                              alt={item.imgAlt}
+                              className="inline-block mx-[5px] cursor-pointer"
+                              width={item.width}
+                              height={item.height}
+                              layout="responsive"
+                            ></Image>
+                          </Link>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div>
+                      <div className="text-center">
+                        <span className="loading loading-spinner text-primary"></span>
+                        <span className="loading loading-spinner text-secondary"></span>
+                        <span className="loading loading-spinner text-accent"></span>
+                        <span className="loading loading-spinner text-neutral"></span>
+                        <span className="loading loading-spinner text-info"></span>
+                        <span className="loading loading-spinner text-success"></span>
+                        <span className="loading loading-spinner text-warning"></span>
+                        <span className="loading loading-spinner text-error"></span>
+                      </div>
+                    </div>
+                  )}
+                  {/* <div className="w-[25px]">
+                    <Link href="https://www.facebook.com">
+                      <Image
+                        src="/ContactIcons/facebook.png"
+                        alt="facebook"
+                        className="inline-block mx-[5px] cursor-pointer"
+                        width="35"
+                        height="36"
+                        layout="responsive"
+                      ></Image>
+                    </Link>
+                  </div> */}
+                  {/* <div className="w-[25px]">
+                    <Link href="https://www.instagram.com">
+                      <Image
+                        src="/ContactIcons/instagram.png"
+                        alt="instagram"
+                        className="inline-block mx-[5px] cursor-pointer"
+                        width="37"
+                        height="36"
+                        layout="responsive"
+                      ></Image>
+                    </Link>
                   </div>
                   <div className="w-[25px]">
-                    <Image
-                      src="/ContactIcons/instagram.png"
-                      alt="facebook"
-                      className="inline-block mx-[5px] cursor-pointer"
-                      width="37"
-                      height="36"
-                      layout="responsive"
-                    ></Image>
+                    <Link href="https://www.linkedin.com">
+                      <Image
+                        src="/ContactIcons/linkedin.png"
+                        alt="linkedin"
+                        className="inline-block mx-[5px] cursor-pointer"
+                        width="38"
+                        height="37"
+                        layout="responsive"
+                      ></Image>
+                    </Link>
                   </div>
                   <div className="w-[25px]">
-                    <Image
-                      src="/ContactIcons/linkedin.png"
-                      alt="linkedin"
-                      className="inline-block mx-[5px] cursor-pointer"
-                      width="38"
-                      height="37"
-                      layout="responsive"
-                    ></Image>
-                  </div>
-                  <div className="w-[25px]">
-                    <Image
-                      src="/ContactIcons/youtube.png"
-                      alt="youtube"
-                      className="inline-block mx-[5px] cursor-pointer"
-                      width="32"
-                      height="33"
-                      layout="responsive"
-                    ></Image>
-                  </div>
+                    <Link href="https://www.youtube.com">
+                      <Image
+                        src="/ContactIcons/youtube.png"
+                        alt="youtube"
+                        className="inline-block mx-[5px] cursor-pointer"
+                        width="32"
+                        height="33"
+                        layout="responsive"
+                      ></Image>
+                    </Link>
+                  </div> */}
                 </div>
               </div>
             </div>
