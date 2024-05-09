@@ -80,7 +80,7 @@ const Footer1 = () => {
   };
   useEffect(() => {
     setEmailData(localOrderData);
-  }, [localOrderData]);
+  }, [localOrderData, setEmailData]); // ========= setEmailData added as dependency array ============
 
   useEffect(() => {
     //console.log("After form submission: ");

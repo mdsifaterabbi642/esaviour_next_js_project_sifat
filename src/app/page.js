@@ -90,7 +90,7 @@ export default function Home() {
   useEffect(() => {
     // Update emailData directly
     setEmailData(localData);
-  }, [localData]);
+  }, [localData, setEmailData]); // ========== setEmailData added as dependency array =========
 
   useEffect(() => {
     console.log("After form submission: ");

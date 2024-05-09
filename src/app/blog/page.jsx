@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/app/blog/Blog.module.css";
 import BlogBody from "@/components/BlogComponents/BlogBody";
 import BlogHero from "@/components/BlogComponents/BlogHero";
@@ -11,7 +12,7 @@ const BlogPage = () => {
       <div className={`${styles.container}`}>
         <Navbar />
         <BlogHero />
-        {/* <BlogBody /> */}
+        <BlogBody />
 
         <div className="w-[98vw] mx-auto overflow-hidden">
           <FooterPortfolio />

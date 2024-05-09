@@ -26,7 +26,7 @@ const Hero = () => {
         </div>
         <div className="basis-1/1 md:basis-1/1 xl:basis-1/2 md:mx-[100px] lg:mt-[100px] order-1 md:order-1 xl:order-0 px-[10px] xl:mt-[0px]">
           <h1 className="text-left font-extrabold pt-[20px] text-[25px] lg:text-[34px] xl:pl-[12%] xl:text-[38px] xl:leading-[50px] md:pt-[50px]">
-            Worried About your Brands<br></br>
+            Worried About your Brand{`'`}s<br></br>
             <span className="text-sky-500"> Marketing Strategy?</span>
           </h1>
           <p

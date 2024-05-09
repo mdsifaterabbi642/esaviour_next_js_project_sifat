@@ -77,7 +77,7 @@ const OrderFormSM = () => {
 
   useEffect(() => {
     setEmailData(localOrderData);
-  }, [localOrderData]);
+  }, [localOrderData, setEmailData]);  //  ====== setEmailData added as a dependency array =========
 
   useEffect(() => {
     // console.log("After form submission: ");

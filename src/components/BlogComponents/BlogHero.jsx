@@ -8,7 +8,7 @@ const BlogHero = () => {
       <div className="flex flex-col md:flex-row bg-[#cee9ff] pb-[100px] md:pb-[150px] md:pt-[50px] lg:pb-[100px]">
         <div className="basis-1/1 md:basis-1/2 lg:basis-1/2 lg:mt-[0px] order-1 md:order-0 px-[10px] xl:mt-[0px]">
           <h1 className="text-left font-extrabold pt-[20px] text-[20px] sm:text-[26px] md:text-xl lg:text-2xl  md:pt-[50px] lg:pt-[0px] md:pl-[5%] md:font-extrabold sm:pl-[5%] xl:pt-[50px] xl:font-bold xl:pl-[20%] xl:text-[38px] xl:leading-[40px]">
-            Esaviour Blog Odyssey to Self-Discovery
+            Esaviour{`'`}s Blog Odyssey to Self-Discovery
           </h1>
           <p
             className="text-[16px] text-justify sm:text-[16px] sm:pl-[5%] sm:pr-[5%] md:text-[16px] md:pl-[5%] mt-[20px] mb-[0px] xl:pl-[20%] xl:pr-[200px] xl:text-[18px] xl:leading-[25px] font-bold xl:font-bold"

@@ -1,11 +1,18 @@
-// import blogModuleCSS from "./BlogBody.module.css";
+"use client";
+import { useState, useEffect } from "react";
+import blogModuleCSS from "./BlogBody.module.css";
 import { FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
-// import BlogData from "@/Data/BlogData";
+import BlogData from "@/Data/BlogData";
 
 const BlogBody = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
     <>
       <div className="w-[90vw] xl:w-[80vw] mx-auto my-[30px] xl:my-[70px]">
@@ -27,113 +34,131 @@ const BlogBody = () => {
               <div className="basis-1/1 mt-[10px] xl:mt-[30px]">
                 <div className="flex flex-wrap">
                   {/* =========== Only for extra small and extra large device ============ */}
-                  {/* <div className="my-[10px] md:mx-[5px] block sm:hidden md:hidden lg:hidden xl:block">
+                  <div className="my-[10px] md:mx-[5px] block sm:hidden md:hidden lg:hidden xl:block">
                     <Link href="#">
                       <div className="flex flex-wrap gap-[5px]">
-                        {BlogData.map((item, index) => (
-                          <div
-                            className="card xl:w-[266px] bg-[#e8f5ff] shadow-xl"
-                            key={index}
-                          >
-                            <div className="absolute top-[5px] left-[10px] bg-[#40b0fd] text-white text-sm py-[5px] px-[10px] rounded-md">
-                              {item.bannerTitle}
-                            </div>
-
-                            <div className="max-h-[300px] w-[100%] md:h-[150px] xl:h-[150px] xl:w-[100%] rounded-t-md mb-[20px]">
-                              <Image
-                                src={item.imageSource}
-                                alt={item.alt}
-                                width={item.width}
-                                height={item.height}
-                                layout="responsive"
-                              />
-                            </div>
-
-                            <div className="card-body pt-[15px] pl-[10px]">
-                              <div className="border-b-[1px] border-b-[#40b0fd]">
-                                <h2 className="font-extrabold p-0 m-0 md:text-[12px] lg:[12px] xl:text-[18px]">
-                                 
-                                  {item.bodyTitle.length > 20
-                                    ? item.bodyTitle.slice(0, 20) + "..."
-                                    : item.bodyTitle}
-                                </h2>
+                        {isClient ? (
+                          BlogData?.map((item, index) => (
+                            <div
+                              className="card xl:w-[266px] bg-[#e8f5ff] shadow-xl"
+                              key={index}
+                            >
+                              <div className="absolute top-[5px] left-[10px] bg-[#40b0fd] text-white text-sm py-[5px] px-[10px] rounded-md">
+                                {item.bannerTitle}
                               </div>
 
-                              <p
-                                className="font-semibold md:text-[14px] xl:text-[14px] xl:pt-[15px]"
-                                style={{
-                                  fontFamily: "Futura PT, sans-serif",
-                                }}
-                              >
-                               
-                                {item.bodyDescription.length > 50
-                                  ? item.bodyDescription.slice(0, 50) + "..."
-                                  : item.bodyDescription}
-                              </p>
-                              <div className="card-actions justify-start border-b-[1px] border-b-[#40b0fd]">
-                                <Link href={`/blog/${item.blogId}`}>
-                                  <button className="btn btn-sm bg-slate-700 text-white">
-                                    Read More
-                                  </button>
-                                </Link>
+                              <div className="max-h-[300px] w-[100%] md:h-[150px] xl:h-[150px] xl:w-[100%] rounded-t-md mb-[20px]">
+                                <Image
+                                  src={item.imageSource}
+                                  alt={item.alt}
+                                  width={item.width}
+                                  height={item.height}
+                                  layout="responsive"
+                                />
                               </div>
-                              <div>
-                                <h1
-                                  className="md:text-[12px] xl:text-[13px] font-bold tracking-widest"
+
+                              <div className="card-body pt-[15px] pl-[10px]">
+                                <div className="border-b-[1px] border-b-[#40b0fd]">
+                                  <h2 className="font-extrabold p-0 m-0 md:text-[12px] lg:[12px] xl:text-[18px]">
+                                    {item.bodyTitle.length > 20
+                                      ? item.bodyTitle.slice(0, 20) + "..."
+                                      : item.bodyTitle}
+                                  </h2>
+                                </div>
+
+                                <p
+                                  className="font-semibold md:text-[14px] xl:text-[14px] xl:pt-[15px]"
                                   style={{
                                     fontFamily: "Futura PT, sans-serif",
                                   }}
                                 >
-                                  {item.blogDate}
-                                </h1>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </Link>
-                  </div> */}
-                  {/* =========== For small, medium and large device ===================== */}
-                  {/* <div className="my-[10px] md:mx-[5px] hidden sm:block md:block lg:block xl:hidden">
-                    <Link href="#">
-                      <div className="flex flex-wrap gap-[5px]">
-                        {BlogData.map((item, index) => (
-                          <div key={index}>
-                            <div className="card lg:card-side bg-base-100 shadow-xl border border-gray-200">
-                              <figure className="sm:w-[50%] md:w-[70%] lg:w-[50%] sm:mx-auto md:mx-auto sm:pt-[5px] md:pt-[5px]">
-                                <Image
-                                  src={item.imageSource}
-                                  alt={item.alt}
-                                  width="150"
-                                  height="150"
-                                  layout="responsive"
-                                />
-                              </figure>
-                              <div className="card-body">
-                                <div className="badge badge-info gap-2">
-                                  {item.bannerTitle}
-                                </div>
-                                <h2 className="card-title">{item.bodyTitle}</h2>
-                                <p>{item.bodyDescription}</p>
-                                <div className="card-actions justify-end">
+                                  {item.bodyDescription.length > 50
+                                    ? item.bodyDescription.slice(0, 50) + "..."
+                                    : item.bodyDescription}
+                                </p>
+                                <div className="card-actions justify-start border-b-[1px] border-b-[#40b0fd]">
                                   <Link href={`/blog/${item.blogId}`}>
                                     <button className="btn btn-sm bg-slate-700 text-white">
                                       Read More
                                     </button>
                                   </Link>
                                 </div>
+                                <div>
+                                  <h1
+                                    className="md:text-[12px] xl:text-[13px] font-bold tracking-widest"
+                                    style={{
+                                      fontFamily: "Futura PT, sans-serif",
+                                    }}
+                                  >
+                                    {item.blogDate}
+                                  </h1>
+                                </div>
                               </div>
                             </div>
+                          ))
+                        ) : (
+                          <div>
+                            <span className="loading loading-spinner loading-xs"></span>
+                            <span className="loading loading-spinner loading-sm"></span>
+                            <span className="loading loading-spinner loading-md"></span>
+                            <span className="loading loading-spinner loading-lg"></span>
                           </div>
-                        ))}
+                        )}
                       </div>
                     </Link>
-                  </div> */}
+                  </div>
+                  {/* =========== For small, medium and large device ===================== */}
+                  <div className="my-[10px] md:mx-[5px] hidden sm:block md:block lg:block xl:hidden">
+                    <Link href="#">
+                      <div className="flex flex-wrap gap-[5px]">
+                        {isClient ? (
+                          BlogData.map((item, index) => (
+                            <div key={index}>
+                              <div className="card lg:card-side bg-base-100 shadow-xl border border-gray-200">
+                                <figure className="sm:w-[50%] md:w-[70%] lg:w-[50%] sm:mx-auto md:mx-auto sm:pt-[5px] md:pt-[5px]">
+                                  <Image
+                                    src={item.imageSource}
+                                    alt={item.alt}
+                                    width="150"
+                                    height="150"
+                                    layout="responsive"
+                                  />
+                                </figure>
+                                <div className="card-body">
+                                  <div className="badge badge-info gap-2">
+                                    {item.bannerTitle}
+                                  </div>
+                                  <h2 className="card-title">
+                                    {item.bodyTitle}
+                                  </h2>
+                                  <p>{item.bodyDescription}</p>
+                                  <div className="card-actions justify-end">
+                                    <Link href={`/blog/${item.blogId}`}>
+                                      <button className="btn btn-sm bg-slate-700 text-white">
+                                        Read More
+                                      </button>
+                                    </Link>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        ) : (
+                          <div>
+                            <span className="loading loading-spinner loading-xs"></span>
+                            <span className="loading loading-spinner loading-sm"></span>
+                            <span className="loading loading-spinner loading-md"></span>
+                            <span className="loading loading-spinner loading-lg"></span>
+                          </div>
+                        )}
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          {/* <div className="basis-1/1 md:basis-2/6 xl:basis-2/5">
+          <div className="basis-1/1 md:basis-2/6 xl:basis-2/5">
             <div className="flex flex-col flex-wrap">
               <div className="basis-1/1 bg-[#e8f5ff] w-[100%] xl:w-[75%] mx-auto">
                 <div className="bg-[#fff] w-[95%] mx-auto mt-[20px] pb-[20px] rounded-md">
@@ -267,7 +292,7 @@ const BlogBody = () => {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </>

@@ -73,7 +73,7 @@ const Contact = () => {
   };
   useEffect(() => {
     setContactEmail(localContactData);
-  }, [localContactData]);
+  }, [localContactData, setContactEmail]); // ======setContactEmail added with the dependency array
   useEffect(() => {
     console.log("After form submission: ");
     console.log(contactEmail);

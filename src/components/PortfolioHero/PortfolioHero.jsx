@@ -10,9 +10,9 @@ const PortfolioHero = () => {
             Your Digital Business Development Partner!
           </h1>
           <p className="text-[14px] xl:text-[17px] leading-[18px] xl:leading-[22px] spacegrotesk500  mt-[20px] xl:mt-[30px] mb-[10px] xl:pl-[15%] xl:pr-[15%]">
-            Explore eSaviour Limited’s portfolio, where digital innovation meets
+            Explore eSaviour Limited{`'`}s portfolio, where digital innovation meets
             exceptional results. From e-commerce mastery to dynamic business
-            development solutions, we’re your strategic partner in achieving
+            development solutions, we{`'`}re your strategic partner in achieving
             unparalleled success in the digital landscape. Discover how we can
             elevate your brand today.
           </p>
