@@ -1,5 +1,6 @@
 "use client";
 import BlogData from "@/Data/BlogData";
+import Category from "@/Data/Category";
 import BlogHero from "@/components/BlogComponents/BlogHero";
 import FooterPortfolio from "@/components/FooterPortfolio/FooterPortfolio";
 import Navbar from "@/components/Navbar/Navbar";
@@ -23,6 +24,11 @@ const CategoryPage = ({ params }) => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  //finding latest blogs
+  const latestBlogs = BlogData.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  ).slice(0, 3);
 
   return (
     <>
@@ -193,32 +199,31 @@ const CategoryPage = ({ params }) => {
                     <p className="text-[#40c0fe] xl:text-[20px] xl:font-extrabold text-center mt-[20px]">
                       Categories
                     </p>
-                    <div className="font-semibold text-center mt-[15px] border-b-[1px] border-[rgba(64,176,253,0.5)] w-[90%] mx-auto cursor-pointer hover:bg-[#000000] hover:text-[#ffffff] duration-300 ease-in-out">
-                      <p className="pt-[5px] pb-[5px] tracking-[1px]">
-                        <Link href="/blog/category/Amazon FBA">Amazon FBA</Link>
-                      </p>
-                    </div>
-                    <div className="font-semibold text-center border-b-[1px] border-[rgba(64,176,253,0.5)] w-[90%] mx-auto cursor-pointer hover:bg-[#000000] hover:text-[#ffffff] duration-300 ease-in-out">
-                      <p className="py-[5px] tracking-[1px]">
-                        <Link href="/blog/category/Digital Marketing">
-                          Digital Marketing
-                        </Link>
-                      </p>
-                    </div>
-                    <div className="font-semibold text-center border-b-[1px] border-[rgba(64,176,253,0.5)] w-[90%] mx-auto cursor-pointer hover:bg-[#000000] hover:text-[#ffffff] duration-300 ease-in-out">
-                      <p className="py-[5px] tracking-[1px]">
-                        <Link href="/blog/category/Graphics Design">
-                          Graphics Design
-                        </Link>
-                      </p>
-                    </div>
-                    <div className="font-semibold text-center border-b-[1px] border-[rgba(64,176,253,0.5)] w-[90%] mx-auto cursor-pointer hover:bg-[#000000] hover:text-[#ffffff] duration-300 ease-in-out">
-                      <p className="py-[5px] tracking-[1px]">
-                        <Link href="/blog/category/Web Development">
-                          Web Development
-                        </Link>
-                      </p>
-                    </div>
+                    {isClient ? (
+                      Category.map((item) => (
+                        <div
+                          key={item.categoryId}
+                          className="font-semibold text-center border-b-[1px] border-[rgba(64,176,253,0.5)] w-[90%] mx-auto cursor-pointer hover:bg-[#000000] hover:text-[#ffffff] duration-300 ease-in-out"
+                        >
+                          <div className="tracking-[1px]">
+                            <Link href={`/blog/category/${item.categoryName}`}>
+                              {item.categoryName}
+                            </Link>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="text-center">
+                        <span className="loading loading-spinner text-primary"></span>
+                        <span className="loading loading-spinner text-secondary"></span>
+                        <span className="loading loading-spinner text-accent"></span>
+                        <span className="loading loading-spinner text-neutral"></span>
+                        <span className="loading loading-spinner text-info"></span>
+                        <span className="loading loading-spinner text-success"></span>
+                        <span className="loading loading-spinner text-warning"></span>
+                        <span className="loading loading-spinner text-error"></span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="basis-1/1 bg-[#e8f5ff] mt-[20px] mb-[50px] pb-[20px] w-[100%] xl:w-[75%] mx-auto">
@@ -228,58 +233,55 @@ const CategoryPage = ({ params }) => {
                         Recent Post
                       </p>
                     </div>
-                    <div className="flex flex-row flex-wrap bg-[#e8f5ff] w-[95%] mx-auto py-[10px]">
-                      <div className="basis-1/4 pt-[10px] pb-[20px]">
-                        <div className="max-h-[100px] w-[100%] xl:w-[100px] xl:h-[60px]">
-                          <Image
-                            src="/BlogPageIcons/best-digital-marketer-in-bangladesh.jpg"
-                            alt="best-digital-marketer-in-bangladesh"
-                            width="1200"
-                            height="600"
-                            layout="responsive"
-                          ></Image>
-                        </div>
-                      </div>
-                      <div className="basis-3/4 px-[10px]">
-                        <p className="font-bold md:font-extrabold text-[12px] xl:text-[16px] text-[#000000] pt-[0px] border-b-[2px] border-[#40b0fd] border-opacity-50">
-                          Best Digital Marketer in Bangladesh{" "}
-                        </p>
-                        <p
-                          className="text-[14px] pt-[10px] md:font-semibold"
+                    {isClient ? (
+                      latestBlogs.map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex flex-row flex-wrap bg-[#e8f5ff] w-[95%] mx-auto py-[10px] my-[10px]"
                         >
-                          Meet eSavior Limited, the Best Multinational B2B
-                          Digital
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-row flex-wrap bg-[#e8f5ff] w-[95%] mx-auto mt-[20px] py-[10px]">
-                      <div className="basis-1/4 pt-[10px] pb-[20px]">
-                        <div className="max-h-[100px] w-[100%] xl:w-[100px] xl:h-[60px]">
-                          <Image
-                            src="/BlogPageIcons/amazon-FBA-3.jpg"
-                            alt="amazon-FBA2"
-                            width="2048"
-                            height="1366"
-                            layout="responsive"
-                          ></Image>
+                          <div className="basis-1/4 pt-[10px] pb-[20px]">
+                            <div className="max-h-[100px] w-[100%] xl:w-[100px] xl:h-[60px]">
+                              <Link href={`/blog/${item.blogId}`}>
+                                <Image
+                                  src={item.imageSource}
+                                  alt={item.alt}
+                                  width={item.width}
+                                  height={item.height}
+                                  layout="responsive"
+                                ></Image>
+                              </Link>
+                            </div>
+                          </div>
+                          <div className="basis-3/4 px-[10px]">
+                            <p className="font-bold md:font-extrabold text-[12px] xl:text-[16px] text-[#000000] pt-[0px] border-b-[2px] border-[#40b0fd] border-opacity-50">
+                              <Link href={`/blog/${item.blogId}`}>
+                                {item.bodyTitle.length > 20
+                                  ? item.bodyTitle.slice(0, 20) + "..."
+                                  : item.bodyTitle}
+                              </Link>
+                            </p>
+                            <p className="text-[14px] pt-[10px] md:font-semibold">
+                              <Link href={`/blog/${item.blogId}`}>
+                                {item.bodyDescription.length > 40
+                                  ? item.bodyDescription.slice(0, 40) + "..."
+                                  : item.bodyDescription}
+                              </Link>
+                            </p>
+                          </div>
                         </div>
+                      ))
+                    ) : (
+                      <div className="text-center">
+                        <span className="loading loading-spinner text-primary"></span>
+                        <span className="loading loading-spinner text-secondary"></span>
+                        <span className="loading loading-spinner text-accent"></span>
+                        <span className="loading loading-spinner text-neutral"></span>
+                        <span className="loading loading-spinner text-info"></span>
+                        <span className="loading loading-spinner text-success"></span>
+                        <span className="loading loading-spinner text-warning"></span>
+                        <span className="loading loading-spinner text-error"></span>
                       </div>
-                      <div className="basis-3/4 px-[10px]">
-                        <p className="font-bold md:font-extrabold text-[#000000] text-[12px] xl:text-[16px] pt-[0px] border-b-[2px] border-[#40b0fd] border-opacity-50">
-                          Unleashing the Power of Amazon FBA: A Comprehensive
-                          Guide
-                        </p>
-                        <p
-                          className="text-[14px] pt-[10px] md:font-semibold
-                        "
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          In the dynamic landscape of e-commerce, Amazon stands
-                        </p>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>

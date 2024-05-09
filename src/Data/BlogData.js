@@ -11,6 +11,7 @@ const BlogData = [
     bodyDescription:
       "Meet eSavior Limited, the Best Multinational B2B Digital Marketing Agency in Bangladesh. We started our",
     blogDate: "March 6, 2024",
+    createdAt: "2024-03-06T16:12:04.123Z",
   },
   {
     blogId: 2,
@@ -24,6 +25,7 @@ const BlogData = [
     bodyDescription:
       "In the dynamic landscape of e-commerce, Amazon stands tall as the undisputed giant. With millions",
     blogDate: "February 1, 2024",
+    createdAt: "2024-02-01T16:12:04.123Z",
   },
   {
     blogId: 3,
@@ -34,9 +36,9 @@ const BlogData = [
     width: "2048",
     height: "1366",
     bodyTitle: "Unleashing the Power of Graphics Design",
-    bodyDescription:
-      "In the dynamic landscape of e-commerce, Amazon stands tall as the undisputed giant. With millions",
-    blogDate: "February 1, 2024",
+    bodyDescription: "Why is Social Media Marketing Important for Doctors?",
+    blogDate: "February 5, 2024",
+    createdAt: "2024-02-05T16:12:04.123Z",
   },
   {
     blogId: 4,
@@ -48,8 +50,9 @@ const BlogData = [
     height: "1366",
     bodyTitle: "Modern technologies of Web Development",
     bodyDescription:
-      "In the dynamic landscape of e-commerce, Amazon stands tall as the undisputed giant. With millions",
-    blogDate: "February 1, 2024",
+      "A website has to be inclusive to allow people of all ages and even disabilities to benefit from it. If you miss this important detail in the design, you risk losing clients from different backgrounds of life. ",
+    blogDate: "May 9, 2024",
+    createdAt: "2024-05-09T16:12:04.123Z",
   },
 ];
 
