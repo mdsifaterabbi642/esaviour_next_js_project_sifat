@@ -19,7 +19,7 @@ const OrderFormXL = () => {
     setIsChecked(event.target.checked);
   };
 
-  console.log("Checkbox value: ", isChecked);
+  //console.log("Checkbox value: ", isChecked);
 
   const [localOrderData, setLocalOrderData] = useState({
     name: "",

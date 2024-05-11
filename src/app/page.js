@@ -25,6 +25,7 @@ import { useEmailJS } from "@/ContextAPI/EmailJSContextAPI";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
+import connectDB from "@/utils/db";
 
 export default function Home() {
   const form = useRef();
@@ -93,8 +94,8 @@ export default function Home() {
   }, [localData, setEmailData]); // ========== setEmailData added as dependency array =========
 
   useEffect(() => {
-    console.log("After form submission: ");
-    console.log(emailData);
+    //console.log("After form submission: ");
+    //console.log(emailData);
   }, [emailData]);
 
   const senderNameFormatted = JSON.stringify(emailData.name);
@@ -143,6 +144,7 @@ export default function Home() {
         "From concept to execution, we offer end-to-end solutions to streamline your digital journey. Trust us to handle every aspect, ensuring a seamless and hassle-free experience.",
     },
   ];
+
   return (
     <div className={`${styles.container}`}>
       {/* this is get quote modal*/}

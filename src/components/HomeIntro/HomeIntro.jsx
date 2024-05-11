@@ -1,7 +1,32 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const HomeIntro = () => {
+  const [data, setData] = useState("");
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    const getHeroData = async () => {
+      const res = await fetch("http://localhost:3000/api/home", {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      // return console.log(res.json());
+      const myJsonData = await res.json();
+      setData(myJsonData);
+    };
+
+    getHeroData();
+    setIsClient(true);
+  }, []);
+
+  console.log("==============", data[0]?.subtitle);
+
   return (
     <>
       <div className="flex flex-col md:flex-row flex-wrap xl:w-[90vw] overflow-x-hidden">
@@ -24,24 +49,42 @@ const HomeIntro = () => {
             We
           </span>
           <span className="text-[20px] xl:text-[34px] font-bold">Are?</span>
-          <p className="spacegrotesk400 text-[16px] font-semibold sm:text-[16px] md:text-[16px] xl:text-[16px] pb-[20px] pl-[10px] pr-[20px] sm:px-[10px] text-black leading-[16px] xl:tracking-[0.5px]">
-            eSaviour Limited is an industry leader in the digital marketing
-            sector and offers B2B enterprises a wide range of services that help
-            them dominate international markets
-          </p>
-          <p className="spacegrotesk400 text-[16px] font-semibold sm:text-[16px] md:text-[16px] xl:text-[16px] pb-[20px] pl-[10px] pr-[20px] sm:px-[10px] text-black leading-[16px] xl:tracking-[0.5px]">
-            Our specialty lies in the novelty experience we offer to our clients
-            and partners. We are fixated on staying transparent in our work and
-            communication, willing to negotiate on the best deals you’ll find in
-            the market today and habituated to producing the most sustained
-            results for you.
-          </p>
-          <p className="spacegrotesk400 text-[16px] font-semibold sm:text-[16px] md:text-[16px] xl:text-[16px] pb-[20px] pl-[10px] pr-[20px] sm:px-[10px] text-black leading-[16px] xl:tracking-[0.5px]">
-            We confidently assure you of a proper blend of innovation,
-            professionalism, expertise and productivity in our projects. All we
-            need now is your trust to complete the recipe and create magic
-            together!
-          </p>
+          <div className="spacegrotesk400 text-[16px] font-semibold sm:text-[16px] md:text-[16px] xl:text-[16px] pb-[20px] pl-[10px] pr-[20px] sm:px-[10px] text-black leading-[16px] xl:tracking-[0.5px]">
+            {isClient ? (
+              data[0]?.introPara1
+            ) : (
+              <div>
+                <span className="loading loading-bars loading-xs"></span>
+                <span className="loading loading-bars loading-sm"></span>
+                <span className="loading loading-bars loading-md"></span>
+                <span className="loading loading-bars loading-lg"></span>
+              </div>
+            )}
+          </div>
+          <div className="spacegrotesk400 text-[16px] font-semibold sm:text-[16px] md:text-[16px] xl:text-[16px] pb-[20px] pl-[10px] pr-[20px] sm:px-[10px] text-black leading-[16px] xl:tracking-[0.5px]">
+            {isClient ? (
+              data[0]?.introPara2
+            ) : (
+              <div>
+                <span className="loading loading-bars loading-xs"></span>
+                <span className="loading loading-bars loading-sm"></span>
+                <span className="loading loading-bars loading-md"></span>
+                <span className="loading loading-bars loading-lg"></span>
+              </div>
+            )}
+          </div>
+          <div className="spacegrotesk400 text-[16px] font-semibold sm:text-[16px] md:text-[16px] xl:text-[16px] pb-[20px] pl-[10px] pr-[20px] sm:px-[10px] text-black leading-[16px] xl:tracking-[0.5px]">
+            {isClient ? (
+              data[0]?.introPara3
+            ) : (
+              <div>
+                <span className="loading loading-bars loading-xs"></span>
+                <span className="loading loading-bars loading-sm"></span>
+                <span className="loading loading-bars loading-md"></span>
+                <span className="loading loading-bars loading-lg"></span>
+              </div>
+            )}
+          </div>
           <Link href="/about">
             <button className="btn btn-sm btn-danger rounded-none my-[20px] bg-[#000000] text-white font-medium ml-[10px]">
               Learn More
