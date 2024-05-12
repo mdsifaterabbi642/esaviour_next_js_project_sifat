@@ -41,7 +41,7 @@
   color: #ffffff;
   transition: all linear 0.3s ease-in-out;
 }
-.myCardBody:hover p {
+.myCardBody:hover div {
   position: relative;
   color: #ffffff;
   transition: all linear 0.3s ease-in-out;

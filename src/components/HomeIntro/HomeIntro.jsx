@@ -25,20 +25,37 @@ const HomeIntro = () => {
     setIsClient(true);
   }, []);
 
-  console.log("==============", data[0]?.subtitle);
+  //console.log("==============", data[0]?.subtitle);
 
   return (
     <>
       <div className="flex flex-col md:flex-row flex-wrap xl:w-[90vw] overflow-x-hidden">
         <div className="basis-1/1 md:basis-1/2 flex justify-center items-center">
           <div className="w-[300px] sm:w-[350px] md:w-[350px] lg:w-[450px]">
-            <Image
-              src="/home/Arrow_2.png"
-              alt="Arrow_2.png"
-              width="500"
-              height="373"
-              layout="responsive"
-            ></Image>
+            {isClient ? (
+              <Image
+                src={data[0]?.introImgSource}
+                alt={data[0]?.introImgAlt}
+                width="500"
+                height="373"
+                layout="responsive"
+              ></Image>
+            ) : (
+              <div>
+                <span className="loading loading-bars loading-xs"></span>
+                <span className="loading loading-bars loading-sm"></span>
+                <span className="loading loading-bars loading-md"></span>
+                <span className="loading loading-bars loading-lg"></span>
+              </div>
+            )}
+
+            {/* // <Image
+            //   src="/home/Arrow_2.png"
+            //   alt="Arrow_2.png"
+            //   width="500"
+            //   height="373"
+            //   layout="responsive"
+            // ></Image> */}
           </div>
         </div>
         <div className="basis-1/1 md:basis-1/2 text-left xl:py-[100px]">

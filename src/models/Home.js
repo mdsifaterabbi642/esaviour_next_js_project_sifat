@@ -32,6 +32,12 @@ const homeSchema = new mongoose.Schema(
     introPara3: {
       type: String,
     },
+    introImgSource: {
+      type: String,
+    },
+    introImgAlt: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

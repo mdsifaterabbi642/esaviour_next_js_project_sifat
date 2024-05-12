@@ -3,13 +3,13 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 import Slider from "react-slick";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import "./MyTabOverlay.css";
 import OrderFormXL from "../OrderForm/OrderFormXL";
 import Link from "next/link";
-// import OrderForm from "./OrderForm";
+import { HomeTabContent } from "@/Data/HomeTabContent";
 
 const TabContextXL = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -24,6 +24,30 @@ const TabContextXL = () => {
   const handleTabClick = (index) => {
     setSelectedIndex(index);
   };
+
+  const [data, setData] = useState("");
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    const getServiceData = async () => {
+      const res = await fetch("http://localhost:3000/api/service", {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch service data");
+      }
+      // return console.log(res.json());
+      const myJsonData = await res.json();
+      setData(myJsonData);
+    };
+
+    getServiceData();
+    setIsClient(true);
+  }, []);
+
+  // console.log("==============", data[0]?.amazonFBA[0]);
+  // console.log("==============", data[0]?.amazonFBA[1]);
 
   return (
     <>
@@ -79,585 +103,240 @@ const TabContextXL = () => {
             <TabPanel className="xl:bg-[#f4faff] py-[25px]">
               <div className="slider-container pb-[0px] bg-[#f4faff] xl:w-[70vw] xl:mx-auto">
                 <Slider {...settings}>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[200px] h-auto">
-                          <Image
-                            src="/updated/amazon_fba_consultancy.png"
-                            alt="amazon_fba_consultancy.png"
-                            className="w-[50%]"
-                            width="233"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
+                  {isClient ? (
+                    data[0]?.amazonFBA.map((item, index) => (
+                      <div key={index}>
+                        <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
+                          <figure className="bg-[#ffffff] py-[30px]">
+                            <div className="w-[200px] h-auto">
+                              <Image
+                                src={item?.imgSrc}
+                                alt={item?.imgAlt}
+                                className="w-[50%]"
+                                width="233"
+                                height="162"
+                                layout="responsive"
+                              ></Image>
+                            </div>
+                          </figure>
+                          <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
+                            <h2
+                              className="text-black text-[25px] pb-[10px] font-extrabold"
+                              style={{
+                                fontFamily: "Futura PT, sans-serif",
+                              }}
+                            >
+                              {item?.heading}
+                            </h2>
+
+                            <div className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
+                              {item?.description.length > 150
+                                ? item?.description.slice(0, 150) + "..."
+                                : item?.description}
+                            </div>
+
+                            <button
+                              className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
+                              onClick={() =>
+                                document
+                                  .getElementById("my_modal_2")
+                                  .showModal()
+                              }
+                            >
+                              Order Now
+                            </button>
+                          </div>
                         </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Amazon FBA Consultancy
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          Maximize Your E-commerce Potential Unlock the full
-                          potential of your Amazon FBA business with Esaviour
-                          Limited. Our consultancy services are designed to...
-                          {/* optimize your product listings, enhance visibility,... */}
-                          {/* and boost sales. Trust our expertise to navigate the
-                          intricacies of the world’s largest online marketplace. */}
-                        </p>
-
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
                       </div>
+                    ))
+                  ) : (
+                    <div className="absolute top-0 left-0 z-50 bg-orange-500 w-[100%] h-[100%] mx-auto">
+                      <span className="loading loading-bars loading-xs"></span>
+                      <span className="loading loading-bars loading-sm"></span>
+                      <span className="loading loading-bars loading-md"></span>
+                      <span className="loading loading-bars loading-lg"></span>
                     </div>
-                  </div>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[200px] h-auto">
-                          <Image
-                            src="/updated/PPC.png"
-                            alt="PPC.png"
-                            className="w-[50%]"
-                            width="233"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
-                        </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          PPC Campaigns
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          Pay-per-click (PPC) advertising (Sponsored Ads) is a
-                          common tool for e-commerce merchants. However, if you
-                          lack the necessary skills and experience, you can ...
-                          {/* jeopardize your whole business instead. Our Sponsored
-                          Ad campaign guarantees you a decent click-through and
-                          conversion rate within a convenient price range. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100  mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[200px] h-auto">
-                          <Image
-                            src="/updated/Product_Sorcing.png"
-                            alt="Product_Sorcing.png"
-                            className="w-[50%]"
-                            width="526"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
-                        </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Product Sourcing
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          Leave some of your major concerns to us, like choosing
-                          the right supplier for your products. As FBA
-                          specialists, we will source from the most reliable ...
-                          {/* and affordable suppliers in the market for you at a
-                          competitive price. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </Slider>
               </div>
             </TabPanel>
             <TabPanel className="xl:bg-[#f4faff]">
               <div className="slider-container p-0 bg-[#f4faff] xl:w-[70vw] xl:mx-auto">
                 <Slider {...settings}>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100  mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[250px] h-auto">
-                          <Image
-                            src="/updated/Facebook_Ads.png"
-                            alt="Facebook_Ads.png"
-                            className="w-[50%]"
-                            width="526"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
+                  {isClient ? (
+                    data[0]?.digitalMarketing.map((item, index) => (
+                      <div key={index}>
+                        <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
+                          <figure className="bg-[#ffffff] py-[30px]">
+                            <div className="w-[200px] h-auto">
+                              <Image
+                                src={item?.imgSrc}
+                                alt={item?.imgAlt}
+                                className="w-[50%]"
+                                width="233"
+                                height="162"
+                                layout="responsive"
+                              ></Image>
+                            </div>
+                          </figure>
+                          <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
+                            <h2
+                              className="text-black text-[25px] pb-[10px] font-extrabold"
+                              style={{
+                                fontFamily: "Futura PT, sans-serif",
+                              }}
+                            >
+                              {item?.heading}
+                            </h2>
+
+                            <div className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
+                              {item?.description.length > 150
+                                ? item?.description.slice(0, 150) + "..."
+                                : item?.description}
+                            </div>
+
+                            <button
+                              className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
+                              onClick={() =>
+                                document
+                                  .getElementById("my_modal_2")
+                                  .showModal()
+                              }
+                            >
+                              Order Now
+                            </button>
+                          </div>
                         </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Facebook Ads Campaigns
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          We will research highly profitable products for your
-                          brands that will have low competition and high demand
-                          in the market. We will find out the unique selling...
-                          {/* proposition for your product and it will be different
-                          from your competitor and help you to grow as a brand. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
                       </div>
+                    ))
+                  ) : (
+                    <div className="absolute top-0 left-0 z-50 bg-orange-500 w-[100%] h-[100%] mx-auto">
+                      <span className="loading loading-bars loading-xs"></span>
+                      <span className="loading loading-bars loading-sm"></span>
+                      <span className="loading loading-bars loading-md"></span>
+                      <span className="loading loading-bars loading-lg"></span>
                     </div>
-                  </div>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100  mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[250px] h-auto">
-                          <Image
-                            src="/updated/Google_Ads.png"
-                            alt="Google_Ads.png"
-                            className="w-[50%]"
-                            width="526"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
-                        </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Google Ads Campaigns
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          We will research highly profitable products for your
-                          brands that will have low competition and high demand
-                          in the market. We will find out the unique selling...
-                          {/* proposition for your product and it will be different
-                          from your competitor and help you to grow as a brand. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100  mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[250px] h-auto">
-                          <Image
-                            src="/updated/Local_SEO.png"
-                            alt="Local_SEO.png"
-                            className="w-[50%]"
-                            width="526"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
-                        </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Local & Technical SEO
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16x] font-semibold text-justify text-black xl:text-[14px]">
-                          Professional guidance to optimize your product
-                          listings to enhance the visibility on Amazon that will
-                          attract new customers and drive more sales...
-                          {/* The best e-commerce optimization techniques such as keyword
-                          research and optimization, crafting compelling product
-                          descriptions and images, and pricing and promotions to
-                          convert the clicks to sales. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </Slider>
               </div>
             </TabPanel>
             <TabPanel className="xl:bg-[#f4faff]">
               <div className="slider-container p-0  bg-[#f4faff] xl:w-[70vw] xl:mx-auto">
                 <Slider {...settings}>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[250px] h-auto">
-                          <Image
-                            src="/updated/Product_Listing.png"
-                            alt="Product_Listing.png"
-                            className="w-[50%]"
-                            width="526"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
+                  {isClient ? (
+                    data[0]?.graphicsDesign.map((item, index) => (
+                      <div key={index}>
+                        <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
+                          <figure className="bg-[#ffffff] py-[30px]">
+                            <div className="w-[200px] h-auto">
+                              <Image
+                                src={item?.imgSrc}
+                                alt={item?.imgAlt}
+                                className="w-[50%]"
+                                width="233"
+                                height="162"
+                                layout="responsive"
+                              ></Image>
+                            </div>
+                          </figure>
+                          <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
+                            <h2
+                              className="text-black text-[25px] pb-[10px] font-extrabold"
+                              style={{
+                                fontFamily: "Futura PT, sans-serif",
+                              }}
+                            >
+                              {item?.heading}
+                            </h2>
+
+                            <div className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
+                              {item?.description.length > 150
+                                ? item?.description.slice(0, 150) + "..."
+                                : item?.description}
+                            </div>
+
+                            <button
+                              className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
+                              onClick={() =>
+                                document
+                                  .getElementById("my_modal_2")
+                                  .showModal()
+                              }
+                            >
+                              Order Now
+                            </button>
+                          </div>
                         </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Amazon Product Listing Design
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          Maximize Your E-commerce Potential Unlock the full
-                          potential of your Amazon FBA business with Esaviour
-                          Limited....
-                          {/* Our consultancy services are designed to
-                          optimize your product listings, enhance visibility,
-                          and boost sales. Trust our expertise to navigate the
-                          intricacies of the world’s largest online marketplace. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
                       </div>
+                    ))
+                  ) : (
+                    <div className="absolute top-0 left-0 z-50 bg-orange-500 w-[100%] h-[100%] mx-auto">
+                      <span className="loading loading-bars loading-xs"></span>
+                      <span className="loading loading-bars loading-sm"></span>
+                      <span className="loading loading-bars loading-md"></span>
+                      <span className="loading loading-bars loading-lg"></span>
                     </div>
-                  </div>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[250px] h-auto">
-                          <Image
-                            src="/updated/Product_package_Design2.png"
-                            alt="Product_package_Design2.png"
-                            className="w-[50%]"
-                            width="526"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
-                        </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className=" text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Product package Design
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          Your product package tells a lot about your brand and
-                          your representation. Our designers are well-equipped
-                          to create smart, responsive, and ...
-                          {/* lucrative packages
-                          for your Amazon product.  */}
-                          {/* Leave the technical aspects
-                          of how the package looks to us so you can concentrate
-                          on more important areas like the delivery and product
-                          quality. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[250px] h-auto">
-                          <Image
-                            src="/updated/Social_Media_Design.png"
-                            alt="Social_Media_Design.png"
-                            className="w-[50%]"
-                            width="526"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
-                        </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className=" text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Social Media Post Design
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          Social media is all about visuals and drawing the
-                          attention of a huge customer base. Our social media
-                          package includes graphics design for posts ...
-                          {/* creating
-                          page layouts, making infographics and graphics for
-                          video content.  */}
-                          {/* Highlight your products by customizing
-                          your social media plan with our graphics design team. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </Slider>
               </div>
             </TabPanel>
             <TabPanel className="xl:bg-[#f4faff]">
               <div className="slider-container p-0  bg-[#f4faff] xl:w-[70vw] xl:mx-auto">
                 <Slider {...settings}>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100 mx-auto bshadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[300px] h-auto">
-                          <Image
-                            src="/updated/Wordpress_website2.png"
-                            alt="Wordpress_website2.png"
-                            className="w-[50%]"
-                            width="526"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
+                  {isClient ? (
+                    data[0]?.webDevelopment.map((item, index) => (
+                      <div key={index}>
+                        <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
+                          <figure className="bg-[#ffffff] py-[30px]">
+                            <div className="w-[200px] h-auto">
+                              <Image
+                                src={item?.imgSrc}
+                                alt={item?.imgAlt}
+                                className="w-[50%]"
+                                width="233"
+                                height="162"
+                                layout="responsive"
+                              ></Image>
+                            </div>
+                          </figure>
+                          <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
+                            <h2
+                              className="text-black text-[25px] pb-[10px] font-extrabold"
+                              style={{
+                                fontFamily: "Futura PT, sans-serif",
+                              }}
+                            >
+                              {item?.heading}
+                            </h2>
+
+                            <div className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
+                              {item?.description.length > 150
+                                ? item?.description.slice(0, 150) + "..."
+                                : item?.description}
+                            </div>
+
+                            <button
+                              className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
+                              onClick={() =>
+                                document
+                                  .getElementById("my_modal_2")
+                                  .showModal()
+                              }
+                            >
+                              Order Now
+                            </button>
+                          </div>
                         </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Wordpress Website
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          As a brand, you must take approval for your brand name
-                          from amazon and it’s essential if you want to create
-                          your private label products and
-                          {/* build a brand on
-                          Amazon. We can help you to navigate the complex
-                          process  */}
-                          {/* of obtaining brand registry and trademark
-                          approval on Amazon, which will protect your
-                          intellectual property and build a strong brand
-                          identity. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
                       </div>
+                    ))
+                  ) : (
+                    <div className="absolute top-0 left-0 z-50 bg-orange-500 w-[100%] h-[100%] mx-auto">
+                      <span className="loading loading-bars loading-xs"></span>
+                      <span className="loading loading-bars loading-sm"></span>
+                      <span className="loading loading-bars loading-md"></span>
+                      <span className="loading loading-bars loading-lg"></span>
                     </div>
-                  </div>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[250px] h-auto">
-                          <Image
-                            src="/updated/MERN-logo-1.png"
-                            alt="MERN-logo-1.png"
-                            className="w-[50%]"
-                            width="526"
-                            height="162"
-                            layout="responsive"
-                          ></Image>
-                        </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          MERN Stack Development
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          If the technical aspects like UPC/FNSKU are not
-                          handled properly, you can face serious troubles to the
-                          extent of registry suspension...
-                          {/*We make sure your UPC
-                          and FNSKU labels are correct and comply with Amazon’s
-                          guidelines. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="card card-compact w-[20vw] bg-base-100 mx-auto shadow-xl shadow-[#cee6f8] h-[450px]">
-                      <figure className="bg-[#ffffff] py-[30px]">
-                        <div className="w-[250px] h-auto">
-                          <Image
-                            src="/updated/shopify_store.png"
-                            alt="shopify_store.png"
-                            className="w-[50%]"
-                            width="228"
-                            height="167"
-                            layout="responsive"
-                          ></Image>
-                        </div>
-                      </figure>
-                      <div className="card-body bg-[#f2f8ff] rounded-lg myCardBody">
-                        <h2
-                          className="text-black text-[25px] pb-[10px] font-extrabold"
-                          style={{
-                            fontFamily: "Futura PT, sans-serif",
-                          }}
-                        >
-                          Shopify Store
-                        </h2>
-
-                        <p className="spacegrotesk500 text-[16px] font-semibold text-justify text-black xl:text-[14px]">
-                          We will research highly profitable products for your
-                          brands that will have low competition and high demand
-                          in the market...
-                          {/* We will find out the unique selling
-                          proposition for your product and it will be different
-                          from your competitor and help you to grow as a brand. */}
-                        </p>
-                        {/* ===================== Order Placement Modal starts from here =============================== */}
-                        <button
-                          className="btn btn-neutral btn-sm z-50 w-[100px] mb-[20px] rounded-none mx-auto"
-                          onClick={() =>
-                            document.getElementById("my_modal_2").showModal()
-                          }
-                        >
-                          Order Now
-                        </button>
-
-                        {/* ================== Order placement Model ended here ============== */}
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </Slider>
               </div>
             </TabPanel>
