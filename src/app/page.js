@@ -100,50 +100,28 @@ export default function Home() {
 
   const senderNameFormatted = JSON.stringify(emailData.name);
 
-  const cardContents = [
-    {
-      id: 1,
-      image: "/home/expert2.png",
-      heading: "Expert Guidance",
-      paragraph:
-        "The best b2b digital marketing agency provides you with strategic insights to navigate the complexities of online retail, ensuring your products or brands stand out in the competitive marketplace.",
-    },
-    {
-      id: 2,
-      image: "/home/DigitalMarketing1.png",
-      heading: "Digital Marketing Mastery",
-      paragraph:
-        "Unleash the power of our Digital Marketing services to reach your target audience effectively. From SEO to social media campaigns, we drive results that matter.",
-    },
-    {
-      id: 3,
-      image: "/home/Creative_1.png",
-      heading: "Creative Excellence",
-      paragraph:
-        "Elevate your brand with our Graphics Design services, where creativity meets strategy. Our team transforms concepts into captivating visuals that leave a lasting impression",
-    },
-    {
-      id: 4,
-      image: "/home/LearnAndGrow1.png",
-      heading: "Learn and Grow",
-      paragraph:
-        "Explore our courses in Graphics Design, UI/UX Design, Website Design and Development, and SEO. Empower yourself with the skills needed to thrive in the digital era.",
-    },
-    {
-      id: 5,
-      image: "/home/Solutions1.png",
-      heading: "Web Solutions That Work",
-      paragraph:
-        "Experience seamless Website Development that not only looks stunning but also functions flawlessly. We create responsive, user-friendly websites tailored to your unique business needs.",
-    },
-    {
-      id: 6,
-      image: "/home/EndTOEnd1.png",
-      heading: "End-to-End Solutions",
-      paragraph:
-        "From concept to execution, we offer end-to-end solutions to streamline your digital journey. Trust us to handle every aspect, ensuring a seamless and hassle-free experience.",
-    },
-  ];
+  const [data, setData] = useState("");
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    const getHeroData = async () => {
+      const res = await fetch("http://localhost:3000/api/home_service_card", {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      // return console.log(res.json());
+      const myJsonData = await res.json();
+      setData(myJsonData);
+    };
+
+    getHeroData();
+    setIsClient(true);
+  }, []);
+
+  //console.log(data[0]?.cardContents[0]);
 
   return (
     <div className={`${styles.container}`}>
@@ -260,11 +238,20 @@ export default function Home() {
         </span>
       </div>
       <div className="flex flex-wrap flex-col sm:flex-row w-[90vw] xl:w-[80%] xl:mx-auto md:w-[90vw] md:mx-auto mx-auto overflow-x-hidden">
-        {cardContents.map((c) => (
-          <div key={c.id} className="basis-1/1 sm:basis-1/2">
-            <ServiceCard props={c} />
+        {isClient ? (
+          data[0]?.cardContents.map((c) => (
+            <div key={c.id} className="basis-1/1 sm:basis-1/2">
+              <ServiceCard props={c} />
+            </div>
+          ))
+        ) : (
+          <div>
+            <span className="loading loading-bars loading-xs"></span>
+            <span className="loading loading-bars loading-sm"></span>
+            <span className="loading loading-bars loading-md"></span>
+            <span className="loading loading-bars loading-lg"></span>
           </div>
-        ))}
+        )}
       </div>
       {/* ============ Section 5 ended here ============= */}
 

@@ -49,13 +49,6 @@ const HomeIntro = () => {
               </div>
             )}
 
-            {/* // <Image
-            //   src="/home/Arrow_2.png"
-            //   alt="Arrow_2.png"
-            //   width="500"
-            //   height="373"
-            //   layout="responsive"
-            // ></Image> */}
           </div>
         </div>
         <div className="basis-1/1 md:basis-1/2 text-left xl:py-[100px]">
