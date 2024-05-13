@@ -35,6 +35,7 @@ const HomeIntro = () => {
             {isClient ? (
               <Image
                 src={data[0]?.introImgSource}
+                // src="https://i.ibb.co/MNtRSzk/Arrow-2.png"
                 alt={data[0]?.introImgAlt}
                 width="500"
                 height="373"
@@ -48,7 +49,6 @@ const HomeIntro = () => {
                 <span className="loading loading-bars loading-lg"></span>
               </div>
             )}
-
           </div>
         </div>
         <div className="basis-1/1 md:basis-1/2 text-left xl:py-[100px]">
