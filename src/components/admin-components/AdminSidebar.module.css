@@ -1,0 +1,17 @@
+.subDiv {
+  display: none;
+}
+
+.mainDiv:hover .subDiv {
+  display: block;
+  animation: fadeIn 2s; /* Apply the fadeIn animation */
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

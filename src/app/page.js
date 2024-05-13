@@ -121,7 +121,7 @@ export default function Home() {
     setIsClient(true);
   }, []);
 
-  //console.log(data[0]?.cardContents[0]);
+  //console.log(data[0]?.cardContents[0]);                        
 
   return (
     <div className={`${styles.container}`}>
