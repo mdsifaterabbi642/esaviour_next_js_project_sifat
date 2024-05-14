@@ -8,7 +8,7 @@ export default function AdminLayout({ children }) {
           <div className="basis-1/5 border h-2/3 screen bg-[#000080]">
             <AdminSidebar />
           </div>
-          <div className="basis-4/5 border">{children}</div>
+          <div className="basis-4/5 py-[100px]">{children}</div>
         </div>
       </div>
     </section>

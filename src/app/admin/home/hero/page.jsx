@@ -75,7 +75,7 @@ const HomeHeroAdmin = () => {
         <form onSubmit={mySubmit}>
           <div className="flex flex-col flex-wrap">
             <div className="w-[60%] mx-auto">
-              <label for="username">title:</label>
+              <label for="username" className="font-bold text-xl">title:</label>
               {isClient ? (
                 <input
                   type="text"
@@ -96,7 +96,7 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username">subtitle:</label>
+              <label for="username" className="font-bold text-xl">subtitle:</label>
               {isClient ? (
                 <input
                   type="text"
@@ -117,7 +117,7 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username">Description:</label>
+              <label for="username" className="font-bold text-xl">Description:</label>
               {isClient ? (
                 <textarea
                   type="text"
@@ -138,7 +138,7 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username">Button Text:</label>
+              <label for="username" className="font-bold text-xl">Button Text:</label>
               {isClient ? (
                 <input
                   type="text"
@@ -159,7 +159,7 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username">Image Source:</label>
+              <label for="username" className="font-bold text-xl">Image Source:</label>
               {isClient ? (
                 <input
                   type="text"
@@ -180,7 +180,7 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username">Image Alt:</label>
+              <label for="username" className="font-bold text-xl">Image Alt:</label>
               {isClient ? (
                 <input
                   type="text"

@@ -70,12 +70,12 @@ const HomeIntroAdmin = () => {
 
   return (
     <>
-      <div className="w-[90%] mx-auto border-2 border-red-400">
+      <div className="w-[90%] mx-auto">
         <div className="">
           <form onSubmit={mySubmit}>
             <div className="flex flex-col flex-wrap">
               <div className="w-[60%] mx-auto">
-                <label for="username">introPara1:</label>
+                <label for="username" className="font-bold text-xl">introPara1:</label>
                 {isClient ? (
                   <textarea
                     type="text"
@@ -95,7 +95,7 @@ const HomeIntroAdmin = () => {
                 )}
               </div>
               <div className="w-[60%] mx-auto">
-                <label for="username">introPara2:</label>
+                <label for="username" className="font-bold text-xl">introPara2:</label>
                 {isClient ? (
                   <textarea
                     type="text"
@@ -115,7 +115,7 @@ const HomeIntroAdmin = () => {
                 )}
               </div>
               <div className="w-[60%] mx-auto">
-                <label for="username">introPara3:</label>
+                <label for="username" className="font-bold text-xl">introPara3:</label>
                 {isClient ? (
                   <textarea
                     type="text"
@@ -136,7 +136,7 @@ const HomeIntroAdmin = () => {
               </div>
 
               <div className="w-[60%] mx-auto">
-                <label for="username">Image Link:</label>
+                <label for="username" className="font-bold text-xl">Image Link:</label>
                 {isClient ? (
                   <input
                     type="text"
@@ -157,7 +157,7 @@ const HomeIntroAdmin = () => {
               </div>
 
               <div className="w-[60%] mx-auto">
-                <label for="username">Image Alternative:</label>
+                <label for="username" className="font-bold text-xl">Image Alternative:</label>
                 {isClient ? (
                   <input
                     type="text"

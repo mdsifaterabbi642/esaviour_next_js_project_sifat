@@ -70,87 +70,95 @@ const HomeServiceCardAdmin = () => {
     if (res.ok) {
       router.push("/admin/home/servicecard");
       router.refresh();
-      //window.alert("Service Card Data updated successfully");
-      let x = await res.json();
-      window.alert(JSON.stringify(x));
+      window.alert("Service Card Data updated successfully");
     }
   };
 
   return (
     <>
-      <div>
-        <div className="flex flex-wrap gap-3 justify-center">
-          {data[0]?.cardContents.map((item, index) => (
-            <div key={index}>
-              <div className="">
-                <form onSubmit={mySubmit}>
-                  <div className="flex flex-col flex-wrap">
-                    <div className="w-[60%] mx-auto">
-                      ID: {item?.id}
-                      <label for="username">heading:</label>
-                      {isClient ? (
-                        <textarea
-                          type="text"
-                          id="heading"
-                          name="heading"
-                          className="text-black w-[98%] py-[20px] border text-center"
-                          value={heading[index]}
-                          onChange={(e) => {
-                            const updatedHeading = heading.map((item, i) =>
-                              i === index ? e.target.value : item
-                            );
-                            setHeading(updatedHeading);
-                          }}
-                        />
-                      ) : (
-                        <div>
-                          <span className="loading loading-bars loading-xs"></span>
-                          <span className="loading loading-bars loading-sm"></span>
-                          <span className="loading loading-bars loading-md"></span>
-                          <span className="loading loading-bars loading-lg"></span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="w-[60%] mx-auto">
-                      <label for="username">paragraph:</label>
-                      {isClient ? (
-                        <textarea
-                          type="text"
-                          id="paragraph"
-                          name="paragraph"
-                          className="text-black w-[98%] py-[20px] border text-center"
-                          value={paragraph[index]}
-                          onChange={(e) => {
-                            const updatedParagraph = paragraph.map((item, i) =>
-                              i === index ? e.target.value : item
-                            );
-                            setParagraph(updatedParagraph);
-                          }}
-                        />
-                      ) : (
-                        <div>
-                          <span className="loading loading-bars loading-xs"></span>
-                          <span className="loading loading-bars loading-sm"></span>
-                          <span className="loading loading-bars loading-md"></span>
-                          <span className="loading loading-bars loading-lg"></span>
-                        </div>
-                      )}
-                    </div>
+      <div className="sm:w-[98%] mx-auto">
+        {isClient ? (
+          <div className="flex flex-wrap gap-3 justify-center">
+            {data[0]?.cardContents.map((item, index) => (
+              <div key={index} className="bg-slate-500">
+                <div className="">
+                  <form onSubmit={mySubmit}>
+                    <div className="flex flex-col flex-wrap">
+                      <div className="w-[98%] mx-auto">
+                        <h1 className="block">ID: {item?.id}</h1>
+                        <label for="username" className="text-white font-bold">Heading:</label>
+                        {isClient ? (
+                          <textarea
+                            type="text"
+                            id="heading"
+                            name="heading"
+                            className="text-black w-[98%] py-[20px] border text-center"
+                            value={heading[index]}
+                            onChange={(e) => {
+                              const updatedHeading = heading.map((item, i) =>
+                                i === index ? e.target.value : item
+                              );
+                              setHeading(updatedHeading);
+                            }}
+                          />
+                        ) : (
+                          <div>
+                            <span className="loading loading-bars loading-xs"></span>
+                            <span className="loading loading-bars loading-sm"></span>
+                            <span className="loading loading-bars loading-md"></span>
+                            <span className="loading loading-bars loading-lg"></span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="w-[98%] mx-auto">
+                        <label for="username" className="text-white font-bold">Paragraph:</label>
+                        {isClient ? (
+                          <textarea
+                            type="text"
+                            id="paragraph"
+                            name="paragraph"
+                            className="text-black w-[98%] py-[20px] border text-center min-h-[250px] max-h-[300px]"
+                            value={paragraph[index]}
+                            onChange={(e) => {
+                              const updatedParagraph = paragraph.map(
+                                (item, i) =>
+                                  i === index ? e.target.value : item
+                              );
+                              setParagraph(updatedParagraph);
+                            }}
+                          />
+                        ) : (
+                          <div>
+                            <span className="loading loading-bars loading-xs"></span>
+                            <span className="loading loading-bars loading-sm"></span>
+                            <span className="loading loading-bars loading-md"></span>
+                            <span className="loading loading-bars loading-lg"></span>
+                          </div>
+                        )}
+                      </div>
 
-                    <div className="w-[200px] mx-auto my-[50px] bg-green-500 text-center hover:cursor-pointer">
-                      <button
-                        onClick={() => setTargetCard(index)}
-                        className="btn hover: cursor-pointer"
-                      >
-                        Update
-                      </button>
+                      <div className="w-[200px] mx-auto my-[50px] bg-green-500 text-center hover:cursor-pointer">
+                        <button
+                          onClick={() => setTargetCard(index)}
+                          className="btn hover: cursor-pointer"
+                        >
+                          Update
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="w-[300px] mx-auto text-center">
+            <span className="loading loading-bars loading-xs"></span>
+            <span className="loading loading-bars loading-sm"></span>
+            <span className="loading loading-bars loading-md"></span>
+            <span className="loading loading-bars loading-lg"></span>
+          </div>
+        )}
       </div>
     </>
   );
