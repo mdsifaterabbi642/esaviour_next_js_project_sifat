@@ -13,12 +13,42 @@ export const PATCH = async (request, { params }) => {
 
     if (homeModelData !== null) {
       const {
+        title: title,
+        subtitle: subtitle,
+        description: description,
+        buttonText: buttonText,
         IP1: introPara1,
         IP2: introPara2,
         IP3: introPara3,
         imageLink: introImgSource,
         imgAlt: introImgAlt,
+        bannerText: bannerText,
+        imgSource: imgSource,
+        imgAlt: imgAlt,
       } = await request.json();
+
+      if (title) {
+        homeModelData.title = title;
+      }
+
+      if (subtitle) {
+        homeModelData.subtitle = subtitle;
+      }
+
+      if (description) {
+        homeModelData.description = description;
+      }
+
+      if (buttonText) {
+        homeModelData.buttonText = buttonText;
+      }
+
+      if (imgSource) {
+        homeModelData.imgSource = imgSource;
+      }
+      if (imgAlt) {
+        homeModelData.imgAlt = imgAlt;
+      }
 
       if (introPara1) {
         homeModelData.introPara1 = introPara1;
@@ -37,6 +67,9 @@ export const PATCH = async (request, { params }) => {
       }
       if (introImgAlt) {
         homeModelData.introImgAlt = introImgAlt;
+      }
+      if (bannerText) {
+        homeModelData.bannerText = bannerText;
       }
 
       // Save the updated homeModelData

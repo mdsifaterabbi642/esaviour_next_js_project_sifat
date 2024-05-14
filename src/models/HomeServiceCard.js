@@ -2,18 +2,15 @@ import mongoose from "mongoose";
 
 const homeServiceCardSchema = new mongoose.Schema(
   {
-    heading: {
-      type: String,
-    },
-    description: {
-      type: String,
-    },
-    imgSource: {
-      type: String,
-    },
-    imgAlt: {
-      type: String,
-    },
+    cardContents: [
+      {
+        id: { type: String },
+        image: { type: String },
+        heading: { type: String },
+        paragraph: { type: String },
+        imageAlt: { type: String },
+      },
+    ],
   },
   { timestamps: true }
 );

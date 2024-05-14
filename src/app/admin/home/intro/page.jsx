@@ -71,7 +71,6 @@ const HomeIntroAdmin = () => {
   return (
     <>
       <div className="w-[90%] mx-auto border-2 border-red-400">
-        <p>Home Intro Admin xxx</p>
         <div className="">
           <form onSubmit={mySubmit}>
             <div className="flex flex-col flex-wrap">
