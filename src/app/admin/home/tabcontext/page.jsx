@@ -1,135 +1,235 @@
 "use client";
+
+import { model } from "mongoose";
 import { useEffect, useState } from "react";
 
-const HomeTabcontextAdmin = () => {
+const HomeTabContentAdmin = () => {
   const [isClient, setIsClient] = useState(false);
-  const [myData, setMydata] = useState([]);
-  const [fieldNames, setFieldNames] = useState([]);
-  const [heading, setHeading] = useState([]);
-  let [hIndex, setHindex] = useState(0);
-  let [targetKey, setTargetKey] = useState("");
-  let [targetIndex, setTargetIndex] = useState();
+  const [amazonData, setAmazonData] = useState([]);
+  const [webData, setWebData] = useState([]);
+  const [digitalMarketingData, setDigitalmarketingData] = useState([]);
+  const [graphicsData, setGraphicsData] = useState();
+  const [modelID, setModelID] = useState("");
 
   useEffect(() => {
-    const getServiceData = async () => {
-      const res = await fetch("http://localhost:3000/api/service", {
+    const fetchID = async () => {
+      // fetch _id from database
+
+      const resID = await fetch("http://localhost:3000/api/service", {
         cache: "no-store",
       });
 
-      const temp = await res.json();
-      setMydata(temp);
-
-      // Log all field names
-      if (temp.length > 0) {
-        const fields = Object.keys(temp[0]).filter(
-          (fieldName) => fieldName !== "_id" && fieldName !== "updatedAt"
-        );
-        //console.log("Field Names:", fields);
-        setFieldNames(fields);
-
-        // Accumulate headings from different fields
-        const allHeadings = fields.reduce((acc, field) => {
-          const headings = temp[0]?.[field]?.map((item) => item.heading) || [];
-          return [...acc, ...headings];
-        }, []);
-
-        //setHeading(allHeadings.join(", "));
-        setHeading(allHeadings);
+      if (!resID.ok) {
+        throw new Error("Failed to fetch data");
       }
-    };
 
-    getServiceData();
-    setIsClient(true);
+      const myModelID = await resID.json();
+      setModelID(myModelID[0]?._id);
+    };
+    fetchID();
   }, []);
 
-  //console.log("========", heading[0]);
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch amazonFBA data
+      if (modelID) {
+        const amazonResponse = await fetch(
+          `http://localhost:3000/api/service/${modelID}/amazonFBA`,
+          {
+            cache: "no-store",
+          }
+        );
+        if (!amazonResponse.ok) {
+          throw new Error("Failed to fetch amazon data data");
+        }
 
-  const mySubmit = async (e) => {
-    e.preventDefault();
-    console.log("Clicked: ", heading);
-    console.log("Target Key: ", targetKey);
-    console.log("target Index: ", targetIndex);
-  };
+        const myAmazonData = await amazonResponse.json();
+        setAmazonData(myAmazonData);
+
+        //fetching webDevelopment data
+        const webResponse = await fetch(
+          `http://localhost:3000/api/service/${modelID}/webDevelopment`,
+          {
+            cache: "no-store",
+          }
+        );
+        if (!webResponse.ok) {
+          throw new Error("Failed to fetch web data");
+        }
+
+        const myWebData = await webResponse.json();
+        setWebData(myWebData);
+
+        //fetching digitalmarketing data
+        const marketingResponse = await fetch(
+          `http://localhost:3000/api/service/${modelID}/digitalMarketing`,
+          {
+            cache: "no-store",
+          }
+        );
+        if (!marketingResponse.ok) {
+          throw new Error("Failed to fetch marketing data");
+        }
+
+        const myDigitalMarketingData = await marketingResponse.json();
+        setDigitalmarketingData(myDigitalMarketingData);
+
+        //fetching graphicsDesign data
+        const graphicsResponse = await fetch(
+          `http://localhost:3000/api/service/${modelID}/graphicsDesign`,
+          {
+            cache: "no-store",
+          }
+        );
+        if (!graphicsResponse.ok) {
+          throw new Error("Failed to fetch graphics data");
+        }
+
+        const myGraphicsData = await graphicsResponse.json();
+        setGraphicsData(myGraphicsData);
+      }
+      setIsClient(true);
+    };
+
+    fetchData();
+  }, [modelID]);
+
+  console.log(modelID);
+  // console.log(amazonData);
+  // console.log(webData);
+  // console.log(digitalMarketingData);
+  // console.log(graphicsData);
 
   return (
-    <>
-      {fieldNames.map((field, i) => (
-        <div key={field}>
-          <div className="flex flex-row flex-wrap gap-3 justify-center">
-            {myData[0]?.[field].map((item, targetIndex) => (
-              <div
-                key={targetIndex}
-                className="basis-1/2 md:basis-1/3 lg:basis-1/4 border py-[20px]"
-              >
-                <form onSubmit={mySubmit}>
-                  <div className="flex flex-col flex-wrap">
-                    <div className="w-[98%] mx-auto">
-                      <h1 className="badge badge-primary">{item?.category}</h1>
-                      <label for="username" className="text-white font-bold">
-                        Heading:
-                      </label>
-                      {isClient ? (
-                        <textarea
-                          type="text"
-                          id="heading"
-                          name="heading"
-                          className="text-black w-[98%] py-[20px] border text-center"
-                          value={heading[hIndex++]}
-                          //onChange={(e) => setHeading(e.target.value)}
-                          onChange={(e) => {
-                            const updatedHeading = heading.map((item, i) =>
-                              i === abc ? e.target.value : heading[hIndex]
-                            );
-                            setHeading(updatedHeading);
-                          }}
-                        />
-                      ) : (
-                        <div>
-                          <span className="loading loading-bars loading-xs"></span>
-                          <span className="loading loading-bars loading-sm"></span>
-                          <span className="loading loading-bars loading-md"></span>
-                          <span className="loading loading-bars loading-lg"></span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="w-[200px] mx-auto my-[50px] bg-green-500 text-center hover:cursor-pointer">
-                      <button
-                        onClick={() => {
-                          setTargetKey(item?.category);
-                          setTargetIndex(targetIndex);
-                        }}
-                        className="btn hover: cursor-pointer"
-                      >
-                        Update
-                      </button>
-                    </div>
+    <div className="py-[100px] h-screen overflow-y-auto">
+      {isClient ? (
+        <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
+          {amazonData?.map((amaItem, index) => (
+            <div key={index}>
+              <div className="card w-[280px] min-h-[450px] max-h-[450px] overflow-y-auto bg-base-100 shadow-xl">
+                <div className="badge badge-primary">{amaItem?.category}</div>
+                <div className="card-body">
+                  <h2 className="card-title">{amaItem?.heading}</h2>
+                  <h3>{amaItem?.description}</h3>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Update</button>
                   </div>
-                </form>
-
-                {/* <div className="badge badge-primary">{item?.category}</div>
-                <h1>
-                  <span className="font-bold">heading:</span> {item?.heading}{" "}
-                </h1>
-                <h2>
-                  <span className="font-bold">description: </span>{" "}
-                  {item?.description}
-                </h2>
-                <h3>
-                  <span className="font-bold block">Image Source: </span>{" "}
-                  {item?.imgSrc}
-                </h3>
-                <h3>
-                  <span className="font-bold block">Image Alt: </span>{" "}
-                  {item?.imgAlt}
-                </h3> */}
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </>
+      ) : (
+        <div>
+          <span className="loading loading-bars loading-xs"></span>
+          <span className="loading loading-bars loading-sm"></span>
+          <span className="loading loading-bars loading-md"></span>
+          <span className="loading loading-bars loading-lg"></span>
+        </div>
+      )}
+
+      {isClient ? (
+        <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
+          {webData?.map((webItem, index) => (
+            <div key={index}>
+              <div className="card w-[280px] min-h-[450px] max-h-[450px] overflow-y-auto bg-base-100 shadow-xl">
+                <div className="badge badge-accent">{webItem?.category}</div>
+                <div className="card-body">
+                  <h2 className="card-title">{webItem?.heading}</h2>
+                  <h3>{webItem?.description}</h3>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Update</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <span className="loading loading-bars loading-xs"></span>
+          <span className="loading loading-bars loading-sm"></span>
+          <span className="loading loading-bars loading-md"></span>
+          <span className="loading loading-bars loading-lg"></span>
+        </div>
+      )}
+
+      {isClient ? (
+        <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
+          {digitalMarketingData?.map((marketingItem, index) => (
+            <div key={index}>
+              <div className="card w-[280px] min-h-[450px] max-h-[450px] overflow-y-auto bg-base-100 shadow-xl">
+                <div className="badge badge-info">
+                  {marketingItem?.category}
+                </div>
+                <div className="card-body">
+                  <h2 className="card-title">{marketingItem?.heading}</h2>
+                  <h3>{marketingItem?.description}</h3>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Update</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <span className="loading loading-bars loading-xs"></span>
+          <span className="loading loading-bars loading-sm"></span>
+          <span className="loading loading-bars loading-md"></span>
+          <span className="loading loading-bars loading-lg"></span>
+        </div>
+      )}
+
+      {isClient ? (
+        <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
+          {graphicsData?.map((graphicsItem, index) => (
+            <div key={index}>
+              <div className="card w-[280px] min-h-[450px] max-h-[450px] overflow-y-auto bg-base-100 shadow-xl">
+                <div className="badge badge-warning">
+                  {graphicsItem?.category}
+                </div>
+                <div className="card-body">
+                  <h2 className="card-title">{graphicsItem?.heading}</h2>
+                  <h3>{graphicsItem?.description}</h3>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Update</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <span className="loading loading-bars loading-xs"></span>
+          <span className="loading loading-bars loading-sm"></span>
+          <span className="loading loading-bars loading-md"></span>
+          <span className="loading loading-bars loading-lg"></span>
+        </div>
+      )}
+
+      {/* <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
+        {graphicsData?.map((graphicsItem, index) => (
+          <div key={index}>
+            <div className="card w-[280px] min-h-[450px] max-h-[450px] overflow-y-auto bg-base-100 shadow-xl">
+              <div className="badge badge-warning">
+                {graphicsItem?.category}
+              </div>
+              <div className="card-body">
+                <h2 className="card-title">{graphicsItem?.heading}</h2>
+                <h3>{graphicsItem?.description}</h3>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">Update</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div> */}
+    </div>
   );
 };
 
-export default HomeTabcontextAdmin;
+export default HomeTabContentAdmin;

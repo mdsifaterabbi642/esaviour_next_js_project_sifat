@@ -76,7 +76,7 @@ const HomeServiceCardAdmin = () => {
 
   return (
     <>
-      <div className="sm:w-[98%] mx-auto">
+      <div className="sm:w-[98%] mx-auto h-screen overflow-y-auto py-[100px]">
         {isClient ? (
           <div className="flex flex-wrap gap-3 justify-center">
             {data[0]?.cardContents.map((item, index) => (

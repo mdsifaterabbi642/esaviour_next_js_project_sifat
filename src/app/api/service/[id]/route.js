@@ -35,7 +35,7 @@ export const PATCH = async (request, { params }) => {
     return new NextResponse(JSON.stringify(responseBody), { status: 200 });
   } catch (error) {
     //return new NextResponse("Error occurred in PATCH method of service API");
-    return new NextResponse("Service data not found for the given ID", {
+    return new NextResponse("Service data not found for the given ID***", {
       status: 500,
     });   
   }
