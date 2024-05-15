@@ -4,6 +4,7 @@ const serviceSchema = new mongoose.Schema(
   {
     amazonFBA: [
       {
+        category: { type: String },
         imgSrc: { type: String },
         imgAlt: { type: String },
         description: { type: String },
@@ -12,6 +13,7 @@ const serviceSchema = new mongoose.Schema(
     ],
     digitalMarketing: [
       {
+        category: { type: String },
         imgSrc: { type: String },
         imgAlt: { type: String },
         description: { type: String },
@@ -20,6 +22,7 @@ const serviceSchema = new mongoose.Schema(
     ],
     graphicsDesign: [
       {
+        category: { type: String },
         imgSrc: { type: String },
         imgAlt: { type: String },
         description: { type: String },
@@ -28,6 +31,7 @@ const serviceSchema = new mongoose.Schema(
     ],
     webDevelopment: [
       {
+        category: { type: String },
         imgSrc: { type: String },
         imgAlt: { type: String },
         description: { type: String },
@@ -39,6 +43,7 @@ const serviceSchema = new mongoose.Schema(
 );
 
 // Check if the model already exists
-const Service = mongoose.models.Service || mongoose.model("Service", serviceSchema);
+const Service =
+  mongoose.models.Service || mongoose.model("Service", serviceSchema);
 
 export default Service;

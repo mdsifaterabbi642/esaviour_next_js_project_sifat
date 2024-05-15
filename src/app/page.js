@@ -325,7 +325,7 @@ export default function Home() {
 
       {/* ================== section 8 (Clients Comments) ended here =====================*/}
 
-      <div className="w-[98vw] mx-auto overflow-hidden mt-[100px]">
+      <div className="w-[98vw] mx-auto overflow-hidden mt-[0px]">
         <Footer1 />
       </div>
       <div className="w-[98vw] mx-auto overflow-hidden">
