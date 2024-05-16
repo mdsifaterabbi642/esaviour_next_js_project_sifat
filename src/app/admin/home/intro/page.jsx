@@ -70,18 +70,23 @@ const HomeIntroAdmin = () => {
 
   return (
     <>
-      <div className="w-[90%] mx-auto">
+      <div className="w-[98%] mx-auto overflow-y-auto">
         <div className="">
-          <form onSubmit={mySubmit}>
+          <form onSubmit={mySubmit} className="w-[60%] mx-auto border-2 border-slate-400">
             <div className="flex flex-col flex-wrap">
               <div className="w-[60%] mx-auto">
-                <label for="username" className="font-bold text-xl">introPara1:</label>
+                <label
+                  for="username"
+                  className="text-gray-600  font-bold text-xl"
+                >
+                  1st Paragraph:
+                </label>
                 {isClient ? (
                   <textarea
                     type="text"
                     id="introPara1"
                     name="newIntroPara1"
-                    className="text-black w-[98%] py-[20px] border text-center"
+                    className="w-[98%] min-h-[120px] max-h-[250px] text-[14px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                     value={IP1}
                     onChange={(e) => setIP1(e.target.value)}
                   />
@@ -95,13 +100,18 @@ const HomeIntroAdmin = () => {
                 )}
               </div>
               <div className="w-[60%] mx-auto">
-                <label for="username" className="font-bold text-xl">introPara2:</label>
+                <label
+                  for="username"
+                  className="text-gray-600  font-bold text-xl"
+                >
+                  2nd Paragraph:
+                </label>
                 {isClient ? (
                   <textarea
                     type="text"
                     id="introPara2"
                     name="newIntroPara2"
-                    className="text-black w-[98%] py-[20px] border text-center"
+                    className="w-[98%] min-h-[120px] max-h-[250px] text-[14px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                     value={IP2}
                     onChange={(e) => setIP2(e.target.value)}
                   />
@@ -115,13 +125,18 @@ const HomeIntroAdmin = () => {
                 )}
               </div>
               <div className="w-[60%] mx-auto">
-                <label for="username" className="font-bold text-xl">introPara3:</label>
+                <label
+                  for="username"
+                  className="text-gray-600  font-bold text-xl"
+                >
+                  3rd Paragraph:
+                </label>
                 {isClient ? (
                   <textarea
                     type="text"
                     id="username"
                     name="newIntroPara3"
-                    className="text-black w-[98%] py-[20px] border text-center"
+                    className="w-[98%] min-h-[120px] max-h-[250px] text-[14px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                     value={IP3}
                     onChange={(e) => setIP3(e.target.value)}
                   />
@@ -136,13 +151,18 @@ const HomeIntroAdmin = () => {
               </div>
 
               <div className="w-[60%] mx-auto">
-                <label for="username" className="font-bold text-xl">Image Link:</label>
+                <label
+                  for="username"
+                  className="text-gray-600  font-bold text-xl"
+                >
+                  Image Link:
+                </label>
                 {isClient ? (
                   <input
                     type="text"
                     id="imageLink"
                     name="imageLink"
-                    className="text-black w-[98%] py-[20px] border text-center"
+                    className="w-[98%] min-h-[120px] max-h-[250px] text-[14px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                     value={imageLink}
                     onChange={(e) => setImageLink(e.target.value)}
                   />
@@ -157,13 +177,18 @@ const HomeIntroAdmin = () => {
               </div>
 
               <div className="w-[60%] mx-auto">
-                <label for="username" className="font-bold text-xl">Image Alternative:</label>
+                <label
+                  for="username"
+                  className="text-gray-600  font-bold text-xl"
+                >
+                  Image Alternative:
+                </label>
                 {isClient ? (
                   <input
                     type="text"
                     id="imgAlt"
                     name="imgAlt"
-                    className="text-black w-[98%] py-[20px] border text-center"
+                    className="w-[98%] min-h-[120px] max-h-[250px] text-[14px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                     value={imgAlt}
                     onChange={(e) => setImgAlt(e.target.value)}
                   />

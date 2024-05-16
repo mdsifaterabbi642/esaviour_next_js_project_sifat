@@ -76,23 +76,30 @@ const HomeServiceCardAdmin = () => {
 
   return (
     <>
-      <div className="sm:w-[98%] mx-auto h-screen overflow-y-auto py-[100px]">
+      <div className="sm:w-[98%] mx-auto h-screen overflow-y-auto py-[80px]">
         {isClient ? (
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap gap-3 justify-center w-[70%] py-[20px] mx-auto">
             {data[0]?.cardContents.map((item, index) => (
-              <div key={index} className="bg-slate-500">
+              <div key={index} className="">
                 <div className="">
-                  <form onSubmit={mySubmit}>
+                  <form
+                    onSubmit={mySubmit}
+                    className="border-2 border-slate-400"
+                  >
                     <div className="flex flex-col flex-wrap">
                       <div className="w-[98%] mx-auto">
-                        <h1 className="block">ID: {item?.id}</h1>
-                        <label for="username" className="text-white font-bold">Heading:</label>
+                        <label
+                          for="username"
+                          className="text-gray-600  font-bold text-xl"
+                        >
+                          Heading:
+                        </label>
                         {isClient ? (
                           <textarea
                             type="text"
                             id="heading"
                             name="heading"
-                            className="text-black w-[98%] py-[20px] border text-center"
+                            className="w-[98%] max-h-[200px] min-h-[100px] text-[12px] px-[5px] py-[20px] text-left text-white bg-slate-600 rounded-md"
                             value={heading[index]}
                             onChange={(e) => {
                               const updatedHeading = heading.map((item, i) =>
@@ -111,13 +118,18 @@ const HomeServiceCardAdmin = () => {
                         )}
                       </div>
                       <div className="w-[98%] mx-auto">
-                        <label for="username" className="text-white font-bold">Paragraph:</label>
+                        <label
+                          for="username"
+                          className="text-gray-600  font-bold text-xl"
+                        >
+                          Paragraph:
+                        </label>
                         {isClient ? (
                           <textarea
                             type="text"
                             id="paragraph"
                             name="paragraph"
-                            className="text-black w-[98%] py-[20px] border text-center min-h-[250px] max-h-[300px]"
+                            className="w-[98%] text-[12px] min-h-[200px] max-h-[300px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                             value={paragraph[index]}
                             onChange={(e) => {
                               const updatedParagraph = paragraph.map(
@@ -137,10 +149,10 @@ const HomeServiceCardAdmin = () => {
                         )}
                       </div>
 
-                      <div className="w-[200px] mx-auto my-[50px] bg-green-500 text-center hover:cursor-pointer">
+                      <div className="mx-auto my-[10px] text-center hover:cursor-pointer">
                         <button
                           onClick={() => setTargetCard(index)}
-                          className="btn hover: cursor-pointer"
+                          className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                         >
                           Update
                         </button>

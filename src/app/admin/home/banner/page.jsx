@@ -55,39 +55,46 @@ const HomeBannerAdmin = () => {
 
   return (
     <div>
-      <div className="">
-        <form onSubmit={mySubmit}>
-          <div className="flex flex-col flex-wrap">
-            <div className="w-[60%] mx-auto">
-              <label for="username">bannerText:</label>
-              {isClient ? (
-                <textarea
-                  type="text"
-                  id="bannerText"
-                  name="bannerText"
-                  className="text-black w-[98%] py-[20px] border text-center"
-                  value={bannerText}
-                  onChange={(e) => setBannerText(e.target.value)}
-                />
-              ) : (
-                <div>
-                  <span className="loading loading-bars loading-xs"></span>
-                  <span className="loading loading-bars loading-sm"></span>
-                  <span className="loading loading-bars loading-md"></span>
-                  <span className="loading loading-bars loading-lg"></span>
-                </div>
-              )}
-            </div>
+      <div className=" w-[98%] mx-auto">
+        <div className="w-[70%] mx-auto border-2 border-slate-400 px-[10px] py-[20px]">
+          <form onSubmit={mySubmit}>
+            <div className="flex flex-col flex-wrap">
+              <div className="w-[50%] mx-auto">
+                <label
+                  for="username"
+                  className="text-gray-600  font-bold text-xl"
+                >
+                  Banner Text:
+                </label>
+                {isClient ? (
+                  <textarea
+                    type="text"
+                    id="bannerText"
+                    name="bannerText"
+                    className="w-[98%] text-[14px] py-[20px] px-[5px] min-h-[100px] max-h-[300px] border-none text-left bg-slate-600 text-white rounded-md"
+                    value={bannerText}
+                    onChange={(e) => setBannerText(e.target.value)}
+                  />
+                ) : (
+                  <div>
+                    <span className="loading loading-bars loading-xs"></span>
+                    <span className="loading loading-bars loading-sm"></span>
+                    <span className="loading loading-bars loading-md"></span>
+                    <span className="loading loading-bars loading-lg"></span>
+                  </div>
+                )}
+              </div>
 
-            <div className="w-[200px] mx-auto my-[50px] bg-green-500 text-center hover:cursor-pointer">
-              <input
-                type="submit"
-                value="Submit"
-                className="hover: cursor-pointer"
-              />
+              <div className="mx-auto my-[30px] text-center hover:cursor-pointer">
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                />
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

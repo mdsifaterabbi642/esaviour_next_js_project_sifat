@@ -71,17 +71,22 @@ const HomeHeroAdmin = () => {
   };
   return (
     <div>
-      <div className="">
-        <form onSubmit={mySubmit}>
+      <div className="w-[90%] mx-auto">
+        <form onSubmit={mySubmit} className="w-[50%] mx-auto border-2 border-slate-400">
           <div className="flex flex-col flex-wrap">
             <div className="w-[60%] mx-auto">
-              <label for="username" className="font-bold text-xl">title:</label>
+              <label
+                for="username"
+                className="text-gray-600  font-bold text-xl"
+              >
+                Title:
+              </label>
               {isClient ? (
                 <input
                   type="text"
                   id="title"
                   name="title"
-                  className="text-black w-[98%] py-[20px] border text-center"
+                  className="w-[98%] text-[12px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -96,13 +101,18 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username" className="font-bold text-xl">subtitle:</label>
+              <label
+                for="username"
+                className="text-gray-600  font-bold text-xl"
+              >
+                Subtitle:
+              </label>
               {isClient ? (
                 <input
                   type="text"
                   id="subtitle"
                   name="subtitle"
-                  className="text-black w-[98%] py-[20px] border text-center"
+                  className="w-[98%] text-[12px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                   value={subtitle}
                   onChange={(e) => setSubtitle(e.target.value)}
                 />
@@ -117,13 +127,18 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username" className="font-bold text-xl">Description:</label>
+              <label
+                for="username"
+                className="text-gray-600  font-bold text-xl"
+              >
+                Description:
+              </label>
               {isClient ? (
                 <textarea
                   type="text"
                   id="description"
                   name="descripton"
-                  className="text-black w-[98%] py-[20px] border text-center"
+                  className="w-[98%] text-[12px] min-h-[200px] max-h-[300px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -138,13 +153,18 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username" className="font-bold text-xl">Button Text:</label>
+              <label
+                for="username"
+                className="text-gray-600  font-bold text-xl"
+              >
+                Button Text:
+              </label>
               {isClient ? (
                 <input
                   type="text"
                   id="buttonText"
                   name="buttonText"
-                  className="text-black w-[98%] py-[20px] border text-center"
+                  className="w-[98%] px-[5px] py-[20px] text-[12px] border-none text-left bg-slate-600 text-white rounded-md"
                   value={buttonText}
                   onChange={(e) => setButtonText(e.target.value)}
                 />
@@ -159,13 +179,18 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username" className="font-bold text-xl">Image Source:</label>
+              <label
+                for="username"
+                className="text-gray-600  font-bold text-xl"
+              >
+                Image Source:
+              </label>
               {isClient ? (
                 <input
                   type="text"
                   id="imgSource"
                   name="imgSource"
-                  className="text-black w-[98%] py-[20px] border text-center"
+                  className="w-[98%] text-[12px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                   value={imgSource}
                   onChange={(e) => setImgSource(e.target.value)}
                 />
@@ -180,13 +205,18 @@ const HomeHeroAdmin = () => {
             </div>
 
             <div className="w-[60%] mx-auto">
-              <label for="username" className="font-bold text-xl">Image Alt:</label>
+              <label
+                for="username"
+                className="text-gray-600  font-bold text-xl"
+              >
+                Image Alt:
+              </label>
               {isClient ? (
                 <input
                   type="text"
                   id="imgAlt"
                   name="imgAlt"
-                  className="text-black w-[98%] py-[20px] border text-center"
+                  className="w-[98%] text-[12px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
                   value={imgAlt}
                   onChange={(e) => setImgAlt(e.target.value)}
                 />
@@ -200,11 +230,11 @@ const HomeHeroAdmin = () => {
               )}
             </div>
 
-            <div className="w-[200px] mx-auto my-[50px] bg-green-500 text-center hover:cursor-pointer">
+            <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
               <input
                 type="submit"
-                value="Submit"
-                className="hover: cursor-pointer"
+                value="Update"
+                className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
               />
             </div>
           </div>
