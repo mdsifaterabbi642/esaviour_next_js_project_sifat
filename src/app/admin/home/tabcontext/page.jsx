@@ -20,6 +20,22 @@ const HomeTabContentAdmin = () => {
   const [amaDescription, setAmaDescription] = useState([]);
   const [amaImgSrc, setAmaImgSrc] = useState([]);
   const [amaImgAlt, setAmaImgAlt] = useState([]);
+
+  const [webHeading, setWebHeading] = useState([]);
+  const [webDescription, setWebDescription] = useState([]);
+  const [webImgSrc, setWebImgSrc] = useState([]);
+  const [webImgAlt, setWebImgAlt] = useState([]);
+
+  const [marketingHeading, setMarketingHeading] = useState([]);
+  const [marketingDescription, setMarketingDescription] = useState([]);
+  const [marketingImgSrc, setMarketingImgSrc] = useState([]);
+  const [marketingImgAlt, setMarketingImgAlt] = useState([]);
+
+  const [graphicsHeading, setGraphicsHeading] = useState([]);
+  const [graphicsDescription, setGraphicsDescription] = useState([]);
+  const [graphicsImgSrc, setGraphicsImgSrc] = useState([]);
+  const [graphicsImgAlt, setGraphicsImgAlt] = useState([]);
+
   // =========== Temporary state variables ended here for holding data========================
 
   useEffect(() => {
@@ -77,6 +93,12 @@ const HomeTabContentAdmin = () => {
         const myWebData = await webResponse.json();
         setWebData(myWebData);
 
+        //now setting default values in the state variables for form population
+        setWebHeading(myWebData.map((item) => item.heading));
+        setWebDescription(myWebData.map((item) => item.description));
+        setWebImgSrc(myWebData.map((item) => item.imgSrc));
+        setWebImgAlt(myWebData.map((item) => item.imgAlt));
+
         //fetching digitalmarketing data
         const marketingResponse = await fetch(
           `http://localhost:3000/api/service/${modelID}/digitalMarketing`,
@@ -91,6 +113,14 @@ const HomeTabContentAdmin = () => {
         const myDigitalMarketingData = await marketingResponse.json();
         setDigitalmarketingData(myDigitalMarketingData);
 
+        //now setting default values in the state variables for form population
+        setMarketingHeading(myDigitalMarketingData.map((item) => item.heading));
+        setMarketingDescription(
+          myDigitalMarketingData.map((item) => item.description)
+        );
+        setMarketingImgSrc(myDigitalMarketingData.map((item) => item.imgSrc));
+        setMarketingImgAlt(myDigitalMarketingData.map((item) => item.imgAlt));
+
         //fetching graphicsDesign data
         const graphicsResponse = await fetch(
           `http://localhost:3000/api/service/${modelID}/graphicsDesign`,
@@ -104,6 +134,12 @@ const HomeTabContentAdmin = () => {
 
         const myGraphicsData = await graphicsResponse.json();
         setGraphicsData(myGraphicsData);
+
+        //now setting default values in the state variables for form population
+        setGraphicsHeading(myGraphicsData.map((item) => item.heading));
+        setGraphicsDescription(myGraphicsData.map((item) => item.description));
+        setGraphicsImgSrc(myGraphicsData.map((item) => item.imgSrc));
+        setGraphicsImgAlt(myGraphicsData.map((item) => item.imgAlt));
       }
       setIsClient(true);
     };
@@ -118,17 +154,8 @@ const HomeTabContentAdmin = () => {
   // console.log(graphicsData);
   //console.log(amaHeading[2]);
 
-  const mySubmit = async (e) => {
+  const myAmaSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Selected Key: ", targetKey, "Data Type: ", typeof targetKey);
-    // console.log(
-    //   "Selected Index: ",
-    //   targetIndex,
-    //   "Data Type: ",
-    //   typeof targetIndex
-    // );
-    // console.log("Updated Heading: ", amaHeading[targetIndex]);
-    // console.log("Model id: ", modelID);
 
     const id = modelID;
 
@@ -157,13 +184,106 @@ const HomeTabContentAdmin = () => {
     }
   };
 
+  const myWebSubmit = async (e) => {
+    e.preventDefault();
+
+    const id = modelID;
+
+    const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        newHeading: webHeading[targetIndex],
+        newDescription: webDescription[targetIndex],
+        newImgSrc: webImgSrc[targetIndex],
+        newImgAlt: webImgAlt[targetIndex],
+        category: targetKey,
+        index: targetIndex,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Service model could not be updated");
+    }
+    if (res.ok) {
+      router.push("/admin/home/tabcontext");
+      router.refresh();
+      window.alert("Service model updated successfully");
+    }
+  };
+
+  const myMarketingSubmit = async (e) => {
+    e.preventDefault();
+
+    const id = modelID;
+
+    const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        newHeading: marketingHeading[targetIndex],
+        newDescription: marketingDescription[targetIndex],
+        newImgSrc: marketingImgSrc[targetIndex],
+        newImgAlt: marketingImgAlt[targetIndex],
+        category: targetKey,
+        index: targetIndex,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Service model could not be updated");
+    }
+    if (res.ok) {
+      router.push("/admin/home/tabcontext");
+      router.refresh();
+      window.alert("Service model updated successfully");
+    }
+  };
+
+  const myGraphicsSubmit = async (e) => {
+    e.preventDefault();
+
+    const id = modelID;
+
+    const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        newHeading: graphicsHeading[targetIndex],
+        newDescription: graphicsDescription[targetIndex],
+        newImgSrc: graphicsImgSrc[targetIndex],
+        newImgAlt: graphicsImgAlt[targetIndex],
+        category: targetKey,
+        index: targetIndex,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Service model could not be updated");
+    }
+    if (res.ok) {
+      router.push("/admin/home/tabcontext");
+      router.refresh();
+      window.alert("Service model updated successfully");
+    }
+  };
+
   return (
     <div className="py-[100px] h-screen overflow-y-auto">
       {isClient ? (
         <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
           {amazonData?.map((amaItem, index) => (
             <div key={index}>
-              <form onSubmit={mySubmit} className="border-2 border-slate-400">
+              <form
+                onSubmit={myAmaSubmit}
+                className="border-2 border-slate-400"
+              >
                 <div className="flex flex-col flex-wrap">
                   <div className="badge badge-accent rounded-none h-[30px] ml-[5px] mt-[5px]">
                     {amaItem?.category}
@@ -205,7 +325,7 @@ const HomeTabContentAdmin = () => {
                         type="text"
                         id="description"
                         name="description"
-                        className="w-[98%] px-[5px] pt-[5px] text-left max-h-[300px] text-[12px] border-none bg-slate-600 text-white"
+                        className="w-[98%] px-[5px] pt-[5px] text-left min-h-[200px] max-h-[300px] text-[12px] border-none bg-slate-600 text-white"
                         value={amaDescription[index]}
                         onChange={(e) => {
                           const updatedDescription = amaDescription.map(
@@ -286,7 +406,7 @@ const HomeTabContentAdmin = () => {
                         setTargetIndex(index);
                         setTargetkey(amaItem?.category);
                       }}
-                      className="btn bg-purple-500 text-white hover: cursor-pointer"
+                      className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                     >
                       Update
                     </button>
@@ -309,16 +429,139 @@ const HomeTabContentAdmin = () => {
         <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
           {webData?.map((webItem, index) => (
             <div key={index}>
-              <div className="card w-[280px] min-h-[450px] max-h-[450px] overflow-y-auto bg-base-100 shadow-xl">
-                <div className="badge badge-accent">{webItem?.category}</div>
-                <div className="card-body">
-                  <h2 className="card-title">{webItem?.heading}</h2>
-                  <h3>{webItem?.description}</h3>
-                  <div className="card-actions justify-end">
-                    <button className="btn bg-sky-500">Update</button>
+              <form
+                onSubmit={myWebSubmit}
+                className="border-2 border-slate-400"
+              >
+                <div className="flex flex-col flex-wrap">
+                  <div className="badge badge-accent rounded-none h-[30px] ml-[5px] mt-[5px]">
+                    {webItem?.category}
+                  </div>
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600  font-bold">
+                      Heading:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="heading"
+                        name="heading"
+                        className="w-[98%] px-[5px] pt-[5px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                        value={webHeading[index]}
+                        onChange={(e) => {
+                          const updatedHeading = webHeading.map((item, i) =>
+                            i === index ? e.target.value : item
+                          );
+                          setWebHeading(updatedHeading);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600  font-bold">
+                      Description:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="description"
+                        name="description"
+                        className="w-[98%] px-[5px] pt-[5px] text-left min-h-[200px] max-h-[300px] text-[12px] border-none bg-slate-600 text-white"
+                        value={webDescription[index]}
+                        onChange={(e) => {
+                          const updatedDescription = webDescription.map(
+                            (item, i) => (i === index ? e.target.value : item)
+                          );
+                          setWebDescription(updatedDescription);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600 font-bold">
+                      Image Source:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="imgSrc"
+                        name="imgSrc"
+                        className="w-[98%] px-[5px] pt-[5px] text-left max-h-[100px] text-[12px] border-none bg-slate-600 text-white"
+                        value={webImgSrc[index]}
+                        onChange={(e) => {
+                          const updatedImgSrc = webImgSrc.map((item, i) =>
+                            i === index ? e.target.value : item
+                          );
+                          setWebImgSrc(updatedImgSrc);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600 font-bold">
+                      Image Alt:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="imgAlt"
+                        name="imgAlt"
+                        className="w-[98%] px-[5px] pt-[5px] text-left max-h-[100px] text-[12px] border-none bg-slate-600 text-white"
+                        value={webImgAlt[index]}
+                        onChange={(e) => {
+                          const updatedImgAlt = webImgAlt.map((item, i) =>
+                            i === index ? e.target.value : item
+                          );
+                          setWebImgAlt(updatedImgAlt);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
+                    <button
+                      onClick={() => {
+                        setTargetIndex(index);
+                        setTargetkey(webItem?.category);
+                      }}
+                      className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                    >
+                      Update
+                    </button>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           ))}
         </div>
@@ -335,18 +578,139 @@ const HomeTabContentAdmin = () => {
         <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
           {digitalMarketingData?.map((marketingItem, index) => (
             <div key={index}>
-              <div className="card w-[280px] min-h-[450px] max-h-[450px] overflow-y-auto bg-base-100 shadow-xl">
-                <div className="badge badge-info">
-                  {marketingItem?.category}
-                </div>
-                <div className="card-body">
-                  <h2 className="card-title">{marketingItem?.heading}</h2>
-                  <h3>{marketingItem?.description}</h3>
-                  <div className="card-actions justify-end">
-                    <button className="btn bg-sky-500">Update</button>
+              <form
+                onSubmit={myMarketingSubmit}
+                className="border-2 border-slate-400"
+              >
+                <div className="flex flex-col flex-wrap">
+                  <div className="badge badge-accent rounded-none h-[30px] ml-[5px] mt-[5px]">
+                    {marketingItem?.category}
+                  </div>
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600  font-bold">
+                      Heading:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="heading"
+                        name="heading"
+                        className="w-[98%] px-[5px] pt-[5px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                        value={marketingHeading[index]}
+                        onChange={(e) => {
+                          const updatedHeading = marketingHeading.map(
+                            (item, i) => (i === index ? e.target.value : item)
+                          );
+                          setMarketingHeading(updatedHeading);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600  font-bold">
+                      Description:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="description"
+                        name="description"
+                        className="w-[98%] px-[5px] pt-[5px] text-left min-h-[200px] max-h-[300px] text-[12px] border-none bg-slate-600 text-white"
+                        value={marketingDescription[index]}
+                        onChange={(e) => {
+                          const updatedDescription = marketingDescription.map(
+                            (item, i) => (i === index ? e.target.value : item)
+                          );
+                          setMarketingDescription(updatedDescription);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600 font-bold">
+                      Image Source:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="imgSrc"
+                        name="imgSrc"
+                        className="w-[98%] px-[5px] pt-[5px] text-left max-h-[100px] text-[12px] border-none bg-slate-600 text-white"
+                        value={marketingImgSrc[index]}
+                        onChange={(e) => {
+                          const updatedImgSrc = marketingImgSrc.map((item, i) =>
+                            i === index ? e.target.value : item
+                          );
+                          setMarketingImgSrc(updatedImgSrc);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600 font-bold">
+                      Image Alt:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="imgAlt"
+                        name="imgAlt"
+                        className="w-[98%] px-[5px] pt-[5px] text-left max-h-[100px] text-[12px] border-none bg-slate-600 text-white"
+                        value={marketingImgAlt[index]}
+                        onChange={(e) => {
+                          const updatedImgAlt = marketingImgAlt.map((item, i) =>
+                            i === index ? e.target.value : item
+                          );
+                          setMarketingImgAlt(updatedImgAlt);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
+                    <button
+                      onClick={() => {
+                        setTargetIndex(index);
+                        setTargetkey(marketingItem?.category);
+                      }}
+                      className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                    >
+                      Update
+                    </button>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           ))}
         </div>
@@ -363,18 +727,139 @@ const HomeTabContentAdmin = () => {
         <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
           {graphicsData?.map((graphicsItem, index) => (
             <div key={index}>
-              <div className="card w-[280px] min-h-[450px] max-h-[450px] overflow-y-auto bg-base-100 shadow-xl">
-                <div className="badge badge-warning">
-                  {graphicsItem?.category}
-                </div>
-                <div className="card-body">
-                  <h2 className="card-title">{graphicsItem?.heading}</h2>
-                  <h3>{graphicsItem?.description}</h3>
-                  <div className="card-actions justify-end">
-                    <button className="btn bg-sky-500">Update</button>
+              <form
+                onSubmit={myGraphicsSubmit}
+                className="border-2 border-slate-400"
+              >
+                <div className="flex flex-col flex-wrap">
+                  <div className="badge badge-accent rounded-none h-[30px] ml-[5px] mt-[5px]">
+                    {graphicsItem?.category}
+                  </div>
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600  font-bold">
+                      Heading:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="heading"
+                        name="heading"
+                        className="w-[98%] px-[5px] pt-[5px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                        value={graphicsHeading[index]}
+                        onChange={(e) => {
+                          const updatedHeading = graphicsHeading.map(
+                            (item, i) => (i === index ? e.target.value : item)
+                          );
+                          setGraphicsHeading(updatedHeading);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600  font-bold">
+                      Description:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="description"
+                        name="description"
+                        className="w-[98%] px-[5px] pt-[5px] text-left min-h-[200px] max-h-[300px] text-[12px] border-none bg-slate-600 text-white"
+                        value={graphicsDescription[index]}
+                        onChange={(e) => {
+                          const updatedDescription = graphicsDescription.map(
+                            (item, i) => (i === index ? e.target.value : item)
+                          );
+                          setGraphicsDescription(updatedDescription);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600 font-bold">
+                      Image Source:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="imgSrc"
+                        name="imgSrc"
+                        className="w-[98%] px-[5px] pt-[5px] text-left max-h-[100px] text-[12px] border-none bg-slate-600 text-white"
+                        value={graphicsImgSrc[index]}
+                        onChange={(e) => {
+                          const updatedImgSrc = graphicsImgSrc.map((item, i) =>
+                            i === index ? e.target.value : item
+                          );
+                          setGraphicsImgSrc(updatedImgSrc);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="w-[98%] mx-auto">
+                    <label for="username" className="text-gray-600 font-bold">
+                      Image Alt:
+                    </label>
+                    {isClient ? (
+                      <textarea
+                        type="text"
+                        id="imgAlt"
+                        name="imgAlt"
+                        className="w-[98%] px-[5px] pt-[5px] text-left max-h-[100px] text-[12px] border-none bg-slate-600 text-white"
+                        value={graphicsImgAlt[index]}
+                        onChange={(e) => {
+                          const updatedImgAlt = graphicsImgAlt.map((item, i) =>
+                            i === index ? e.target.value : item
+                          );
+                          setGraphicsImgAlt(updatedImgAlt);
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <span className="loading loading-bars loading-xs"></span>
+                        <span className="loading loading-bars loading-sm"></span>
+                        <span className="loading loading-bars loading-md"></span>
+                        <span className="loading loading-bars loading-lg"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
+                    <button
+                      onClick={() => {
+                        setTargetIndex(index);
+                        setTargetkey(graphicsItem?.category);
+                      }}
+                      className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                    >
+                      Update
+                    </button>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           ))}
         </div>
