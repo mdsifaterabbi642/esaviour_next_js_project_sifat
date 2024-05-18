@@ -5,7 +5,7 @@ import "./ClientShadow.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const ClientsCommentsXL = () => {
+const ClientsCommentsXL = () => { 
   var settings = {
     dots: true,
     infinite: true,

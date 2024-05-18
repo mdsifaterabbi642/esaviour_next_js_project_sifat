@@ -13,3 +13,4 @@ export const GET = async (request) => {
     return new NextResponse("Database error", { status: 500 });
   }
 };
+
