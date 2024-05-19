@@ -34,10 +34,8 @@ export const PATCH = async (request, { params }) => {
       };
     }
 
-
     responseBody = {
       message: `HomeServiceCard model data updated successfully: ${id}`,
-      
     };
 
     return new NextResponse(JSON.stringify(responseBody), { status: 200 });
@@ -48,5 +46,16 @@ export const PATCH = async (request, { params }) => {
         status: 500,
       }
     );
+  }
+};
+
+export const POST = async (request, { params }) => {
+  try {
+    let responseBody = {
+      message: `homeServiceCard added successfully`,
+    };
+    return new NextResponse(JSON.stringify(responseBody), { status: 200 });
+  } catch (error) {
+    return new NextResponse("Could not added service card", { status: 500 });
   }
 };

@@ -14,6 +14,13 @@ const HomeServiceCardAdmin = () => {
   const [imageAlt, setImageAlt] = useState([]);
   const [targetCard, setTargetCard] = useState();
 
+  //state variables for adding service starts here
+  const [addHeading, setAddHeading] = useState("");
+  const [addParagraph, setAddParagraph] = useState("");
+  const [addImage, setAddImage] = useState("");
+  const [addImageAlt, setAddImageAlt] = useState("");
+  //state variables for adding service ends here
+
   useEffect(() => {
     const getHomeServiceCardData = async () => {
       const res = await fetch("http://localhost:3000/api/home_service_card", {
@@ -74,8 +81,109 @@ const HomeServiceCardAdmin = () => {
     }
   };
 
+  const addService = async (e) => {
+    e.preventDefault();
+    console.log("You are in addService: ");
+    console.log("addHeading: ", addHeading);
+    console.log("addParagraph: ", addParagraph);
+    console.log("addImage: ", addImage);
+    console.log("addImageAlt: ", addImageAlt);
+  };
+
   return (
     <>
+      {/* add service form */}
+      <dialog id="addService" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Add Service</h3>
+          <div>
+            <form onSubmit={addService}>
+              <div className="flex flex-col flex-wrap">
+                <div className="w-[98%] mx-auto">
+                  <label for="heading" className="text-gray-600  font-bold">
+                    Heading:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="heading"
+                    name="heading"
+                    placeholder="Service heading"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                    value={addHeading}
+                    onChange={(e) => setAddHeading(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label for="paragraph" className="text-gray-600  font-bold">
+                    Paragraph:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="paragraph"
+                    name="paragraph"
+                    placeholder="Service details"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                    value={addParagraph}
+                    onChange={(e) => setAddParagraph(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label for="image" className="text-gray-600  font-bold">
+                    Image:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="image"
+                    name="image"
+                    placeholder="Add image link"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                    value={addImage}
+                    onChange={(e) => setAddImage(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label for="image" className="text-gray-600  font-bold">
+                    Image Alt:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="imageAlt"
+                    name="imageAlt"
+                    placeholder="Add image alter tag"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                    value={addImageAlt}
+                    onChange={(e) => setAddImageAlt(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="text-center mt-[20px]">
+                <button className="btn btn-sm bg-green-500 text-white">
+                  Add Service
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
+      <div>
+        <button
+          className="btn bg-green-500 text-white fixed right-[5%] top-[5%]"
+          onClick={() => document.getElementById("addService").showModal()}
+        >
+          Add Service
+        </button>
+      </div>
       <div className="sm:w-[98%] mx-auto h-screen overflow-y-auto py-[80px]">
         {isClient ? (
           <div className="flex flex-wrap gap-3 justify-center w-[70%] py-[20px] mx-auto">

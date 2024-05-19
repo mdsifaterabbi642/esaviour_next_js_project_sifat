@@ -153,28 +153,6 @@ const HomeClientAdmin = () => {
       } else {
         console.log("Invalid Input. Deletion aborted");
       }
-
-      //const id = modelId;
-
-      // const res = await fetch(`http://localhost:3000/api/homeclient/${id}`, {
-      //   method: "DELETE",
-      //   headers: {
-      //     "Content-type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     targetIndex: targetIndex,
-      //   }),
-      // });
-
-      // if (!res.ok) {
-      //   throw new Error("Client couldn't be deleted");
-      // }
-      // if (res.ok) {
-      //   router.push("/admin/home/homeclient");
-      //   router.refresh();
-      //   window.alert("Client deleted successfully");
-      //   setClientDeleteStatus(true);
-      // }
     }
   };
 
