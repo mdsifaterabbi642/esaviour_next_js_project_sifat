@@ -124,27 +124,57 @@ const HomeClientAdmin = () => {
       console.log("Model ID: ", modelId);
       console.log("target index: ", targetIndex);
 
-      const id = modelId;
+      const confirmation = window.prompt(
+        "Type 'delete' to confirm delete or 'cancel' to abort: "
+      );
 
-      const res = await fetch(`http://localhost:3000/api/homeclient/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          targetIndex: targetIndex,
-        }),
-      });
+      if (confirmation === "delete") {
+        const id = modelId;
+        const res = await fetch(`http://localhost:3000/api/homeclient/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            targetIndex: targetIndex,
+          }),
+        });
+        if (!res.ok) {
+          throw new Error("Client couldn't be deleted");
+        }
+        if (res.ok) {
+          router.push("/admin/home/homeclient");
+          router.refresh();
+          window.alert("Client deleted successfully");
+          setClientDeleteStatus(true);
+        }
+      } else if (confirmation === "cancel") {
+        console.log("Deletion aborted");
+      } else {
+        console.log("Invalid Input. Deletion aborted");
+      }
 
-      if (!res.ok) {
-        throw new Error("Client couldn't be deleted");
-      }
-      if (res.ok) {
-        router.push("/admin/home/homeclient");
-        router.refresh();
-        window.alert("Client deleted successfully");
-        setClientDeleteStatus(true);
-      }
+      //const id = modelId;
+
+      // const res = await fetch(`http://localhost:3000/api/homeclient/${id}`, {
+      //   method: "DELETE",
+      //   headers: {
+      //     "Content-type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     targetIndex: targetIndex,
+      //   }),
+      // });
+
+      // if (!res.ok) {
+      //   throw new Error("Client couldn't be deleted");
+      // }
+      // if (res.ok) {
+      //   router.push("/admin/home/homeclient");
+      //   router.refresh();
+      //   window.alert("Client deleted successfully");
+      //   setClientDeleteStatus(true);
+      // }
     }
   };
 
