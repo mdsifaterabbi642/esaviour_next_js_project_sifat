@@ -237,28 +237,68 @@ const HomeTabContentAdmin = () => {
 
     const id = modelID;
 
-    const res = await fetch(`http://localhost:3000/api/service/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        newHeading: webHeading[targetIndex],
-        newDescription: webDescription[targetIndex],
-        newImgSrc: webImgSrc[targetIndex],
-        newImgAlt: webImgAlt[targetIndex],
-        category: targetKey,
-        index: targetIndex,
-      }),
-    });
+    if (selectedOperation === "update") {
+      const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          newHeading: webHeading[targetIndex],
+          newDescription: webDescription[targetIndex],
+          newImgSrc: webImgSrc[targetIndex],
+          newImgAlt: webImgAlt[targetIndex],
+          category: targetKey,
+          index: targetIndex,
+        }),
+      });
 
-    if (!res.ok) {
-      throw new Error("Service model could not be updated");
+      if (!res.ok) {
+        throw new Error("Service model could not be updated");
+      }
+      if (res.ok) {
+        router.push("/admin/home/tabcontext");
+        router.refresh();
+        window.alert("Service model updated successfully");
+      }
     }
-    if (res.ok) {
-      router.push("/admin/home/tabcontext");
-      router.refresh();
-      window.alert("Service model updated successfully");
+
+    if (selectedOperation === "delete") {
+      console.log("You prefered delete method");
+
+      const confirm = window.prompt(
+        "Type `delete service data` to delete or type `cancel` to cancel the operation"
+      );
+
+      if (confirm === "delete service data") {
+        const category = targetKey;
+        const res = await fetch(
+          `http://localhost:3000/api/service/${id}/${category}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              index: targetIndex,
+            }),
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Couldn't delete Service");
+        }
+        if (res.ok) {
+          router.push("/admin/home/tabcontext");
+          router.refresh();
+          window.alert("Service data deleted");
+        }
+        setDeleteStatus(true);
+      } else if (confirm === "cancel") {
+        console.log("Cancelled deletion operation");
+      } else {
+        console.log("Invalid operation request");
+      }
     }
   };
 
@@ -267,28 +307,68 @@ const HomeTabContentAdmin = () => {
 
     const id = modelID;
 
-    const res = await fetch(`http://localhost:3000/api/service/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        newHeading: marketingHeading[targetIndex],
-        newDescription: marketingDescription[targetIndex],
-        newImgSrc: marketingImgSrc[targetIndex],
-        newImgAlt: marketingImgAlt[targetIndex],
-        category: targetKey,
-        index: targetIndex,
-      }),
-    });
+    if (selectedOperation === "update") {
+      const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          newHeading: marketingHeading[targetIndex],
+          newDescription: marketingDescription[targetIndex],
+          newImgSrc: marketingImgSrc[targetIndex],
+          newImgAlt: marketingImgAlt[targetIndex],
+          category: targetKey,
+          index: targetIndex,
+        }),
+      });
 
-    if (!res.ok) {
-      throw new Error("Service model could not be updated");
+      if (!res.ok) {
+        throw new Error("Service model could not be updated");
+      }
+      if (res.ok) {
+        router.push("/admin/home/tabcontext");
+        router.refresh();
+        window.alert("Service model updated successfully");
+      }
     }
-    if (res.ok) {
-      router.push("/admin/home/tabcontext");
-      router.refresh();
-      window.alert("Service model updated successfully");
+
+    if (selectedOperation === "delete") {
+      console.log("You prefered delete method");
+
+      const confirm = window.prompt(
+        "Type `delete service data` to delete or type `cancel` to cancel the operation"
+      );
+
+      if (confirm === "delete service data") {
+        const category = targetKey;
+        const res = await fetch(
+          `http://localhost:3000/api/service/${id}/${category}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              index: targetIndex,
+            }),
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Couldn't delete Service");
+        }
+        if (res.ok) {
+          router.push("/admin/home/tabcontext");
+          router.refresh();
+          window.alert("Service data deleted");
+        }
+        setDeleteStatus(true);
+      } else if (confirm === "cancel") {
+        console.log("Cancelled deletion operation");
+      } else {
+        console.log("Invalid operation request");
+      }
     }
   };
 
@@ -297,28 +377,67 @@ const HomeTabContentAdmin = () => {
 
     const id = modelID;
 
-    const res = await fetch(`http://localhost:3000/api/service/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        newHeading: graphicsHeading[targetIndex],
-        newDescription: graphicsDescription[targetIndex],
-        newImgSrc: graphicsImgSrc[targetIndex],
-        newImgAlt: graphicsImgAlt[targetIndex],
-        category: targetKey,
-        index: targetIndex,
-      }),
-    });
+    if (selectedOperation === "update") {
+      const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          newHeading: graphicsHeading[targetIndex],
+          newDescription: graphicsDescription[targetIndex],
+          newImgSrc: graphicsImgSrc[targetIndex],
+          newImgAlt: graphicsImgAlt[targetIndex],
+          category: targetKey,
+          index: targetIndex,
+        }),
+      });
 
-    if (!res.ok) {
-      throw new Error("Service model could not be updated");
+      if (!res.ok) {
+        throw new Error("Service model could not be updated");
+      }
+      if (res.ok) {
+        router.push("/admin/home/tabcontext");
+        router.refresh();
+        window.alert("Service model updated successfully");
+      }
     }
-    if (res.ok) {
-      router.push("/admin/home/tabcontext");
-      router.refresh();
-      window.alert("Service model updated successfully");
+    if (selectedOperation === "delete") {
+      console.log("You prefered delete method");
+
+      const confirm = window.prompt(
+        "Type `delete service data` to delete or type `cancel` to cancel the operation"
+      );
+
+      if (confirm === "delete service data") {
+        const category = targetKey;
+        const res = await fetch(
+          `http://localhost:3000/api/service/${id}/${category}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              index: targetIndex,
+            }),
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Couldn't delete Service");
+        }
+        if (res.ok) {
+          router.push("/admin/home/tabcontext");
+          router.refresh();
+          window.alert("Service data deleted");
+        }
+        setDeleteStatus(true);
+      } else if (confirm === "cancel") {
+        console.log("Cancelled deletion operation");
+      } else {
+        console.log("Invalid operation request");
+      }
     }
   };
 
@@ -768,16 +887,26 @@ const HomeTabContentAdmin = () => {
                     )}
                   </div>
 
-                  <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
+                  <div className="w-[98%] mx-auto my-[20px] hover:cursor-pointer flex justify-between px-[10px]">
                     <button
                       onClick={() => {
                         setTargetIndex(index);
                         setTargetkey(webItem?.category);
                         setSelectedOperation("update");
                       }}
-                      className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                      className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                     >
                       Update
+                    </button>
+                    <button
+                      onClick={() => {
+                        setTargetIndex(index);
+                        setTargetkey(webItem?.category);
+                        setSelectedOperation("delete");
+                      }}
+                      className="btn bg-red-500 btn-sm text-white hover:bg-red-700 hover:cursor-pointer"
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
@@ -918,16 +1047,26 @@ const HomeTabContentAdmin = () => {
                     )}
                   </div>
 
-                  <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
+                  <div className="w-[98%] mx-auto my-[20px] text-center hover:cursor-pointer flex justify-between px-[10px]">
                     <button
                       onClick={() => {
                         setTargetIndex(index);
                         setTargetkey(marketingItem?.category);
                         setSelectedOperation("update");
                       }}
-                      className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                      className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                     >
                       Update
+                    </button>
+                    <button
+                      onClick={() => {
+                        setTargetIndex(index);
+                        setTargetkey(marketingItem?.category);
+                        setSelectedOperation("delete");
+                      }}
+                      className="btn bg-red-500 btn-sm text-white hover:bg-red-700 hover:cursor-pointer"
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
@@ -1068,16 +1207,26 @@ const HomeTabContentAdmin = () => {
                     )}
                   </div>
 
-                  <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
+                  <div className="w-[98%] mx-auto my-[20px] text-center hover:cursor-pointer flex justify-between px-[10px]">
                     <button
                       onClick={() => {
                         setTargetIndex(index);
                         setTargetkey(graphicsItem?.category);
                         setSelectedOperation("update");
                       }}
-                      className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                      className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                     >
                       Update
+                    </button>
+                    <button
+                      onClick={() => {
+                        setTargetIndex(index);
+                        setTargetkey(graphicsItem?.category);
+                        setSelectedOperation("delete");
+                      }}
+                      className="btn bg-red-500 btn-sm text-white hover:bg-red-700 hover:cursor-pointer"
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
