@@ -8,11 +8,14 @@ const HomeServiceCardAdmin = () => {
 
   const [data, setData] = useState([]);
   const [isClient, setIsClient] = useState(false);
+  const [chooseAction, setChooseAction] = useState("");
   const [image, setImage] = useState([]);
   const [heading, setHeading] = useState([]);
   const [paragraph, setParagraph] = useState([]);
   const [imageAlt, setImageAlt] = useState([]);
   const [targetCard, setTargetCard] = useState();
+  const [serviceAddStatus, setServiceAddStatus] = useState(false);
+  const [serviceDeleteStatus, setServiceDeleteStatus] = useState(false);
 
   //state variables for adding service starts here
   const [addHeading, setAddHeading] = useState("");
@@ -36,10 +39,34 @@ const HomeServiceCardAdmin = () => {
 
       setHeading(myJsonData[0].cardContents.map((item) => item.heading));
       setParagraph(myJsonData[0].cardContents.map((item) => item.paragraph));
+      setImage(myJsonData[0].cardContents.map((item) => item.image));
+      setImageAlt(myJsonData[0].cardContents.map((item) => item.imageAlt));
     };
     getHomeServiceCardData();
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    const getHomeServiceCardData = async () => {
+      const res = await fetch("http://localhost:3000/api/home_service_card", {
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const myJsonData = await res.json();
+      setData(myJsonData);
+      //adding default values to the form through state variable
+
+      setHeading(myJsonData[0].cardContents.map((item) => item.heading));
+      setParagraph(myJsonData[0].cardContents.map((item) => item.paragraph));
+      setImage(myJsonData[0].cardContents.map((item) => item.image));
+      setImageAlt(myJsonData[0].cardContents.map((item) => item.imageAlt));
+    };
+    getHomeServiceCardData();
+    setIsClient(true);
+  }, [serviceAddStatus, serviceDeleteStatus]);
 
   //console.log("===", data);
   //console.log("===", data[0]?.cardContents);
@@ -56,38 +83,108 @@ const HomeServiceCardAdmin = () => {
     //console.log(heading[targetCard]);
     //console.log(paragraph[targetCard]);
 
-    const res = await fetch(
-      `http://localhost:3000/api/home_service_card/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          heading: heading[targetCard],
-          paragraph: paragraph[targetCard],
-          targetCard,
-        }),
-      }
-    );
+    if (chooseAction === "update") {
+      const res = await fetch(
+        `http://localhost:3000/api/home_service_card/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            heading: heading[targetCard],
+            paragraph: paragraph[targetCard],
+            image: image[targetCard],
+            imageAlt: imageAlt[targetCard],
+            targetCard,
+          }),
+        }
+      );
 
-    if (!res.ok) {
-      throw new Error("HomeServiceCard model could not be updated");
+      if (!res.ok) {
+        throw new Error("HomeServiceCard model could not be updated");
+      }
+      if (res.ok) {
+        router.push("/admin/home/servicecard");
+        router.refresh();
+        window.alert("Service Card Data updated successfully");
+      }
     }
-    if (res.ok) {
-      router.push("/admin/home/servicecard");
-      router.refresh();
-      window.alert("Service Card Data updated successfully");
+    if (chooseAction === "delete") {
+      const confirmation = window.prompt(
+        "Type 'delete this service' to delete or type 'cancel' to cancel the deletion:  "
+      );
+      if (confirmation === "delete this service") {
+        console.log("You confirmed deletion");
+
+        const res = await fetch(
+          `http://localhost:3000/api/home_service_card/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              targetCard: targetCard,
+            }),
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Couldn't delete the data");
+        }
+
+        if (res.ok) {
+          router.push("/admin/home/servicecard");
+          router.refresh();
+          window.alert("Service Card Data deleted successfully");
+        }
+        setServiceDeleteStatus(true);
+      } else if (confirmation === "cancel") {
+        console.log("You cancelled the deletion");
+      } else {
+        console.log("Operation Aborted");
+      }
     }
   };
 
   const addService = async (e) => {
     e.preventDefault();
+
+    const id = data[0]?._id;
     console.log("You are in addService: ");
     console.log("addHeading: ", addHeading);
     console.log("addParagraph: ", addParagraph);
     console.log("addImage: ", addImage);
     console.log("addImageAlt: ", addImageAlt);
+
+    const res = await fetch(
+      `http://localhost:3000/api/home_service_card/${id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          addHeading: addHeading,
+          addParagraph: addParagraph,
+          addImage: addImage,
+          addImageAlt: addImageAlt,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("homeservicecards model could not be added");
+    }
+    if (res.ok) {
+      router.push("/admin/home/servicecard");
+      router.refresh();
+      window.alert("Service card added successfully");
+    }
+
+    setServiceAddStatus(true);
+    document.getElementById("addService").close();
   };
 
   return (
@@ -257,12 +354,86 @@ const HomeServiceCardAdmin = () => {
                         )}
                       </div>
 
+                      <div className="w-[98%] mx-auto">
+                        <label
+                          for="image"
+                          className="text-gray-600  font-bold text-xl"
+                        >
+                          Image Link:
+                        </label>
+                        {isClient ? (
+                          <textarea
+                            type="text"
+                            id="image"
+                            name="image"
+                            className="w-[98%] text-[12px] min-h-[100px] max-h-[150px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
+                            value={image[index]}
+                            onChange={(e) => {
+                              const updatedImage = image.map((item, i) =>
+                                i === index ? e.target.value : item
+                              );
+                              setImage(updatedImage);
+                            }}
+                          />
+                        ) : (
+                          <div>
+                            <span className="loading loading-bars loading-xs"></span>
+                            <span className="loading loading-bars loading-sm"></span>
+                            <span className="loading loading-bars loading-md"></span>
+                            <span className="loading loading-bars loading-lg"></span>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="w-[98%] mx-auto">
+                        <label
+                          for="imageAlt"
+                          className="text-gray-600  font-bold text-xl"
+                        >
+                          Image Alter Tag:
+                        </label>
+                        {isClient ? (
+                          <textarea
+                            type="text"
+                            id="imageAlt"
+                            name="imageAlt"
+                            className="w-[98%] text-[12px] min-h-[80px] max-h-[100px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
+                            value={imageAlt[index]}
+                            onChange={(e) => {
+                              const updatedImageAlt = imageAlt.map((item, i) =>
+                                i === index ? e.target.value : item
+                              );
+                              setImageAlt(updatedImageAlt);
+                            }}
+                          />
+                        ) : (
+                          <div>
+                            <span className="loading loading-bars loading-xs"></span>
+                            <span className="loading loading-bars loading-sm"></span>
+                            <span className="loading loading-bars loading-md"></span>
+                            <span className="loading loading-bars loading-lg"></span>
+                          </div>
+                        )}
+                      </div>
+
                       <div className="mx-auto my-[10px] text-center hover:cursor-pointer">
                         <button
-                          onClick={() => setTargetCard(index)}
+                          onClick={() => {
+                            setTargetCard(index);
+                            setChooseAction("update");
+                          }}
                           className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                         >
                           Update
+                        </button>
+                        <button
+                          onClick={() => {
+                            setTargetCard(index);
+                            setChooseAction("delete");
+                          }}
+                          className="btn btn-sm bg-red-500 text-white hover:bg-orange-500 hover: cursor-pointer"
+                        >
+                          Delete
                         </button>
                       </div>
                     </div>
