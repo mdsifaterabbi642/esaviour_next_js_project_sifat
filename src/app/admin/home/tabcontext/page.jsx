@@ -35,8 +35,13 @@ const HomeTabContentAdmin = () => {
   const [graphicsDescription, setGraphicsDescription] = useState([]);
   const [graphicsImgSrc, setGraphicsImgSrc] = useState([]);
   const [graphicsImgAlt, setGraphicsImgAlt] = useState([]);
-
   // =========== Temporary state variables ended here for holding data========================
+  // =========== State variable to add data=======================
+  const [addHeading, setAddHeading] = useState("");
+  const [addDescription, setAddDescription] = useState("");
+  const [addImgSrc, setAddImgSrc] = useState("");
+  const [addImgAlt, setAddImgAlt] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     const fetchID = async () => {
@@ -274,8 +279,133 @@ const HomeTabContentAdmin = () => {
     }
   };
 
+  const addTabContentService = async (e) => {
+    e.preventDefault();
+
+    const id = modelID;
+    console.log("Clicked addTabContentService");
+    console.log("Model Id: ", id);
+    console.log("===Selected Key or category: ", selectedCategory);
+    console.log("addHeading: ", addHeading);
+
+    
+
+  };
+
   return (
     <div className="py-[100px] h-screen overflow-y-auto">
+      {/* add tabcontent service form */}
+      <dialog
+        id="addServiceTabContent"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Add Service Tab contents</h3>
+          <div>
+            <form onSubmit={addTabContentService}>
+              <div className="flex flex-col flex-wrap">
+                <div className="w-[98%] mx-auto">
+                  <label for="category" className="text-gray-600  font-bold">
+                    Select Category:
+                  </label>
+                  <select
+                    id="category"
+                    name="category"
+                    className="pl-[50px] ml-[10px] bg-[#475569] text-white"
+                    value={
+                      selectedCategory
+                        ? selectedCategory
+                        : setSelectedCategory("amazonFBA")
+                    }
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                  >
+                    <option value="amazonFBA">Amazon FBA</option>
+                    <option value="digitalMarketing">digital Marketing</option>
+                    <option value="graphicsDesign">Graphics Design</option>
+                    <option value="webDevelopment">Web Development</option>
+                  </select>
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label for="heading" className="text-gray-600  font-bold">
+                    Heading:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="heading"
+                    name="heading"
+                    placeholder="Service heading"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                    value={addHeading}
+                    onChange={(e) => setAddHeading(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label for="paragraph" className="text-gray-600  font-bold">
+                    Description:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="description"
+                    name="description"
+                    placeholder="Service details"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label for="image" className="text-gray-600  font-bold">
+                    Image Source:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="image"
+                    name="image"
+                    placeholder="Add image link"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label for="image" className="text-gray-600  font-bold">
+                    Image Alt:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="imageAlt"
+                    name="imageAlt"
+                    placeholder="Add image alter tag"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                  />
+                </div>
+              </div>
+              <div className="text-center mt-[20px]">
+                <button className="btn btn-sm bg-green-500 text-white">
+                  Add Service
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+      <div>
+        <button
+          onClick={() =>
+            document.getElementById("addServiceTabContent").showModal()
+          }
+          className="btn btn-sm bg-green-500 fixed right-[5%] top-[5%]"
+        >
+          Add Service
+        </button>
+      </div>
+
       {isClient ? (
         <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
           {amazonData?.map((amaItem, index) => (
