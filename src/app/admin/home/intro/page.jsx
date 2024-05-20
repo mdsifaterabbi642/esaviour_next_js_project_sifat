@@ -202,11 +202,11 @@ const HomeIntroAdmin = () => {
                 )}
               </div>
 
-              <div className="w-[200px] mx-auto my-[50px] bg-green-500 text-center hover:cursor-pointer">
+              <div className="w-[200px] mx-auto my-[50px] text-center hover:cursor-pointer">
                 <input
                   type="submit"
-                  value="Submit"
-                  className="hover: cursor-pointer"
+                  value="Update"
+                  className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                 />
               </div>
             </div>

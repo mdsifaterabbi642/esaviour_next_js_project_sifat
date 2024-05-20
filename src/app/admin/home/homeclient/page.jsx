@@ -321,7 +321,7 @@ const HomeClientAdmin = () => {
       </dialog>
       <div>
         <button
-          className="btn bg-green-500 text-white fixed right-[5%] top-[5%]"
+          className="btn btn-sm bg-green-500 text-white fixed right-[5%] top-[5%]"
           onClick={() => document.getElementById("addClient").showModal()}
         >
           Add Client
@@ -441,13 +441,13 @@ const HomeClientAdmin = () => {
                       />
                     </div>
 
-                    <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
+                    <div className="w-[98%] mx-auto my-[20px] text-center hover:cursor-pointer flex justify-between px-[10px]">
                       <button
                         onClick={() => {
                           setTargetIndex(index);
                           setSelectedOperation("update");
                         }}
-                        className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                        className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                       >
                         Update
                       </button>
@@ -456,7 +456,7 @@ const HomeClientAdmin = () => {
                           setTargetIndex(index);
                           setSelectedOperation("delete");
                         }}
-                        className="btn bg-red-600 text-white hover:bg-red-900 hover:cursor-pointer"
+                        className="btn btn-sm bg-red-600 text-white hover:bg-red-900 hover:cursor-pointer"
                       >
                         Delete
                       </button>

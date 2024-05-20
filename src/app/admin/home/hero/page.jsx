@@ -234,7 +234,7 @@ const HomeHeroAdmin = () => {
               <input
                 type="submit"
                 value="Update"
-                className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
               />
             </div>
           </div>

@@ -88,8 +88,8 @@ const HomeBannerAdmin = () => {
               <div className="mx-auto my-[30px] text-center hover:cursor-pointer">
                 <input
                   type="submit"
-                  value="Submit"
-                  className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                  value="Update"
+                  className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                 />
               </div>
             </div>

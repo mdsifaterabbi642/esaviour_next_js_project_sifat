@@ -15,7 +15,6 @@ const ServiceTemplate = () => {
 
   return (
     <>
-      {/* ============ Service item 1 starts =============== bg-[#f4faff] */}
       {isClient ? (
         ServiceData.map((item, index) => (
           <div

@@ -416,7 +416,7 @@ const HomeServiceCardAdmin = () => {
                         )}
                       </div>
 
-                      <div className="mx-auto my-[10px] text-center hover:cursor-pointer">
+                      <div className="w-[98%] mx-auto my-[10px] text-center hover:cursor-pointer flex justify-between px-[10px]">
                         <button
                           onClick={() => {
                             setTargetCard(index);
