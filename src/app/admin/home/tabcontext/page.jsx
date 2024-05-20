@@ -11,11 +11,14 @@ const HomeTabContentAdmin = () => {
   const [amazonData, setAmazonData] = useState([]);
   const [webData, setWebData] = useState([]);
   const [digitalMarketingData, setDigitalmarketingData] = useState([]);
-  const [graphicsData, setGraphicsData] = useState();
+  const [graphicsData, setGraphicsData] = useState([]);
   const [modelID, setModelID] = useState("");
   const [targetKey, setTargetkey] = useState("");
   const [targetIndex, setTargetIndex] = useState();
-  // =========== Temporary state variables starts here for holding data=======================
+  const [selectedOperation, setSelectedOperation] = useState("");
+  const [additionStatus, setAdditionStatus] = useState(false);
+  const [deleteStatus, setDeleteStatus] = useState(false);
+  // =========== Temporary state variables starts here for updating data=======================
   const [amaHeading, setAmaHeading] = useState([]);
   const [amaDescription, setAmaDescription] = useState([]);
   const [amaImgSrc, setAmaImgSrc] = useState([]);
@@ -35,8 +38,8 @@ const HomeTabContentAdmin = () => {
   const [graphicsDescription, setGraphicsDescription] = useState([]);
   const [graphicsImgSrc, setGraphicsImgSrc] = useState([]);
   const [graphicsImgAlt, setGraphicsImgAlt] = useState([]);
-  // =========== Temporary state variables ended here for holding data========================
-  // =========== State variable to add data=======================
+  // =========== Temporary state variables ended here for updating data========================
+  // =========== State variables to add data=======================
   const [addHeading, setAddHeading] = useState("");
   const [addDescription, setAddDescription] = useState("");
   const [addImgSrc, setAddImgSrc] = useState("");
@@ -150,7 +153,7 @@ const HomeTabContentAdmin = () => {
     };
 
     fetchData();
-  }, [modelID]);
+  }, [modelID, deleteStatus, additionStatus]);
 
   //console.log(modelID);
   // console.log(amazonData);
@@ -164,28 +167,68 @@ const HomeTabContentAdmin = () => {
 
     const id = modelID;
 
-    const res = await fetch(`http://localhost:3000/api/service/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        newHeading: amaHeading[targetIndex],
-        newDescription: amaDescription[targetIndex],
-        newImgSrc: amaImgSrc[targetIndex],
-        newImgAlt: amaImgAlt[targetIndex],
-        category: targetKey,
-        index: targetIndex,
-      }),
-    });
+    if (selectedOperation === "update") {
+      const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          newHeading: amaHeading[targetIndex],
+          newDescription: amaDescription[targetIndex],
+          newImgSrc: amaImgSrc[targetIndex],
+          newImgAlt: amaImgAlt[targetIndex],
+          category: targetKey,
+          index: targetIndex,
+        }),
+      });
 
-    if (!res.ok) {
-      throw new Error("Service model could not be updated");
+      if (!res.ok) {
+        throw new Error("Service model could not be updated");
+      }
+      if (res.ok) {
+        router.push("/admin/home/tabcontext");
+        router.refresh();
+        window.alert("Service model updated successfully");
+      }
     }
-    if (res.ok) {
-      router.push("/admin/home/tabcontext");
-      router.refresh();
-      window.alert("Service model updated successfully");
+
+    if (selectedOperation === "delete") {
+      console.log("You prefered delete method");
+
+      const confirm = window.prompt(
+        "Type `delete service data` to delete or type `cancel` to cancel the operation"
+      );
+
+      if (confirm === "delete service data") {
+        const category = targetKey;
+        const res = await fetch(
+          `http://localhost:3000/api/service/${id}/${category}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              index: targetIndex,
+            }),
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Couldn't delete Service");
+        }
+        if (res.ok) {
+          router.push("/admin/home/tabcontext");
+          router.refresh();
+          window.alert("Service data deleted");
+        }
+        setDeleteStatus(true);
+      } else if (confirm === "cancel") {
+        console.log("Cancelled deletion operation");
+      } else {
+        console.log("Invalid operation request");
+      }
     }
   };
 
@@ -283,13 +326,42 @@ const HomeTabContentAdmin = () => {
     e.preventDefault();
 
     const id = modelID;
-    console.log("Clicked addTabContentService");
-    console.log("Model Id: ", id);
-    console.log("===Selected Key or category: ", selectedCategory);
-    console.log("addHeading: ", addHeading);
+    // console.log("Clicked addTabContentService");
+    // console.log("Model Id: ", id);
+    // console.log("===Selected Key or category: ", selectedCategory);
+    // console.log("addHeading: ", addHeading);
+    // console.log("addDescription: ", addDescription);
+    // console.log("addImgSrc: ", addImgSrc);
+    // console.log("addImgAlt: ", addImgAlt);
 
-    
+    const category = selectedCategory;
 
+    const res = await fetch(
+      `http://localhost:3000/api/service/${id}/${category}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          addHeading: addHeading,
+          addDescription: addDescription,
+          addImgSrc: addImgSrc,
+          addImgAlt: addImgAlt,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Couldn't add service to Service model");
+    }
+    if (res.ok) {
+      router.push("/admin/home/tabcontext");
+      router.refresh();
+      window.alert("Data added to Service Model");
+      document.getElementById("addServiceTabContent").close();
+    }
+    setAdditionStatus(true);
   };
 
   return (
@@ -351,6 +423,8 @@ const HomeTabContentAdmin = () => {
                     placeholder="Service details"
                     className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
                     required={true}
+                    value={addDescription}
+                    onChange={(e) => setAddDescription(e.target.value)}
                   />
                 </div>
                 <div className="w-[98%] mx-auto">
@@ -364,6 +438,8 @@ const HomeTabContentAdmin = () => {
                     placeholder="Add image link"
                     className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
                     required={true}
+                    value={addImgSrc}
+                    onChange={(e) => setAddImgSrc(e.target.value)}
                   />
                 </div>
                 <div className="w-[98%] mx-auto">
@@ -377,6 +453,8 @@ const HomeTabContentAdmin = () => {
                     placeholder="Add image alter tag"
                     className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
                     required={true}
+                    value={addImgAlt}
+                    onChange={(e) => setAddImgAlt(e.target.value)}
                   />
                 </div>
               </div>
@@ -397,9 +475,9 @@ const HomeTabContentAdmin = () => {
       </dialog>
       <div>
         <button
-          onClick={() =>
-            document.getElementById("addServiceTabContent").showModal()
-          }
+          onClick={() => {
+            document.getElementById("addServiceTabContent").showModal();
+          }}
           className="btn btn-sm bg-green-500 fixed right-[5%] top-[5%]"
         >
           Add Service
@@ -530,15 +608,26 @@ const HomeTabContentAdmin = () => {
                     )}
                   </div>
 
-                  <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
+                  <div className="w-[98%] mx-auto my-[20px] hover:cursor-pointer flex justify-between px-[10px]">
                     <button
                       onClick={() => {
                         setTargetIndex(index);
                         setTargetkey(amaItem?.category);
+                        setSelectedOperation("update");
                       }}
-                      className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                      className="btn bg-[#000080] btn-sm text-white hover:bg-green-500 hover:cursor-pointer"
                     >
                       Update
+                    </button>
+                    <button
+                      onClick={() => {
+                        setTargetIndex(index);
+                        setTargetkey(amaItem?.category);
+                        setSelectedOperation("delete");
+                      }}
+                      className="btn bg-red-500 btn-sm text-white hover:bg-red-700 hover:cursor-pointer"
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
@@ -684,6 +773,7 @@ const HomeTabContentAdmin = () => {
                       onClick={() => {
                         setTargetIndex(index);
                         setTargetkey(webItem?.category);
+                        setSelectedOperation("update");
                       }}
                       className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                     >
@@ -833,6 +923,7 @@ const HomeTabContentAdmin = () => {
                       onClick={() => {
                         setTargetIndex(index);
                         setTargetkey(marketingItem?.category);
+                        setSelectedOperation("update");
                       }}
                       className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                     >
@@ -982,6 +1073,7 @@ const HomeTabContentAdmin = () => {
                       onClick={() => {
                         setTargetIndex(index);
                         setTargetkey(graphicsItem?.category);
+                        setSelectedOperation("update");
                       }}
                       className="btn bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
                     >
