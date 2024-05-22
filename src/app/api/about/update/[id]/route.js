@@ -12,6 +12,15 @@ export const PATCH = async (request, { params }) => {
       hero_ButtonText,
       hero_ImageSource,
       hero_ImageAlt,
+      section1_Title1,
+      section1_Title2,
+      section1_Description,
+      section1_Name,
+      section1_Designation,
+      section1_ImageSource,
+      Section1_ImageAlt,
+      section2_Title,
+      section2_Subtitle,
     } = await request.json();
 
     await connectDB();
@@ -41,22 +50,56 @@ export const PATCH = async (request, { params }) => {
       if (hero_ImageAlt) {
         existingData.hero[0].hero_ImageAlt = hero_ImageAlt;
       }
+      if (section1_Title1) {
+        existingData.section1[0].section1_Title1 = section1_Title1;
+      }
+      if (section1_Title2) {
+        existingData.section1[0].section1_Title2 = section1_Title2;
+      }
+      if (section1_Description) {
+        existingData.section1[0].section1_Description = section1_Description;
+      }
+      if (section1_Name) {
+        existingData.section1[0].section1_Name = section1_Name;
+      }
+      if (section1_Designation) {
+        existingData.section1[0].section1_Designation = section1_Designation;
+      }
+      if (section1_ImageSource) {
+        existingData.section1[0].section1_ImageSource = section1_ImageSource;
+      }
+      if (Section1_ImageAlt) {
+        existingData.section1[0].Section1_ImageAlt = Section1_ImageAlt;
+      }
+      if (section2_Title) {
+        existingData.section2[0].section2_Title = section2_Title;
+      }
+      if (section2_Subtitle) {
+        existingData.section2[0].section2_Subtitle = section2_Subtitle;
+      }
 
       await existingData.save();
     } catch (error) {
       return new NextResponse(
-        "Couldn't find the proper index to Update About Hero",
+        "Couldn't find the proper index to Update About Data",
         { status: 404 }
       );
     }
 
     const responseBody = {
-      message: "data updated successfully in the hero section of About model",
+      message: "data updated successfully in the About model",
       hero_Title: hero_Title,
       hero_Subtitle: hero_Subtitle,
       hero_ButtonText: hero_ButtonText,
       hero_ImageSource: hero_ImageSource,
       hero_ImageAlt: hero_ImageAlt,
+      section1_Title1: section1_Title1,
+      section1_Title2: section1_Title2,
+      section1_Description: section1_Description,
+      section1_Name: section1_Name,
+      section1_Designation: section1_Designation,
+      section1_ImageSource: section1_ImageSource,
+      Section1_ImageAlt: Section1_ImageAlt,
     };
 
     return new NextResponse(JSON.stringify(responseBody), { status: 200 });
@@ -66,5 +109,3 @@ export const PATCH = async (request, { params }) => {
     });
   }
 };
-
-

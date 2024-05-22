@@ -603,8 +603,9 @@ const HomeTabContentAdmin = () => {
         </button>
       </div>
 
+
       {isClient ? (
-        <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
+        <div className="flex flex-row flex-wrap gap-2 my-[10px] lg:px-[100px]">
           {amazonData?.map((amaItem, index) => (
             <div key={index}>
               <form
@@ -753,18 +754,6 @@ const HomeTabContentAdmin = () => {
               </form>
             </div>
           ))}
-        </div>
-      ) : (
-        <div>
-          <span className="loading loading-bars loading-xs"></span>
-          <span className="loading loading-bars loading-sm"></span>
-          <span className="loading loading-bars loading-md"></span>
-          <span className="loading loading-bars loading-lg"></span>
-        </div>
-      )}
-
-      {isClient ? (
-        <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
           {webData?.map((webItem, index) => (
             <div key={index}>
               <form
@@ -913,18 +902,6 @@ const HomeTabContentAdmin = () => {
               </form>
             </div>
           ))}
-        </div>
-      ) : (
-        <div>
-          <span className="loading loading-bars loading-xs"></span>
-          <span className="loading loading-bars loading-sm"></span>
-          <span className="loading loading-bars loading-md"></span>
-          <span className="loading loading-bars loading-lg"></span>
-        </div>
-      )}
-
-      {isClient ? (
-        <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
           {digitalMarketingData?.map((marketingItem, index) => (
             <div key={index}>
               <form
@@ -1073,18 +1050,6 @@ const HomeTabContentAdmin = () => {
               </form>
             </div>
           ))}
-        </div>
-      ) : (
-        <div>
-          <span className="loading loading-bars loading-xs"></span>
-          <span className="loading loading-bars loading-sm"></span>
-          <span className="loading loading-bars loading-md"></span>
-          <span className="loading loading-bars loading-lg"></span>
-        </div>
-      )}
-
-      {isClient ? (
-        <div className="flex flex-row flex-wrap gap-2 my-[10px] justify-center">
           {graphicsData?.map((graphicsItem, index) => (
             <div key={index}>
               <form
