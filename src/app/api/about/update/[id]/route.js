@@ -26,6 +26,15 @@ export const PATCH = async (request, { params }) => {
       section2_Heading,
       section2_ImgSource,
       section2_ImgAlt,
+      section3_Heading,
+      section3_Subtitle,
+      section3_Description1,
+      section3_Description2,
+      targetIndex4Section4,
+      section4_Title,
+      section4_Description,
+      section4_Image,
+      section4_ImgAlt,
     } = await request.json();
 
     await connectDB();
@@ -95,6 +104,39 @@ export const PATCH = async (request, { params }) => {
       if (section2_ImgAlt) {
         existingData[targetSection][targetIndex].section2_ImgAlt =
           section2_ImgAlt[targetIndex];
+      }
+
+      if (section3_Heading) {
+        existingData.section3[0].section3_Heading = section3_Heading;
+      }
+      if (section3_Subtitle) {
+        existingData.section3[0].section3_Subtitle = section3_Subtitle;
+      }
+      if (section3_Description1) {
+        existingData.section3[0].section3_Description1 = section3_Description1;
+      }
+      if (section3_Description2) {
+        existingData.section3[0].section3_Description2 = section3_Description2;
+      }
+
+      if (section4_Title) {
+        existingData[targetSection][targetIndex4Section4].section4_Title =
+          section4_Title[targetIndex4Section4];
+      }
+
+      if (section4_Description) {
+        existingData[targetSection][targetIndex4Section4].section4_Description =
+          section4_Description[targetIndex4Section4];
+      }
+
+      if (section4_Image) {
+        existingData[targetSection][targetIndex4Section4].section4_Image =
+          section4_Image[targetIndex4Section4];
+      }
+
+      if (section4_ImgAlt) {
+        existingData[targetSection][targetIndex4Section4].section4_ImgAlt =
+          section4_ImgAlt[targetIndex4Section4];
       }
 
       await existingData.save();

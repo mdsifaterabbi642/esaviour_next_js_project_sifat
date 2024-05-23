@@ -16,7 +16,7 @@ const Section2AboutAdmin = () => {
   const [section2_ImgSource, setSection2ImgSource] = useState([]);
   const [section2_ImgAlt, setSection2ImgAlt] = useState([]);
 
-  useEffect(() => { 
+  useEffect(() => {
     const getSection2AboutData = async () => {
       const res = await fetch("http://localhost:3000/api/about", {
         cache: "no-store",
@@ -115,21 +115,6 @@ const Section2AboutAdmin = () => {
         router.refresh();
         window.alert("About Model updated successfully");
       }
-
-      // console.log("Document id: ", id, "data type: ", typeof id);
-      // console.log(
-      //   "targetSection: ",
-      //   targetSection,
-      //   "data type: ",
-      //   typeof targetSection
-      // );
-      // console.log(
-      //   "targetIndex: ",
-      //   targetIndex,
-      //   "data type: ",
-      //   typeof targetIndex
-      // );
-      // console.log("new heading: ", section2_Heading[targetIndex]);
     } else if (decision === "cancel") {
       console.log("You choosed to cancel the operation");
     } else {
@@ -139,7 +124,9 @@ const Section2AboutAdmin = () => {
 
   return (
     <div>
-      <h1>Section2 of About page in Admin panel</h1>
+      <h1 className="text-center text-gray-700 text-[20px]">
+        Section: Section2
+      </h1>
       {isClient ? (
         <div className="w-[90%] mx-auto">
           <form
@@ -213,7 +200,7 @@ const Section2AboutAdmin = () => {
         <div>Loading</div>
       )}
       {isClient ? (
-        <div className="flex flex-wrap flex-row gap-2">
+        <div className="flex flex-wrap flex-row gap-2 justify-center">
           {data[0]?.section2_2?.map((item, index) => (
             <div key={index}>
               <div className="w-[90%] mx-auto">
