@@ -9,13 +9,14 @@ const Section2AboutAdmin = () => {
   const [data, setData] = useState([]);
   const [isClient, setIsClient] = useState(false);
   const [targetIndex, setTargetIndex] = useState();
+  const [targetSection, setTargetSection] = useState("");
   const [section2_Title, setSection2Title] = useState("");
   const [section2_Subtitle, setSection2Subtitle] = useState("");
   const [section2_Heading, setSection2Heading] = useState([]);
   const [section2_ImgSource, setSection2ImgSource] = useState([]);
   const [section2_ImgAlt, setSection2ImgAlt] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => { 
     const getSection2AboutData = async () => {
       const res = await fetch("http://localhost:3000/api/about", {
         cache: "no-store",
@@ -81,7 +82,59 @@ const Section2AboutAdmin = () => {
 
   const section2Submit2 = async (e) => {
     e.preventDefault();
-    console.log("targetIndex: ", targetIndex);
+    //console.log("targetIndex: ", targetIndex);
+    //console.log("targetSection: ", targetSection);
+
+    const decision = window.prompt(
+      "Type `update 100 on 100` to update or type `cancel` to cancel the operation"
+    );
+
+    if (decision === "update 100 on 100") {
+      console.log("You choosed to update");
+      const id = data[0]?._id;
+
+      const res = await fetch(`http://localhost:3000/api/about/update/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          targetIndex,
+          targetSection,
+          section2_Heading,
+          section2_ImgSource,
+          section2_ImgAlt,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("About data of About page couldn't be updated");
+      }
+      if (res.ok) {
+        router.push("/admin/about");
+        router.refresh();
+        window.alert("About Model updated successfully");
+      }
+
+      // console.log("Document id: ", id, "data type: ", typeof id);
+      // console.log(
+      //   "targetSection: ",
+      //   targetSection,
+      //   "data type: ",
+      //   typeof targetSection
+      // );
+      // console.log(
+      //   "targetIndex: ",
+      //   targetIndex,
+      //   "data type: ",
+      //   typeof targetIndex
+      // );
+      // console.log("new heading: ", section2_Heading[targetIndex]);
+    } else if (decision === "cancel") {
+      console.log("You choosed to cancel the operation");
+    } else {
+      console.log("Invalid request");
+    }
   };
 
   return (
@@ -266,6 +319,7 @@ const Section2AboutAdmin = () => {
                       <button
                         onClick={() => {
                           setTargetIndex(index);
+                          setTargetSection("section2_2");
                         }}
                         className="btn bg-[#000080] btn-sm text-white hover:bg-green-500 hover:cursor-pointer"
                       >
