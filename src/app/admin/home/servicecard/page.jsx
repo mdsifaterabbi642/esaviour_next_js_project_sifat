@@ -281,9 +281,9 @@ const HomeServiceCardAdmin = () => {
           Add Service
         </button>
       </div>
-      <div className="sm:w-[98%] mx-auto h-screen overflow-y-auto py-[80px]">
+      <div className="w-[98%] mx-auto h-screen overflow-y-auto py-[80px]">
         {isClient ? (
-          <div className="flex flex-wrap gap-3 justify-center w-[70%] py-[20px] mx-auto">
+          <div className="flex flex-wrap gap-3 justify-center w-[99%] py-[20px] mx-auto">
             {data[0]?.cardContents.map((item, index) => (
               <div key={index} className="">
                 <div className="">
