@@ -96,187 +96,153 @@ const Section4AboutAdmin = () => {
         Section: Section4
       </h1>
       {isClient ? (
-        <div className="border px-[5px] py-[5px] flex flex-row gap-3">
+        <div className="border px-[5px] py-[5px] flex flex-row gap-3 justify-center">
           {data[0]?.section4.map((item, index) => (
-            <div key={index}>
-              <div className="w-[300px] bg-base-100 shadow-xl">
-                <div className=" py-[10px] px-[10px]">
-                  {/* <h2 className="">
-                    section4_Title:
-                    <span className="text-green-500 rounded-md text-[16px] text-center">
-                      {item?.section4_Title}
-                    </span>
-                  </h2>
-                  <h2 className="text-[16px]">
-                    section4_Description:
-                    <span className="text-purple-500 pl-[5px] text-[14px]">
-                      {item?.section4_Description}
-                    </span>
-                  </h2>
-                  <h2 className="text-[14px]">
-                    section4_Image
-                    <span className="text-purple-500 pl-[5px]">
-                      {item?.section4_Image}
-                    </span>
-                  </h2>
-                  <h2 className="text-[14px]">
-                    section4_ImgAlt
-                    <span className="text-purple-500 pl-[5px]">
-                      {item?.section4_ImgAlt}
-                    </span>
-                  </h2>
-
-                  <div className="justify-end">
-                    <button className="btn btn-sm bg-green-500">Actions</button>
-                  </div> */}
-                  <form
-                    onSubmit={section4submit}
-                    className="w-[90%] mx-auto border-2 border-slate-400"
-                  >
-                    <div className="flex flex-col flex-wrap">
-                      <div className="w-[80%] mx-auto">
-                        <label
-                          for="title"
-                          className="text-gray-600  font-bold text-xl"
-                        >
-                          Title
-                        </label>
-                        {isClient ? (
-                          <textarea
-                            type="text"
-                            id="title"
-                            name="title"
-                            className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[100px] max-h-[150px] border-none text-left bg-slate-600 text-white rounded-md"
-                            value={section4_Title[index]}
-                            onChange={(e) => {
-                              const updatedTitle = section4_Title.map(
-                                (item, i) =>
-                                  i === index ? e.target.value : item
-                              );
-                              setTitle(updatedTitle);
-                            }}
-                          />
-                        ) : (
-                          <div>
-                            <span className="loading loading-bars loading-xs"></span>
-                            <span className="loading loading-bars loading-sm"></span>
-                            <span className="loading loading-bars loading-md"></span>
-                            <span className="loading loading-bars loading-lg"></span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="w-[80%] mx-auto">
-                        <label
-                          for="description"
-                          className="text-gray-600  font-bold text-xl"
-                        >
-                          Description
-                        </label>
-                        {isClient ? (
-                          <textarea
-                            type="text"
-                            id="description"
-                            name="description"
-                            className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[200px] max-h-[350px] border-none text-left bg-slate-600 text-white rounded-md"
-                            value={section4_Description[index]}
-                            onChange={(e) => {
-                              const updatedDescription =
-                                section4_Description.map((item, i) =>
-                                  i === index ? e.target.value : item
-                                );
-                              setDescription(updatedDescription);
-                            }}
-                          />
-                        ) : (
-                          <div>
-                            <span className="loading loading-bars loading-xs"></span>
-                            <span className="loading loading-bars loading-sm"></span>
-                            <span className="loading loading-bars loading-md"></span>
-                            <span className="loading loading-bars loading-lg"></span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="w-[80%] mx-auto">
-                        <label
-                          for="image"
-                          className="text-gray-600  font-bold text-xl"
-                        >
-                          Image
-                        </label>
-                        {isClient ? (
-                          <textarea
-                            type="text"
-                            id="image"
-                            name="image"
-                            className="w-[98%] text-[12px] min-h-[100px] max-h-[150px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
-                            value={section4_Image[index]}
-                            onChange={(e) => {
-                              const updatedImage = section4_Image.map(
-                                (item, i) =>
-                                  i === index ? e.target.value : item
-                              );
-                              setImage(updatedImage);
-                            }}
-                          />
-                        ) : (
-                          <div>
-                            <span className="loading loading-bars loading-xs"></span>
-                            <span className="loading loading-bars loading-sm"></span>
-                            <span className="loading loading-bars loading-md"></span>
-                            <span className="loading loading-bars loading-lg"></span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="w-[80%] mx-auto">
-                        <label
-                          for="imgAlt"
-                          className="text-gray-600  font-bold text-xl"
-                        >
-                          ImgAlt
-                        </label>
-                        {isClient ? (
-                          <input
-                            type="text"
-                            id="imgAlt"
-                            name="imgAlt"
-                            className="w-[98%] text-[12px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
-                            value={section4_ImgAlt[index]}
-                            onChange={(e) => {
-                              const updatedImgAlt = section4_ImgAlt.map(
-                                (item, i) =>
-                                  i === index ? e.target.value : item
-                              );
-                              setImgAlt(updatedImgAlt);
-                            }}
-                          />
-                        ) : (
-                          <div>
-                            <span className="loading loading-bars loading-xs"></span>
-                            <span className="loading loading-bars loading-sm"></span>
-                            <span className="loading loading-bars loading-md"></span>
-                            <span className="loading loading-bars loading-lg"></span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
-                        <button
-                          type="btn btn-sm"
-                          className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
-                          onClick={() => {
-                            setTargetIndex(index);
-                            setTargetSection("section4");
+            <div key={index} className="shadow-xl w-[350px]">
+              <div className=" py-[10px] px-[10px]">
+                <form
+                  onSubmit={section4submit}
+                  className="w-[100%] mx-auto border-2 border-slate-400"
+                >
+                  <div className="flex flex-col flex-wrap">
+                    <div className="w-[98%] mx-auto">
+                      <label
+                        for="title"
+                        className="text-gray-600  font-bold text-xl"
+                      >
+                        Title
+                      </label>
+                      {isClient ? (
+                        <textarea
+                          type="text"
+                          id="title"
+                          name="title"
+                          className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[100px] max-h-[150px] border-none text-left bg-slate-600 text-white rounded-md"
+                          value={section4_Title[index]}
+                          onChange={(e) => {
+                            const updatedTitle = section4_Title.map((item, i) =>
+                              i === index ? e.target.value : item
+                            );
+                            setTitle(updatedTitle);
                           }}
-                        >
-                          Update
-                        </button>
-                      </div>
+                        />
+                      ) : (
+                        <div>
+                          <span className="loading loading-bars loading-xs"></span>
+                          <span className="loading loading-bars loading-sm"></span>
+                          <span className="loading loading-bars loading-md"></span>
+                          <span className="loading loading-bars loading-lg"></span>
+                        </div>
+                      )}
                     </div>
-                  </form>
-                </div>
+
+                    <div className="w-[98%] mx-auto">
+                      <label
+                        for="description"
+                        className="text-gray-600  font-bold text-xl"
+                      >
+                        Description
+                      </label>
+                      {isClient ? (
+                        <textarea
+                          type="text"
+                          id="description"
+                          name="description"
+                          className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[200px] max-h-[350px] border-none text-left bg-slate-600 text-white rounded-md"
+                          value={section4_Description[index]}
+                          onChange={(e) => {
+                            const updatedDescription = section4_Description.map(
+                              (item, i) => (i === index ? e.target.value : item)
+                            );
+                            setDescription(updatedDescription);
+                          }}
+                        />
+                      ) : (
+                        <div>
+                          <span className="loading loading-bars loading-xs"></span>
+                          <span className="loading loading-bars loading-sm"></span>
+                          <span className="loading loading-bars loading-md"></span>
+                          <span className="loading loading-bars loading-lg"></span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="w-[98%] mx-auto">
+                      <label
+                        for="image"
+                        className="text-gray-600  font-bold text-xl"
+                      >
+                        Image
+                      </label>
+                      {isClient ? (
+                        <textarea
+                          type="text"
+                          id="image"
+                          name="image"
+                          className="w-[98%] text-[12px] min-h-[100px] max-h-[150px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
+                          value={section4_Image[index]}
+                          onChange={(e) => {
+                            const updatedImage = section4_Image.map((item, i) =>
+                              i === index ? e.target.value : item
+                            );
+                            setImage(updatedImage);
+                          }}
+                        />
+                      ) : (
+                        <div>
+                          <span className="loading loading-bars loading-xs"></span>
+                          <span className="loading loading-bars loading-sm"></span>
+                          <span className="loading loading-bars loading-md"></span>
+                          <span className="loading loading-bars loading-lg"></span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="w-[98%] mx-auto">
+                      <label
+                        for="imgAlt"
+                        className="text-gray-600  font-bold text-xl"
+                      >
+                        ImgAlt
+                      </label>
+                      {isClient ? (
+                        <input
+                          type="text"
+                          id="imgAlt"
+                          name="imgAlt"
+                          className="w-[98%] text-[12px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
+                          value={section4_ImgAlt[index]}
+                          onChange={(e) => {
+                            const updatedImgAlt = section4_ImgAlt.map(
+                              (item, i) => (i === index ? e.target.value : item)
+                            );
+                            setImgAlt(updatedImgAlt);
+                          }}
+                        />
+                      ) : (
+                        <div>
+                          <span className="loading loading-bars loading-xs"></span>
+                          <span className="loading loading-bars loading-sm"></span>
+                          <span className="loading loading-bars loading-md"></span>
+                          <span className="loading loading-bars loading-lg"></span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
+                      <button
+                        type="btn btn-sm"
+                        className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                        onClick={() => {
+                          setTargetIndex(index);
+                          setTargetSection("section4");
+                        }}
+                      >
+                        Update
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           ))}
