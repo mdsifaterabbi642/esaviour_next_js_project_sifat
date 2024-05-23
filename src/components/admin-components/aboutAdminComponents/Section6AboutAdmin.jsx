@@ -132,8 +132,8 @@ const Section6AboutAdmin = () => {
 
   return (
     <div>
-      <h1 className="text-center text-gray-700 text-[20px]">
-        Section: Section6
+      <h1 className="text-center font-extrabold text-gray-500 text-[26px] pt-[50px] pb-[20px]">
+        Section: Section6 ⚙👇👇👇
       </h1>
       {isClient ? (
         <div className="w-[98%] mx-auto py-[10px] px-[10px]">
@@ -212,39 +212,6 @@ const Section6AboutAdmin = () => {
         <div className="flex flex-wrap flex-row gap-2 justify-center">
           {data[0]?.section6_6?.map((item, index) => (
             <div key={index} className="mx-auto border-2 border-slate-400">
-              {/* <div className="w-[300px] bg-base-100 shadow-xl">
-                <div className=" py-[10px] px-[10px]">
-                  <h2 className="">
-                    section6_Title:
-                    <span className="bg-sky-500 rounded-lg text-white text-[14px] px-[10px] text-center inline">
-                      {item?.section6_Title}
-                    </span>
-                  </h2>
-                  <h2 className="text-[14px]">
-                    section6_Description:
-                    <span className="text-purple-500 pl-[5px]">
-                      {item?.section6_Description}
-                    </span>
-                  </h2>
-                  <h2 className="text-[14px]">
-                    section6_Image:
-                    <span className="text-purple-500 pl-[5px]">
-                      {item?.section6_Image}
-                    </span>
-                  </h2>
-                  <h2 className="text-[14px]">
-                    section6_ImgAlt:
-                    <span className="text-purple-500 pl-[5px]">
-                      {item?.section6_ImgAlt}
-                    </span>
-                  </h2>
-
-                  <div className="justify-end">
-                    <button className="btn btn-sm bg-green-500">Actions</button>
-                  </div>
-                </div>
-              </div> */}
-
               <form onSubmit={section6Submit2}>
                 <div className="flex flex-col flex-wrap">
                   <div className="w-[90%] mx-auto">

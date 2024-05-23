@@ -92,8 +92,8 @@ const Section4AboutAdmin = () => {
 
   return (
     <div>
-      <h1 className="text-center text-gray-700 text-[20px]">
-        Section: Section4
+      <h1 className="text-center font-extrabold text-gray-500 text-[26px] pt-[50px] pb-[20px]">
+        Section: Section4 ⚙👇👇👇
       </h1>
       {isClient ? (
         <div className="border px-[5px] py-[5px] flex flex-row gap-3 justify-center">

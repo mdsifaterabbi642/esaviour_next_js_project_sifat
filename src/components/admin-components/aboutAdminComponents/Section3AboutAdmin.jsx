@@ -78,28 +78,10 @@ const Section3AboutAdmin = () => {
 
   return (
     <div>
-      <h1 className="text-center text-gray-700 text-[20px]">
-        Section: Section3
+      <h1 className="text-center font-extrabold text-gray-500 text-[26px] pt-[50px] pb-[20px]">
+        Section: Section3 ⚙👇👇👇
       </h1>
       {isClient ? (
-        // <div className="border px-[5px] py-[5px]">
-        //   <h1 className="text-green-500">
-        //     <span className="text-red-500">section3_Heading:</span>{" "}
-        //     {data[0]?.section3[0]?.section3_Heading}{" "}
-        //   </h1>
-        //   <h1 className="text-green-500">
-        //     <span className="text-red-500">section3_Subtitle:</span>{" "}
-        //     {data[0]?.section3[0]?.section3_Subtitle}{" "}
-        //   </h1>
-        //   <h1 className="text-green-500">
-        //     <span className="text-red-500">section3_Description1 :</span>{" "}
-        //     {data[0]?.section3[0]?.section3_Description1}{" "}
-        //   </h1>
-        //   <h1 className="text-green-500">
-        //     <span className="text-red-500">section3_Description2 :</span>{" "}
-        //     {data[0]?.section3[0]?.section3_Description2}{" "}
-        //   </h1>
-        // </div>
         <div className="w-[90%] mx-auto">
           <form
             onSubmit={aboutSubmitSection3}

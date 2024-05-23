@@ -12,6 +12,11 @@ const AboutAdminPage = () => {
   return (
     <>
       <div className="lg:w-[90%] xl:w-[90%] mx-auto py-[100px] h-screen overflow-y-auto">
+        <div>
+          <h1 className="text-[30px] text-purple-700 font-extrabold text-center">
+            ✂Configure About Page✂
+          </h1>
+        </div>
         <HeroAboutAdmin />
         <Section1AboutAdmin />
         <Section2AboutAdmin />

@@ -41,6 +41,13 @@ export const PATCH = async (request, { params }) => {
       section6_Description,
       section6_Image,
       section6_ImgAlt,
+      section7_Title,
+      section7_SubTitle,
+      section7_Name,
+      section7_Designation,
+      section7_Description,
+      section7_ImgSource,
+      section7_ImgAlt,
     } = await request.json();
 
     await connectDB();
@@ -167,6 +174,32 @@ export const PATCH = async (request, { params }) => {
       if (section6_ImgAlt) {
         existingData[targetSection][targetIndex].section6_ImgAlt =
           section6_ImgAlt[targetIndex];
+      }
+      if (section7_Title) {
+        existingData.section7[0].section7_Title = section7_Title;
+      }
+      if (section7_SubTitle) {
+        existingData.section7[0].section7_SubTitle = section7_SubTitle;
+      }
+      if (section7_Name) {
+        existingData[targetSection][targetIndex].section7_Name =
+          section7_Name[targetIndex];
+      }
+      if (section7_Designation) {
+        existingData[targetSection][targetIndex].section7_Designation =
+          section7_Designation[targetIndex];
+      }
+      if (section7_Description) {
+        existingData[targetSection][targetIndex].section7_Description =
+          section7_Description[targetIndex];
+      }
+      if (section7_ImgSource) {
+        existingData[targetSection][targetIndex].section7_ImgSource =
+          section7_ImgSource[targetIndex];
+      }
+      if (section7_ImgAlt) {
+        existingData[targetSection][targetIndex].section7_ImgAlt =
+          section7_ImgAlt[targetIndex];
       }
 
       await existingData.save();

@@ -124,8 +124,8 @@ const Section2AboutAdmin = () => {
 
   return (
     <div>
-      <h1 className="text-center text-gray-700 text-[20px]">
-        Section: Section2
+      <h1 className="text-center font-extrabold text-gray-500 text-[26px] pt-[50px] pb-[20px]">
+        Section: Section2 ⚙👇👇👇
       </h1>
       {isClient ? (
         <div className="w-[90%] mx-auto">
