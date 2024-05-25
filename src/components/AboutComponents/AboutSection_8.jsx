@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { About_Data } from "@/Data/About";
 
-const AboutSection_8 = () => {
+const AboutSection_8 = () => { 
   var settings = {
     //dots: false,
     // dotsClass: "custom-dots",
