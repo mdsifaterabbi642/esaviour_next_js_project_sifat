@@ -123,7 +123,9 @@ const FAQAboutAdmin = () => {
 
   return (
     <div>
-      <h1>FAQ of About page in Admin panel</h1>
+      <h1 className="text-center font-extrabold text-gray-500 text-[26px] pt-[50px] pb-[20px]">
+        Section: FAQ ⚙👇👇👇
+      </h1>
 
       {isClient ? (
         <div className="border px-[5px] py-[5px] flex flex-row gap-3 bg-base-100 shadow-xl">
@@ -232,7 +234,6 @@ const FAQAboutAdmin = () => {
             <div key={index}>
               <div className="w-[300px] bg-base-100 shadow-xl">
                 <div className=" py-[10px] px-[10px]">
-                  
                   <form
                     onSubmit={faqSubmit2}
                     className="w-[90%] mx-auto border-2 border-slate-400"

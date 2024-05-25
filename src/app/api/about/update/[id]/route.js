@@ -283,3 +283,87 @@ export const PATCH = async (request, { params }) => {
     });
   }
 };
+
+export const POST = async (request, { params }) => {
+  try {
+    const { id } = params;
+    const { addHeading, addImgSource, addImgAlt } = await request.json();
+    await connectDB();
+
+    try {
+      const existingData = await About.findById({ _id: id });
+      if (!existingData) {
+        return new NextResponse(
+          "Not found the existing data to be added in the About model",
+          { status: 404 }
+        );
+      }
+
+      //adding items to section2_2
+      existingData.section2_2.push({
+        section2_Heading: addHeading,
+        section2_ImgSource: addImgSource,
+        section2_ImgAlt: addImgAlt,
+      });
+
+      await existingData.save();
+    } catch (error) {
+      return new NextResponse(
+        "Not found the existing data to be added in the About model",
+        { status: 404 }
+      );
+    }
+
+    let responseBody = {
+      section2_Heading: addHeading,
+      section2_ImgSource: addImgSource,
+      section2_ImgAlt: addImgAlt,
+    };
+
+    return new NextResponse(JSON.stringify(responseBody), { status: 200 });
+  } catch (error) {
+    return new NextResponse(
+      "Error occurrent in POST method in /api/about/update/[id]",
+      { status: 500 }
+    );
+  }
+};
+
+export const DELETE = async (request, { params }) => {
+  try {
+    const { id } = params;
+    const { targetIndex } = await request.json();
+    await connectDB();
+
+    let existingData;
+
+    try {
+      existingData = await About.findOne({ _id: id });
+    } catch (error) {
+      return new NextResponse("Not Found to delete", { status: 404 });
+    }
+    let responseBody;
+
+    if (existingData !== null) {
+      if (targetIndex >= 0 && targetIndex < existingData?.section2_2.length) {
+        existingData.section2_2.splice(targetIndex, 1);
+      } else {
+        return new NextResponse("Invalid target index", { status: 400 });
+      }
+    }
+    // Save the updated document
+    await existingData.save();
+
+    responseBody = {
+      _id: id,
+      targetIndex: targetIndex,
+      message: "Deleted successfully",
+    };
+
+    return new NextResponse(JSON.stringify(responseBody), { status: 200 });
+  } catch (error) {
+    return new NextResponse(
+      "Error occurred in DELETE method in api/about/update/[id]"
+    );
+  }
+};

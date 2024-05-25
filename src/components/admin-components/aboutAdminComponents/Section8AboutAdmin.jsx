@@ -14,6 +14,15 @@ const Section8AboutAdmin = () => {
   const [section8_ImgAlt, setImgAlt] = useState([]);
   const [targetIndex, setTargetIndex] = useState();
   const [targetSection, setTargetSection] = useState("");
+  const [additionStatus, setAdditionStatus] = useState("false");
+  const [deletionStatus, setDeletionStatus] = useState("falce");
+  const [modelID, setModelID] = useState("");
+  const [action, setAction] = useState("");
+  // =====adding employee state variables
+  const [employeeName, setEmployeeName] = useState("");
+  const [employeeDesignation, setEmployeeDesignation] = useState("");
+  const [employeeImgSrc, setEmployeeImgSrc] = useState("");
+  const [employeeImgAlt, setEmployeeImgAlt] = useState("");
 
   useEffect(() => {
     const getSection8AboutData = async () => {
@@ -25,6 +34,8 @@ const Section8AboutAdmin = () => {
       }
       const myJsonData = await res.json();
       setData(myJsonData);
+      setModelID(myJsonData[0]?._id);
+
       //adding default values to the form through state variable
       setName(myJsonData[0]?.section8?.map((item) => item.section8_Name));
       setDesignation(
@@ -39,6 +50,32 @@ const Section8AboutAdmin = () => {
     setIsClient(true);
   }, []);
 
+  useEffect(() => {
+    const getSection8AboutData = async () => {
+      const res = await fetch("http://localhost:3000/api/about", {
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const myJsonData = await res.json();
+      setData(myJsonData);
+      setModelID(myJsonData[0]?._id);
+
+      //adding default values to the form through state variable
+      setName(myJsonData[0]?.section8?.map((item) => item.section8_Name));
+      setDesignation(
+        myJsonData[0]?.section8?.map((item) => item.section8_Designation)
+      );
+      setImgSource(
+        myJsonData[0]?.section8?.map((item) => item.section8_ImgSource)
+      );
+      setImgAlt(myJsonData[0]?.section8?.map((item) => item.section8_ImgAlt));
+    };
+    getSection8AboutData();
+    setIsClient(true);
+  }, [additionStatus, deletionStatus]);
+
   const submitSection8 = async (e) => {
     e.preventDefault();
     // console.log("Clicked submitSection8");
@@ -46,42 +83,129 @@ const Section8AboutAdmin = () => {
     // console.log("section8_Designation: ", section8_Designation[targetIndex]);
     // console.log("section8_ImgSource: ", section8_ImgSource[targetIndex]);
     // console.log("section8_ImgAlt: ", section8_ImgAlt[targetIndex]);
+    if (action === "update") {
+      const decision = window.prompt(
+        "Type `update 100 on 100` to update or type `cancel` to cancel the operation"
+      );
 
-    const decision = window.prompt(
-      "Type `update 100 on 100` to update or type `cancel` to cancel the operation"
-    );
+      if (decision === "update 100 on 100") {
+        console.log("You choosed to update");
+        const id = data[0]?._id;
 
-    if (decision === "update 100 on 100") {
-      console.log("You choosed to update");
-      const id = data[0]?._id;
+        const res = await fetch(
+          `http://localhost:3000/api/about/update/${id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              section8_Name,
+              section8_Designation,
+              section8_ImgSource,
+              section8_ImgAlt,
+              targetIndex,
+              targetSection,
+            }),
+          }
+        );
 
-      const res = await fetch(`http://localhost:3000/api/about/update/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          section8_Name,
-          section8_Designation,
-          section8_ImgSource,
-          section8_ImgAlt,
-          targetIndex,
-          targetSection,
-        }),
-      });
+        if (!res.ok) {
+          throw new Error("About data of About page couldn't be updated");
+        }
+        if (res.ok) {
+          router.push("/admin/about");
+          router.refresh();
+          window.alert("About Model updated successfully");
+        }
+      } else if (decision === "cancel") {
+        console.log("You choosed to cancel the operation");
+      } else {
+        console.log("Invalid request");
+      }
+    }
+
+    if (action === "delete") {
+      const decision = window.prompt(
+        "Type `delete 100 on 100` to update or type `cancel` to cancel the operation"
+      );
+
+      if (decision === "delete 100 on 100") {
+        console.log("You choosed to delete");
+        const id = data[0]?._id;
+
+        const res = await fetch(
+          `http://localhost:3000/api/about/employee/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              targetIndex: targetIndex,
+              targetSection: targetSection,
+            }),
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("About data of About page couldn't be deleted");
+        }
+        if (res.ok) {
+          router.push("/admin/about");
+          router.refresh();
+          window.alert("Employee of about data deleted successfully");
+        }
+        setDeletionStatus(true);
+      } else if (decision === "cancel") {
+        console.log("You choosed to cancel the operation");
+      } else {
+        console.log("Invalid request");
+      }
+    }
+  };
+
+  const addEmployee = async (e) => {
+    try {
+      e.preventDefault();
+      console.log("Clicked addEmployee");
+      console.log("employeeName: ", employeeName);
+      console.log("employeeDesignation: ", employeeDesignation);
+      console.log("employeeImgSrc: ", employeeImgSrc);
+      console.log("employeeImgAlt: ", employeeImgAlt);
+
+      const id = modelID;
+
+      const res = await fetch(
+        `http://localhost:3000/api/about/employee/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            employeeName: employeeName,
+            employeeDesignation: employeeDesignation,
+            employeeImgSrc: employeeImgSrc,
+            employeeImgAlt: employeeImgAlt,
+          }),
+        }
+      );
 
       if (!res.ok) {
-        throw new Error("About data of About page couldn't be updated");
+        throw new Error("Couldn't add Employee to About model");
       }
       if (res.ok) {
         router.push("/admin/about");
         router.refresh();
-        window.alert("About Model updated successfully");
+        window.alert("Employee added to About Model");
+        document.getElementById("addItemsSection8").close();
       }
-    } else if (decision === "cancel") {
-      console.log("You choosed to cancel the operation");
-    } else {
-      console.log("Invalid request");
+      setAdditionStatus(true);
+    } catch (error) {
+      console.log(
+        "Error occurred in addEmployee function in section 8 of about page admin panel"
+      );
     }
   };
 
@@ -91,49 +215,122 @@ const Section8AboutAdmin = () => {
         Section: Section8 ⚙👇👇👇
       </h1>
 
+      {/* add items in section8 form */}
+      <dialog
+        id="addItemsSection8"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Add employee: Section8</h3>
+          <div>
+            <form onSubmit={addEmployee}>
+              <div className="flex flex-col flex-wrap">
+                <div className="w-[98%] mx-auto">
+                  <label
+                    for="section8_Name"
+                    className="text-gray-600  font-bold"
+                  >
+                    Name:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="section8_Name"
+                    name="section8_Name"
+                    placeholder="section8_Name"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                    value={employeeName}
+                    onChange={(e) => setEmployeeName(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label
+                    for="section8_Designation"
+                    className="text-gray-600  font-bold"
+                  >
+                    Designation:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="section8_Designation"
+                    name="section8_Designation"
+                    placeholder="section8_Designation"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                    value={employeeDesignation}
+                    onChange={(e) => setEmployeeDesignation(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label
+                    for="section8_ImgSource"
+                    className="text-gray-600  font-bold"
+                  >
+                    Image Source:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="section8_ImgSource"
+                    name="section8_ImgSource"
+                    placeholder="section8_ImgSource"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                    value={employeeImgSrc}
+                    onChange={(e) => setEmployeeImgSrc(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label
+                    for="
+                    section8_ImgAlt"
+                    className="text-gray-600  font-bold"
+                  >
+                    Image Alter Tag:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="section8_ImgAlt"
+                    name="section8_ImgAlt"
+                    placeholder="section8_ImgAlt"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[150px] border-none text-left bg-slate-600 text-white"
+                    required={true}
+                    value={employeeImgAlt}
+                    onChange={(e) => setEmployeeImgAlt(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="text-center mt-[20px]">
+                <button className="btn btn-sm bg-green-500 text-white">
+                  Add Item
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
+      <div>
+        <button
+          onClick={() =>
+            document.getElementById("addItemsSection8").showModal()
+          }
+          className="btn btn-sm my-[20px] bg-green-500 text-white relative left-[85%]"
+        >
+          Add Employee
+        </button>
+      </div>
+
       {isClient ? (
         <div className="flex flex-wrap flex-row gap-2">
           {data[0]?.section8?.map((item, index) => (
             <div key={index}>
               <div className="w-[300px] bg-base-100 shadow-xl">
-                {/* <div className="py-[10px] px-[10px] w-[50%] h-[50%]">
-                  <Image
-                    src={item?.section8_ImgSource}
-                    alt={item?.section8_ImgAlt}
-                    width={300}
-                    height={200}
-                  />
-                </div>
-                <div className=" py-[10px] px-[10px]">
-                  <h2 className="">
-                    section8_Name:
-                    <span className="bg-sky-500 rounded-lg text-white text-[14px] px-[10px] text-center inline">
-                      {item?.section8_Name}
-                    </span>
-                  </h2>
-                  <h2 className="">
-                    section8_Designation:
-                    <span className="text-purple-500 text-[14px] px-[10px] text-center inline">
-                      {item?.section8_Designation}
-                    </span>
-                  </h2>
-                  <h2 className="">
-                    section8_ImgSource:
-                    <span className="text-purple-500 text-[14px] px-[10px] text-center inline">
-                      {item?.section8_ImgSource}
-                    </span>
-                  </h2>
-                  <h2 className="">
-                    section8_ImgAlt:
-                    <span className="text-purple-500 text-[14px] px-[10px] text-center inline">
-                      {item?.section8_ImgAlt}
-                    </span>
-                  </h2>
-
-                  <div className="justify-end">
-                    <button className="btn btn-sm bg-green-500">Actions</button>
-                  </div>
-                </div> */}
                 <form
                   onSubmit={submitSection8}
                   className="w-[90%] mx-auto border-2 border-slate-400"
@@ -263,16 +460,31 @@ const Section8AboutAdmin = () => {
                       )}
                     </div>
 
-                    <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
-                      <button
-                        onClick={() => {
-                          setTargetIndex(index);
-                          setTargetSection("section8");
-                        }}
-                        className="btn bg-[#000080] btn-sm text-white hover:bg-green-500 hover:cursor-pointer"
-                      >
-                        Update
-                      </button>
+                    <div className="flex justify-between px-[15px] py-[10px]">
+                      <div>
+                        <button
+                          onClick={() => {
+                            setTargetIndex(index);
+                            setTargetSection("section8");
+                            setAction("update");
+                          }}
+                          className="btn bg-[#000080] btn-sm text-white hover:bg-green-500 hover:cursor-pointer"
+                        >
+                          Update
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          onClick={() => {
+                            setTargetIndex(index);
+                            setTargetSection("section8");
+                            setAction("delete");
+                          }}
+                          className="btn bg-red-500 btn-sm text-white hover:bg-red-700 hover:cursor-pointer"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </form>
