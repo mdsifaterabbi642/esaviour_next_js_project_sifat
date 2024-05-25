@@ -52,6 +52,11 @@ export const PATCH = async (request, { params }) => {
       section8_Designation,
       section8_ImgSource,
       section8_ImgAlt,
+      FAQ_SubTitle,
+      FAQ_ImgSource,
+      FAQ_ImgAlt,
+      question,
+      answer,
     } = await request.json();
 
     await connectDB();
@@ -224,6 +229,27 @@ export const PATCH = async (request, { params }) => {
       if (section8_ImgAlt) {
         existingData[targetSection][targetIndex].section8_ImgAlt =
           section8_ImgAlt[targetIndex];
+      }
+
+      if (FAQ_SubTitle) {
+        existingData.AboutFAQSection[0].FAQ_SubTitle = FAQ_SubTitle;
+      }
+
+      if (FAQ_ImgSource) {
+        existingData.AboutFAQSection[0].FAQ_ImgSource = FAQ_ImgSource;
+      }
+
+      if (FAQ_ImgAlt) {
+        existingData.AboutFAQSection[0].FAQ_ImgAlt = FAQ_ImgAlt;
+      }
+
+      if (question) {
+        existingData[targetSection][targetIndex].question =
+          question[targetIndex];
+      }
+
+      if (answer) {
+        existingData[targetSection][targetIndex].answer = answer[targetIndex];
       }
 
       await existingData.save();
