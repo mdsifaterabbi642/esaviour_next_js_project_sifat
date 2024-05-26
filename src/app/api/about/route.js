@@ -18,7 +18,7 @@ export const GET = async (request) => {
 // export const POST = async (request) => {
 //   try {
 //     await connectDB();
-//     const { section7_Title, section7_SubTitle } = await request.json();
+//     const { quantity, heading } = await request.json();
 
 //     const id = "664c644887ef8bfa15d4b665";
 
@@ -27,27 +27,27 @@ export const GET = async (request) => {
 
 //       const newData = await About.findById({ _id: id });
 
-//       newData.section7.push({
-//         section7_Title: section7_Title,
-//         section7_SubTitle: section7_SubTitle,
+//       newData.section5_slider2.push({
+//         quantity: quantity,
+//         heading: heading,
 //       });
 
 //       await newData.save();
 
 //       const responseBody = {
-//         section7_Title: section7_Title,
-//         section7_SubTitle: section7_SubTitle,
+//         quantity: quantity,
+//         heading: heading,
 //       };
 
 //       return new NextResponse(JSON.stringify(responseBody), { status: 200 });
 //     } catch (error) {
 //       return new NextResponse(
-//         "Couldn't find the proper index to add About section7",
+//         "Couldn't find the proper index to add About section5_slider2",
 //         { status: 404 }
 //       );
 //     }
 //   } catch (error) {
-//     return new NextResponse("Couldn't add to the about data section7", {
+//     return new NextResponse("Couldn't add to the about data section5_slider2", {
 //       status: 500,
 //     });
 //   }

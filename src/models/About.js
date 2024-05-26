@@ -102,6 +102,18 @@ const aboutSchema = new mongoose.Schema(
         answer: { type: String },
       },
     ],
+    section5_slider1: [
+      {
+        quantity: { type: String },
+        heading: { type: String },
+      },
+    ],
+    section5_slider2: [
+      {
+        quantity: { type: String },
+        heading: { type: String },
+      },
+    ],
   },
   { timestamps: true }
 );

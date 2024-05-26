@@ -4,6 +4,7 @@ import Section1AboutAdmin from "@/components/admin-components/aboutAdminComponen
 import Section2AboutAdmin from "@/components/admin-components/aboutAdminComponents/Section2AboutAdmin";
 import Section3AboutAdmin from "@/components/admin-components/aboutAdminComponents/Section3AboutAdmin";
 import Section4AboutAdmin from "@/components/admin-components/aboutAdminComponents/Section4AboutAdmin";
+import Section5AboutAdmin from "@/components/admin-components/aboutAdminComponents/Section5AboutAdmin";
 import Section6AboutAdmin from "@/components/admin-components/aboutAdminComponents/Section6AboutAdmin";
 import Section7AboutAdmin from "@/components/admin-components/aboutAdminComponents/Section7AboutAdmin";
 import Section8AboutAdmin from "@/components/admin-components/aboutAdminComponents/Section8AboutAdmin";
@@ -22,6 +23,7 @@ const AboutAdminPage = () => {
         <Section2AboutAdmin />
         <Section3AboutAdmin />
         <Section4AboutAdmin />
+        <Section5AboutAdmin />
         <Section6AboutAdmin />
         <Section7AboutAdmin />
         <Section8AboutAdmin />
