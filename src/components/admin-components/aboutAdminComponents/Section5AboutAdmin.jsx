@@ -62,7 +62,7 @@ const Section5AboutAdmin = () => {
     };
     getSection5AboutData();
     setIsClient(true);
-  }, [updateStatus, addStatus]);
+  }, [addStatus, updateStatus, deleteStatus]);
 
   const section5_slider1_update_delete = async (e) => {
     e.preventDefault();
@@ -111,13 +111,48 @@ const Section5AboutAdmin = () => {
       }
     }
     if (action === "delete") {
-      console.log(
-        "You Clicked section5_slider1_update_delete function to delete"
+      //   console.log(
+      //     "You Clicked section5_slider1_update_delete function to delete"
+      //   );
+      //   console.log("TargetSection: ", targetSection);
+      //   console.log("TargetIndex: ", targetIndex);
+      //   console.log("Heading: ", heading);
+      //   console.log("Quantity: ", quantity);
+      const decision2 = window.prompt(
+        "Type `please delete this` to delete or type `cancel` to cancel the operation: "
       );
-      console.log("TargetSection: ", targetSection);
-      console.log("TargetIndex: ", targetIndex);
-      console.log("Heading: ", heading);
-      console.log("Quantity: ", quantity);
+
+      if (decision2 === "please delete this") {
+        const id = data[0]?._id;
+
+        const res = await fetch(
+          `http://localhost:3000/api/about/section5_slider1/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              targetIndex: targetIndex,
+              targetSection: targetSection,
+            }),
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("section5_slider1 of About page couldn't be deleted");
+        }
+        if (res.ok) {
+          router.push("/admin/about");
+          router.refresh();
+          window.alert("section5_slider1 of About Model deleted successfully");
+        }
+        setDeleteStatus((prev) => !prev);
+      } else if (decision2 === "cancel") {
+        console.log("You cancelled the operation");
+      } else {
+        console.log("Invalid request");
+      }
     }
   };
 
@@ -141,11 +176,13 @@ const Section5AboutAdmin = () => {
       );
     }
     if (res.ok) {
+      setNewQuantity("");
+      setNewHeading("");
       router.push("/admin/about");
-      router.refresh();
       window.alert("section5_slider1 of About Model Added successfully");
+      router.refresh();
+      setAddStatus((prevValue) => !prevValue);
     }
-    setAddStatus(true);
   };
 
   return (
