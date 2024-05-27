@@ -15,7 +15,7 @@ const Section4AboutAdmin = () => {
   const [section4_Image, setImage] = useState([]);
   const [section4_ImgAlt, setImgAlt] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => { 
     const getSection4AboutData = async () => {
       const res = await fetch("http://localhost:3000/api/about", {
         cache: "no-store",

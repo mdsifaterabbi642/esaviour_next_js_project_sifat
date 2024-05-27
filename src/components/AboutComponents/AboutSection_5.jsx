@@ -5,7 +5,7 @@ import AboutSectionSliderSM from "./AboutSectionSliderSM";
 import AboutSectionSliderXL from "./AboutSectionSliderXL";
 
 const AboutSection_5 = () => {
-  return (
+  return ( 
     <>
       <div>
         <h1

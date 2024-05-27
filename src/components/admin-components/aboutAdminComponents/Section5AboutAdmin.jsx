@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Section5AboutAdmin = () => {
-  const router = useRouter();
+  const router = useRouter(); 
 
   const [data, setData] = useState([]);
   const [isClient, setIsClient] = useState(false);
