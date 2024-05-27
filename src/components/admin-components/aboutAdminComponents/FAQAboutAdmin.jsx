@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const FAQAboutAdmin = () => {
+const FAQAboutAdmin = () => { 
   const router = useRouter();
 
   const [data, setData] = useState([]);
