@@ -224,52 +224,6 @@ const Section7AboutAdmin = () => {
               key={index}
               className="mx-auto w-[40%] border-2 border-slate-400"
             >
-              {/* <div className="w-[300px] bg-base-100 shadow-xl">
-                <div className="py-[10px] px-[10px] w-[50%] h-[50%]">
-                  <Image
-                    src={item?.section7_ImgSource}
-                    alt={item?.section7_ImgAlt}
-                    width={300}
-                    height={200}
-                  />
-                </div>
-                <div className=" py-[10px] px-[10px]">
-                  <h2 className="">
-                    section7_Name:
-                    <span className="bg-sky-500 rounded-lg text-white text-[14px] px-[10px] text-center inline">
-                      {item?.section7_Name}
-                    </span>
-                  </h2>
-                  <h2 className="">
-                    section7_Designation:
-                    <span className="text-purple-500 text-[14px] px-[10px] text-center inline">
-                      {item?.section7_Designation}
-                    </span>
-                  </h2>
-                  <h2 className="">
-                    section7_Description:
-                    <span className="text-purple-500 text-[14px] px-[10px] text-center inline">
-                      {item?.section7_Description}
-                    </span>
-                  </h2>
-                  <h2 className="">
-                    section7_ImgSource:
-                    <span className="text-purple-500 text-[14px] px-[10px] text-center inline">
-                      {item?.section7_ImgSource}
-                    </span>
-                  </h2>
-                  <h2 className="">
-                    section7_ImgAlt:
-                    <span className="text-purple-500 text-[14px] px-[10px] text-center inline">
-                      {item?.section7_ImgAlt}
-                    </span>
-                  </h2>
-
-                  <div className="justify-end">
-                    <button className="btn btn-sm bg-green-500">Actions</button>
-                  </div>
-                </div>
-              </div> */}
               <form onSubmit={section7Submit2}>
                 <div className="flex flex-row flex-wrap">
                   <div className="w-[90%] mx-auto">

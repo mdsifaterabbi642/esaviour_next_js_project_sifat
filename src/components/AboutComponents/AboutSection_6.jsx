@@ -1,14 +1,55 @@
+// "use client";
+// import Image from "next/image";
+// import { About_Data } from "@/Data/About";
+// import { useEffect, useState } from "react";
+
 "use client";
 import Image from "next/image";
-import { About_Data } from "@/Data/About";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { About_Data } from "@/Data/About";
+
 const AboutSection_6 = () => {
+  const router = useRouter();
+
+  const [data, setData] = useState([]);
   const [isClient, setIsClient] = useState(false);
+  const [section6_Heading, setHeading] = useState("");
+  const [section6_SubHeading, setSubHeading] = useState("");
+  const [section6_Title, setTitle] = useState([]);
+  const [section6_Description, setDescription] = useState([]);
+  const [section6_Image, setImage] = useState([]);
+  const [section6_ImgAlt, setImgAlt] = useState([]);
+  const [targetIndex, setTargetIndex] = useState();
+  const [targetSection, setTargetSection] = useState("");
 
   useEffect(() => {
+    const getSection6AboutData = async () => {
+      const res = await fetch("http://localhost:3000/api/about", {
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const myJsonData = await res.json();
+      setData(myJsonData);
+
+      //adding default values to the form through state variable
+      setHeading(myJsonData[0]?.section6[0]?.section6_Heading);
+      setSubHeading(myJsonData[0]?.section6[0]?.section6_SubHeading);
+
+      setTitle(myJsonData[0]?.section6_6.map((item) => item.section6_Title));
+      setDescription(
+        myJsonData[0]?.section6_6.map((item) => item.section6_Description)
+      );
+      setImage(myJsonData[0]?.section6_6.map((item) => item.section6_Image));
+      setImgAlt(myJsonData[0]?.section6_6.map((item) => item.section6_ImgAlt));
+    };
+    getSection6AboutData();
     setIsClient(true);
   }, []);
+
   return (
     <>
       {/* ============ For large and extra large device only =================*/}
@@ -31,7 +72,7 @@ const AboutSection_6 = () => {
             <div className=" bg-[#40b0fd] xl:mt-[50px]">
               <h1 className="text-white lg:text-[28px] lg:font-bold xl:text-[36px] xl:font-semibold xl:px-[20px]">
                 {isClient ? (
-                  About_Data[4]?.section6[0]?.heading
+                  section6_Heading
                 ) : (
                   <div>
                     <span className="loading loading-ball loading-xs"></span>
@@ -43,7 +84,7 @@ const AboutSection_6 = () => {
               </h1>
               <div className="text-white lg:text-[18px] xl:text-[22px] xl:px-[20px]">
                 {isClient ? (
-                  About_Data[4]?.section6[0]?.subHeading
+                  section6_SubHeading
                 ) : (
                   <div>
                     <span className="loading loading-ball loading-xs"></span>
@@ -56,7 +97,7 @@ const AboutSection_6 = () => {
             </div>
           </div>
           {isClient ? (
-            About_Data[4]?.section6[1]?.items.map((item, index) => (
+            data[0]?.section6_6?.map((item, index) => (
               <div
                 key={index}
                 className="lg:basis-1/6 xl:basis-1/6 py-[30px] mx-auto"
@@ -64,17 +105,17 @@ const AboutSection_6 = () => {
                 <div className=" bg-white text-white">1</div>
                 <div>
                   <div className="text-white xl:text-[22px] xl:font-bold text-center">
-                    {item?.title}
+                    {section6_Title[index]}
                   </div>
                 </div>
                 <div className=" bg-white lg:h-[300px] xl:h-[300px] relative top-0 left-0">
                   <div className="spacegrotesk500 lg:text-[13px] lg:px-[10px] xl:text-[16px] xl:px-[40px] xl:py-[30px] xl:leading-[20px] text-justify">
-                    {item?.description}
+                    {section6_Description[index]}
                   </div>
                   <div className="absolute bottom-[-25px] right-[-10px] xl:w-[150px] xl:h-[150px]">
                     <Image
-                      src={item?.image}
-                      alt={item?.imgAlt}
+                      src={section6_Image[index]}
+                      alt={section6_ImgAlt[index]}
                       width="146"
                       height="138"
                       layout="responsive"
@@ -105,7 +146,7 @@ const AboutSection_6 = () => {
               <div className=" bg-[#40b0fd]">
                 <h1 className="text-white text-[22px] font-semibold px-[20px] text-center">
                   {isClient ? (
-                    About_Data[4]?.section6[0]?.heading
+                    section6_Heading
                   ) : (
                     <div>
                       <span className="loading loading-ball loading-xs"></span>
@@ -117,7 +158,7 @@ const AboutSection_6 = () => {
                 </h1>
                 <div className="dmsans700 text-white text-[14px] sm:text-[16px] px-[20px] font-extralight opacity-70 text-center pb-[10px]">
                   {isClient ? (
-                    About_Data[4]?.section6[0]?.subHeading
+                    section6_SubHeading
                   ) : (
                     <div>
                       <span className="loading loading-ball loading-xs"></span>
@@ -133,22 +174,22 @@ const AboutSection_6 = () => {
           <div className="basis-1/1">
             <div className="flex flex-row flex-wrap">
               {isClient ? (
-                About_Data[4]?.section6[1]?.items.map((item, index) => (
+                data[0]?.section6_6?.map((item, index) => (
                   <div key={index} className="basis-[47%] mx-auto">
                     <div className=" bg-white text-white">1</div>
                     <div>
                       <div className="text-white text-[16px] font-bold text-center">
-                        {item?.title}
+                        {section6_Title[index]}
                       </div>
                     </div>
                     <div className=" bg-white h-[250px] relative top-0 left-0">
                       <div className="dmsans700 text-[11px] sm:text-[16px] px-[10px] py-[10px] text-justify">
-                        {item?.description}
+                        {section6_Description[index]}
                       </div>
                       <div className="absolute bottom-[-15px] right-[-10px] w-[100px] h-[100px]">
                         <Image
-                          src={item?.image}
-                          alt={item?.imgAlt}
+                          src={section6_Image[index]}
+                          alt={section6_ImgAlt[index]}
                           width="146"
                           height="138"
                           layout="responsive"
