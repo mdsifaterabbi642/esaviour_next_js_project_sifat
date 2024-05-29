@@ -18,6 +18,19 @@ const BlogAdminPage = () => {
   const [alt, setAlt] = useState();
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
+  const [targetIndex, setTargetIndex] = useState();
+  const [action, setAction] = useState("");
+
+  //state variables for adding blog
+  const [addBannerTitle, setAddBannerTitle] = useState("");
+  const [addCategory, setAddCategory] = useState("");
+  const [addImageSource, setAddImageSource] = useState("");
+  const [addAlt, setAddAlt] = useState("");
+  const [addWidth, setAddWidth] = useState("");
+  const [addHeight, setAddHeight] = useState("");
+  const [addBodyTitle, setAddBodyTitle] = useState("");
+  const [addBodyDescription, setAddBodyDescription] = useState("");
+  const [addBlogDate, setAddBlogDate] = useState("");
 
   useEffect(() => {
     const getCategoryData = async () => {
@@ -84,33 +97,116 @@ const BlogAdminPage = () => {
   // console.log("single Blog: === ", myBlogData?.blogData[0]?.article[0]);
   // console.log("Accessing single blog bannerTitle: === ", myBlogData?.blogData[0]?.article[0]?.bannerTitle);
 
-  const blogSubmit = async (e) => {
+  const blogUpdateDelete = async (e) => {
     e.preventDefault();
-    console.log("New Title : ", bannerTitle);
-    console.log("New Category : ", category);
-    console.log("New Body Title: ", bodyTitle);
-    console.log("New Body Description: ", bodyDescription);
-    console.log("New Blog Date: ", blogDate);
-    console.log("New Image Source: ", imageSource);
-    console.log("New Image Alt: ", alt);
-    console.log("New Width: ", width);
-    console.log("New Height: ", height);
+
+    if (action === "update") {
+      const decision = window.prompt(
+        "Type `Update eSaviour blog` to update or type `Cancel` to cancel the operation"
+      );
+
+      if (decision === "Update eSaviour blog") {
+        console.log("You choosed to update");
+
+        const newBannerTitle = bannerTitle[targetIndex];
+        const newCategory = category[targetIndex];
+        const newImageSource = imageSource[targetIndex];
+        const newAlt = alt[targetIndex];
+        const newWidth = width[targetIndex];
+        const newHeight = height[targetIndex];
+        const newBodyTitle = bodyTitle[targetIndex];
+        const newBodyDescription = bodyDescription[targetIndex];
+        const newBlogDate = bodyDescription[targetIndex];
+
+        const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            targetIndex: targetIndex,
+            bannerTitle: newBannerTitle,
+            category: newCategory,
+            imageSource: newImageSource,
+            alt: newAlt,
+            width: newWidth,
+            height: newHeight,
+            bodyTitle: newBodyTitle,
+            bodyDescription: newBodyDescription,
+            blogDate: newBlogDate,
+          }),
+        });
+
+        if (!res.ok) {
+          throw new Error("Problem in Updating the Blog data");
+        }
+        if (res.ok) {
+          router.push("/admin/blog");
+          router.refresh();
+          window.alert("Blog data updated successfully");
+        }
+      } else if (decision === "Cancel") {
+        console.log("You Cancelled the operation");
+      } else {
+        console.log("Invalid Request");
+      }
+    }
+    if (action === "delete") {
+      const decision = window.prompt(
+        "Type `Delete eSaviour blog` to delete or type `Cancel` to cancel the operation"
+      );
+
+      if (decision === "Delete eSaviour blog") {
+        console.log("You choosed to delete the blog");
+      } else if (decision === "Cancel") {
+        console.log("You Cancelled the operation");
+      } else {
+        console.log("Invalid request");
+      }
+    }
+  };
+
+  const addBlog = async (e) => {
+    e.preventDefault();
+
+    if (addCategory === "") {
+      alert("PLease add category");
+    }
+    if (addCategory !== "") {
+      console.log("Clicked addBlog function");
+      console.log("addBannerTitle: ", addBannerTitle);
+      console.log("addCategory: ", addCategory);
+      console.log("addImageSource: ", addImageSource);
+      console.log("addAlt: ", addAlt);
+      console.log("addWidth: ", addWidth);
+      console.log("addHeight: ", addHeight);
+      console.log("addBodyTitle: ", addBodyTitle);
+      console.log("addBodyDescription: ", addBodyDescription);
+      console.log("addBlogDate: ", addBlogDate);
+    }
   };
 
   return (
     <div>
       <div className="w-[98%] mx-auto h-screen overflow-y-auto">
-        <h1>Blog Admin page</h1>
         <h1 className="text-center font-extrabold text-gray-500 text-[26px] pt-[50px] pb-[20px]">
           Customize All Blogs ⚙👇👇👇
         </h1>
+        <div>
+          <button
+            onClick={() => document.getElementById("addBlog").showModal()}
+            className="btn btn-sm bg-green-500 text-white fixed"
+          >
+            Add Blog
+          </button>
+        </div>
         {isClient ? (
           <div className="border px-[5px] py-[5px] flex flex-row flex-wrap gap-3 justify-center">
             {myBlogData?.blogData[0]?.article.map((item, index) => (
               <div key={index} className="shadow-xl w-[350px] bg-sky-100">
                 <div className=" py-[10px] px-[10px]">
                   <form
-                    onSubmit={blogSubmit}
+                    onSubmit={blogUpdateDelete}
                     className="w-[100%] mx-auto border-2 border-slate-400"
                   >
                     <div className="flex flex-col flex-wrap">
@@ -403,13 +499,31 @@ const BlogAdminPage = () => {
                         )}
                       </div>
 
-                      <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
-                        <button
-                          type="btn btn-sm"
-                          className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
-                        >
-                          Update
-                        </button>
+                      <div className="flex justify-between py-[10px] px-[10px]">
+                        <div>
+                          <button
+                            onClick={() => {
+                              setTargetIndex(index);
+                              setAction("update");
+                            }}
+                            type="btn btn-sm"
+                            className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                          >
+                            Update
+                          </button>
+                        </div>
+                        <div>
+                          <button
+                            onClick={() => {
+                              setTargetIndex(index);
+                              setAction("delete");
+                            }}
+                            type="btn btn-sm"
+                            className="btn btn-sm bg-red-500 text-white hover:bg-orange-500 hover: cursor-pointer"
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </form>
@@ -421,6 +535,190 @@ const BlogAdminPage = () => {
           <div>Loading</div>
         )}
       </div>
+      {/* add blog form */}
+      <dialog id="addBlog" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Add Blog</h3>
+          <div>
+            <form onSubmit={addBlog}>
+              <div className="flex flex-col flex-wrap">
+                <div className="w-[98%] mx-auto">
+                  <label
+                    htmlFor="bannerTitle"
+                    className="text-gray-600  font-bold"
+                  >
+                    bannerTitle:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="bannerTitle"
+                    name="bannerTitle"
+                    placeholder="add banner Title"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    value={addBannerTitle}
+                    onChange={(e) => setAddBannerTitle(e.target.value)}
+                    required={true}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label
+                    htmlFor="category"
+                    className="text-gray-600  font-bold"
+                  >
+                    category:
+                  </label>
+
+                  <select
+                    type="text"
+                    id="category"
+                    name="category"
+                    className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[80px] max-h-[100px] border-none text-left bg-slate-600 text-white rounded-md"
+                    //value={addCategory}
+                    onChange={(e) => setAddCategory(e.target.value)}
+                    required={true}
+                    defaultValue="ABCDE"
+                  >
+                    <option value="ABCDE" disabled>
+                      Select a category
+                    </option>
+                    {categoryData[0]?.category.map((item, index) => (
+                      <option key={index} value={item.categoryName}>
+                        {item.categoryName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label
+                    htmlFor="imageSource"
+                    className="text-gray-600  font-bold"
+                  >
+                    imageSource:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="imageSource"
+                    name="imageSource"
+                    placeholder="add imageSource"
+                    className="w-[98%] h-[50px] min-h-[50px] max-h-[70px] px-[5px] pt-[5px] border-none text-left bg-slate-600 text-white"
+                    value={addImageSource}
+                    onChange={(e) => setAddImageSource(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label htmlFor="alt" className="text-gray-600  font-bold">
+                    alt:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="alt"
+                    name="alt"
+                    placeholder="Add image alt tag"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    value={addAlt}
+                    onChange={(e) => setAddAlt(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label htmlFor="width" className="text-gray-600  font-bold">
+                    width:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="width"
+                    name="width"
+                    placeholder="Add image width in pixel"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    value={addWidth}
+                    onChange={(e) => setAddWidth(e.target.value)}
+                  />
+                </div>
+                <div className="w-[98%] mx-auto">
+                  <label htmlFor="width" className="text-gray-600  font-bold">
+                    height:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="height"
+                    name="height"
+                    placeholder="Add image height in pixel"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    value={addHeight}
+                    onChange={(e) => setAddHeight(e.target.value)}
+                  />
+                </div>
+
+                <div className="w-[98%] mx-auto">
+                  <label
+                    htmlFor="bodyTitle"
+                    className="text-gray-600  font-bold"
+                  >
+                    bodyTitle:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="bodyTitle"
+                    name="bodyTitle"
+                    placeholder="Add body title for blog"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    value={addBodyTitle}
+                    onChange={(e) => setAddBodyTitle(e.target.value)}
+                    required={true}
+                  />
+                </div>
+
+                <div className="w-[98%] mx-auto">
+                  <label
+                    htmlFor="bodyDescription"
+                    className="text-gray-600  font-bold"
+                  >
+                    bodyDescription:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="bodyDescription"
+                    name="bodyDescription"
+                    placeholder="Add body description for blog"
+                    className="w-[98%] px-[5px] pt-[5px] h-[150px] min-h-[100px] max-h-[250px] border-none text-left bg-slate-600 text-white"
+                    value={addBodyDescription}
+                    onChange={(e) => setAddBodyDescription(e.target.value)}
+                    required={true}
+                  />
+                </div>
+
+                <div className="w-[98%] mx-auto">
+                  <label
+                    htmlFor="blogDate"
+                    className="text-gray-600  font-bold"
+                  >
+                    blogDate:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="blogDate"
+                    name="blogDate"
+                    placeholder="Add blog date for blog"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    value={addBlogDate}
+                    onChange={(e) => setAddBlogDate(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="text-center mt-[20px]">
+                <button className="btn btn-sm bg-green-500 text-white">
+                  Add Blog
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

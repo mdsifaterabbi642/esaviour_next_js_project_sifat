@@ -64,7 +64,7 @@ export const POST = async (request) => {
       });
     }
 
-    //validating unique fields (bannerTitle)
+    //validating unique fields (bannerTitle and bodyTitle)
     const duplicateTitle = newBlogData[0].article.find((item) => {
       return item.bannerTitle === bannerTitle || item.bodyTitle === bodyTitle;
     });
@@ -190,7 +190,7 @@ export const PATCH = async (request, { params }) => {
 
       allBlogs[0].article[targetIndex].category = category;
 
-      //also updating categorySlug based on categoryss
+      //also updating categorySlug based on category
       // Remove any leading/trailing spaces
       const trimmedCategory = category.trim();
       // Replace spaces with underscores
@@ -234,7 +234,7 @@ export const PATCH = async (request, { params }) => {
     await allBlogs[0].save();
 
     let responseBody = {
-      message: "You are in PATCH api in /api/blog/myblog/[id]",
+      message: "You are in PATCH api in /api/blog/myblog",
       targetBlog: targetBlog,
     };
 
