@@ -605,7 +605,7 @@ const HomeTabContentAdmin = () => {
 
 
       {isClient ? (
-        <div className="flex flex-row flex-wrap gap-2 my-[10px] lg:px-[100px]">
+        <div className="flex flex-row flex-wrap gap-2 my-[10px] lg:px-[5px] justify-center">
           {amazonData?.map((amaItem, index) => (
             <div key={index}>
               <form
