@@ -10,8 +10,6 @@ const blogSchema = new mongoose.Schema(
         categorySlug: { type: String },
         imageSource: { type: String },
         alt: { type: String },
-        width: { type: String },
-        height: { type: String },
         bodyTitle: { type: String, required: true, unique: true },
         bodyDescription: { type: String, required: true },
         blogDate: { type: String },

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import connectDB from "@/utils/db";
 import Category from "@/models/Category";
 
+// get all categories
 export const GET = async (request) => {
   try {
     await connectDB();

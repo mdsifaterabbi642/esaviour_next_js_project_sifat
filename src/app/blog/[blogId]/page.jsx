@@ -11,10 +11,39 @@ const SingleBlogPage = ({ params }) => {
   const { blogId } = params;
 
   const [isClient, setIsClient] = useState(false);
+  const [singleBlog, setSingleBlog] = useState({});
+  const [myImageSource, setMyImageSource] = useState("");
+  const [myImageAlt, setMyImageAlt] = useState("");
 
   useEffect(() => {
+    const getSingleBlog = async () => {
+      const res = await fetch(`http://localhost:3000/api/blog/${blogId}`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Error in fetching Single Blog");
+      }
+      if (res.ok) {
+        const data = await res.json();
+        setSingleBlog(data?.singleBlog);
+        setMyImageSource(data?.singleBlog?.imageSource);
+        setMyImageAlt(data?.singleBlog?.alt);
+      }
+    };
+
+    getSingleBlog();
+
     setIsClient(true);
-  }, []);
+  }, [blogId]);
+
+  //console.log("++++++++", singleBlog);
+  console.log("=======imageSource: ", singleBlog.imageSource);
+  console.log("=======type of imageSource: ", typeof singleBlog.imageSource);
+  console.log("====== alt: ", singleBlog.alt);
 
   // Find the blog object with the matching blogId
   const blog = BlogData.find(
@@ -27,14 +56,14 @@ const SingleBlogPage = ({ params }) => {
         <Navbar />
         <div className="py-[50px]">
           {/* ====== Image div starts from here =========*/}
-          {/* <div className="w-[90vw] md:w-[70vw] mx-auto">
+          <div className="w-[90vw] md:w-[70vw] mx-auto">
             <div className="w-[100%] xl:w-[70%] mx-auto">
               {isClient ? (
                 <Image
-                  src={blog?.imageSource}
-                  alt={blog?.alt}
-                  width={blog?.width}
-                  height={blog?.height}
+                  src={myImageSource}
+                  alt={myImageAlt}
+                  width={300}
+                  height={300}
                   layout="responsive"
                 />
               ) : (
@@ -47,13 +76,13 @@ const SingleBlogPage = ({ params }) => {
                 </div>
               )}
             </div>
-          </div> */}
+          </div>
           {/* ====== Image div ended here =========*/}
-          {/* <div className="w-[90vw] md:w-[70vw] mx-auto py-[30px] text-left">
+          <div className="w-[90vw] md:w-[70vw] mx-auto py-[30px] text-left">
             {isClient ? (
               <h2 className="bg-slate-700 text-white px-[5px] py-[2px] rounded-sm">
                 {" "}
-                {blog?.blogDate}
+                {singleBlog?.blogDate}
               </h2>
             ) : (
               <div>
@@ -66,7 +95,7 @@ const SingleBlogPage = ({ params }) => {
 
             <h2 className="font-extrabold text-[26px]">
               {isClient ? (
-                blog?.bodyTitle
+                singleBlog?.bodyTitle
               ) : (
                 <div>
                   <span className="loading loading-spinner loading-xs"></span>
@@ -78,7 +107,7 @@ const SingleBlogPage = ({ params }) => {
             </h2>
             <div className="badge badge-info gap-2">
               {isClient ? (
-                blog?.category
+                singleBlog?.category
               ) : (
                 <div>
                   <span className="loading loading-spinner loading-xs"></span>
@@ -88,11 +117,11 @@ const SingleBlogPage = ({ params }) => {
                 </div>
               )}
             </div>
-          </div> */}
-          {/* <div className="w-[90vw] md:w-[70vw] mx-auto text-left py-[20px]">
+          </div>
+          <div className="w-[90vw] md:w-[70vw] mx-auto text-left py-[20px]">
             <div className="font-normal text-[16px] italic">
               {isClient ? (
-                blog?.bodyDescription
+                singleBlog?.bodyDescription
               ) : (
                 <div>
                   <span className="loading loading-spinner loading-xs"></span>
@@ -102,7 +131,7 @@ const SingleBlogPage = ({ params }) => {
                 </div>
               )}
             </div>
-          </div> */}
+          </div>
           <div className="w-[90vw] md:w-[70vw] mx-auto text-left py-[10px]">
             <Link href="/blog">
               <GoReply

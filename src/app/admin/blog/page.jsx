@@ -16,8 +16,6 @@ const BlogAdminPage = () => {
   const [blogDate, setBlogDate] = useState();
   const [imageSource, setImageSource] = useState();
   const [alt, setAlt] = useState();
-  const [width, setWidth] = useState();
-  const [height, setHeight] = useState();
   const [blogId, setBlogId] = useState();
   const [targetIndex, setTargetIndex] = useState();
   const [action, setAction] = useState("");
@@ -28,8 +26,6 @@ const BlogAdminPage = () => {
   const [addCategory, setAddCategory] = useState("");
   const [addImageSource, setAddImageSource] = useState("");
   const [addAlt, setAddAlt] = useState("");
-  const [addWidth, setAddWidth] = useState("");
-  const [addHeight, setAddHeight] = useState("");
   const [addBodyTitle, setAddBodyTitle] = useState("");
   const [addBodyDescription, setAddBodyDescription] = useState("");
   const [addBlogDate, setAddBlogDate] = useState("");
@@ -86,12 +82,6 @@ const BlogAdminPage = () => {
         myJsonData?.blogData[0]?.article.map((item, index) => item.imageSource)
       );
       setAlt(myJsonData?.blogData[0]?.article.map((item, index) => item.alt));
-      setWidth(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.width)
-      );
-      setHeight(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.height)
-      );
     };
 
     getCategoryData();
@@ -124,6 +114,9 @@ const BlogAdminPage = () => {
       setMyBlogData(myJsonData);
 
       //setting up default values to populate form fields
+      setBlogId(
+        myJsonData?.blogData[0]?.article.map((item, index) => item.blogId)
+      );
       setBannerTitle(
         myJsonData?.blogData[0]?.article.map((item, index) => item.bannerTitle)
       );
@@ -145,12 +138,6 @@ const BlogAdminPage = () => {
         myJsonData?.blogData[0]?.article.map((item, index) => item.imageSource)
       );
       setAlt(myJsonData?.blogData[0]?.article.map((item, index) => item.alt));
-      setWidth(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.width)
-      );
-      setHeight(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.height)
-      );
     };
 
     getCategoryData();
@@ -179,8 +166,6 @@ const BlogAdminPage = () => {
         const newCategory = category[targetIndex];
         const newImageSource = imageSource[targetIndex];
         const newAlt = alt[targetIndex];
-        const newWidth = width[targetIndex];
-        const newHeight = height[targetIndex];
         const newBodyTitle = bodyTitle[targetIndex];
         const newBodyDescription = bodyDescription[targetIndex];
         const newBlogDate = blogDate[targetIndex];
@@ -197,8 +182,6 @@ const BlogAdminPage = () => {
             category: newCategory,
             imageSource: newImageSource,
             alt: newAlt,
-            width: newWidth,
-            height: newHeight,
             bodyTitle: newBodyTitle,
             bodyDescription: newBodyDescription,
             blogDate: newBlogDate,
@@ -267,8 +250,6 @@ const BlogAdminPage = () => {
       // console.log("addCategory: ", addCategory);
       // console.log("addImageSource: ", addImageSource);
       // console.log("addAlt: ", addAlt);
-      // console.log("addWidth: ", addWidth);
-      // console.log("addHeight: ", addHeight);
       // console.log("addBodyTitle: ", addBodyTitle);
       // console.log("addBodyDescription: ", addBodyDescription);
       // console.log("addBlogDate: ", addBlogDate);
@@ -285,8 +266,6 @@ const BlogAdminPage = () => {
           category: addCategory,
           imageSource: addImageSource,
           alt: addAlt,
-          width: addWidth,
-          height: addHeight,
           bodyTitle: addBodyTitle,
           bodyDescription: addBodyDescription,
           blogDate: addBlogDate,
@@ -590,68 +569,6 @@ const BlogAdminPage = () => {
                         )}
                       </div>
 
-                      <div className="w-[98%] mx-auto">
-                        <label
-                          for="width"
-                          className="text-gray-600  font-bold text-xl"
-                        >
-                          width
-                        </label>
-                        {isClient ? (
-                          <textarea
-                            type="text"
-                            id="width"
-                            name="width"
-                            className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[50px] max-h-[80px] h-[50px] border-none text-left bg-slate-600 text-white rounded-md"
-                            value={width[index]}
-                            onChange={(e) => {
-                              const updatedWidth = width.map((item, i) =>
-                                i === index ? e.target.value : item
-                              );
-                              setWidth(updatedWidth);
-                            }}
-                          />
-                        ) : (
-                          <div>
-                            <span className="loading loading-bars loading-xs"></span>
-                            <span className="loading loading-bars loading-sm"></span>
-                            <span className="loading loading-bars loading-md"></span>
-                            <span className="loading loading-bars loading-lg"></span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="w-[98%] mx-auto">
-                        <label
-                          for="height"
-                          className="text-gray-600  font-bold text-xl"
-                        >
-                          height
-                        </label>
-                        {isClient ? (
-                          <textarea
-                            type="text"
-                            id="height"
-                            name="height"
-                            className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[50px] max-h-[80px] h-[50px] border-none text-left bg-slate-600 text-white rounded-md"
-                            value={height[index]}
-                            onChange={(e) => {
-                              const updatedHeight = height.map((item, i) =>
-                                i === index ? e.target.value : item
-                              );
-                              setHeight(updatedHeight);
-                            }}
-                          />
-                        ) : (
-                          <div>
-                            <span className="loading loading-bars loading-xs"></span>
-                            <span className="loading loading-bars loading-sm"></span>
-                            <span className="loading loading-bars loading-md"></span>
-                            <span className="loading loading-bars loading-lg"></span>
-                          </div>
-                        )}
-                      </div>
-
                       <div className="flex justify-between py-[10px] px-[10px]">
                         <div>
                           <button
@@ -789,34 +706,6 @@ const BlogAdminPage = () => {
                     className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
                     value={addAlt}
                     onChange={(e) => setAddAlt(e.target.value)}
-                  />
-                </div>
-                <div className="w-[98%] mx-auto">
-                  <label htmlFor="width" className="text-gray-600  font-bold">
-                    width:
-                  </label>
-                  <textarea
-                    type="text"
-                    id="width"
-                    name="width"
-                    placeholder="Add image width in pixel"
-                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
-                    value={addWidth}
-                    onChange={(e) => setAddWidth(e.target.value)}
-                  />
-                </div>
-                <div className="w-[98%] mx-auto">
-                  <label htmlFor="width" className="text-gray-600  font-bold">
-                    height:
-                  </label>
-                  <textarea
-                    type="text"
-                    id="height"
-                    name="height"
-                    placeholder="Add image height in pixel"
-                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
-                    value={addHeight}
-                    onChange={(e) => setAddHeight(e.target.value)}
                   />
                 </div>
 

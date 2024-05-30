@@ -30,8 +30,6 @@ export const POST = async (request) => {
       category,
       imageSource,
       alt,
-      width,
-      height,
       bodyTitle,
       bodyDescription,
       blogDate,
@@ -136,8 +134,6 @@ export const POST = async (request) => {
       imageSource: imageSource,
       alt: alt,
       blogDate: blogDate,
-      width: width,
-      height: height,
       blogId: blogId,
     });
 
@@ -152,8 +148,6 @@ export const POST = async (request) => {
       imageSource: imageSource,
       alt: alt,
       blogDate: blogDate,
-      width: width,
-      height: height,
       blogId: blogId,
     };
     return new NextResponse(JSON.stringify(responseBody), { status: 200 });
@@ -172,8 +166,6 @@ export const PATCH = async (request, { params }) => {
       category,
       imageSource,
       alt,
-      width,
-      height,
       bodyTitle,
       bodyDescription,
       blogDate,
@@ -228,12 +220,7 @@ export const PATCH = async (request, { params }) => {
     if (alt) {
       allBlogs[0].article[targetIndex].alt = alt;
     }
-    if (width) {
-      allBlogs[0].article[targetIndex].width = width;
-    }
-    if (height) {
-      allBlogs[0].article[targetIndex].height = height;
-    }
+    
     if (bodyTitle) {
       // validating unique bodyTitle
       //validating unique fields (bannerTitle)
