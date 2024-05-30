@@ -37,7 +37,7 @@ export const POST = async (request) => {
       blogDate,
     } = await request.json();
 
-    //required fields are: bannerTitle, category, bodyTitle, bodyDescription
+    //required fields are: bannerTitle, category, bodyTitle, bodyDescription, blogId
 
     // Create a new blog entry when no data exists in the Model
     //const newBlogData = await Blog.create({}); //this will create an empty array of object
@@ -50,7 +50,8 @@ export const POST = async (request) => {
       bannerTitle === "" ||
       category === "" ||
       bodyTitle === "" ||
-      bodyDescription === ""
+      bodyDescription === "" ||
+      blogId === ""
     ) {
       return new NextResponse("Required fields can't left empty", {
         status: 500,
@@ -58,7 +59,13 @@ export const POST = async (request) => {
     }
 
     //validating required fields are not missing
-    if (!bannerTitle || !category || !bodyTitle || !bodyDescription) {
+    if (
+      !bannerTitle ||
+      !category ||
+      !bodyTitle ||
+      !bodyDescription ||
+      !blogId
+    ) {
       return new NextResponse("Required fields are missing", {
         status: 500,
       });
@@ -170,6 +177,7 @@ export const PATCH = async (request, { params }) => {
       bodyTitle,
       bodyDescription,
       blogDate,
+      blogId,
     } = await request.json();
 
     await connectDB();
@@ -246,6 +254,9 @@ export const PATCH = async (request, { params }) => {
     }
     if (blogDate) {
       allBlogs[0].article[targetIndex].blogDate = blogDate;
+    }
+    if (blogId) {
+      allBlogs[0].article[targetIndex].blogId = blogId;
     }
 
     await allBlogs[0].save();

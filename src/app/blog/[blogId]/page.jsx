@@ -27,7 +27,7 @@ const SingleBlogPage = ({ params }) => {
         <Navbar />
         <div className="py-[50px]">
           {/* ====== Image div starts from here =========*/}
-          <div className="w-[90vw] md:w-[70vw] mx-auto">
+          {/* <div className="w-[90vw] md:w-[70vw] mx-auto">
             <div className="w-[100%] xl:w-[70%] mx-auto">
               {isClient ? (
                 <Image
@@ -47,14 +47,14 @@ const SingleBlogPage = ({ params }) => {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
           {/* ====== Image div ended here =========*/}
-          <div className="w-[90vw] md:w-[70vw] mx-auto py-[30px] text-left">
+          {/* <div className="w-[90vw] md:w-[70vw] mx-auto py-[30px] text-left">
             {isClient ? (
-              <span className="bg-slate-700 text-white px-[5px] py-[2px] rounded-sm">
+              <h2 className="bg-slate-700 text-white px-[5px] py-[2px] rounded-sm">
                 {" "}
                 {blog?.blogDate}
-              </span>
+              </h2>
             ) : (
               <div>
                 <span className="loading loading-spinner loading-xs"></span>
@@ -88,8 +88,8 @@ const SingleBlogPage = ({ params }) => {
                 </div>
               )}
             </div>
-          </div>
-          <div className="w-[90vw] md:w-[70vw] mx-auto text-left py-[20px]">
+          </div> */}
+          {/* <div className="w-[90vw] md:w-[70vw] mx-auto text-left py-[20px]">
             <div className="font-normal text-[16px] italic">
               {isClient ? (
                 blog?.bodyDescription
@@ -102,7 +102,7 @@ const SingleBlogPage = ({ params }) => {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
           <div className="w-[90vw] md:w-[70vw] mx-auto text-left py-[10px]">
             <Link href="/blog">
               <GoReply

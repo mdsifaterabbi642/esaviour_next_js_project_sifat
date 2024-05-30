@@ -18,10 +18,12 @@ const BlogAdminPage = () => {
   const [alt, setAlt] = useState();
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
+  const [blogId, setBlogId] = useState();
   const [targetIndex, setTargetIndex] = useState();
   const [action, setAction] = useState("");
 
   //state variables for adding blog
+  const [addBlogId, setAddBlogId] = useState();
   const [addBannerTitle, setAddBannerTitle] = useState("");
   const [addCategory, setAddCategory] = useState("");
   const [addImageSource, setAddImageSource] = useState("");
@@ -60,6 +62,9 @@ const BlogAdminPage = () => {
       setMyBlogData(myJsonData);
 
       //setting up default values to populate form fields
+      setBlogId(
+        myJsonData?.blogData[0]?.article.map((item, index) => item.blogId)
+      );
       setBannerTitle(
         myJsonData?.blogData[0]?.article.map((item, index) => item.bannerTitle)
       );
@@ -178,7 +183,8 @@ const BlogAdminPage = () => {
         const newHeight = height[targetIndex];
         const newBodyTitle = bodyTitle[targetIndex];
         const newBodyDescription = bodyDescription[targetIndex];
-        const newBlogDate = bodyDescription[targetIndex];
+        const newBlogDate = blogDate[targetIndex];
+        const newBlogId = blogId[targetIndex];
 
         const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
           method: "PATCH",
@@ -196,6 +202,7 @@ const BlogAdminPage = () => {
             bodyTitle: newBodyTitle,
             bodyDescription: newBodyDescription,
             blogDate: newBlogDate,
+            blogId: newBlogId,
           }),
         });
 
@@ -265,6 +272,7 @@ const BlogAdminPage = () => {
       // console.log("addBodyTitle: ", addBodyTitle);
       // console.log("addBodyDescription: ", addBodyDescription);
       // console.log("addBlogDate: ", addBlogDate);
+      //console.log("addBlogId: ", addBlogId);
 
       const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
         method: "POST",
@@ -272,6 +280,7 @@ const BlogAdminPage = () => {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
+          blogId: addBlogId,
           bannerTitle: addBannerTitle,
           category: addCategory,
           imageSource: addImageSource,
@@ -323,6 +332,37 @@ const BlogAdminPage = () => {
                     className="w-[100%] mx-auto border-2 border-slate-400"
                   >
                     <div className="flex flex-col flex-wrap">
+                      <div className="w-[98%] mx-auto">
+                        <label
+                          for="blogId"
+                          className="text-gray-600  font-bold text-xl"
+                        >
+                          blogId
+                        </label>
+                        {isClient ? (
+                          <textarea
+                            type="text"
+                            id="blogId"
+                            name="blogId"
+                            className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[100px] max-h-[150px] border-none text-left bg-slate-600 text-white rounded-md"
+                            value={blogId[index]}
+                            onChange={(e) => {
+                              const updatedBlogId = blogId.map((item, i) =>
+                                i === index ? e.target.value : item
+                              );
+                              setBlogId(updatedBlogId);
+                            }}
+                          />
+                        ) : (
+                          <div>
+                            <span className="loading loading-bars loading-xs"></span>
+                            <span className="loading loading-bars loading-sm"></span>
+                            <span className="loading loading-bars loading-md"></span>
+                            <span className="loading loading-bars loading-lg"></span>
+                          </div>
+                        )}
+                      </div>
+
                       <div className="w-[98%] mx-auto">
                         <label
                           for="bannerTitle"
@@ -655,6 +695,25 @@ const BlogAdminPage = () => {
           <div>
             <form onSubmit={addBlog}>
               <div className="flex flex-col flex-wrap">
+                <div className="w-[98%] mx-auto">
+                  <label
+                    htmlFor="addBlogId"
+                    className="text-gray-600  font-bold"
+                  >
+                    blogId:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="addBlogId"
+                    name="addBlogId"
+                    placeholder="add Blog Id"
+                    className="w-[98%] px-[5px] pt-[5px] h-[50px] min-h-[50px] max-h-[100px] border-none text-left bg-slate-600 text-white"
+                    value={addBlogId}
+                    onChange={(e) => setAddBlogId(e.target.value)}
+                    required={true}
+                  />
+                </div>
+
                 <div className="w-[98%] mx-auto">
                   <label
                     htmlFor="bannerTitle"
