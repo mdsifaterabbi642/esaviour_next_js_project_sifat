@@ -31,6 +31,9 @@ const BlogAdminPage = () => {
   const [addBodyTitle, setAddBodyTitle] = useState("");
   const [addBodyDescription, setAddBodyDescription] = useState("");
   const [addBlogDate, setAddBlogDate] = useState("");
+  //===================================
+  const [blogAddStatus, setBlogAddStatus] = useState(false);
+  const [blogDeleteStatus, setBlogDeleteStatus] = useState(false);
 
   useEffect(() => {
     const getCategoryData = async () => {
@@ -90,6 +93,65 @@ const BlogAdminPage = () => {
     getBlogData();
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    const getCategoryData = async () => {
+      const res = await fetch(`http://localhost:3000/api/blog/category`, {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch category data");
+      }
+
+      const myJsonData = await res.json();
+      setCategoryData(myJsonData);
+    };
+
+    const getBlogData = async () => {
+      const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch blog data");
+      }
+      const myJsonData = await res.json();
+      setMyBlogData(myJsonData);
+
+      //setting up default values to populate form fields
+      setBannerTitle(
+        myJsonData?.blogData[0]?.article.map((item, index) => item.bannerTitle)
+      );
+      setCategory(
+        myJsonData?.blogData[0]?.article.map((item, index) => item.category)
+      );
+      setBodyTitle(
+        myJsonData?.blogData[0]?.article.map((item, index) => item.bodyTitle)
+      );
+      setBodyDescription(
+        myJsonData?.blogData[0]?.article.map(
+          (item, index) => item.bodyDescription
+        )
+      );
+      setBlogDate(
+        myJsonData?.blogData[0]?.article.map((item, index) => item.blogDate)
+      );
+      setImageSource(
+        myJsonData?.blogData[0]?.article.map((item, index) => item.imageSource)
+      );
+      setAlt(myJsonData?.blogData[0]?.article.map((item, index) => item.alt));
+      setWidth(
+        myJsonData?.blogData[0]?.article.map((item, index) => item.width)
+      );
+      setHeight(
+        myJsonData?.blogData[0]?.article.map((item, index) => item.height)
+      );
+    };
+
+    getCategoryData();
+    getBlogData();
+    setIsClient(true);
+  }, [blogAddStatus, blogDeleteStatus]);
 
   //console.log("All categories: ", categoryData[0]?.category);
   // console.log("Single category: ", categoryData[0]?.category[0]?.categoryName);
@@ -158,6 +220,25 @@ const BlogAdminPage = () => {
 
       if (decision === "Delete eSaviour blog") {
         console.log("You choosed to delete the blog");
+        const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            targetIndex: targetIndex,
+          }),
+        });
+
+        if (!res.ok) {
+          throw new Error("Not Deleted");
+        }
+        if (res.ok) {
+          router.push("/admin/blog");
+          router.refresh();
+          window.alert("Blog data deleted successfully");
+          setBlogDeleteStatus((prev) => !prev);
+        }
       } else if (decision === "Cancel") {
         console.log("You Cancelled the operation");
       } else {
@@ -171,18 +252,50 @@ const BlogAdminPage = () => {
 
     if (addCategory === "") {
       alert("PLease add category");
+      document.getElementById("addBlog").close();
     }
     if (addCategory !== "") {
       console.log("Clicked addBlog function");
-      console.log("addBannerTitle: ", addBannerTitle);
-      console.log("addCategory: ", addCategory);
-      console.log("addImageSource: ", addImageSource);
-      console.log("addAlt: ", addAlt);
-      console.log("addWidth: ", addWidth);
-      console.log("addHeight: ", addHeight);
-      console.log("addBodyTitle: ", addBodyTitle);
-      console.log("addBodyDescription: ", addBodyDescription);
-      console.log("addBlogDate: ", addBlogDate);
+      // console.log("addBannerTitle: ", addBannerTitle);
+      // console.log("addCategory: ", addCategory);
+      // console.log("addImageSource: ", addImageSource);
+      // console.log("addAlt: ", addAlt);
+      // console.log("addWidth: ", addWidth);
+      // console.log("addHeight: ", addHeight);
+      // console.log("addBodyTitle: ", addBodyTitle);
+      // console.log("addBodyDescription: ", addBodyDescription);
+      // console.log("addBlogDate: ", addBlogDate);
+
+      const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          bannerTitle: addBannerTitle,
+          category: addCategory,
+          imageSource: addImageSource,
+          alt: addAlt,
+          width: addWidth,
+          height: addHeight,
+          bodyTitle: addBodyTitle,
+          bodyDescription: addBodyDescription,
+          blogDate: addBlogDate,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Blog not created");
+      }
+      if (res.ok) {
+        router.push("/admin/blog");
+        router.refresh();
+        window.alert("Blog created successfully");
+
+        setBlogAddStatus((prev) => !prev);
+
+        document.getElementById("addBlog").close();
+      }
     }
   };
 

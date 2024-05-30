@@ -65,43 +65,60 @@ export const POST = async (request) => {
     }
 
     //validating unique fields (bannerTitle and bodyTitle)
-    const duplicateTitle = newBlogData[0].article.find((item) => {
-      return item.bannerTitle === bannerTitle || item.bodyTitle === bodyTitle;
-    });
-
-    if (duplicateTitle) {
-      return new NextResponse("This bannerTitle or bodytitle already exists", {
-        status: 400,
+    if (bannerTitle.lenght > 0) {
+      const duplicateTitle = newBlogData[0].article.find((item) => {
+        return item.bannerTitle === bannerTitle;
       });
+      if (duplicateTitle) {
+        return new NextResponse("This bannerTitle already exists", {
+          status: 400,
+        });
+      }
+    }
+
+    if (bodyTitle.length > 0) {
+      const duplicateTitle = newBlogData[0].article.find((item) => {
+        return item.bodyTitle === bodyTitle;
+      });
+      if (duplicateTitle) {
+        return new NextResponse("This bodytitle already exists", {
+          status: 400,
+        });
+      }
     }
 
     //validating unique fields (blogId)
-    const duplicateBlogId = newBlogData[0].article.find((item) => {
-      return item.blogId === blogId;
-    });
-
-    if (duplicateBlogId) {
-      return new NextResponse("duplicate Blog Id ", {
-        status: 400,
+    if (blogId) {
+      const duplicateBlogId = newBlogData[0].article.find((item) => {
+        return item.blogId === blogId;
       });
+      if (duplicateBlogId) {
+        return new NextResponse("duplicate Blog Id ", {
+          status: 400,
+        });
+      }
     }
 
     //validating the category is present in the category Model or not
-    const searchValidCategory = allCategories[0].category.find((item) => {
-      return item.categoryName === category;
-    });
-
-    if (!searchValidCategory) {
-      return new NextResponse("Category not valid", {
-        status: 200,
+    if (category) {
+      const searchValidCategory = allCategories[0].category.find((item) => {
+        return item.categoryName === category;
       });
+      if (!searchValidCategory) {
+        return new NextResponse("Category not valid", {
+          status: 200,
+        });
+      }
     }
 
-    //now creating categorySlug
-    // Remove any leading/trailing spaces
-    const trimmedCategory = category.trim();
-    // Replace spaces with underscores
-    const slug = trimmedCategory.replace(/\s+/g, "_").toLowerCase();
+    //now creating categorySlug from category
+    let slug;
+    if (category) {
+      // Remove any leading/trailing spaces
+      const trimmedCategory = category.trim();
+      // Replace spaces with underscores
+      slug = trimmedCategory.replace(/\s+/g, "_").toLowerCase();
+    }
 
     newBlogData[0].article.push({
       bannerTitle: bannerTitle,
