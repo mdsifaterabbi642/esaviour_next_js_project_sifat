@@ -26,6 +26,7 @@ export const GET = async (request) => {
 //       serviceImageSource,
 //       serviceImageAlt,
 //       bullet,
+//       conclusion,
 //     } = await request.json();
 
 //     await connectDB();
@@ -39,6 +40,7 @@ export const GET = async (request) => {
 //           serviceImageSource,
 //           serviceImageAlt,
 //           bullet,
+//           conclusion,
 //         },
 //       ],
 //     });
@@ -53,6 +55,7 @@ export const GET = async (request) => {
 //       serviceImageSource,
 //       serviceImageAlt,
 //       bullet,
+//       conclusion,
 //     };
 
 //     return new NextResponse(JSON.stringify(responseBody), { status: 200 });
@@ -73,6 +76,7 @@ export const POST = async (request, { params }) => {
       serviceImageSource,
       serviceImageAlt,
       bullet,
+      conclusion,
     } = await request.json();
 
     await connectDB();
@@ -87,6 +91,7 @@ export const POST = async (request, { params }) => {
       serviceImageSource,
       serviceImageAlt,
       bullet,
+      conclusion,
     });
 
     // Save the updated document
@@ -99,6 +104,7 @@ export const POST = async (request, { params }) => {
       serviceImageSource: serviceImageSource,
       serviceImageAlt: serviceImageAlt,
       bullet: bullet,
+      conclusion,
     };
 
     return new NextResponse(JSON.stringify(responseBody), { status: 200 });

@@ -14,6 +14,7 @@ const servicePageSchema = new mongoose.Schema(
             bulletDescription: { type: String },
           },
         ],
+        conclusion: { type: String },
         createdAt: { type: Date, default: Date.now },
         updatedAt: { type: Date, default: Date.now() },
       },
