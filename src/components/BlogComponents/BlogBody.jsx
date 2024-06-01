@@ -24,6 +24,7 @@ const BlogBody = () => {
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
   const [blogId, setBlogId] = useState();
+  const [latestBlogs2, setLatestBlogs] = useState([]);
 
   useEffect(() => {
     const getCategoryData = async () => {
@@ -82,15 +83,29 @@ const BlogBody = () => {
       );
     };
 
+    const getLatestBlogs = async () => {
+      const res = await fetch(`http://localhost:3000/api/blog/latestblog`, {
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Error in fetching latest blogs");
+      }
+      if (res.ok) {
+        const data = await res.json();
+        setLatestBlogs(data?.articles);
+      }
+    };
+
     getCategoryData();
     getBlogData();
+    getLatestBlogs();
     setIsClient(true);
   }, []);
 
   //finding latest blogs
-  const latestBlogs = BlogData.sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  ).slice(0, 3);
+  // const latestBlogs = BlogData.sort(
+  //   (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  // ).slice(0, 3);
 
   return (
     <>
@@ -294,39 +309,39 @@ const BlogBody = () => {
                   </div>
 
                   {isClient ? (
-                    latestBlogs.map((item, index) => (
+                    latestBlogs2.map((blog, index) => (
                       <div
                         key={index}
                         className="flex flex-row flex-wrap bg-[#e8f5ff] w-[95%] mx-auto py-[10px] my-[10px]"
                       >
                         <div className="basis-1/4 pt-[10px] pb-[20px]">
                           <div className="max-h-[100px] w-[100%] xl:w-[100px] xl:h-[60px]">
-                            <Link href={`/blog/${item.blogId}`}>
+                            <Link href={`/blog/${blog.blogId}`}>
                               <Image
-                                src={item.imageSource}
-                                alt={item.alt}
-                                width={item.width}
-                                height={item.height}
+                                src={blog.imageSource}
+                                alt={blog.alt}
+                                width={100}
+                                height={100}
                                 layout="responsive"
                               ></Image>
                             </Link>
                           </div>
                         </div>
                         <div className="basis-3/4 px-[10px]">
-                          <h1 className="font-bold md:font-extrabold text-[12px] xl:text-[16px] text-[#000000] pt-[0px] border-b-[2px] border-[#40b0fd] border-opacity-50">
-                            <Link href={`/blog/${item.blogId}`}>
-                              {item.bodyTitle.length > 20
-                                ? item.bodyTitle.slice(0, 20) + "..."
-                                : item.bodyTitle}
+                          <p className="font-bold md:font-extrabold text-[12px] xl:text-[16px] text-[#000000] pt-[0px] border-b-[2px] border-[#40b0fd] border-opacity-50">
+                            <Link href={`/blog/${blog.blogId}`}>
+                              {blog.bodyTitle.length > 20
+                                ? blog.bodyTitle.slice(0, 20) + "..."
+                                : blog.bodyTitle}
                             </Link>
-                          </h1>
-                          <h1 className="text-[14px] pt-[10px] md:font-semibold">
-                            <Link href={`/blog/${item.blogId}`}>
-                              {item.bodyDescription.length > 40
-                                ? item.bodyDescription.slice(0, 40) + "..."
-                                : item.bodyDescription}
+                          </p>
+                          <p className="text-[14px] pt-[10px] md:font-semibold">
+                            <Link href={`/blog/${blog.blogId}`}>
+                              {blog.bodyDescription.length > 40
+                                ? blog.bodyDescription.slice(0, 40) + "..."
+                                : blog.bodyDescription}
                             </Link>
-                          </h1>
+                          </p>
                         </div>
                       </div>
                     ))

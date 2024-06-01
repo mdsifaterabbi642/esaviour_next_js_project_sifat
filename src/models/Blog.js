@@ -13,6 +13,8 @@ const blogSchema = new mongoose.Schema(
         bodyTitle: { type: String, required: true, unique: true },
         bodyDescription: { type: String, required: true },
         blogDate: { type: String },
+        createdAt: { type: Date, default: Date.now },
+        updatedAt: { type: Date, default: Date.now },
       },
     ],
   },
