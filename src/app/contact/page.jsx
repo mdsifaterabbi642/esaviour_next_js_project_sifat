@@ -13,6 +13,8 @@ import { ContactFormHeading } from "@/Data/ContactData";
 import { SocialConnectionData } from "@/Data/ContactData";
 import Link from "next/link";
 
+import { useRouter } from "next/navigation";
+
 // // email js service id: service_d2jkicu
 // //email js public key: cdQJMV8uBJzxi8V29
 // //email js private key: grt1gnZ0C2_7o__MtlImb
@@ -29,6 +31,11 @@ const Contact = () => {
     message: "",
   });
   const [contactEmailStatus, setContactEmailStatus] = useState(false);
+
+  const router = useRouter();
+  const [data, setData] = useState([]);
+  const [isClient, setIsClient] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -75,20 +82,34 @@ const Contact = () => {
       reset();
     }
   };
+
   useEffect(() => {
     setContactEmail(localContactData);
   }, [localContactData, setContactEmail]); // ======setContactEmail added with the dependency array
   useEffect(() => {
-    console.log("After form submission: ");
-    console.log(contactEmail);
+    //console.log("After form submission: ");
+    //console.log(contactEmail);
   }, [contactEmail]);
   const senderNameFormatted = JSON.stringify(contactEmail.name);
 
-  const [isClient, setIsClient] = useState(false);
+  // const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    const getContactData = async () => {
+      const res = await fetch("http://localhost:3000/api/contact", {
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch Contact data");
+      }
+      const myJsonData = await res.json();
+      setData(myJsonData);
+    };
+    getContactData();
     setIsClient(true);
   }, []);
+
+  //console.log("Hello bangladesh: ", data[0]?.contactInfo);
 
   return (
     <>
@@ -166,28 +187,28 @@ const Contact = () => {
                   </form>
                   {isSubmitting || contactEmailStatus ? ( // Show notification only when isSubmitting or contactEmailStatus is set
                     contactEmailStatus ? (
-                      <p className="text-green-500 font-semibold">
+                      <h1 className="text-green-500 font-semibold">
                         Hello {senderNameFormatted}, your email was sent
                         successfully!
-                      </p>
+                      </h1>
                     ) : (
-                      <p className="text-red-500 font-semibold">
+                      <h1 className="text-red-500 font-semibold">
                         Hello {senderNameFormatted}, there was an error sending
                         your email. Please try again.
-                      </p>
+                      </h1>
                     )
                   ) : null}
                 </div>
               </div>
               <div className="basis-1/2 lg:basis-1/2 xl:basis-1/2 pt-[0px] xl:pt-[10px]">
                 {isClient ? (
-                  ContactData.map((item, index) => (
+                  data[0]?.contactInfo.map((item, index) => (
                     <div
                       key={index}
                       className="w-[90%] mx-auto lg:w-[80%] xl:w-[80%] bg-[#f5fbff] my-[10px] xl:my-[10px] myShadowDiv "
                     >
                       <h1 className="bg-[#40b0fd] text-white font-extrabold pl-[10px] text-[14px] xl:text-[18px]">
-                        {item?.countryName}
+                        {item?.country}
                       </h1>
                       <div className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex">
                         <div className="mt-[5px] w-[25px]">
@@ -201,11 +222,12 @@ const Contact = () => {
                           ></Image>
                         </div>
                         <div className="mt-[5px] pl-[5px]">
-                          <p>{item?.contactDetails[0]?.address}</p>
+                          <h1>{item?.address}</h1>
                         </div>
                       </div>
+
                       <div className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex">
-                        {item?.contactDetails[0]?.phone.length > 3 ? (
+                        {item?.phone?.length > 3 ? (
                           <>
                             <div className="mt-[5px] w-[25px]">
                               <Image
@@ -218,11 +240,9 @@ const Contact = () => {
                               ></Image>
                             </div>
                             <div className="mt-[5px] pl-[5px]">
-                              <p>
-                                {item?.contactDetails[0]?.phone.length > 3
-                                  ? item?.contactDetails[0]?.phone
-                                  : ""}
-                              </p>
+                              <h1>
+                                {item?.phone?.length > 3 ? item?.phone : ""}
+                              </h1>
                             </div>
                           </>
                         ) : (
@@ -230,7 +250,7 @@ const Contact = () => {
                         )}
                       </div>
                       <div className="text-[14px] lg:text-[16px] xl:text-[18px] lg:pl-[20px] xl:pl-[30px] flex">
-                        {item?.contactDetails[0]?.email.length > 3 ? (
+                        {item?.email?.length > 3 ? (
                           <>
                             <div className="mt-[5px] w-[25px]">
                               <Image
@@ -243,11 +263,9 @@ const Contact = () => {
                               ></Image>
                             </div>
                             <div className="mt-[5px] pl-[5px]">
-                              <p>
-                                {item?.contactDetails[0]?.email.length > 3
-                                  ? item?.contactDetails[0]?.email
-                                  : ""}
-                              </p>
+                              <h1>
+                                {item?.email?.length > 3 ? item?.email : ""}
+                              </h1>
                             </div>
                           </>
                         ) : (
@@ -314,54 +332,6 @@ const Contact = () => {
                       </div>
                     </div>
                   )}
-                  {/* <div className="w-[25px]">
-                    <Link href="https://www.facebook.com">
-                      <Image
-                        src="/ContactIcons/facebook.png"
-                        alt="facebook"
-                        className="inline-block mx-[5px] cursor-pointer"
-                        width="35"
-                        height="36"
-                        layout="responsive"
-                      ></Image>
-                    </Link>
-                  </div> */}
-                  {/* <div className="w-[25px]">
-                    <Link href="https://www.instagram.com">
-                      <Image
-                        src="/ContactIcons/instagram.png"
-                        alt="instagram"
-                        className="inline-block mx-[5px] cursor-pointer"
-                        width="37"
-                        height="36"
-                        layout="responsive"
-                      ></Image>
-                    </Link>
-                  </div>
-                  <div className="w-[25px]">
-                    <Link href="https://www.linkedin.com">
-                      <Image
-                        src="/ContactIcons/linkedin.png"
-                        alt="linkedin"
-                        className="inline-block mx-[5px] cursor-pointer"
-                        width="38"
-                        height="37"
-                        layout="responsive"
-                      ></Image>
-                    </Link>
-                  </div>
-                  <div className="w-[25px]">
-                    <Link href="https://www.youtube.com">
-                      <Image
-                        src="/ContactIcons/youtube.png"
-                        alt="youtube"
-                        className="inline-block mx-[5px] cursor-pointer"
-                        width="32"
-                        height="33"
-                        layout="responsive"
-                      ></Image>
-                    </Link>
-                  </div> */}
                 </div>
               </div>
             </div>
