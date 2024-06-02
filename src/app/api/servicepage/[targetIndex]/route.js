@@ -77,3 +77,45 @@ export const PATCH = async (request, { params }) => {
     );
   }
 };
+
+export const DELETE = async (request, { params }) => {
+  try {
+    const { targetIndex } = params;
+    await connectDB();
+
+    let existingServicePage;
+
+    try {
+      existingServicePage = await ServicePage.find();
+    } catch (error) {
+      return new NextResponse("Client not found to delete", { status: 404 });
+    }
+
+    let responseBody;
+
+    if (existingServicePage[0] !== null) {
+      if (
+        targetIndex >= 0 &&
+        targetIndex < existingServicePage[0]?.serviceInfo.length
+      ) {
+        existingServicePage[0].serviceInfo.splice(targetIndex, 1);
+      } else {
+        return new NextResponse("Invalid target index", { status: 400 });
+      }
+    }
+
+    // Save the updated document
+    await existingServicePage[0].save();
+
+    responseBody = {
+      targetIndex: targetIndex,
+      message: "ServicePage data deleted successfully",
+    };
+
+    return new NextResponse(JSON.stringify(responseBody), { status: 200 });
+  } catch (error) {
+    return new NextResponse("Error in deleting ServicePage model data", {
+      status: 500,
+    });
+  }
+};
