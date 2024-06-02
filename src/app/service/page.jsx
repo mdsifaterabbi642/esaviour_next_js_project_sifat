@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import ServiceHero from "@/components/ServicePageComponents/ServiceHero";
 import ServiceTemplate from "@/components/ServicePageComponents/ServiceTemplate";
 
-const ServicePage = () => {
+const ServicePage = () => { 
   return (
     <>
       <div className={`${styles.container}`}>
