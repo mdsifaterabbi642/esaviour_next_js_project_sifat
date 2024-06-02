@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { set } from "mongoose";
 
 const ServiceAdminPage = () => {
   const router = useRouter();
@@ -12,9 +14,8 @@ const ServiceAdminPage = () => {
   const [serviceImageSource, setServiceImageSource] = useState([]);
   const [serviceImageAlt, setServiceImageAlt] = useState([]);
   const [conclusion, setConclusion] = useState([]);
-  const [bullet, setBullet] = useState([]);
-  const [bulletDescription, setBulletDescription] = useState([]);
   const [targetIndex, setTargetIndex] = useState();
+  const [action, setAction] = useState("");
 
   useEffect(() => {
     const getServicePageData = async () => {
@@ -42,7 +43,6 @@ const ServiceAdminPage = () => {
       setConclusion(
         myJsonData[0]?.serviceInfo.map((item, index) => item.conclusion)
       );
-      setBullet(myJsonData[0]?.serviceInfo.map((item, index) => item.bullet));
     };
 
     getServicePageData();
@@ -54,14 +54,59 @@ const ServiceAdminPage = () => {
 
   const servicePageUpdateDelete = async (e) => {
     e.preventDefault();
-    console.log("Clicked servicePageUpdateDelete function");
+    // console.log("Clicked servicePageUpdateDelete function");
     // console.log("serviceName: ", serviceName[targetIndex]);
     // console.log("serviceHeading: ", serviceHeading[targetIndex]);
     // console.log("serviceImageSource: ", serviceImageSource[targetIndex]);
     // console.log("serviceImageAlt: ", serviceImageAlt[targetIndex]);
     // console.log("conclusion: ", conclusion[targetIndex]);
     // console.log("targetIndex: ", targetIndex);
-    console.log("bullet: ", bullet[targetIndex]);
+
+    if (action === "update") {
+      const decision = window.prompt(
+        "Type `update service details` to update or type `cancel` to cancel the operation"
+      );
+      if (decision === "update service details") {
+        console.log("You choose to update service details");
+        // console.log("serviceName: ", serviceName[targetIndex]);
+        // console.log("serviceHeading: ", serviceHeading[targetIndex]);
+        // console.log("serviceImageSource: ", serviceImageSource[targetIndex]);
+        // console.log("serviceImageAlt: ", serviceImageAlt[targetIndex]);
+        // console.log("conclusion: ", conclusion[targetIndex]);
+        // console.log("targetIndex: ", targetIndex);
+
+        const res = await fetch(
+          `http://localhost:3000/api/servicepage/${targetIndex}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              serviceName: serviceName[targetIndex],
+              serviceHeading: serviceHeading[targetIndex],
+              serviceImageSource: serviceImageSource[targetIndex],
+              serviceImageAlt: serviceImageAlt[targetIndex],
+              conclusion: conclusion[targetIndex],
+            }),
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Error in updating ServicePage model");
+        }
+
+        if (res.ok) {
+          router.push("/admin/service");
+          router.refresh();
+          window.alert("ServicePage model updated");
+        }
+      } else if (decision === "cancel") {
+        console.log("You cancelled the operation");
+      } else {
+        console.log("Invalid operation");
+      }
+    }
   };
 
   return (
@@ -233,41 +278,41 @@ const ServiceAdminPage = () => {
                       )}
                     </div>
 
-                    <div className="w-[80%] mx-auto">
-                      <label
-                        for="bulletPoint"
-                        className="text-gray-600  font-bold text-xl"
-                      >
-                        bulletPoint:
-                      </label>
-                      {isClient ? (
-                        bullet.map((item, x) => (
-                          <div key={x}>
-                            <input
-                              type="text"
-                              id="bulletPoint"
-                              name="bulletPoint"
-                              className="w-[98%] text-[12px] px-[5px] py-[20px] border-none text-left bg-slate-600 text-white rounded-md"
-                            />
-                          </div>
-                        ))
-                      ) : (
-                        <div>
-                          <span className="loading loading-bars loading-xs"></span>
-                          <span className="loading loading-bars loading-sm"></span>
-                          <span className="loading loading-bars loading-md"></span>
-                          <span className="loading loading-bars loading-lg"></span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="mx-auto my-[20px] text-center hover:cursor-pointer">
-                      <button
-                        onClick={() => setTargetIndex(index)}
-                        className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
-                      >
-                        Update
-                      </button>
+                    <div className="flex justify-center py-[10px] gap-1">
+                      <div>
+                        <button
+                          onClick={() => {
+                            setTargetIndex(index);
+                            setAction("update");
+                          }}
+                          className="btn btn-sm bg-[#000080] text-white hover:bg-orange-500 hover: cursor-pointer"
+                        >
+                          Update
+                        </button>
+                      </div>
+                      <div>
+                        <Link
+                          href={`http://localhost:3000/admin/service/${index}`}
+                        >
+                          <button
+                            onClick={() => setTargetIndex(index)}
+                            className="btn btn-sm bg-pink-400 text-white hover:bg-orange-500 hover: cursor-pointer"
+                          >
+                            Details
+                          </button>
+                        </Link>
+                      </div>
+                      <div>
+                        <button
+                          onClick={() => {
+                            setTargetIndex(index);
+                            setAction("delete");
+                          }}
+                          className="btn btn-sm bg-red-600 text-white hover:bg-orange-500 hover: cursor-pointer"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </form>
