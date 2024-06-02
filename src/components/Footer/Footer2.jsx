@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer2 = () => {
+const Footer2 = () => { 
   return (
     <>
       {/* Footer2 for extra small and small devices */}
@@ -46,14 +46,14 @@ const Footer2 = () => {
               ></Image>
             </div>
             <div className="basis-1/1 bg-[#ddf1ff] w-[98vw] mx-auto">
-              <p className="spacegrotesk500 text-[15px] text-justify px-[10px] py-[5px]">
+              <h1 className="spacegrotesk500 text-[15px] text-justify px-[10px] py-[5px]">
                 eSaviour Limited is one of the leading multinational B2B Digital
                 Marketing Agencies. We provide digital business development and
                 branding services all around the world. Our services include
                 Amazon FBA Consultancy, Graphics Design, Web Design and
                 Development, Search Engine Optimization (SEO), UI/UX Design,
                 Software Development, Mobile Apps Development, and so on.
-              </p>
+              </h1>
             </div>
             <div className="basis-1/1 py-[10px] bg-[#ddf1ff] w-[98vw] mx-auto">
               <div className="flex flex-row sm:w-[60%] sm:mx-auto">
