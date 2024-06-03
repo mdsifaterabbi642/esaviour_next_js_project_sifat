@@ -147,3 +147,110 @@ export const POST = async (request, { params }) => {
     return new NextResponse("Error occurred in POST api in  /api/footer");
   }
 };
+
+export const PATCH = async (request, { params }) => {
+  try {
+    const {
+      imgSrc,
+      imgAlt,
+      targetIndex,
+      selectedField,
+      paragraph,
+      buttonText,
+      stat,
+      heading,
+      logo,
+      description,
+      qlink,
+      legalLink,
+      socialImgSrc,
+      socialImgAlt,
+      socialLink,
+      paymentImgSrc,
+      paymentImgAlt,
+      paymentLink,
+    } = await request.json();
+
+    await connectDB();
+
+    const footerData = await Footer.find();
+
+    if (imgSrc) {
+      footerData[0][selectedField][targetIndex].imgSrc = imgSrc;
+    }
+    if (imgAlt) {
+      footerData[0][selectedField][targetIndex].imgAlt = imgAlt;
+    }
+    if (paragraph) {
+      footerData[0][selectedField][0].paragraph = paragraph;
+    }
+    if (buttonText) {
+      footerData[0][selectedField][0].buttonText = buttonText;
+    }
+    if (stat) {
+      footerData[0][selectedField][targetIndex].stat = stat;
+    }
+    if (heading) {
+      footerData[0][selectedField][targetIndex].heading = heading;
+    }
+    if (logo) {
+      footerData[0][selectedField][0].logo = logo;
+    }
+    if (description) {
+      footerData[0][selectedField][0].description = description;
+    }
+    if (qlink) {
+      footerData[0][selectedField][targetIndex].qlink = qlink;
+    }
+    if (legalLink) {
+      footerData[0][selectedField][targetIndex].legalLink = legalLink;
+    }
+    if (socialImgSrc) {
+      footerData[0][selectedField][targetIndex].socialImgSrc = socialImgSrc;
+    }
+    if (socialImgAlt) {
+      footerData[0][selectedField][targetIndex].socialImgAlt = socialImgAlt;
+    }
+    if (socialLink) {
+      footerData[0][selectedField][targetIndex].socialLink = socialLink;
+    }
+    if (paymentImgSrc) {
+      footerData[0][selectedField][targetIndex].paymentImgSrc = paymentImgSrc;
+    }
+    if (paymentImgAlt) {
+      footerData[0][selectedField][targetIndex].paymentImgAlt = paymentImgAlt;
+    }
+    if (paymentLink) {
+      footerData[0][selectedField][targetIndex].paymentLink = paymentLink;
+    }
+
+    await footerData[0].save();
+
+    let responseBody = {
+      message: "Footer model updated",
+      imgSrc: imgSrc,
+      imgAlt: imgAlt,
+      targetIndex: targetIndex,
+      paragraph,
+      buttonText,
+      stat,
+      heading,
+      logo,
+      description,
+      qlink,
+      legalLink,
+      socialImgSrc,
+      socialImgAlt,
+      socialLink,
+      paymentImgSrc,
+      paymentImgAlt,
+      paymentLink,
+    };
+
+    return new NextResponse(JSON.stringify(responseBody), { status: 200 });
+  } catch (error) {
+    return new NextResponse("Error occurred in PATCH api in /api/footer", {
+      status: 500,
+    });
+  }
+};

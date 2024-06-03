@@ -125,6 +125,14 @@ const AdminSidebar = () => {
             Heros
           </Link>
         </div>
+        <div className="w-[150px] bg-purple-700">
+          <Link
+            href="/admin/footer"
+            className="text-white hover:bg-orange-500 w-[150px] py-[10px] transition duration-300 ease-linear block"
+          >
+            Footer
+          </Link>
+        </div>
       </div>
     </div>
   );
