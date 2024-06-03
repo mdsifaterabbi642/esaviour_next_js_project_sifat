@@ -37,6 +37,7 @@ const footerSchema = new mongoose.Schema(
     footer2QuickLink: [
       {
         qlink: { type: String },
+        qHref: { type: String },
         createdAt: { type: Date, default: Date.now },
         updatedAt: { type: Date, default: Date.now },
       },
@@ -44,6 +45,7 @@ const footerSchema = new mongoose.Schema(
     footer2Legal: [
       {
         legalLink: { type: String },
+        legalHref: { type: String },
         createdAt: { type: Date, default: Date.now },
         updatedAt: { type: Date, default: Date.now },
       },

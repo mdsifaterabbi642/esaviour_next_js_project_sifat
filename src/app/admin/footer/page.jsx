@@ -16,7 +16,9 @@ const FooterAdminPage = () => {
   const [logo, setLogo] = useState("");
   const [description, setDescription] = useState("");
   const [qlink, setQLink] = useState([]);
+  const [qHref, setQhref] = useState([]);
   const [legalLink, setLegalLink] = useState([]);
+  const [legalHref, setLegalHref] = useState([]);
   const [socialImgSrc, setSocialImgSrc] = useState([]);
   const [socialImgAlt, setSocialImgAlt] = useState([]);
   const [socialLink, setSocialLink] = useState([]);
@@ -56,9 +58,15 @@ const FooterAdminPage = () => {
       setQLink(
         myJsonData[0]?.footer2QuickLink.map((item, index) => item.qlink)
       );
+      setQhref(
+        myJsonData[0]?.footer2QuickLink.map((item, index) => item.qHref)
+      );
 
       setLegalLink(
         myJsonData[0]?.footer2Legal.map((item, index) => item.legalLink)
+      );
+      setLegalHref(
+        myJsonData[0]?.footer2Legal.map((item, index) => item.legalHref)
       );
 
       setSocialImgSrc(
@@ -281,6 +289,7 @@ const FooterAdminPage = () => {
     e.preventDefault();
     console.log("footer2QuickLink Function!");
     // console.log("qlink: ", qlink);
+    //console.log("qHref: ", qHref);
     // console.log("Target index: ", targetIndex);
     // console.log("selectedField: ", selectedField);
 
@@ -296,6 +305,7 @@ const FooterAdminPage = () => {
         },
         body: JSON.stringify({
           qlink: qlink[targetIndex],
+          qHref: qHref[targetIndex],
           targetIndex: targetIndex,
           selectedField: selectedField,
         }),
@@ -320,6 +330,7 @@ const FooterAdminPage = () => {
     e.preventDefault();
     console.log("footer2Legal Function!");
     // console.log("legalLink: ", legalLink);
+    //console.log("legalHref: ", legalHref);
     // console.log("Target index: ", targetIndex);
     // console.log("selectedField: ", selectedField);
 
@@ -335,6 +346,7 @@ const FooterAdminPage = () => {
         },
         body: JSON.stringify({
           legalLink: legalLink[targetIndex],
+          legalHref: legalHref[targetIndex],
           targetIndex: targetIndex,
           selectedField: selectedField,
         }),
@@ -866,6 +878,37 @@ const FooterAdminPage = () => {
                       )}
                     </div>
 
+                    <div className="w-[80%] mx-auto">
+                      <label
+                        for="qHref"
+                        className="text-gray-600  font-bold text-xl"
+                      >
+                        qHref:
+                      </label>
+                      {isClient ? (
+                        <textarea
+                          type="text"
+                          id="qHref"
+                          name="qHref"
+                          className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[100px] max-h-[200px] border-none text-left bg-slate-600 text-white rounded-md"
+                          value={qHref[index]}
+                          onChange={(e) => {
+                            const updatedQHref = qHref.map((item, i) =>
+                              index === i ? e.target.value : item
+                            );
+                            setQhref(updatedQHref);
+                          }}
+                        />
+                      ) : (
+                        <div>
+                          <span className="loading loading-bars loading-xs"></span>
+                          <span className="loading loading-bars loading-sm"></span>
+                          <span className="loading loading-bars loading-md"></span>
+                          <span className="loading loading-bars loading-lg"></span>
+                        </div>
+                      )}
+                    </div>
+
                     <div className="flex flex-row justify-between my-[10px] mx-[10px]">
                       <div>
                         <button
@@ -927,6 +970,37 @@ const FooterAdminPage = () => {
                               index === i ? e.target.value : item
                             );
                             setLegalLink(updatedLLINK);
+                          }}
+                        />
+                      ) : (
+                        <div>
+                          <span className="loading loading-bars loading-xs"></span>
+                          <span className="loading loading-bars loading-sm"></span>
+                          <span className="loading loading-bars loading-md"></span>
+                          <span className="loading loading-bars loading-lg"></span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="w-[80%] mx-auto">
+                      <label
+                        for="legalHref"
+                        className="text-gray-600  font-bold text-xl"
+                      >
+                        legalHref:
+                      </label>
+                      {isClient ? (
+                        <textarea
+                          type="text"
+                          id="legalHref"
+                          name="legalHref"
+                          className="w-[98%] text-[12px] px-[5px] py-[20px] min-h-[100px] max-h-[200px] border-none text-left bg-slate-600 text-white rounded-md"
+                          value={legalHref[index]}
+                          onChange={(e) => {
+                            const updatedLHref = legalHref.map((item, i) =>
+                              index === i ? e.target.value : item
+                            );
+                            setLegalHref(updatedLHref);
                           }}
                         />
                       ) : (

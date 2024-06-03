@@ -118,7 +118,7 @@ export const GET = async (request) => {
 //inserting data in Footer model after initil input
 export const POST = async (request, { params }) => {
   try {
-    const { paymentImgSrc, paymentImgAlt, paymentLink } = await request.json();
+    const { legalLink, legalHref } = await request.json();
 
     await connectDB();
 
@@ -126,10 +126,9 @@ export const POST = async (request, { params }) => {
     const existingFooter = await Footer.findOne();
 
     // Push the new data into the serviceInfo array
-    existingFooter.footer2PaymentIcons.push({
-      paymentImgSrc: paymentImgSrc,
-      paymentImgAlt: paymentImgAlt,
-      paymentLink: paymentLink,
+    existingFooter.footer2Legal.push({
+      legalLink: legalLink,
+      legalHref: legalHref,
     });
 
     // Save the updated document
@@ -137,9 +136,8 @@ export const POST = async (request, { params }) => {
 
     const responseBody = {
       message: "Data added in the Footer Model",
-      paymentImgSrc: paymentImgSrc,
-      paymentImgAlt: paymentImgAlt,
-      paymentLink: paymentLink,
+      legalLink: legalLink,
+      legalHref: legalHref,
     };
 
     return new NextResponse(JSON.stringify(responseBody), { status: 200 });
@@ -162,7 +160,9 @@ export const PATCH = async (request, { params }) => {
       logo,
       description,
       qlink,
+      qHref,
       legalLink,
+      legalHref,
       socialImgSrc,
       socialImgAlt,
       socialLink,
@@ -202,8 +202,14 @@ export const PATCH = async (request, { params }) => {
     if (qlink) {
       footerData[0][selectedField][targetIndex].qlink = qlink;
     }
+    if (qHref) {
+      footerData[0][selectedField][targetIndex].qHref = qHref;
+    }
     if (legalLink) {
       footerData[0][selectedField][targetIndex].legalLink = legalLink;
+    }
+    if (legalHref) {
+      footerData[0][selectedField][targetIndex].legalHref = legalHref;
     }
     if (socialImgSrc) {
       footerData[0][selectedField][targetIndex].socialImgSrc = socialImgSrc;
@@ -238,7 +244,9 @@ export const PATCH = async (request, { params }) => {
       logo,
       description,
       qlink,
+      qHref,
       legalLink,
+      legalHref,
       socialImgSrc,
       socialImgAlt,
       socialLink,

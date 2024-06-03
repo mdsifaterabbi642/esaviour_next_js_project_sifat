@@ -17,7 +17,9 @@ const FooterPortfolio = () => {
   const [logo, setLogo] = useState("");
   const [description, setDescription] = useState("");
   const [qlink, setQLink] = useState([]);
+  const [qHref, setQhref] = useState([]);
   const [legalLink, setLegalLink] = useState([]);
+  const [legalHref, setLegalHref] = useState([]);
   const [socialImgSrc, setSocialImgSrc] = useState([]);
   const [socialImgAlt, setSocialImgAlt] = useState([]);
   const [socialLink, setSocialLink] = useState([]);
@@ -54,9 +56,15 @@ const FooterPortfolio = () => {
       setQLink(
         myJsonData[0]?.footer2QuickLink.map((item, index) => item.qlink)
       );
+      setQhref(
+        myJsonData[0]?.footer2QuickLink.map((item, index) => item.qHref)
+      );
 
       setLegalLink(
         myJsonData[0]?.footer2Legal.map((item, index) => item.legalLink)
+      );
+      setLegalHref(
+        myJsonData[0]?.footer2Legal.map((item, index) => item.legalHref)
       );
 
       setSocialImgSrc(
@@ -139,7 +147,9 @@ const FooterPortfolio = () => {
                     <ul>
                       {data[0]?.footer2QuickLink?.map((item, index) => (
                         <li key={index} className="text-[16px] my-[3px]">
-                          <Link href="/">{qlink[index]}</Link>
+                          <Link href={qHref[index]} target="_blank">
+                            {qlink[index]}
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -159,7 +169,9 @@ const FooterPortfolio = () => {
                     <ul>
                       {data[0]?.footer2Legal?.map((item, index) => (
                         <li key={index} className="text-[16px] my-[3px]">
-                          <Link href="/">{legalLink[index]}</Link>
+                          <Link href={legalHref[index]} target="_blank">
+                            {legalLink[index]}
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -286,7 +298,11 @@ const FooterPortfolio = () => {
               <ul>
                 {data[0]?.footer2QuickLink?.map((item, index) => (
                   <li key={index} className="font-thin text-[13px] my-[3px]">
-                    <Link href="/" className="font-semibold">
+                    <Link
+                      href={qHref[index]}
+                      className="font-semibold"
+                      target="_blank"
+                    >
                       {qlink[index]}
                     </Link>
                   </li>
@@ -308,7 +324,11 @@ const FooterPortfolio = () => {
               <ul>
                 {data[0]?.footer2Legal?.map((item, index) => (
                   <li key={index} className="text-[13px] my-[3px]">
-                    <Link href="/" className="font-semibold">
+                    <Link
+                      href={legalHref[index]}
+                      className="font-semibold"
+                      target="_blank"
+                    >
                       {legalLink[index]}
                     </Link>
                   </li>
@@ -448,7 +468,11 @@ const FooterPortfolio = () => {
                       key={index}
                       className="font-bold text-[18px] my-[3px] xl:text-[18px]"
                     >
-                      <Link href="/" className="font-semibold">
+                      <Link
+                        href={qHref[index]}
+                        className="font-semibold"
+                        target="_blank"
+                      >
                         {qlink[index]}
                       </Link>
                     </li>
@@ -475,7 +499,11 @@ const FooterPortfolio = () => {
                       key={index}
                       className="font-bold text-[18px] my-[3px] xl:text-[18px]"
                     >
-                      <Link href="/" className="font-semibold">
+                      <Link
+                        href={legalHref[index]}
+                        className="font-semibold"
+                        target="_blank"
+                      >
                         {legalLink[index]}
                       </Link>
                     </li>
