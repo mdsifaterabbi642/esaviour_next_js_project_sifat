@@ -25,7 +25,6 @@ import { useEmailJS } from "@/ContextAPI/EmailJSContextAPI";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import connectDB from "@/utils/db";
 
 export default function Home() {
   const form = useRef();
@@ -121,12 +120,11 @@ export default function Home() {
     setIsClient(true);
   }, []);
 
-  //console.log(data[0]?.cardContents[0]);                        
+  //console.log(data[0]?.cardContents[0]);
 
   return (
     <div className={`${styles.container}`}>
       {/* this is get quote modal*/}
-
       <dialog id="getQuoteModal" className="modal">
         <div className="modal-box bg-[#ffffff]">
           <form method="dialog">

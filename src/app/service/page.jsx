@@ -6,9 +6,18 @@ import Navbar from "@/components/Navbar/Navbar";
 import ServiceHero from "@/components/ServicePageComponents/ServiceHero";
 import ServiceTemplate from "@/components/ServicePageComponents/ServiceTemplate";
 
-const ServicePage = () => { 
+import Head from "next/head";
+
+const ServicePage = () => {
   return (
     <>
+      <Head>
+        <title>My Page Title</title>
+
+        <meta name="description" content="This is my page description." />
+
+        <link rel="canonical" href="https://example.com/my-page" />
+      </Head>
       <div className={`${styles.container}`}>
         <Navbar />
         <ServiceHero />

@@ -21,23 +21,33 @@ const Navbar = () => {
           <div className="navbar-middle hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
               <li>
-                <Link href="/service">Service</Link>
+                <Link href="/service" className="text-[20px] font-semibold">
+                  Service
+                </Link>
               </li>
               <li>
-                <Link href="/portfolio">Portfolio</Link>
+                <Link href="/portfolio" className="text-[20px] font-semibold">
+                  Portfolio
+                </Link>
               </li>
               <li>
-                <Link href="/about">About</Link>
+                <Link href="/about" className="text-[20px] font-semibold">
+                  About
+                </Link>
               </li>
               <li>
-                <Link href="/blog">Blog</Link>
+                <Link href="/blog" className="text-[20px] font-semibold">
+                  Blog
+                </Link>
               </li>
               <li>
-                <Link href="/contact">Contact</Link>
+                <Link href="/contact" className="text-[20px] font-semibold">
+                  Contact
+                </Link>
               </li>
               <li>
                 <Link
-                  href=""
+                  href="/contact"
                   className="bg-[#40b0fd] text-white text-[12px] hover:bg-[#40b0fd] hover:text-white rounded-none px-[5px]"
                 >
                   Get a Proposal

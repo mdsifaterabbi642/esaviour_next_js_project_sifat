@@ -13,7 +13,7 @@ import { ContactFormHeading } from "@/Data/ContactData";
 import { SocialConnectionData } from "@/Data/ContactData";
 import Link from "next/link";
 
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 
 // // email js service id: service_d2jkicu
 // //email js public key: cdQJMV8uBJzxi8V29
