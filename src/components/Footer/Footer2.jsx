@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer2 = () => { 
+const Footer2 = () => {
   return (
     <>
       {/* Footer2 for extra small and small devices */}

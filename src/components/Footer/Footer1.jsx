@@ -34,6 +34,25 @@ const Footer1 = () => {
   });
   const [orderEmailStatus, setOrderEmailStatus] = useState(false);
 
+  const [data, setData] = useState([]);
+  const [isClient, setIsClient] = useState(false);
+  const [imgSrc, setImgSrc] = useState([]);
+  const [imgAlt, setImgAlt] = useState([]);
+  const [paragraph, setParagraph] = useState("");
+  const [buttonText, setButtonText] = useState("");
+  const [stat, setStat] = useState([]);
+  const [heading, setHeading] = useState([]);
+  const [logo, setLogo] = useState("");
+  const [description, setDescription] = useState("");
+  const [qlink, setQLink] = useState([]);
+  const [legalLink, setLegalLink] = useState([]);
+  const [socialImgSrc, setSocialImgSrc] = useState([]);
+  const [socialImgAlt, setSocialImgAlt] = useState([]);
+  const [socialLink, setSocialLink] = useState([]);
+  const [paymentImgSrc, setPaymentImgSrc] = useState([]);
+  const [paymentImgAlt, setPaymentImgAlt] = useState([]);
+  const [paymentLink, setPaymentLink] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -78,6 +97,79 @@ const Footer1 = () => {
       reset();
     }
   };
+
+  useEffect(() => {
+    const getHeroData = async () => {
+      const res = await fetch(`http://localhost:3000/api/footer`, {
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Error in fetching Heros data");
+      }
+      const myJsonData = await res.json();
+      setData(myJsonData);
+
+      //setting up state variables for default values for form
+      setImgSrc(myJsonData[0]?.footer1Upper.map((item, index) => item.imgSrc));
+      setImgAlt(myJsonData[0]?.footer1Upper.map((item, index) => item.imgAlt));
+
+      setParagraph(myJsonData[0]?.footer1Lower[0]?.paragraph);
+      setButtonText(myJsonData[0]?.footer1Lower[0]?.buttonText);
+
+      setStat(myJsonData[0]?.footer2Upper.map((item, index) => item.stat));
+      setHeading(
+        myJsonData[0]?.footer2Upper.map((item, index) => item.heading)
+      );
+
+      setLogo(myJsonData[0]?.footer2LowerLeft[0]?.logo);
+      setDescription(myJsonData[0]?.footer2LowerLeft[0]?.description);
+
+      setQLink(
+        myJsonData[0]?.footer2QuickLink.map((item, index) => item.qlink)
+      );
+
+      setLegalLink(
+        myJsonData[0]?.footer2Legal.map((item, index) => item.legalLink)
+      );
+
+      setSocialImgSrc(
+        myJsonData[0]?.footer2SocialIcons.map(
+          (item, index) => item.socialImgSrc
+        )
+      );
+      setSocialImgAlt(
+        myJsonData[0]?.footer2SocialIcons.map(
+          (item, index) => item.socialImgAlt
+        )
+      );
+      setSocialLink(
+        myJsonData[0]?.footer2SocialIcons.map((item, index) => item.socialLink)
+      );
+
+      setPaymentImgSrc(
+        myJsonData[0]?.footer2PaymentIcons.map(
+          (item, index) => item.paymentImgSrc
+        )
+      );
+
+      setPaymentImgAlt(
+        myJsonData[0]?.footer2PaymentIcons.map(
+          (item, index) => item.paymentImgAlt
+        )
+      );
+
+      setPaymentLink(
+        myJsonData[0]?.footer2PaymentIcons.map(
+          (item, index) => item.paymentLink
+        )
+      );
+    };
+
+    getHeroData();
+
+    setIsClient(true);
+  }, []);
+
   useEffect(() => {
     setEmailData(localOrderData);
   }, [localOrderData, setEmailData]); // ========= setEmailData added as dependency array ============
@@ -97,99 +189,56 @@ const Footer1 = () => {
         autoplay={true} // Enables autoplay
         autoplaySpeed={3000} // Sets the autoplay speed in milliseconds (optional)
       >
-        <div className="mb-[30px]">
-          <div className="card w-[90%] glass mx-auto rounded-none min-h-[100px] sm:min-h-[120px] xl:min-h-[200px]">
-            <Image
-              src="/footer/Clutch.png"
-              alt="Clutch"
-              width="120"
-              height="60"
-              className="w-[80px] mx-auto xl:w-[150px] mt-[15px] xl:mt-[35px] xl:mx-auto sm:w-[100px] sm:mx-auto"
-            ></Image>
+        {isClient ? (
+          data[0]?.footer1Upper?.map((item, index) => (
+            <div key={index} className="mb-[30px]">
+              <div className="card w-[90%] glass mx-auto rounded-none min-h-[100px] sm:min-h-[120px] xl:min-h-[200px]">
+                <Image
+                  src={imgSrc[index]}
+                  alt={imgAlt[index]}
+                  width="120"
+                  height="60"
+                  className="w-[80px] mx-auto xl:w-[150px] mt-[15px] xl:mt-[35px] xl:mx-auto sm:w-[100px] sm:mx-auto"
+                ></Image>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div>
+            <span className="loading loading-bars loading-xs"></span>
+            <span className="loading loading-bars loading-sm"></span>
+            <span className="loading loading-bars loading-md"></span>
+            <span className="loading loading-bars loading-lg"></span>
           </div>
-        </div>
-        <div className="mb-[30px]">
-          <div className="card w-[90%] glass mx-auto rounded-none min-h-[100px] xl:min-h-[200px] sm:min-h-[120px]">
-            <Image
-              src="/footer/Google.png"
-              alt="Google"
-              width="120"
-              height="60"
-              className="w-[80px] mx-auto xl:w-[150px] mt-[20px] xl:mt-[50px] xl:mx-auto sm:w-[100px] sm:mx-auto"
-            ></Image>
-          </div>
-        </div>
-        <div className="mb-[30px]">
-          <div className="card w-[90%] glass mx-auto rounded-none min-h-[100px] xl:min-h-[200px] sm:min-h-[120px]">
-            <Image
-              src="/footer/Trustppailot.png"
-              alt="Trustppailot"
-              width="120"
-              height="60"
-              className="w-[80px] mx-auto xl:w-[150px] mt-[20px] xl:mt-[50px] xl:mx-auto sm:w-[100px] sm:mx-auto"
-            ></Image>
-          </div>
-        </div>
-        <div className="mb-[30px]">
-          <div className="card w-[90%] glass mx-auto rounded-none min-h-[100px] sm:min-h-[120px] xl:min-h-[200px]">
-            <Image
-              src="/footer/Clutch.png"
-              alt="Clutch"
-              width="120"
-              height="60"
-              className="w-[80px] mx-auto xl:w-[150px] mt-[15px] xl:mt-[35px] xl:mx-auto sm:w-[100px] sm:mx-auto"
-            ></Image>
-          </div>
-        </div>
-        <div className="mb-[30px]">
-          <div className="card w-[90%] glass mx-auto rounded-none min-h-[100px] xl:min-h-[200px] sm:min-h-[120px]">
-            <Image
-              src="/footer/Google.png"
-              alt="Google"
-              width="120"
-              height="60"
-              className="w-[80px] mx-auto xl:w-[150px] mt-[20px] xl:mt-[50px] xl:mx-auto sm:w-[100px] sm:mx-auto"
-            ></Image>
-          </div>
-        </div>
-        <div className="mb-[30px]">
-          <div className="card w-[90%] glass mx-auto rounded-none min-h-[100px] xl:min-h-[200px] sm:min-h-[120px]">
-            <Image
-              src="/footer/Trustppailot.png"
-              alt="Trustppailot"
-              width="120"
-              height="60"
-              className="w-[80px] mx-auto xl:w-[150px] mt-[20px] xl:mt-[50px] xl:mx-auto sm:w-[100px] sm:mx-auto"
-            ></Image>
-          </div>
-        </div>
+        )}
       </Slider>
       {/* ========== only for extra small device ============= */}
       <div className="w-[95vw] sm:hidden mx-auto overflow-x-hidden">
         <div className="flex flex-col sm:hidden mb-[30px]">
           <div className="basis-1/1 bg-[##EEF7FF] border">
-            {/* #EEF7FF */}
-            <p className="text-center spacegrotesk500 text-[15px] leading-[16px] px-[5px] py-[10px]">
-              Our Professional Team has helped Hundreds of Sellers on Amazon to
-              Avoid Failure and Maximize Potential Growth. Schedule a Free
-              Meeting Now!
-            </p>
+            {isClient ? (
+              <h1 className="text-center spacegrotesk500 text-[15px] leading-[16px] px-[5px] py-[10px]">
+                {paragraph}
+              </h1>
+            ) : (
+              <div>Loading...</div>
+            )}
             <div className="pt-[10px] pb-[20px] text-center">
-              <a
+              <Link
                 href="#"
                 className="py-[5px] px-[10px] bg-black text-white rounded-sm"
               >
-                Schedule a Meeting
-              </a>
+                {isClient ? buttonText : <div>Loading...</div>}
+              </Link>
             </div>
           </div>
           <div className="basis-1/1">
             <div className="flex flex-row">
               <div className="basis-1/2 bg-[#40b0fd] text-center py-[20px]">
-                <p className="font-bold text-sm section_3_span">Or Direct</p>
-                <p className="font-light text-xl text-[white] tracking-widest pr-[10px] section_3_span">
+                <h1 className="font-bold text-sm section_3_span">Or Direct</h1>
+                <h1 className="font-light text-xl text-[white] tracking-widest pr-[10px] section_3_span">
                   Message
-                </p>
+                </h1>
               </div>
               <div className="basis-1/2 bg-[#40b0fd] text-center py-[20px]">
                 <Link href="#" className="mx-[5px]">
@@ -241,24 +290,32 @@ const Footer1 = () => {
       <div className="hidden sm:block xl:hidden w-[95vw] mx-auto overflow-x-hidden">
         <div className="flex flex-col mb-[30px]">
           <div className="basis-1/1 bg-[#EEF7FF]">
-            <p className="spacegrotesk500 text-center text-[15px] px-[5px] py-[10px]">
-              Our Professional Team has helped Hundreds of Sellers on Amazon to
-              Avoid Failure and Maximize Potential Growth. Schedule a Free
-              Meeting Now!
-            </p>
+            {isClient ? (
+              <h1 className="spacegrotesk500 text-center text-[15px] px-[5px] py-[10px]">
+                {paragraph}
+              </h1>
+            ) : (
+              <div>
+                {" "}
+                <span className="loading loading-bars loading-xs"></span>
+                <span className="loading loading-bars loading-sm"></span>
+                <span className="loading loading-bars loading-md"></span>
+                <span className="loading loading-bars loading-lg"></span>
+              </div>
+            )}
             <div className="pt-[10px] pb-[20px] text-center">
-              <a href="#" className="py-[5px] px-[10px] bg-black text-white">
-                Schedule a Meeting
-              </a>
+              <Link href="#" className="py-[5px] px-[10px] bg-black text-white">
+                {isClient ? buttonText : <div>Loading...</div>}
+              </Link>
             </div>
           </div>
           <div className="basis-1/1">
             <div className="flex flex-row">
               <div className="basis-1/2 bg-[#40b0fd] text-center py-[20px]">
-                <p className="font-bold text-sm section_3_span">Or Direct</p>
-                <p className="font-light text-xl text-[white] tracking-widest pr-[10px] section_3_span">
+                <h1 className="font-bold text-sm section_3_span">Or Direct</h1>
+                <h1 className="font-light text-xl text-[white] tracking-widest pr-[10px] section_3_span">
                   Message
-                </p>
+                </h1>
               </div>
               <div className="basis-1/2 bg-[#40b0fd] text-center py-[20px]">
                 <Link href="#" className="mx-[5px]">
@@ -311,22 +368,22 @@ const Footer1 = () => {
       <div className="hidden xl:block xl:w-[70vw] xl:mx-auto overflow-x-hidden overflow-y-hidden">
         <div className="flex flex-row">
           <div className="basis-3/5 bg-[#eef7ff]">
-            <p className="dmsans500 text-center text-[12px] pt-[35px] px-[100px] pb-[30px] xl:text-[22px]">
-              Our Professional Team has helped Hundreds of Sellers on Amazon to
-              Avoid Failure and Maximize Potential Growth. Schedule a Free
-              Meeting Now!
-            </p>
+            {isClient ? (
+              <h1 className="dmsans500 text-center text-[12px] pt-[35px] px-[100px] pb-[30px] xl:text-[22px]">
+                {paragraph}
+              </h1>
+            ) : (
+              <div>
+                <span className="loading loading-bars loading-xs"></span>
+                <span className="loading loading-bars loading-sm"></span>
+                <span className="loading loading-bars loading-md"></span>
+                <span className="loading loading-bars loading-lg"></span>
+              </div>
+            )}
             <div className="pt-[5px] pb-[5px] text-center relative top-[-10px]">
-              <a
-                href="#"
-                className="py-[5px] px-[10px] bg-black text-white"
-                style={{
-                  fontFamily: "Futura PT, sans-serif",
-                  fontStyle: "normal",
-                }}
-              >
-                Schedule a Meeting
-              </a>
+              <Link href="#" className="py-[5px] px-[10px] bg-black text-white">
+                {isClient ? buttonText : <div>Loading...</div>}
+              </Link>
             </div>
           </div>
           <div className="basis-2/5">
@@ -334,12 +391,12 @@ const Footer1 = () => {
               <div className="basis-1/1 bg-[#40b0fd] text-center w-[80%] mx-auto xl:w-[90%]">
                 <div className="flex flex-row">
                   <div className="basis-1/2 py-[20px]">
-                    <p className="font-bold text-md section_3_span">
+                    <h1 className="font-bold text-md section_3_span">
                       <span className="text-[#40b0fd]">........</span>Or Direct
-                    </p>
-                    <p className="font-light text-2xl text-[white] tracking-widest pr-[10px] section_3_span">
+                    </h1>
+                    <h1 className="font-light text-2xl text-[white] tracking-widest pr-[10px] section_3_span">
                       Message
-                    </p>
+                    </h1>
                   </div>
                   <div className="basis-1/2 py-[20px] text-center">
                     <Link href="#" className="mx-[5px]">
