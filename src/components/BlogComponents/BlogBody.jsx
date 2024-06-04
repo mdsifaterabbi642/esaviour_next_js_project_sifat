@@ -84,7 +84,7 @@ const BlogBody = () => {
     };
 
     const getLatestBlogs = async () => {
-      const res = await fetch(`http://localhost:3000/api/blog/latestblog`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_BLOG_LATEST_BLOG, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -101,11 +101,6 @@ const BlogBody = () => {
     getLatestBlogs();
     setIsClient(true);
   }, []);
-
-  //finding latest blogs
-  // const latestBlogs = BlogData.sort(
-  //   (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  // ).slice(0, 3);
 
   return (
     <>
@@ -193,7 +188,6 @@ const BlogBody = () => {
                   </div>
                   {/* =========== For small, medium and large device ===================== */}
                   <div className="my-[10px] md:mx-[5px] hidden sm:block md:block lg:block xl:hidden">
-                    {/* <Link href="#"> */}
                     <div className="flex flex-wrap gap-[5px]">
                       {isClient ? (
                         myBlogData?.blogData[0]?.article.map((item, index) => (
@@ -247,7 +241,6 @@ const BlogBody = () => {
                         </div>
                       )}
                     </div>
-                    {/* </Link> */}
                   </div>
                 </div>
               </div>

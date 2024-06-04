@@ -17,7 +17,9 @@ const SingleBlogPage = ({ params }) => {
 
   useEffect(() => {
     const getSingleBlog = async () => {
-      const res = await fetch(`http://localhost:3000/api/blog/${blogId}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_BLOG + "/" + blogId;
+
+      const res = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -41,9 +43,9 @@ const SingleBlogPage = ({ params }) => {
   }, [blogId]);
 
   //console.log("++++++++", singleBlog);
-  console.log("=======imageSource: ", singleBlog.imageSource);
-  console.log("=======type of imageSource: ", typeof singleBlog.imageSource);
-  console.log("====== alt: ", singleBlog.alt);
+  // console.log("=======imageSource: ", singleBlog.imageSource);
+  // console.log("=======type of imageSource: ", typeof singleBlog.imageSource);
+  // console.log("====== alt: ", singleBlog.alt);
 
   // Find the blog object with the matching blogId
   const blog = BlogData.find(

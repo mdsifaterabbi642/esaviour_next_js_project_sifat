@@ -26,7 +26,7 @@ const CategoryPage = ({ params }) => {
 
   useEffect(() => {
     const getAllCategories = async () => {
-      const res = await fetch(`http://localhost:3000/api/blog/category`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_CATEGORY_GET, {
         cache: "no-store",
       });
 
@@ -40,7 +40,7 @@ const CategoryPage = ({ params }) => {
     };
 
     const getLatestBlogs = async () => {
-      const res = await fetch(`http://localhost:3000/api/blog/latestblog`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_BLOG_LATEST_BLOG, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -60,15 +60,15 @@ const CategoryPage = ({ params }) => {
 
   useEffect(() => {
     const getCategoryWiseBlogs = async () => {
-      const res = await fetch(
-        `http://localhost:3000/api/blog/categoryWiseBlog/${category}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
+      const apiUrl =
+        process.env.NEXT_PUBLIC_BLOG_CATEGORY_WISE_BLOG + "/" + category;
+
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
       if (!res.ok) {
         throw new Error("Can not fetch category wise blogs");
       }
@@ -87,9 +87,9 @@ const CategoryPage = ({ params }) => {
   //console.log("=== ", allCategories);
 
   //finding latest blogs
-  const latestBlogs = BlogData.sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  ).slice(0, 3);
+  // const latestBlogs = BlogData.sort(
+  //   (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  // ).slice(0, 3);
 
   //console.log("Latest Blogs === ", latestBlogs2);
   //console.log(Array.isArray(latestBlogs2));
