@@ -26,7 +26,7 @@ const HomeServiceCardAdmin = () => {
 
   useEffect(() => {
     const getHomeServiceCardData = async () => {
-      const res = await fetch("http://localhost:3000/api/home_service_card", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HOME_SERVICE_CARD_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -48,7 +48,7 @@ const HomeServiceCardAdmin = () => {
 
   useEffect(() => {
     const getHomeServiceCardData = async () => {
-      const res = await fetch("http://localhost:3000/api/home_service_card", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HOME_SERVICE_CARD_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -84,22 +84,20 @@ const HomeServiceCardAdmin = () => {
     //console.log(paragraph[targetCard]);
 
     if (chooseAction === "update") {
-      const res = await fetch(
-        `http://localhost:3000/api/home_service_card/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            heading: heading[targetCard],
-            paragraph: paragraph[targetCard],
-            image: image[targetCard],
-            imageAlt: imageAlt[targetCard],
-            targetCard,
-          }),
-        }
-      );
+      const apiUrl = process.env.NEXT_PUBLIC_HOME_SERVICE_CARD_GET + "/" + id;
+      const res = await fetch(apiUrl, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          heading: heading[targetCard],
+          paragraph: paragraph[targetCard],
+          image: image[targetCard],
+          imageAlt: imageAlt[targetCard],
+          targetCard,
+        }),
+      });
 
       if (!res.ok) {
         throw new Error("HomeServiceCard model could not be updated");
@@ -117,18 +115,17 @@ const HomeServiceCardAdmin = () => {
       if (confirmation === "delete this service") {
         console.log("You confirmed deletion");
 
-        const res = await fetch(
-          `http://localhost:3000/api/home_service_card/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              targetCard: targetCard,
-            }),
-          }
-        );
+        const apiUrl = process.env.NEXT_PUBLIC_HOME_SERVICE_CARD_GET + "/" + id;
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            targetCard: targetCard,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("Couldn't delete the data");
@@ -158,21 +155,20 @@ const HomeServiceCardAdmin = () => {
     console.log("addImage: ", addImage);
     console.log("addImageAlt: ", addImageAlt);
 
-    const res = await fetch(
-      `http://localhost:3000/api/home_service_card/${id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          addHeading: addHeading,
-          addParagraph: addParagraph,
-          addImage: addImage,
-          addImageAlt: addImageAlt,
-        }),
-      }
-    );
+    const apiUrl = process.env.NEXT_PUBLIC_HOME_SERVICE_CARD_GET + "/" + id;
+
+    const res = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        addHeading: addHeading,
+        addParagraph: addParagraph,
+        addImage: addImage,
+        addImageAlt: addImageAlt,
+      }),
+    });
 
     if (!res.ok) {
       throw new Error("homeservicecards model could not be added");

@@ -11,7 +11,7 @@ const HomeBannerAdmin = () => {
 
   useEffect(() => {
     const getHeroData = async () => {
-      const res = await fetch("http://localhost:3000/api/home", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HOME_GET, {
         cache: "no-store",
       });
 
@@ -35,7 +35,9 @@ const HomeBannerAdmin = () => {
     //console.log("Object ID is: ", data[0]?._id);
     const id = data[0]?._id;
 
-    const res = await fetch(`http://localhost:3000/api/home/${id}`, {
+    const apiUrl = process.env.NEXT_PUBLIC_HOME_GET + "/" + id;
+
+    const res = await fetch(apiUrl, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

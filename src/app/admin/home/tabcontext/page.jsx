@@ -1,6 +1,5 @@
 "use client";
 
-import { model } from "mongoose";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -50,7 +49,7 @@ const HomeTabContentAdmin = () => {
     const fetchID = async () => {
       // fetch _id from database
 
-      const resID = await fetch("http://localhost:3000/api/service", {
+      const resID = await fetch(process.env.NEXT_PUBLIC_SERVICE_GET, {
         cache: "no-store",
       });
 
@@ -68,12 +67,16 @@ const HomeTabContentAdmin = () => {
     const fetchData = async () => {
       // Fetch amazonFBA data
       if (modelID) {
-        const amazonResponse = await fetch(
-          `http://localhost:3000/api/service/${modelID}/amazonFBA`,
-          {
-            cache: "no-store",
-          }
-        );
+        const apiUrl =
+          process.env.NEXT_PUBLIC_SERVICE_GET +
+          "/" +
+          modelID +
+          "/" +
+          "amazonFBA";
+
+        const amazonResponse = await fetch(apiUrl, {
+          cache: "no-store",
+        });
         if (!amazonResponse.ok) {
           throw new Error("Failed to fetch amazon data data");
         }
@@ -88,12 +91,17 @@ const HomeTabContentAdmin = () => {
         setAmaImgAlt(myAmazonData.map((item) => item.imgAlt));
 
         //fetching webDevelopment data
-        const webResponse = await fetch(
-          `http://localhost:3000/api/service/${modelID}/webDevelopment`,
-          {
-            cache: "no-store",
-          }
-        );
+
+        const apiUrl2 =
+          process.env.NEXT_PUBLIC_SERVICE_GET +
+          "/" +
+          modelID +
+          "/" +
+          "webDevelopment";
+
+        const webResponse = await fetch(apiUrl2, {
+          cache: "no-store",
+        });
         if (!webResponse.ok) {
           throw new Error("Failed to fetch web data");
         }
@@ -108,12 +116,17 @@ const HomeTabContentAdmin = () => {
         setWebImgAlt(myWebData.map((item) => item.imgAlt));
 
         //fetching digitalmarketing data
-        const marketingResponse = await fetch(
-          `http://localhost:3000/api/service/${modelID}/digitalMarketing`,
-          {
-            cache: "no-store",
-          }
-        );
+
+        const apiUrl3 =
+          process.env.NEXT_PUBLIC_SERVICE_GET +
+          "/" +
+          modelID +
+          "/" +
+          "digitalMarketing";
+
+        const marketingResponse = await fetch(apiUrl3, {
+          cache: "no-store",
+        });
         if (!marketingResponse.ok) {
           throw new Error("Failed to fetch marketing data");
         }
@@ -130,12 +143,17 @@ const HomeTabContentAdmin = () => {
         setMarketingImgAlt(myDigitalMarketingData.map((item) => item.imgAlt));
 
         //fetching graphicsDesign data
-        const graphicsResponse = await fetch(
-          `http://localhost:3000/api/service/${modelID}/graphicsDesign`,
-          {
-            cache: "no-store",
-          }
-        );
+
+        const apiUrl4 =
+          process.env.NEXT_PUBLIC_SERVICE_GET +
+          "/" +
+          modelID +
+          "/" +
+          "graphicsDesign";
+
+        const graphicsResponse = await fetch(apiUrl4, {
+          cache: "no-store",
+        });
         if (!graphicsResponse.ok) {
           throw new Error("Failed to fetch graphics data");
         }
@@ -168,7 +186,8 @@ const HomeTabContentAdmin = () => {
     const id = modelID;
 
     if (selectedOperation === "update") {
-      const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_SERVICE_GET + "/" + id;
+      const res = await fetch(apiUrl, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -202,18 +221,19 @@ const HomeTabContentAdmin = () => {
 
       if (confirm === "delete service data") {
         const category = targetKey;
-        const res = await fetch(
-          `http://localhost:3000/api/service/${id}/${category}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              index: targetIndex,
-            }),
-          }
-        );
+
+        const apiUrl =
+          process.env.NEXT_PUBLIC_SERVICE_GET + "/" + id + "/" + category;
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            index: targetIndex,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("Couldn't delete Service");
@@ -237,8 +257,10 @@ const HomeTabContentAdmin = () => {
 
     const id = modelID;
 
+    const apiUrl = process.env.NEXT_PUBLIC_SERVICE_GET + "/" + id;
+
     if (selectedOperation === "update") {
-      const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+      const res = await fetch(apiUrl, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -272,18 +294,19 @@ const HomeTabContentAdmin = () => {
 
       if (confirm === "delete service data") {
         const category = targetKey;
-        const res = await fetch(
-          `http://localhost:3000/api/service/${id}/${category}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              index: targetIndex,
-            }),
-          }
-        );
+
+        const apiUrl =
+          process.env.NEXT_PUBLIC_SERVICE_GET + "/" + id + "/" + category;
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            index: targetIndex,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("Couldn't delete Service");
@@ -308,7 +331,9 @@ const HomeTabContentAdmin = () => {
     const id = modelID;
 
     if (selectedOperation === "update") {
-      const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_SERVICE_GET + "/" + id;
+
+      const res = await fetch(apiUrl, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -342,18 +367,19 @@ const HomeTabContentAdmin = () => {
 
       if (confirm === "delete service data") {
         const category = targetKey;
-        const res = await fetch(
-          `http://localhost:3000/api/service/${id}/${category}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              index: targetIndex,
-            }),
-          }
-        );
+
+        const apiUrl =
+          process.env.NEXT_PUBLIC_SERVICE_GET + "/" + id + "/" + category;
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            index: targetIndex,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("Couldn't delete Service");
@@ -378,7 +404,9 @@ const HomeTabContentAdmin = () => {
     const id = modelID;
 
     if (selectedOperation === "update") {
-      const res = await fetch(`http://localhost:3000/api/service/${id}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_SERVICE_GET + "/" + id;
+
+      const res = await fetch(apiUrl, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -411,18 +439,19 @@ const HomeTabContentAdmin = () => {
 
       if (confirm === "delete service data") {
         const category = targetKey;
-        const res = await fetch(
-          `http://localhost:3000/api/service/${id}/${category}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              index: targetIndex,
-            }),
-          }
-        );
+
+        const apiUrl =
+          process.env.NEXT_PUBLIC_SERVICE_GET + "/" + id + "/" + category;
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            index: targetIndex,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("Couldn't delete Service");
@@ -455,21 +484,21 @@ const HomeTabContentAdmin = () => {
 
     const category = selectedCategory;
 
-    const res = await fetch(
-      `http://localhost:3000/api/service/${id}/${category}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          addHeading: addHeading,
-          addDescription: addDescription,
-          addImgSrc: addImgSrc,
-          addImgAlt: addImgAlt,
-        }),
-      }
-    );
+    const apiUrl =
+      process.env.NEXT_PUBLIC_SERVICE_GET + "/" + id + "/" + category;
+
+    const res = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        addHeading: addHeading,
+        addDescription: addDescription,
+        addImgSrc: addImgSrc,
+        addImgAlt: addImgAlt,
+      }),
+    });
 
     if (!res.ok) {
       throw new Error("Couldn't add service to Service model");
@@ -602,7 +631,6 @@ const HomeTabContentAdmin = () => {
           Add Service
         </button>
       </div>
-
 
       {isClient ? (
         <div className="flex flex-row flex-wrap gap-2 my-[10px] lg:px-[5px] justify-center">

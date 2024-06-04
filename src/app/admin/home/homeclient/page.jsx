@@ -32,7 +32,7 @@ const HomeClientAdmin = () => {
 
   useEffect(() => {
     const fetchClientData = async () => {
-      const res = await fetch("http://localhost:3000/api/homeclient", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HOME_CLIENT_GET, {
         cache: "no-store",
       });
 
@@ -57,7 +57,7 @@ const HomeClientAdmin = () => {
 
   useEffect(() => {
     const fetchClientData = async () => {
-      const res = await fetch("http://localhost:3000/api/homeclient", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HOME_CLIENT_GET, {
         cache: "no-store",
       });
 
@@ -90,24 +90,23 @@ const HomeClientAdmin = () => {
     if (selectedOperation === "update") {
       console.log("Your selected operation is: ", selectedOperation);
 
-      const res = await fetch(
-        `http://localhost:3000/api/homeclient/${modelId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            modelId: modelId,
-            targetIndex: targetIndex,
-            updatedName: names[targetIndex],
-            updatedParagraph: paragraphs[targetIndex],
-            updatedCompany: companies[targetIndex],
-            updatedImgSource: imgSources[targetIndex],
-            updatedImgAlt: imgAlts[targetIndex],
-          }),
-        }
-      );
+      const apiUrl = process.env.NEXT_PUBLIC_HOME_CLIENT_GET + "/" + modelId;
+
+      const res = await fetch(apiUrl, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          modelId: modelId,
+          targetIndex: targetIndex,
+          updatedName: names[targetIndex],
+          updatedParagraph: paragraphs[targetIndex],
+          updatedCompany: companies[targetIndex],
+          updatedImgSource: imgSources[targetIndex],
+          updatedImgAlt: imgAlts[targetIndex],
+        }),
+      });
 
       if (!res.ok) {
         throw new Error("Client data couldn't be updated");
@@ -130,7 +129,10 @@ const HomeClientAdmin = () => {
 
       if (confirmation === "delete") {
         const id = modelId;
-        const res = await fetch(`http://localhost:3000/api/homeclient/${id}`, {
+
+        const apiUrl = process.env.NEXT_PUBLIC_HOME_CLIENT_GET + "/" + id;
+
+        const res = await fetch(apiUrl, {
           method: "DELETE",
           headers: {
             "Content-type": "application/json",
@@ -184,7 +186,9 @@ const HomeClientAdmin = () => {
       return;
     }
 
-    const res = await fetch(`http://localhost:3000/api/homeclient/${modelId}`, {
+    const apiUrl = process.env.NEXT_PUBLIC_HOME_CLIENT_GET + "/" + modelId;
+
+    const res = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
