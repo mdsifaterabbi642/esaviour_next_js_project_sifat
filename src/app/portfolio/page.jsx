@@ -5,16 +5,21 @@ import Navbar from "@/components/Navbar/Navbar";
 import PortfolioHero from "@/components/PortfolioHero/PortfolioHero";
 import PortfolioTabContents from "@/components/PortfolioTabContents/PortfolioTabContents";
 
-import Head from "next/head";
-import metadata from "@/app/metadata";
+export const metadata = {
+  title: {
+    absolute: "Portfolio | Digital Marketing Portfolio",
+  },
+  description:
+    "Explore eSaviour Limiteds digital marketing portfolio, where digital innovation meets exceptional results.",
+  alternates: {
+    canonical: "./", // Use "./" for the base URL
+  },
+  keywords: "", // Add your desired keywords here
+};
 
 const PortfolioPage = () => {
   return (
     <>
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-      </Head>
       <div className={`${styles.container}`}>
         <Navbar />
         <PortfolioHero />

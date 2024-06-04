@@ -13,45 +13,12 @@ const ClientsComments = () => {
     slidesToScroll: 1,
   };
 
-  // const clientCard = [
-  //   {
-  //     id: 1,
-  //     logo: "/HomePageLogos/client3.png",
-  //     logo2: "/HomePageLogos/client2.png",
-  //     image: "/clients/Mostafiz_Rana.jpeg",
-  //     paragraph:
-  //       "We wanted to design a website for our chauffeur business in Austin city. eSaviour Limited designed a simple and easy-to-use website for our company. We highly recommend them for web development.",
-  //     name: "Mostafiz Rana",
-  //     company: "UnitedCarry Imports LLC",
-  //   },
-  //   {
-  //     id: 2,
-  //     logo: "/HomePageLogos/client3.png",
-  //     logo2: "/HomePageLogos/client2.png",
-  //     image: "/clients/Robert2.jpg",
-  //     paragraph:
-  //       "eSaviour Limited helped us launch a new Amazon FBA product in the pest repeller category. They handled product photography, designed listing images, created EBC content, and also wrote an SEO-optimize title and bullet points for our product.",
-  //     name: "Robert Cameron",
-  //     company: "T3-R LLC",
-  //   },
-  //   {
-  //     id: 3,
-  //     logo: "/HomePageLogos/client3.png",
-  //     logo2: "/HomePageLogos/client2.png",
-  //     image: "/clients/Noor2.jpg",
-  //     paragraph:
-  //       "As a legal professional, I badly needed social media branding and content management for my law firm‘Noor & Co.’ eSaviour Limited helped me build the entire brand design from scratch.",
-  //     name: "Barrister AKM NOOR A RABBI",
-  //     company: "Noor & Co",
-  //   },
-  // ];
-
   const [data, setData] = useState("");
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     const getClientData = async () => {
-      const res = await fetch("http://localhost:3000/api/homeclient", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HOME_CLIENT_GET, {
         cache: "no-store",
       });
 

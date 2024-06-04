@@ -92,11 +92,9 @@ const Contact = () => {
   }, [contactEmail]);
   const senderNameFormatted = JSON.stringify(contactEmail.name);
 
-  // const [isClient, setIsClient] = useState(false);
-
   useEffect(() => {
     const getContactData = async () => {
-      const res = await fetch("http://localhost:3000/api/contact", {
+      const res = await fetch(process.env.NEXT_PUBLIC_CONTACT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -299,7 +297,7 @@ const Contact = () => {
                     Connect with us
                   </p>
                 </div>
-                {/* className="w-[90%] lg:w-[90%] xl:w-[80%] text-center mx-auto" */}
+
                 <div className="flex justify-center">
                   {isClient ? (
                     SocialConnectionData.map((item) => (

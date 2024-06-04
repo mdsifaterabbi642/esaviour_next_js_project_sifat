@@ -9,7 +9,7 @@ const Hero = () => {
 
   useEffect(() => {
     const getHeroData = async () => {
-      const res = await fetch("http://localhost:3000/api/home", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HOME_GET, {
         cache: "no-store",
       });
 

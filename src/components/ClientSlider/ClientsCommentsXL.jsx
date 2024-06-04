@@ -20,7 +20,7 @@ const ClientsCommentsXL = () => {
 
   useEffect(() => {
     const getClientData = async () => {
-      const res = await fetch("http://localhost:3000/api/homeclient", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HOME_CLIENT_GET, {
         cache: "no-store",
       });
 

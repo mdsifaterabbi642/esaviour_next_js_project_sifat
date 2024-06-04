@@ -17,7 +17,7 @@ const ServiceTemplate = () => {
 
   useEffect(() => {
     const getServicePageData = async () => {
-      const res = await fetch(`http://localhost:3000/api/servicepage`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_SERVICE_PAGE_GET, {
         cache: "no-store",
       });
       if (!res.ok) {

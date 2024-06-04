@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const Section6AboutAdmin = () => { 
+const Section6AboutAdmin = () => {
   const router = useRouter();
 
   const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ const Section6AboutAdmin = () => {
 
   useEffect(() => {
     const getSection6AboutData = async () => {
-      const res = await fetch("http://localhost:3000/api/about", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ABOUT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -57,7 +57,9 @@ const Section6AboutAdmin = () => {
       console.log("You choosed to update");
       const id = data[0]?._id;
 
-      const res = await fetch(`http://localhost:3000/api/about/update/${id}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_ABOUT_UPDATE + id;
+
+      const res = await fetch(apiUrl, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -100,7 +102,9 @@ const Section6AboutAdmin = () => {
       console.log("You choosed to update");
       const id = data[0]?._id;
 
-      const res = await fetch(`http://localhost:3000/api/about/update/${id}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_ABOUT_UPDATE + id;
+
+      const res = await fetch(apiUrl, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",

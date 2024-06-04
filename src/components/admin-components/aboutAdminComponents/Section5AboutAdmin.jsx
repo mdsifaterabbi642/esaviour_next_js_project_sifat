@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Section5AboutAdmin = () => {
-  const router = useRouter(); 
+  const router = useRouter();
 
   const [data, setData] = useState([]);
   const [isClient, setIsClient] = useState(false);
@@ -27,7 +27,7 @@ const Section5AboutAdmin = () => {
 
   useEffect(() => {
     const getSection5AboutData = async () => {
-      const res = await fetch("http://localhost:3000/api/about", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ABOUT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -55,7 +55,7 @@ const Section5AboutAdmin = () => {
 
   useEffect(() => {
     const getSection5AboutData = async () => {
-      const res = await fetch("http://localhost:3000/api/about", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ABOUT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -96,21 +96,20 @@ const Section5AboutAdmin = () => {
       if (decision === "please update me") {
         const id = data[0]?._id;
 
-        const res = await fetch(
-          `http://localhost:3000/api/about/section5_slider1/${id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              heading: heading,
-              quantity: quantity,
-              targetIndex: targetIndex,
-              targetSection: targetSection,
-            }),
-          }
-        );
+        const apiUrl = process.env.NEXT_PUBLIC_ABOUT_SECTION5_SLIDER1 + id;
+
+        const res = await fetch(apiUrl, {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            heading: heading,
+            quantity: quantity,
+            targetIndex: targetIndex,
+            targetSection: targetSection,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("section5_slider1 of About page couldn't be updated");
@@ -135,19 +134,18 @@ const Section5AboutAdmin = () => {
       if (decision2 === "please delete this") {
         const id = data[0]?._id;
 
-        const res = await fetch(
-          `http://localhost:3000/api/about/section5_slider1/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              targetIndex: targetIndex,
-              targetSection: targetSection,
-            }),
-          }
-        );
+        const apiUrl = process.env.NEXT_PUBLIC_ABOUT_SECTION5_SLIDER1 + id;
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            targetIndex: targetIndex,
+            targetSection: targetSection,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("section5_slider1 of About page couldn't be deleted");
@@ -169,16 +167,15 @@ const Section5AboutAdmin = () => {
   const addSection5_slider1 = async (e) => {
     e.preventDefault();
     const id = data[0]?._id;
-    const res = await fetch(
-      `http://localhost:3000/api/about/section5_slider1/${id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ heading: newHeading, quantity: newQuantity }),
-      }
-    );
+
+    const apiUrl = process.env.NEXT_PUBLIC_ABOUT_SECTION5_SLIDER1 + id;
+    const res = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ heading: newHeading, quantity: newQuantity }),
+    });
 
     if (!res.ok) {
       throw new Error(
@@ -210,21 +207,20 @@ const Section5AboutAdmin = () => {
       if (decision === "please update me") {
         const id = data[0]?._id;
 
-        const res = await fetch(
-          `http://localhost:3000/api/about/section5_slider2/${id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              heading: heading2,
-              quantity: quantity2,
-              targetIndex: targetIndex,
-              targetSection: targetSection,
-            }),
-          }
-        );
+        const apiUrl = process.env.NEXT_PUBLIC_ABOUT_SECTION5_SLIDER2 + id;
+
+        const res = await fetch(apiUrl, {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            heading: heading2,
+            quantity: quantity2,
+            targetIndex: targetIndex,
+            targetSection: targetSection,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("section5_slider2 of About page couldn't be updated");
@@ -249,19 +245,18 @@ const Section5AboutAdmin = () => {
       if (decision2 === "please delete this") {
         const id = data[0]?._id;
 
-        const res = await fetch(
-          `http://localhost:3000/api/about/section5_slider2/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              targetIndex: targetIndex,
-              targetSection: targetSection,
-            }),
-          }
-        );
+        const apiUrl = process.env.NEXT_PUBLIC_ABOUT_SECTION5_SLIDER2 + id;
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            targetIndex: targetIndex,
+            targetSection: targetSection,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("section5_slider2 of About page couldn't be deleted");
@@ -283,16 +278,14 @@ const Section5AboutAdmin = () => {
   const addSection5_slider2 = async (e) => {
     e.preventDefault();
     const id = data[0]?._id;
-    const res = await fetch(
-      `http://localhost:3000/api/about/section5_slider2/${id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ heading: newHeading2, quantity: newQuantity2 }),
-      }
-    );
+    const apiUrl = process.env.NEXT_PUBLIC_ABOUT_SECTION5_SLIDER2 + id;
+    const res = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ heading: newHeading2, quantity: newQuantity2 }),
+    });
 
     if (!res.ok) {
       throw new Error(

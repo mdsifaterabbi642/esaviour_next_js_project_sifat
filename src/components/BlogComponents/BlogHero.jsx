@@ -16,7 +16,7 @@ const BlogHero = () => {
 
   useEffect(() => {
     const getHeroData = async () => {
-      const res = await fetch(`http://localhost:3000/api/hero`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_HERO_GET, {
         cache: "no-store",
       });
       if (!res.ok) {

@@ -23,7 +23,7 @@ const ContactAdminPage = () => {
 
   useEffect(() => {
     const getContactData = async () => {
-      const res = await fetch("http://localhost:3000/api/contact", {
+      const res = await fetch(process.env.NEXT_PUBLIC_CONTACT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -43,7 +43,7 @@ const ContactAdminPage = () => {
 
   useEffect(() => {
     const getContactData = async () => {
-      const res = await fetch("http://localhost:3000/api/contact", {
+      const res = await fetch(process.env.NEXT_PUBLIC_CONTACT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -83,7 +83,7 @@ const ContactAdminPage = () => {
         const newPhone = phone[targetIndex];
         const newEmail = email[targetIndex];
 
-        const res = await fetch(`http://localhost:3000/api/contact`, {
+        const res = await fetch(process.env.NEXT_PUBLIC_CONTACT_GET, {
           method: "PATCH",
           headers: {
             "Content-type": "application/json",
@@ -121,7 +121,7 @@ const ContactAdminPage = () => {
         console.log("You want to delete");
         console.log("targetIndex: ", targetIndex);
 
-        const res = await fetch("http://localhost:3000/api/contact", {
+        const res = await fetch(process.env.NEXT_PUBLIC_CONTACT_GET, {
           method: "DELETE",
           headers: {
             "Content-type": "application/json",
@@ -163,7 +163,7 @@ const ContactAdminPage = () => {
       // console.log("addPhone: ", addPhone);
       // console.log("addEmail: ", addEmail);
 
-      const res = await fetch(`http://localhost:3000/api/contact`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_CONTACT_GET, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

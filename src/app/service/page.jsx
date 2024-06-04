@@ -1,4 +1,3 @@
-"use client";
 import styles from "@/app/service/Service.module.css";
 import Footer1 from "@/components/Footer/Footer1";
 import Footer2 from "@/components/Footer/Footer2";
@@ -6,18 +5,21 @@ import Navbar from "@/components/Navbar/Navbar";
 import ServiceHero from "@/components/ServicePageComponents/ServiceHero";
 import ServiceTemplate from "@/components/ServicePageComponents/ServiceTemplate";
 
-import Head from "next/head";
+export const metadata = {
+  title: {
+    absolute: "Services | eSaviour Limited",
+  },
+  description:
+    "eSaviour Limited services covers graphic design, amazon marketing, creative web development, b2b digital marketing and so on.",
+  alternates: {
+    canonical: "./", // Use "./" for the base URL
+  },
+  keywords: "eSaviour, B2B, Digital Marketing, Agency", // Add your desired keywords here
+};
 
 const ServicePage = () => {
   return (
     <>
-      <Head>
-        <title>My Page Title</title>
-
-        <meta name="description" content="This is my page description." />
-
-        <link rel="canonical" href="https://example.com/my-page" />
-      </Head>
       <div className={`${styles.container}`}>
         <Navbar />
         <ServiceHero />

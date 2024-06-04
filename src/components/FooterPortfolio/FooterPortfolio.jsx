@@ -29,7 +29,7 @@ const FooterPortfolio = () => {
 
   useEffect(() => {
     const getHeroData = async () => {
-      const res = await fetch(`http://localhost:3000/api/footer`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         cache: "no-store",
       });
       if (!res.ok) {

@@ -13,6 +13,18 @@ import AboutSection_7 from "@/components/AboutComponents/AboutSection_7";
 import AboutSection_8 from "@/components/AboutComponents/AboutSection_8";
 import AboutFAQSection from "@/components/AboutComponents/AboutFAQSection";
 
+export const metadata = {
+  title: {
+    absolute: "About | eSaviour Limited",
+  },
+  description:
+    "eSaviour Limited is one of the leading multinational B2B Digital Marketing Agencies. Who provided b2b digital marketing services all around the world.",
+  alternates: {
+    canonical: "./", // Use "./" for the base URL
+  },
+  keywords: "eSaviour, B2B, Digital Marketing, Agency", // Add your desired keywords here
+};
+
 const AboutPage = () => {
   return (
     <>

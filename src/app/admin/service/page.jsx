@@ -30,7 +30,7 @@ const ServiceAdminPage = () => {
 
   useEffect(() => {
     const getServicePageData = async () => {
-      const res = await fetch(`http://localhost:3000/api/servicepage`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_SERVICE_PAGE_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -63,7 +63,7 @@ const ServiceAdminPage = () => {
 
   useEffect(() => {
     const getServicePageData = async () => {
-      const res = await fetch(`http://localhost:3000/api/servicepage`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_SERVICE_PAGE_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -119,22 +119,22 @@ const ServiceAdminPage = () => {
         // console.log("conclusion: ", conclusion[targetIndex]);
         // console.log("targetIndex: ", targetIndex);
 
-        const res = await fetch(
-          `http://localhost:3000/api/servicepage/${targetIndex}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              serviceName: serviceName[targetIndex],
-              serviceHeading: serviceHeading[targetIndex],
-              serviceImageSource: serviceImageSource[targetIndex],
-              serviceImageAlt: serviceImageAlt[targetIndex],
-              conclusion: conclusion[targetIndex],
-            }),
-          }
-        );
+        const apiUrl =
+          process.env.NEXT_PUBLIC_SERVICE_PAGE_GET + "/" + Number(targetIndex);
+
+        const res = await fetch(apiUrl, {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            serviceName: serviceName[targetIndex],
+            serviceHeading: serviceHeading[targetIndex],
+            serviceImageSource: serviceImageSource[targetIndex],
+            serviceImageAlt: serviceImageAlt[targetIndex],
+            conclusion: conclusion[targetIndex],
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("Error in updating ServicePage model");
@@ -158,15 +158,15 @@ const ServiceAdminPage = () => {
       if (decision === "Yes delete this") {
         console.log("You choose delete");
 
-        const res = await fetch(
-          `http://localhost:3000/api/servicepage/${targetIndex}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
+        const apiUrl =
+          process.env.NEXT_PUBLIC_SERVICE_PAGE_GET + "/" + Number(targetIndex);
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+        });
 
         if (!res.ok) {
           throw new Error("Error in deleting ServicePage model");
@@ -227,7 +227,7 @@ const ServiceAdminPage = () => {
       // Now your bulletArray contains multiple bullet objects
       //console.log(bullet);
 
-      const res = await fetch(`http://localhost:3000/api/servicepage`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_SERVICE_PAGE_GET, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

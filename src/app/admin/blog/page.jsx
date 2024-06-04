@@ -35,7 +35,7 @@ const BlogAdminPage = () => {
 
   useEffect(() => {
     const getCategoryData = async () => {
-      const res = await fetch(`http://localhost:3000/api/blog/category`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_CATEGORY_GET, {
         cache: "no-store",
       });
 
@@ -91,7 +91,7 @@ const BlogAdminPage = () => {
 
   useEffect(() => {
     const getCategoryData = async () => {
-      const res = await fetch(`http://localhost:3000/api/blog/category`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_CATEGORY_GET, {
         cache: "no-store",
       });
 
@@ -104,7 +104,7 @@ const BlogAdminPage = () => {
     };
 
     const getBlogData = async () => {
-      const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_BLOG_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -171,7 +171,7 @@ const BlogAdminPage = () => {
         const newBlogDate = blogDate[targetIndex];
         const newBlogId = blogId[targetIndex];
 
-        const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
+        const res = await fetch(process.env.NEXT_PUBLIC_BLOG_GET, {
           method: "PATCH",
           headers: {
             "Content-type": "application/json",
@@ -210,7 +210,7 @@ const BlogAdminPage = () => {
 
       if (decision === "Delete eSaviour blog") {
         console.log("You choosed to delete the blog");
-        const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
+        const res = await fetch(process.env.NEXT_PUBLIC_BLOG_GET, {
           method: "DELETE",
           headers: {
             "Content-type": "application/json",
@@ -255,7 +255,7 @@ const BlogAdminPage = () => {
       // console.log("addBlogDate: ", addBlogDate);
       //console.log("addBlogId: ", addBlogId);
 
-      const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_BLOG_GET, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

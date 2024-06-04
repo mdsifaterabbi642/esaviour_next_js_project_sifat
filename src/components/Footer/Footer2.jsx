@@ -28,12 +28,12 @@ const Footer2 = () => {
   const [paymentLink, setPaymentLink] = useState([]);
 
   useEffect(() => {
-    const getHeroData = async () => {
-      const res = await fetch(`http://localhost:3000/api/footer`, {
+    const getFooterData = async () => {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         cache: "no-store",
       });
       if (!res.ok) {
-        throw new Error("Error in fetching Heros data");
+        throw new Error("Error in fetching Footer data");
       }
       const myJsonData = await res.json();
       setData(myJsonData);
@@ -100,7 +100,7 @@ const Footer2 = () => {
       );
     };
 
-    getHeroData();
+    getFooterData();
 
     setIsClient(true);
   }, []);

@@ -26,7 +26,7 @@ const TabContextMD_LG = () => {
 
   useEffect(() => {
     const getServiceData = async () => {
-      const res = await fetch("http://localhost:3000/api/service", {
+      const res = await fetch(process.env.NEXT_PUBLIC_SERVICE_GET, {
         cache: "no-store",
       });
 
@@ -146,7 +146,6 @@ const TabContextMD_LG = () => {
                   <span className="loading loading-bars loading-lg"></span>
                 </div>
               )}
-
             </Slider>
           </div>
         </TabPanel>
@@ -201,7 +200,6 @@ const TabContextMD_LG = () => {
                   <span className="loading loading-bars loading-lg"></span>
                 </div>
               )}
-
             </Slider>
           </div>
         </TabPanel>
@@ -256,7 +254,6 @@ const TabContextMD_LG = () => {
                   <span className="loading loading-bars loading-lg"></span>
                 </div>
               )}
-
             </Slider>
           </div>
         </TabPanel>
@@ -312,7 +309,6 @@ const TabContextMD_LG = () => {
                   <span className="loading loading-bars loading-lg"></span>
                 </div>
               )}
-
             </Slider>
           </div>
         </TabPanel>

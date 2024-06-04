@@ -9,7 +9,7 @@ const HomeIntro = () => {
 
   useEffect(() => {
     const getHeroData = async () => {
-      const res = await fetch("http://localhost:3000/api/home", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HOME_GET, {
         cache: "no-store",
       });
 
@@ -35,7 +35,6 @@ const HomeIntro = () => {
             {isClient ? (
               <Image
                 src={data[0]?.introImgSource}
-                // src="https://i.ibb.co/MNtRSzk/Arrow-2.png"
                 alt={data[0]?.introImgAlt}
                 width="500"
                 height="373"

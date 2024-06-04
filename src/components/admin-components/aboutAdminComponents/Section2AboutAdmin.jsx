@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const Section2AboutAdmin = () => { 
+const Section2AboutAdmin = () => {
   const router = useRouter();
 
   const [data, setData] = useState([]);
@@ -26,7 +26,7 @@ const Section2AboutAdmin = () => {
 
   useEffect(() => {
     const getSection2AboutData = async () => {
-      const res = await fetch("http://localhost:3000/api/about", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ABOUT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -55,7 +55,7 @@ const Section2AboutAdmin = () => {
 
   useEffect(() => {
     const getSection2AboutData = async () => {
-      const res = await fetch("http://localhost:3000/api/about", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ABOUT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -92,7 +92,9 @@ const Section2AboutAdmin = () => {
       console.log("You choosed to update");
       const id = data[0]?._id;
 
-      const res = await fetch(`http://localhost:3000/api/about/update/${id}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_ABOUT_UPDATE + id;
+
+      const res = await fetch(apiUrl, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -132,22 +134,21 @@ const Section2AboutAdmin = () => {
         console.log("You choosed to update");
         const id = data[0]?._id;
 
-        const res = await fetch(
-          `http://localhost:3000/api/about/update/${id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              targetIndex,
-              targetSection,
-              section2_Heading,
-              section2_ImgSource,
-              section2_ImgAlt,
-            }),
-          }
-        );
+        const apiUrl = process.env.NEXT_PUBLIC_ABOUT_UPDATE + id;
+
+        const res = await fetch(apiUrl, {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            targetIndex,
+            targetSection,
+            section2_Heading,
+            section2_ImgSource,
+            section2_ImgAlt,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("About data of About page couldn't be updated");
@@ -172,18 +173,17 @@ const Section2AboutAdmin = () => {
         console.log("You prefer delete");
         const id = data[0]?._id;
 
-        const res = await fetch(
-          `http://localhost:3000/api/about/update/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              targetIndex,
-            }),
-          }
-        );
+        const apiUrl = process.env.NEXT_PUBLIC_ABOUT_UPDATE + id;
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            targetIndex,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("About data of section2_2 couldn't be Deleted");
@@ -211,7 +211,9 @@ const Section2AboutAdmin = () => {
     // console.log("addImgSource: ", addImgSource);
     // console.log("addImgAlt: ", addImgAlt);
 
-    const res = await fetch(`http://localhost:3000/api/about/update/${id}`, {
+    const apiUrl = process.env.NEXT_PUBLIC_ABOUT_UPDATE + id;
+
+    const res = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

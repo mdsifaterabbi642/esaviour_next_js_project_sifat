@@ -24,7 +24,7 @@ const AboutSection_4 = () => {
 
   useEffect(() => {
     const getSection4AboutData = async () => {
-      const res = await fetch("http://localhost:3000/api/about", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ABOUT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {

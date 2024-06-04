@@ -15,9 +15,9 @@ const Section4AboutAdmin = () => {
   const [section4_Image, setImage] = useState([]);
   const [section4_ImgAlt, setImgAlt] = useState([]);
 
-  useEffect(() => { 
+  useEffect(() => {
     const getSection4AboutData = async () => {
-      const res = await fetch("http://localhost:3000/api/about", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ABOUT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -60,7 +60,9 @@ const Section4AboutAdmin = () => {
       console.log("You choosed to update");
       const id = data[0]?._id;
 
-      const res = await fetch(`http://localhost:3000/api/about/update/${id}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_ABOUT_UPDATE + id;
+
+      const res = await fetch(apiUrl, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",

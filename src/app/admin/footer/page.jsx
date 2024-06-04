@@ -31,7 +31,7 @@ const FooterAdminPage = () => {
 
   useEffect(() => {
     const getHeroData = async () => {
-      const res = await fetch(`http://localhost:3000/api/footer`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -138,7 +138,7 @@ const FooterAdminPage = () => {
     );
 
     if (decision === "Update this footer1Upper") {
-      const res = await fetch("http://localhost:3000/api/footer", {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -178,7 +178,7 @@ const FooterAdminPage = () => {
     );
 
     if (decision === "Update this footer1Lower") {
-      const res = await fetch("http://localhost:3000/api/footer", {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -218,7 +218,7 @@ const FooterAdminPage = () => {
     );
 
     if (decision === "Update this footer2Upper") {
-      const res = await fetch("http://localhost:3000/api/footer", {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -258,7 +258,7 @@ const FooterAdminPage = () => {
     );
 
     if (decision === "Update this footer2LowerLeft") {
-      const res = await fetch("http://localhost:3000/api/footer", {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -298,7 +298,7 @@ const FooterAdminPage = () => {
     );
 
     if (decision === "Update this footer2QuickLink") {
-      const res = await fetch("http://localhost:3000/api/footer", {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -339,7 +339,7 @@ const FooterAdminPage = () => {
     );
 
     if (decision === "Update this footer2Legal") {
-      const res = await fetch("http://localhost:3000/api/footer", {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -381,7 +381,7 @@ const FooterAdminPage = () => {
     );
 
     if (decision === "Update this footer2SocialIcons") {
-      const res = await fetch("http://localhost:3000/api/footer", {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -424,7 +424,7 @@ const FooterAdminPage = () => {
     );
 
     if (decision === "Update this footer2PaymentIcons") {
-      const res = await fetch("http://localhost:3000/api/footer", {
+      const res = await fetch(process.env.NEXT_PUBLIC_FOOTER_1, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const Section8AboutAdmin = () => { 
+const Section8AboutAdmin = () => {
   const router = useRouter();
 
   const [data, setData] = useState([]);
@@ -26,7 +26,7 @@ const Section8AboutAdmin = () => {
 
   useEffect(() => {
     const getSection8AboutData = async () => {
-      const res = await fetch("http://localhost:3000/api/about", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ABOUT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -52,7 +52,7 @@ const Section8AboutAdmin = () => {
 
   useEffect(() => {
     const getSection8AboutData = async () => {
-      const res = await fetch("http://localhost:3000/api/about", {
+      const res = await fetch(process.env.NEXT_PUBLIC_ABOUT_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -92,23 +92,22 @@ const Section8AboutAdmin = () => {
         console.log("You choosed to update");
         const id = data[0]?._id;
 
-        const res = await fetch(
-          `http://localhost:3000/api/about/update/${id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              section8_Name,
-              section8_Designation,
-              section8_ImgSource,
-              section8_ImgAlt,
-              targetIndex,
-              targetSection,
-            }),
-          }
-        );
+        const apiUrl = process.env.NEXT_PUBLIC_ABOUT_UPDATE + id;
+
+        const res = await fetch(apiUrl, {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            section8_Name,
+            section8_Designation,
+            section8_ImgSource,
+            section8_ImgAlt,
+            targetIndex,
+            targetSection,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("About data of About page couldn't be updated");
@@ -134,19 +133,18 @@ const Section8AboutAdmin = () => {
         console.log("You choosed to delete");
         const id = data[0]?._id;
 
-        const res = await fetch(
-          `http://localhost:3000/api/about/employee/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              targetIndex: targetIndex,
-              targetSection: targetSection,
-            }),
-          }
-        );
+        const apiUrl = process.env.NEXT_PUBLIC_ABOUT_EMPLOYEE + id;
+
+        const res = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            targetIndex: targetIndex,
+            targetSection: targetSection,
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("About data of About page couldn't be deleted");
@@ -176,21 +174,20 @@ const Section8AboutAdmin = () => {
 
       const id = modelID;
 
-      const res = await fetch(
-        `http://localhost:3000/api/about/employee/${id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            employeeName: employeeName,
-            employeeDesignation: employeeDesignation,
-            employeeImgSrc: employeeImgSrc,
-            employeeImgAlt: employeeImgAlt,
-          }),
-        }
-      );
+      const apiUrl = process.env.NEXT_PUBLIC_ABOUT_EMPLOYEE + id;
+
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          employeeName: employeeName,
+          employeeDesignation: employeeDesignation,
+          employeeImgSrc: employeeImgSrc,
+          employeeImgAlt: employeeImgAlt,
+        }),
+      });
 
       if (!res.ok) {
         throw new Error("Couldn't add Employee to About model");

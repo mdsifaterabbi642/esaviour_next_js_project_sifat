@@ -66,7 +66,7 @@ const TabContextSM = () => {
 
   useEffect(() => {
     const getServiceData = async () => {
-      const res = await fetch("http://localhost:3000/api/service", {
+      const res = await fetch(process.env.NEXT_PUBLIC_SERVICE_GET, {
         cache: "no-store",
       });
 

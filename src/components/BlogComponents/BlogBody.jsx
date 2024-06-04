@@ -28,7 +28,7 @@ const BlogBody = () => {
 
   useEffect(() => {
     const getCategoryData = async () => {
-      const res = await fetch(`http://localhost:3000/api/blog/category`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_CATEGORY_GET, {
         cache: "no-store",
       });
 
@@ -41,7 +41,7 @@ const BlogBody = () => {
     };
 
     const getBlogData = async () => {
-      const res = await fetch(`http://localhost:3000/api/blog/myblog`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_BLOG_GET, {
         cache: "no-store",
       });
       if (!res.ok) {

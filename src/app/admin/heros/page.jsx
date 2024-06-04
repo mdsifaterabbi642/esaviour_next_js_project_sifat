@@ -32,7 +32,7 @@ const HerosPage = () => {
 
   useEffect(() => {
     const getHeroData = async () => {
-      const res = await fetch(`http://localhost:3000/api/hero`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_HERO_GET, {
         cache: "no-store",
       });
       if (!res.ok) {
@@ -89,7 +89,7 @@ const HerosPage = () => {
     );
 
     if (decision === "Update this hero") {
-      const res = await fetch("http://localhost:3000/api/hero", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HERO_GET, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -132,7 +132,7 @@ const HerosPage = () => {
     );
 
     if (decision === "Update this hero") {
-      const res = await fetch("http://localhost:3000/api/hero", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HERO_GET, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -175,7 +175,7 @@ const HerosPage = () => {
     );
 
     if (decision === "Update this hero") {
-      const res = await fetch("http://localhost:3000/api/hero", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HERO_GET, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -218,7 +218,7 @@ const HerosPage = () => {
     );
 
     if (decision === "Update this hero") {
-      const res = await fetch("http://localhost:3000/api/hero", {
+      const res = await fetch(process.env.NEXT_PUBLIC_HERO_GET, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
