@@ -3,10 +3,10 @@ import connectDB from "@/utils/db";
 import Blog from "@/models/Blog";
 import Category from "@/models/Category";
 
-//finding blogs based on blogId
+//finding single blog based on blogId
 export const POST = async (request, { params }) => {
   try {
-    const { blogId } = params;
+    const { blogId } = params; 
     await connectDB();
 
     // Convert blogId to a number

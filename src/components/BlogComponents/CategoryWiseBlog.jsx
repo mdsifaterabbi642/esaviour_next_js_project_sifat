@@ -1,9 +1,5 @@
 "use client";
-// import BlogData from "@/Data/BlogData";
-// import Category from "@/Data/Category";
-// import BlogHero from "@/components/BlogComponents/BlogHero";
-// import FooterPortfolio from "@/components/FooterPortfolio/FooterPortfolio";
-// import Navbar from "@/components/Navbar/Navbar";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaSearch } from "react-icons/fa";
@@ -13,12 +9,6 @@ import { useEffect, useState } from "react";
 const CategoryWiseBlog = ({ props }) => {
   const categorySlug = props;
 
-  //const decodedCategory = decodeURIComponent(category);
-
-  // const filteredData = BlogData.filter(
-  //   (item) => item.category === decodedCategory
-  // );
-  // console.log(filteredData);
   const [isClient, setIsClient] = useState(false);
   const [myFilteredBlogs, setMyFilteredBlogs] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
@@ -61,8 +51,6 @@ const CategoryWiseBlog = ({ props }) => {
 
   useEffect(() => {
     const getCategoryWiseBlogs = async () => {
-      //   const apiUrl =
-      //     process.env.NEXT_PUBLIC_BLOG_CATEGORY_WISE_BLOG + "/" + category;
       const apiUrl =
         process.env.NEXT_PUBLIC_BLOG_CATEGORY_WISE_BLOG + "/" + categorySlug;
 
@@ -98,11 +86,10 @@ const CategoryWiseBlog = ({ props }) => {
   //console.log(Array.isArray(latestBlogs2));
 
   //console.log("---> ", allCategories);
- 
 
   return (
     <div className="w-[98vw] mx-auto">
-      {/* Main component for showing filtered blog posts based on category */}
+      {/* Main component for showing filtered blog posts based on categorySlug */}
       <div className="w-[90vw] xl:w-[80vw] mx-auto my-[30px] xl:my-[70px]">
         <div className="flex flex-col md:flex-row xl:flex-row flex-wrap">
           <div className="basis-1/1 md:basis-4/6 xl:basis-3/5">

@@ -7,7 +7,7 @@ import Link from "next/link";
 
 import BlogData from "@/Data/BlogData";
 //import Category from "@/Data/Category";
-//import Category from "@/models/Category";
+//import Category from "@/models/Category"; 
 
 const BlogBody = () => {
   const [myBlogData, setMyBlogData] = useState(); // all blogs are considered as a single object. Inside object, there is article array
