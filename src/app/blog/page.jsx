@@ -1,4 +1,3 @@
-// "use client";
 import styles from "@/app/blog/Blog.module.css";
 import BlogBody from "@/components/BlogComponents/BlogBody";
 import BlogHero from "@/components/BlogComponents/BlogHero";

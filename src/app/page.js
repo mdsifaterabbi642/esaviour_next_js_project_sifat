@@ -1,6 +1,5 @@
-"use client";
-
 import styles from "@/app/page.module.css";
+import HomePageSection5 from "@/components/HomePageSection5";
 import BrandSlider from "@/components/BrandSlider/BrandSlider";
 import ClientsComments from "@/components/ClientSlider/ClientsComments";
 import ClientsCommentsMD from "@/components/ClientSlider/ClientsCommentsMD";
@@ -19,201 +18,15 @@ import TabContextSM from "@/components/HomeTabIndex/TabContextSM";
 import TabContextXL from "@/components/HomeTabIndex/TabContextXL";
 import TabContextXSM from "@/components/HomeTabIndex/TabContextXSM";
 import Navbar from "@/components/Navbar/Navbar";
-import { ServiceCard } from "@/components/ServiceCard/ServiceCard";
-import emailjs from "@emailjs/browser";
-import { useEmailJS } from "@/ContextAPI/EmailJSContextAPI";
-import { useForm } from "react-hook-form";
-import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import HomeGetQuoteButton from "@/components/HomeGetQuoteButton";
 
 export default function Home() {
-  const form = useRef();
-
-  const { emailData, setEmailData } = useEmailJS();
-  const [localData, setLocalData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
-  const [emailStatus, setEmailStatus] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    formState: { isSubmitting }, // Access isSubmitting property
-  } = useForm();
-
-  const handleMyQuote = (data) => {
-    console.log("Your name is: ", data.name);
-    console.log("Your email is: ", data.email);
-    console.log("Your phone is: ", data.phone);
-    console.log("Your message is: ", data.message);
-
-    setLocalData({
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      message: data.message,
-    });
-
-    //implement email js here
-    emailjs
-      .sendForm(
-        "service_d2jkicu",
-        "template_jcd7rrq",
-        form.current,
-        "cdQJMV8uBJzxi8V29"
-      )
-      .then(
-        (result) => {
-          console.log(result.text, "send successfully");
-          alert(result.text, "send successfully");
-          setEmailStatus(true);
-        },
-        (error) => {
-          console.log(error.text, "didn't send");
-          alert(error.text, "didn't send");
-          setEmailStatus(false);
-        }
-      );
-
-    //call the reset form based on the response from email js
-    if (setEmailStatus) {
-      reset();
-    }
-  };
-
-  useEffect(() => {
-    // Update emailData directly
-    setEmailData(localData);
-  }, [localData, setEmailData]); // ========== setEmailData added as dependency array =========
-
-  useEffect(() => {
-    //console.log("After form submission: ");
-    //console.log(emailData);
-  }, [emailData]);
-
-  const senderNameFormatted = JSON.stringify(emailData.name);
-
-  const [data, setData] = useState("");
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    const getHeroData = async () => {
-      const res = await fetch(process.env.NEXT_PUBLIC_HOME_SERVICE_CARD_GET, {
-        cache: "no-store",
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      // return console.log(res.json());
-      const myJsonData = await res.json();
-      setData(myJsonData);
-    };
-
-    getHeroData();
-    setIsClient(true);
-  }, []);
-
-  //console.log(data[0]?.cardContents[0]);
-
   return (
     <>
       <div className={`${styles.container}`}>
-        {/* this is get quote modal*/}
-        <dialog id="getQuoteModal" className="modal">
-          <div className="modal-box bg-[#ffffff]">
-            <form method="dialog">
-              <button className="btn btn-sm rounded-none bg-black text-white text-[20px] absolute right-2 top-2">
-                ✕
-              </button>
-            </form>
-            <div className="">
-              <div className="mb-[10px] w-[204px]">
-                <Image
-                  src="/HomePageLogos/Logo.png"
-                  alt="Logo"
-                  className="w-[150px] mx-auto"
-                  width="204"
-                  height="58"
-                  layout="responsive"
-                ></Image>
-              </div>
-              <form ref={form} onSubmit={handleSubmit(handleMyQuote)}>
-                <input
-                  {...register("name", { required: true })}
-                  placeholder="Name*"
-                  className="border my-[5px] py-[10px] rounded-md w-[100%] xl:w-[200px] xl:mx-[5px] pl-[5px] inline getFreeQuote"
-                />
-                {errors.name && (
-                  <p className="text-red-500 font-semibold">
-                    Name is required.
-                  </p>
-                )}
-                <input
-                  {...register("email", { required: true })}
-                  placeholder="Email*"
-                  className="border my-[5px] py-[10px] rounded-md w-[100%] xl:w-[200px] pl-[5px] inline getFreeQuote"
-                />
-                {errors.email && (
-                  <p className="text-red-500 font-semibold">
-                    Email is required.
-                  </p>
-                )}
-                <input
-                  {...register("phone", { required: true })}
-                  placeholder="Phone*"
-                  className="border my-[5px] py-[10px] rounded-md w-[100%] xl:w-[92%] xl:mx-[5px] pl-[5px] inline getFreeQuote"
-                />
-                {errors.phone && (
-                  <p className="text-red-500 font-semibold">
-                    Phone is required.
-                  </p>
-                )}
-                <textarea
-                  {...register("message", { required: true })}
-                  placeholder="Message*"
-                  rows={5}
-                  cols={40}
-                  className="border my-[5px] py-[10px] rounded-md w-[100%] xl:w-[92%] xl:mx-[5px] pl-[5px] inline getFreeQuote"
-                />
-                {errors.message && (
-                  <p className="text-red-500 font-semibold">
-                    Message is required.
-                  </p>
-                )}
-                <button
-                  type="submit"
-                  className="btn btn-info rounded-md text-white py-[5px] px-[20px] ml-[5px]"
-                >
-                  SEND
-                </button>
-
-                {isSubmitting || emailStatus ? ( // Show notification only when isSubmitting or emailStatus is set
-                  emailStatus ? (
-                    <p className="text-green-500 font-semibold">
-                      Hello {senderNameFormatted}, your email was sent
-                      successfully!
-                    </p>
-                  ) : (
-                    <p className="text-red-500 font-semibold">
-                      Hello {senderNameFormatted}, there was an error sending
-                      your email. Please try again.
-                    </p>
-                  )
-                ) : null}
-              </form>
-            </div>
-          </div>
-        </dialog>
-
         <Navbar />
         <Hero />
+        <HomeGetQuoteButton />
         <div className="w-[98vw] mx-auto overflow-hidden">
           <HomeIntro />
         </div>
@@ -234,30 +47,7 @@ export default function Home() {
         </div>
 
         {/* ============ Section 5 starts from here ============= */}
-        <div className="my-[25px] text-center w-[98vw] mx-auto">
-          <span className="dmsans200 text-[24px] xl:text-[40px]">
-            Why Choose Esaviour Limited to
-            <span className=" text-sky-500 TabContextFontSpan2 font-bold">
-              <br></br> Builds Your Brand?
-            </span>
-          </span>
-        </div>
-        <div className="flex flex-wrap flex-col sm:flex-row w-[90vw] xl:w-[80%] xl:mx-auto md:w-[90vw] md:mx-auto mx-auto overflow-x-hidden">
-          {isClient ? (
-            data[0]?.cardContents.map((c) => (
-              <div key={c.id} className="basis-1/1 sm:basis-1/2">
-                <ServiceCard props={c} />
-              </div>
-            ))
-          ) : (
-            <div>
-              <span className="loading loading-bars loading-xs"></span>
-              <span className="loading loading-bars loading-sm"></span>
-              <span className="loading loading-bars loading-md"></span>
-              <span className="loading loading-bars loading-lg"></span>
-            </div>
-          )}
-        </div>
+        <HomePageSection5 />
         {/* ============ Section 5 ended here ============= */}
 
         {/* ================== section 6 (The Brands we have worked with) starts from here =====================*/}
