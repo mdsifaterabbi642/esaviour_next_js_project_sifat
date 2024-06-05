@@ -1,86 +1,43 @@
 "use client";
-import { useState, useEffect } from "react";
-import blogModuleCSS from "./BlogBody.module.css";
-import { FaSearch } from "react-icons/fa";
+// import BlogData from "@/Data/BlogData";
+// import Category from "@/Data/Category";
+// import BlogHero from "@/components/BlogComponents/BlogHero";
+// import FooterPortfolio from "@/components/FooterPortfolio/FooterPortfolio";
+// import Navbar from "@/components/Navbar/Navbar";
 import Image from "next/image";
 import Link from "next/link";
+import { FaSearch } from "react-icons/fa";
+import blogModuleCSS from "@/components/BlogComponents/BlogBody.module.css";
+import { useEffect, useState } from "react";
 
-import BlogData from "@/Data/BlogData";
-//import Category from "@/Data/Category";
-//import Category from "@/models/Category";
+const CategoryWiseBlog = ({ props }) => {
+  const categorySlug = props;
 
-const BlogBody = () => {
-  const [myBlogData, setMyBlogData] = useState(); // all blogs are considered as a single object. Inside object, there is article array
-  const [categoryData, setCategoryData] = useState([]);
+  //const decodedCategory = decodeURIComponent(category);
+
+  // const filteredData = BlogData.filter(
+  //   (item) => item.category === decodedCategory
+  // );
+  // console.log(filteredData);
   const [isClient, setIsClient] = useState(false);
-  //state variables for setting default values to form fields
-  const [bannerTitle, setBannerTitle] = useState();
-  const [category, setCategory] = useState();
-  const [bodyTitle, setBodyTitle] = useState();
-  const [bodyDescription, setBodyDescription] = useState();
-  const [blogDate, setBlogDate] = useState();
-  const [imageSource, setImageSource] = useState();
-  const [alt, setAlt] = useState();
-  const [width, setWidth] = useState();
-  const [height, setHeight] = useState();
-  const [blogId, setBlogId] = useState();
+  const [myFilteredBlogs, setMyFilteredBlogs] = useState([]);
+  const [allCategories, setAllCategories] = useState([]);
   const [latestBlogs2, setLatestBlogs] = useState([]);
 
   useEffect(() => {
-    const getCategoryData = async () => {
+    const getAllCategories = async () => {
       const res = await fetch(process.env.NEXT_PUBLIC_CATEGORY_GET, {
         cache: "no-store",
       });
 
       if (!res.ok) {
-        throw new Error("Failed to fetch category data");
+        throw new Error("Problem in fetching Category model data");
       }
-
-      const myJsonData = await res.json();
-      setCategoryData(myJsonData);
-    };
-
-    const getBlogData = async () => {
-      const res = await fetch(process.env.NEXT_PUBLIC_BLOG_GET, {
-        cache: "no-store",
-      });
-      if (!res.ok) {
-        throw new Error("Failed to fetch blog data");
+      if (res.ok) {
+        const data = await res.json();
+        // setAllCategories(data[0].category);
+        setAllCategories(data[0].category);
       }
-      const myJsonData = await res.json();
-      setMyBlogData(myJsonData);
-
-      //setting up default values to populate form fields
-      setBlogId(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.blogId)
-      );
-      setBannerTitle(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.bannerTitle)
-      );
-      setCategory(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.category)
-      );
-      setBodyTitle(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.bodyTitle)
-      );
-      setBodyDescription(
-        myJsonData?.blogData[0]?.article.map(
-          (item, index) => item.bodyDescription
-        )
-      );
-      setBlogDate(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.blogDate)
-      );
-      setImageSource(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.imageSource)
-      );
-      setAlt(myJsonData?.blogData[0]?.article.map((item, index) => item.alt));
-      setWidth(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.width)
-      );
-      setHeight(
-        myJsonData?.blogData[0]?.article.map((item, index) => item.height)
-      );
     };
 
     const getLatestBlogs = async () => {
@@ -96,14 +53,56 @@ const BlogBody = () => {
       }
     };
 
-    getCategoryData();
-    getBlogData();
+    getAllCategories();
     getLatestBlogs();
+
     setIsClient(true);
   }, []);
 
+  useEffect(() => {
+    const getCategoryWiseBlogs = async () => {
+      //   const apiUrl =
+      //     process.env.NEXT_PUBLIC_BLOG_CATEGORY_WISE_BLOG + "/" + category;
+      const apiUrl =
+        process.env.NEXT_PUBLIC_BLOG_CATEGORY_WISE_BLOG + "/" + categorySlug;
+
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        throw new Error("Can not fetch category wise blogs");
+      }
+      if (res.ok) {
+        const data = await res.json();
+        setMyFilteredBlogs(data.blogsInCategory);
+      }
+    };
+
+    getCategoryWiseBlogs();
+
+    setIsClient(true);
+  }, [categorySlug]);
+
+  //console.log("=== ", myFilteredBlogs);
+  //console.log("=== ", allCategories);
+
+  //finding latest blogs
+  // const latestBlogs = BlogData.sort(
+  //   (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  // ).slice(0, 3);
+
+  //console.log("Latest Blogs === ", latestBlogs2);
+  //console.log(Array.isArray(latestBlogs2));
+
+  //console.log("---> ", allCategories);
+ 
+
   return (
-    <>
+    <div className="w-[98vw] mx-auto">
+      {/* Main component for showing filtered blog posts based on category */}
       <div className="w-[90vw] xl:w-[80vw] mx-auto my-[30px] xl:my-[70px]">
         <div className="flex flex-col md:flex-row xl:flex-row flex-wrap">
           <div className="basis-1/1 md:basis-4/6 xl:basis-3/5">
@@ -111,8 +110,12 @@ const BlogBody = () => {
               <div className="basis-1/1 md:w-[98%] border bg-[#cee9ff]">
                 <div className="xl:text-[24px] breadcrumbs font-bold xl:font-semibold pl-[10px]">
                   <ul>
-                    <li>Home</li>
-                    <li>Blog</li>
+                    <li>
+                      <a>Home</a>
+                    </li>
+                    <li>
+                      <a>Blog</a>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -120,22 +123,21 @@ const BlogBody = () => {
                 <div className="flex flex-wrap">
                   {/* =========== Only for extra small and extra large device ============ */}
                   <div className="my-[10px] md:mx-[5px] block sm:hidden md:hidden lg:hidden xl:block">
-                    {/* <Link href="#"> */}
                     <div className="flex flex-wrap gap-[5px]">
                       {isClient ? (
-                        myBlogData?.blogData[0]?.article.map((item, index) => (
+                        myFilteredBlogs.map((item, index) => (
                           <div
                             className="card xl:w-[266px] bg-[#e8f5ff] shadow-xl"
                             key={index}
                           >
                             <div className="absolute top-[5px] left-[10px] bg-[#40b0fd] text-white text-sm py-[5px] px-[10px] rounded-md">
-                              {category[index]}
+                              {item.category}
                             </div>
 
                             <div className="max-h-[300px] w-[100%] md:h-[150px] xl:h-[150px] xl:w-[100%] rounded-t-md mb-[20px]">
                               <Image
-                                src={imageSource[index]}
-                                alt={alt[index]}
+                                src={item.imageSource}
+                                alt={item.alt}
                                 width={200}
                                 height={200}
                                 layout="responsive"
@@ -145,19 +147,19 @@ const BlogBody = () => {
                             <div className="card-body pt-[15px] pl-[10px]">
                               <div className="border-b-[1px] border-b-[#40b0fd]">
                                 <h2 className="font-extrabold p-0 m-0 md:text-[12px] lg:[12px] xl:text-[18px]">
-                                  {bodyTitle[index].length > 20
-                                    ? bodyTitle[index].slice(0, 20) + "..."
-                                    : bodyTitle[index]}
+                                  {item.bodyTitle.length > 20
+                                    ? item.bodyTitle.slice(0, 20) + "..."
+                                    : item.bodyTitle}
                                 </h2>
                               </div>
 
                               <h1 className="font-semibold md:text-[14px] xl:text-[14px] xl:pt-[15px]">
-                                {bodyDescription[index].length > 50
-                                  ? bodyDescription[index].slice(0, 50) + "..."
-                                  : bodyDescription[index]}
+                                {item.bodyDescription.length > 50
+                                  ? item.bodyDescription.slice(0, 50) + "..."
+                                  : item.bodyDescription}
                               </h1>
                               <div className="card-actions justify-start border-b-[1px] border-b-[#40b0fd]">
-                                <Link href={`/blog/${blogId[index]}`}>
+                                <Link href={`/blog/${item.blogId}`}>
                                   <button className="btn btn-sm bg-slate-700 text-white">
                                     Read More
                                   </button>
@@ -165,60 +167,46 @@ const BlogBody = () => {
                               </div>
                               <div>
                                 <h1 className="md:text-[12px] xl:text-[13px] font-bold tracking-widest">
-                                  {blogDate[index]}
+                                  {item.blogDate}
                                 </h1>
                               </div>
                             </div>
                           </div>
                         ))
                       ) : (
-                        <div className="text-center">
-                          <span className="loading loading-spinner text-primary"></span>
-                          <span className="loading loading-spinner text-secondary"></span>
-                          <span className="loading loading-spinner text-accent"></span>
-                          <span className="loading loading-spinner text-neutral"></span>
-                          <span className="loading loading-spinner text-info"></span>
-                          <span className="loading loading-spinner text-success"></span>
-                          <span className="loading loading-spinner text-warning"></span>
-                          <span className="loading loading-spinner text-error"></span>
+                        <div>
+                          <span className="loading loading-spinner loading-xs"></span>
+                          <span className="loading loading-spinner loading-sm"></span>
+                          <span className="loading loading-spinner loading-md"></span>
+                          <span className="loading loading-spinner loading-lg"></span>
                         </div>
                       )}
                     </div>
-                    {/* </Link> */}
                   </div>
                   {/* =========== For small, medium and large device ===================== */}
                   <div className="my-[10px] md:mx-[5px] hidden sm:block md:block lg:block xl:hidden">
                     <div className="flex flex-wrap gap-[5px]">
                       {isClient ? (
-                        myBlogData?.blogData[0]?.article.map((item, index) => (
+                        myFilteredBlogs.map((item, index) => (
                           <div key={index}>
                             <div className="card lg:card-side bg-base-100 shadow-xl border border-gray-200">
                               <figure className="sm:w-[50%] md:w-[70%] lg:w-[50%] sm:mx-auto md:mx-auto sm:pt-[5px] md:pt-[5px]">
                                 <Image
-                                  src={imageSource[index]}
-                                  alt={alt[index]}
-                                  width={200}
-                                  height={200}
+                                  src={item.imageSource}
+                                  alt={item.alt}
+                                  width="150"
+                                  height="150"
                                   layout="responsive"
                                 />
                               </figure>
                               <div className="card-body">
                                 <div className="badge badge-info gap-2">
-                                  {bannerTitle[index]}
+                                  {item.category}
                                 </div>
-                                <h2 className="card-title">
-                                  {bodyTitle[index].length > 20
-                                    ? bodyTitle[index].slice(0, 20) + "..."
-                                    : bodyTitle[index]}
-                                </h2>
-                                <h1>
-                                  {bodyDescription[index].length > 50
-                                    ? bodyDescription[index].slice(0, 50) +
-                                      "..."
-                                    : bodyDescription[index]}
-                                </h1>
+                                <h2 className="card-title">{item.bodyTitle}</h2>
+                                <p>{item.bodyDescription}</p>
                                 <div className="card-actions justify-end">
-                                  <Link href={`/blog/${blogId[index]}`}>
+                                  <Link href={`/blog/${item.blogId}`}>
                                     <button className="btn btn-sm bg-slate-700 text-white">
                                       Read More
                                     </button>
@@ -229,15 +217,11 @@ const BlogBody = () => {
                           </div>
                         ))
                       ) : (
-                        <div className="text-center">
-                          <span className="loading loading-spinner text-primary"></span>
-                          <span className="loading loading-spinner text-secondary"></span>
-                          <span className="loading loading-spinner text-accent"></span>
-                          <span className="loading loading-spinner text-neutral"></span>
-                          <span className="loading loading-spinner text-info"></span>
-                          <span className="loading loading-spinner text-success"></span>
-                          <span className="loading loading-spinner text-warning"></span>
-                          <span className="loading loading-spinner text-error"></span>
+                        <div>
+                          <span className="loading loading-spinner loading-xs"></span>
+                          <span className="loading loading-spinner loading-sm"></span>
+                          <span className="loading loading-spinner loading-md"></span>
+                          <span className="loading loading-spinner loading-lg"></span>
                         </div>
                       )}
                     </div>
@@ -262,12 +246,11 @@ const BlogBody = () => {
                       <FaSearch className="mx-auto my-[25%]" />
                     </div>
                   </div>
-                  <h1 className="text-[#40c0fe] xl:text-[20px] xl:font-extrabold text-center my-[20px]">
+                  <h1 className="text-[#40c0fe] xl:text-[20px] xl:font-extrabold text-center mt-[20px]">
                     Categories
                   </h1>
-
                   {isClient ? (
-                    categoryData[0]?.category.map((item) => (
+                    allCategories.map((item) => (
                       <div
                         key={item.categoryId}
                         className="font-semibold text-center border-b-[1px] border-[rgba(64,176,253,0.5)] w-[90%] mx-auto cursor-pointer hover:bg-[#000000] hover:text-[#ffffff] duration-300 ease-in-out"
@@ -296,9 +279,9 @@ const BlogBody = () => {
               <div className="basis-1/1 bg-[#e8f5ff] mt-[20px] mb-[50px] pb-[20px] w-[100%] xl:w-[75%] mx-auto">
                 <div className="bg-[#ffffff] w-[95%] mx-auto mt-[20px] pb-[20px] rounded-md">
                   <div>
-                    <p className="font-extrabold text-[#000000] text-[20px] pl-[20px]">
+                    <h1 className="font-extrabold text-[#000000] text-[20px] pl-[20px]">
                       Recent Post
-                    </p>
+                    </h1>
                   </div>
 
                   {isClient ? (
@@ -356,8 +339,8 @@ const BlogBody = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default BlogBody;
+export default CategoryWiseBlog;

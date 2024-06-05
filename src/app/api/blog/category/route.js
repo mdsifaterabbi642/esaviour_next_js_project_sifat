@@ -3,7 +3,7 @@ import connectDB from "@/utils/db";
 import Category from "@/models/Category";
 
 // get all categories
-export const GET = async (request) => {
+export const GET = async (request) => { 
   try {
     await connectDB();
     const categoryData = await Category.find();

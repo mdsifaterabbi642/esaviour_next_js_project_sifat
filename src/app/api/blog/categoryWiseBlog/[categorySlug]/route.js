@@ -3,21 +3,22 @@ import connectDB from "@/utils/db";
 import Blog from "@/models/Blog";
 import Category from "@/models/Category";
 
-//finding blogs based on category
+//finding blogs based on categorySlug
 export const POST = async (request, { params }) => {
   try {
-    const { category } = params;
+    // const { category } = params;
+    const { categorySlug } = params;
     await connectDB();
 
     const allBlogs = await Blog.find();
 
-    // Find all blogs that match the specified category
+    // Find all blogs that match the specified categorySlug
     const blogsInCategory = allBlogs[0]?.article.filter(
-      (blog) => blog.category === category
+      (blog) => blog.categorySlug === categorySlug
     );
 
     let responseBody = {
-      category: category,
+      categorySlug: categorySlug,
       blogsInCategory: blogsInCategory,
     };
 

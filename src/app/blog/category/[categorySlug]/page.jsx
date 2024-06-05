@@ -1,6 +1,6 @@
-"use client";
-import BlogData from "@/Data/BlogData";
-import Category from "@/Data/Category";
+// "use client";
+// import BlogData from "@/Data/BlogData";
+// import Category from "@/Data/Category";
 import BlogHero from "@/components/BlogComponents/BlogHero";
 import FooterPortfolio from "@/components/FooterPortfolio/FooterPortfolio";
 import Navbar from "@/components/Navbar/Navbar";
@@ -8,80 +8,92 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaSearch } from "react-icons/fa";
 import blogModuleCSS from "@/components/BlogComponents/BlogBody.module.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import CategoryWiseBlog from "@/components/BlogComponents/CategoryWiseBlog";
+
+export const metadata = {
+  title: {
+    absolute: "Amazon FBA Archives - esaviour",
+  },
+  description: "",
+  alternates: {
+    canonical: "./", // Use "./" for the base URL
+  },
+  keywords: "", // Add your desired keywords here
+};
 
 const CategoryPage = ({ params }) => {
-  const { category } = params;
+  const { categorySlug } = params;
 
-  const decodedCategory = decodeURIComponent(category);
+  //const decodedCategory = decodeURIComponent(category);
 
   // const filteredData = BlogData.filter(
   //   (item) => item.category === decodedCategory
   // );
   // console.log(filteredData);
-  const [isClient, setIsClient] = useState(false);
-  const [myFilteredBlogs, setMyFilteredBlogs] = useState([]);
-  const [allCategories, setAllCategories] = useState([]);
-  const [latestBlogs2, setLatestBlogs] = useState([]);
+  // const [isClient, setIsClient] = useState(false);
+  // const [myFilteredBlogs, setMyFilteredBlogs] = useState([]);
+  // const [allCategories, setAllCategories] = useState([]);
+  // const [latestBlogs2, setLatestBlogs] = useState([]);
 
-  useEffect(() => {
-    const getAllCategories = async () => {
-      const res = await fetch(process.env.NEXT_PUBLIC_CATEGORY_GET, {
-        cache: "no-store",
-      });
+  // useEffect(() => {
+  //   const getAllCategories = async () => {
+  //     const res = await fetch(process.env.NEXT_PUBLIC_CATEGORY_GET, {
+  //       cache: "no-store",
+  //     });
 
-      if (!res.ok) {
-        throw new Error("Problem in fetching Category model data");
-      }
-      if (res.ok) {
-        const data = await res.json();
-        setAllCategories(data[0].category);
-      }
-    };
+  //     if (!res.ok) {
+  //       throw new Error("Problem in fetching Category model data");
+  //     }
+  //     if (res.ok) {
+  //       const data = await res.json();
+  //       setAllCategories(data[0].category);
+  //     }
+  //   };
 
-    const getLatestBlogs = async () => {
-      const res = await fetch(process.env.NEXT_PUBLIC_BLOG_LATEST_BLOG, {
-        cache: "no-store",
-      });
-      if (!res.ok) {
-        throw new Error("Error in fetching latest blogs");
-      }
-      if (res.ok) {
-        const data = await res.json();
-        setLatestBlogs(data?.articles);
-      }
-    };
+  //   const getLatestBlogs = async () => {
+  //     const res = await fetch(process.env.NEXT_PUBLIC_BLOG_LATEST_BLOG, {
+  //       cache: "no-store",
+  //     });
+  //     if (!res.ok) {
+  //       throw new Error("Error in fetching latest blogs");
+  //     }
+  //     if (res.ok) {
+  //       const data = await res.json();
+  //       setLatestBlogs(data?.articles);
+  //     }
+  //   };
 
-    getAllCategories();
-    getLatestBlogs();
+  //   getAllCategories();
+  //   getLatestBlogs();
 
-    setIsClient(true);
-  }, []);
+  //   setIsClient(true);
+  // }, []);
 
-  useEffect(() => {
-    const getCategoryWiseBlogs = async () => {
-      const apiUrl =
-        process.env.NEXT_PUBLIC_BLOG_CATEGORY_WISE_BLOG + "/" + category;
+  // useEffect(() => {
+  //   const getCategoryWiseBlogs = async () => {
+  //     const apiUrl =
+  //       process.env.NEXT_PUBLIC_BLOG_CATEGORY_WISE_BLOG + "/" + category;
 
-      const res = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      if (!res.ok) {
-        throw new Error("Can not fetch category wise blogs");
-      }
-      if (res.ok) {
-        const data = await res.json();
-        setMyFilteredBlogs(data.blogsInCategory);
-      }
-    };
+  //     const res = await fetch(apiUrl, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //       },
+  //     });
+  //     if (!res.ok) {
+  //       throw new Error("Can not fetch category wise blogs");
+  //     }
+  //     if (res.ok) {
+  //       const data = await res.json();
+  //       setMyFilteredBlogs(data.blogsInCategory);
+  //     }
+  //   };
 
-    getCategoryWiseBlogs();
+  //   getCategoryWiseBlogs();
 
-    setIsClient(true);
-  }, [category]);
+  //   setIsClient(true);
+  // }, [category]);
 
   //console.log("=== ", myFilteredBlogs);
   //console.log("=== ", allCategories);
@@ -100,7 +112,7 @@ const CategoryPage = ({ params }) => {
         <Navbar />
         <BlogHero />
         {/* Main component for showing filtered blog posts based on category */}
-        <div className="w-[90vw] xl:w-[80vw] mx-auto my-[30px] xl:my-[70px]">
+        {/* <div className="w-[90vw] xl:w-[80vw] mx-auto my-[30px] xl:my-[70px]">
           <div className="flex flex-col md:flex-row xl:flex-row flex-wrap">
             <div className="basis-1/1 md:basis-4/6 xl:basis-3/5">
               <div className="flex flex-col flex-wrap">
@@ -118,7 +130,6 @@ const CategoryPage = ({ params }) => {
                 </div>
                 <div className="basis-1/1 mt-[10px] xl:mt-[30px]">
                   <div className="flex flex-wrap">
-                    {/* =========== Only for extra small and extra large device ============ */}
                     <div className="my-[10px] md:mx-[5px] block sm:hidden md:hidden lg:hidden xl:block">
                       <div className="flex flex-wrap gap-[5px]">
                         {isClient ? (
@@ -180,7 +191,7 @@ const CategoryPage = ({ params }) => {
                         )}
                       </div>
                     </div>
-                    {/* =========== For small, medium and large device ===================== */}
+
                     <div className="my-[10px] md:mx-[5px] hidden sm:block md:block lg:block xl:hidden">
                       <div className="flex flex-wrap gap-[5px]">
                         {isClient ? (
@@ -337,7 +348,8 @@ const CategoryPage = ({ params }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+        <CategoryWiseBlog props={categorySlug} />
         <div className="w-[98vw] mx-auto overflow-hidden">
           <FooterPortfolio />
         </div>
